@@ -1,33 +1,15 @@
 # AquaQuest
 
-AquaQuest Development Roadmap
-Phase 1 — Pre-Production (Week 1–2)
+**AquaQuest Development Roadmap**
 
-This phase is about planning before writing code.
+Engine: Godot 4.5
+Platform: Android
+Genre: 2D Top-Down Educational RPG
+Research Focus: Dynamic Difficulty Adjustment (DDA)
+Target Users: FASD Students of CvSU-Naic
 
-Step 1. Finalize the Thesis Documentation
 
-Complete:
-
-✅ Introduction
-✅ Research Gap
-✅ Objectives
-✅ Related Literature
-✅ Related Systems
-✅ Mathematical Model
-✅ AQPI Formula
-✅ Use Case Diagram
-✅ Flowchart
-✅ DFD
-✅ ERD (if database is used)
-✅ Story Overview
-✅ System Architecture
-
-Deliverable
-
-Final approved proposal
-
-Step 2. Complete the Game Design Document (GDD)
+**Step 2. Complete the Game Design Document (GDD)**
 
 Create documentation for:
 
@@ -69,8 +51,8 @@ Deliverable
 
 AquaQuest GDD Version 1.0
 
-Step 3. Prepare Educational Content
-
+**Step 3. Prepare Educational Content
+**
 Coordinate with your subject matter expert.
 
 Prepare:
@@ -109,7 +91,7 @@ Phase 2 — Asset Production
 
 Now build everything the player sees.
 
-Step 4. Design Maps
+**Step 4. Design Maps**
 
 Create:
 
@@ -136,9 +118,9 @@ Performance Hall
 Deliverable
 
 Complete Tilemaps
-
+**
 Step 5. Create Sprites
-
+**
 Player
 
 Walking Animation
@@ -171,7 +153,7 @@ Deliverable
 
 Complete Sprite Library
 
-Step 6. UI Design
+**Step 6. UI Design**
 
 Design
 
@@ -205,7 +187,7 @@ Phase 3 — Core Programming
 
 Now begin coding.
 
-Step 7. Player Controller
+**Step 7. Player Controller**
 
 Features
 
@@ -229,7 +211,7 @@ Deliverable
 
 Playable Character
 
-Step 8. NPC System
+**Step 8. NPC System**
 
 Features
 
@@ -247,7 +229,7 @@ Deliverable
 
 Working NPCs
 
-Step 9. Dialogue System
+**Step 9. Dialogue System**
 
 Features
 
@@ -267,7 +249,7 @@ Deliverable
 
 Dialogue Engine
 
-Step 10. Region System
+**Step 10. Region System**
 
 Features
 
@@ -285,9 +267,9 @@ Deliverable
 
 Region Manager
 
-Phase 4 — Gameplay Systems
+**Phase 4 — Gameplay Systems
 Step 11. Quest System
-
+**
 Main Quest
 
 Mini Quest
