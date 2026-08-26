@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk68a8726sbx3"]
+
+[ext_resource type="Script" uid="uid://cn044xg47081k" path="res://Scripts/Systems/Fishing/FishingSpot.gd" id="1_2fufi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0042t"]
+radius = 57.035076
+
+[node name="FishingSpot" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_2fufi")
+prompt_text = "Fish here!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0042t")

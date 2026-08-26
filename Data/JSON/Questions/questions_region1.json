@@ -1,0 +1,83 @@
+[
+  {
+	"id": "r1_001",
+	"lesson_id": "post_harvest_basics",
+	"tier": 0,
+	"text": "What temperature should iced fish be stored at?",
+	"choices": ["0-4°C", "10-15°C", "20-25°C", "Room temperature"],
+	"correct_index": 0
+  },
+  {
+	"id": "r1_002",
+	"lesson_id": "post_harvest_basics",
+	"tier": 0,
+	"text": "Why is ice commonly used to preserve freshly caught fish?",
+	"choices": [
+	  "It slows bacterial growth",
+	  "It makes the fish taste better",
+	  "It increases the fish's weight",
+      "It changes the fish's color"
+	],
+	"correct_index": 0
+  },
+  {
+	"id": "r1_003",
+	"lesson_id": "post_harvest_basics",
+	"tier": 1,
+	"text": "Which of these causes the fastest spoilage in fresh fish?",
+	"choices": [
+	  "Ice contact",
+	  "Exposure to air and heat",
+	  "Vacuum sealing",
+      "Salt curing"
+	],
+	"correct_index": 1
+  },
+  {
+	"id": "r1_004",
+	"lesson_id": "post_harvest_basics",
+	"tier": 1,
+	"text": "What is the recommended ice-to-fish ratio for short-term transport?",
+	"choices": ["1:1", "1:3", "3:1", "No ice needed"],
+	"correct_index": 0
+  },
+  {
+	"id": "r1_005",
+	"lesson_id": "post_harvest_basics",
+	"tier": 1,
+	"text": "Which sign most reliably indicates a fish is no longer fresh?",
+	"choices": [
+	  "Bright, clear eyes",
+	  "Firm flesh that springs back",
+	  "Sunken, cloudy eyes and a strong odor",
+      "Red gills"
+	],
+	"correct_index": 2
+  },
+  {
+	"id": "r1_006",
+	"lesson_id": "post_harvest_basics",
+	"tier": 2,
+	"text": "In the post-harvest cold chain, at which stage is a temperature abuse most commonly introduced?",
+	"choices": [
+	  "During icing at the point of capture",
+	  "During transport between the dock and the market",
+	  "During freezer storage at a processing plant",
+      "During final retail display"
+	],
+	"correct_index": 1
+  },
+  {
+	"id": "r1_007",
+	"lesson_id": "post_harvest_basics",
+	"tier": 2,
+	"text": "Histamine poisoning in fish is most closely associated with which handling failure?",
+	"choices": [
+	  "Excessive icing",
+	  "Prolonged temperature abuse before chilling",
+	  "Overpacking during transport",
+      "Using potable water for washing"
+	],
+	"correct_index": 1
+  }
+]
