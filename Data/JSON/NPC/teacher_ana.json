@@ -1,0 +1,6 @@
+{
+  "npc_id": "teacher_ana",
+  "npc_type": "teacher",
+  "display_name": "Teacher Ana",
+  "dialogue_id": "teacher_ana_dialogue"
+}

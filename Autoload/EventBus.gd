@@ -100,3 +100,29 @@ signal fishing_ended(spot_id: String, success: bool)
 # an answer goes through FishingManager.submit_answer() directly (a request,
 # not a broadcast), same pattern as DialogueManager.advance()/choose().
 signal fishing_question_ready(spot_id: String, question: Dictionary)
+
+# --- Fishing flow, Phase 5 (added for the full Fishing System) ---
+## Animation-driving signals: a FishingAnimationComponent (or any listener)
+## reacts to these to play cast/wait poses - FishingManager never touches
+## AnimatedSprite2D itself.
+signal fishing_cast_started(spot_id: String)
+signal fishing_wait_started(spot_id: String)
+## Fired the instant a fish bites, before the question appears. Per spec:
+## "Immediately pause the fishing animation" - a listener should freeze
+## the current animation frame on this signal, not wait for the question UI.
+signal fish_bit(spot_id: String)
+## Fired the instant the player's answer (main OR mini quest) is graded,
+## BEFORE fishing_ended - this is the "reeling the line in" completion
+## beat, regardless of whether the catch succeeds. `success` tells a
+## listener whether to play a triumphant vs. empty-handed variant if it
+## wants to (optional - a single generic reel animation is enough to start).
+signal fishing_reel_started(spot_id: String, success: bool)
+## A second, distinct question-ready signal for the Mini Quest triggered
+## by a wrong answer - kept separate from fishing_question_ready (not
+## reusing/changing its signature) so existing UI code isn't forced to
+## change; a UI can choose to reuse the same rendering for both if it wants.
+signal mini_quest_question_ready(spot_id: String, question: Dictionary)
+## new_total is the running score after this change; delta is what just
+## changed (positive on a catch, negative on a wrong answer, positive again
+## on a successful Mini Quest half-refund).
+signal fishing_points_changed(new_total: int, delta: int)

@@ -35,12 +35,10 @@ func set_active(active: bool) -> void:
 func _process(_delta: float) -> void:
 	if not _active:
 		return
-
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != _last_direction:
 		_last_direction = direction
 		move_input_changed.emit(direction)
-
 	var is_running := Input.is_action_pressed("run")
 	if is_running != _last_run_state:
 		_last_run_state = is_running

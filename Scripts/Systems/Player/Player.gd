@@ -35,10 +35,12 @@ class_name Player
 @onready var spawn: SpawnPointComponent = %SpawnComponent
 @onready var persistence: SavePositionComponent = %PersistenceComponent
 @onready var fishing_rod: FishingRodComponent = %FishingRodComponent
+@onready var fishing_animation: FishingAnimationComponent = %FishingAnimationComponent
 
 
 func _ready() -> void:
 	InventoryManager.add_item("fishing_rod", 1)
+	print("Rod count: ", InventoryManager.get_item_count("fishing_rod"))
 	movement.body = self
 	persistence.body = self
 	persistence.register_provider(fishing_rod)
@@ -81,6 +83,12 @@ func _wire_signals() -> void:
 	movement.started_moving.connect(animation_component.on_started_moving)
 	movement.stopped_moving.connect(animation_component.on_stopped_moving)
 	movement.running_state_changed.connect(animation_component.on_running_state_changed)
+
+	# Movement -> FishingAnimation (facing only - flow signals are self-wired
+	# via EventBus directly inside FishingAnimationComponent, see its own
+	# class doc for why this one component is the exception to the mediator
+	# pattern used everywhere else)
+	movement.direction_changed.connect(fishing_animation.on_direction_changed)
 
 	# FishingRod -> Animation (equip-aware animation variants, see PlayerAnimationComponent)
 	fishing_rod.equipped_changed.connect(_on_rod_equipped_changed)

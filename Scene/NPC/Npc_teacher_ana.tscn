@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dayyml1tq5ott"]
+
+[ext_resource type="Script" uid="uid://dg2hx6sa8l4w" path="res://Scripts/Systems/NPC/NPC.gd" id="1_fbh07"]
+[ext_resource type="Texture2D" uid="uid://c38sdjosx18rx" path="res://Assets/Entities/NPC-TEACHER/idle.png" id="2_hp7g8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpk86"]
+atlas = ExtResource("2_hp7g8")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htw3h"]
+atlas = ExtResource("2_hp7g8")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sculf"]
+atlas = ExtResource("2_hp7g8")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw6kg"]
+atlas = ExtResource("2_hp7g8")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o62pt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpk86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htw3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sculf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw6kg")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4d56"]
+radius = 38.013157
+
+[node name="Npc_teacher_ana" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_fbh07")
+npc_id = "teacher_ana"
+npc_type = "teacher"
+prompt_text = "Talk to Teacher"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -21)
+scale = Vector2(0.7265625, 0.71093756)
+sprite_frames = SubResource("SpriteFrames_o62pt")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.43085113
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -22)
+shape = SubResource("CircleShape2D_x4d56")

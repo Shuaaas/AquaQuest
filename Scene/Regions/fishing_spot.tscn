@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://cn044xg47081k" path="res://Scripts/Systems/Fishing/FishingSpot.gd" id="1_2fufi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0042t"]
-radius = 57.035076
+radius = 127.57743
 
 [node name="FishingSpot" type="Area2D"]
 collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_2fufi")
+required_quest_id = "learn_post_harvest_basics"
 prompt_text = "Fish here!"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

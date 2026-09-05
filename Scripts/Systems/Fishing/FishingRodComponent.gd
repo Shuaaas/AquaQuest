@@ -34,18 +34,21 @@ func toggle() -> void:
 	if _is_equipped:
 		_set_equipped(false)
 		return
-
+		
+	var has_rod := InventoryManager.has_item(ROD_ITEM_ID)
+	print("Has rod: ", has_rod, " | now equipped: ", _is_equipped)
+		
 	if not InventoryManager.has_item(ROD_ITEM_ID):
 		EventBus.ui_notification_requested.emit("You don't have a fishing rod yet.", 2.0)
 		return
 
 	_set_equipped(true)
 
-
 func _set_equipped(equipped: bool) -> void:
 	if _is_equipped == equipped:
 		return
 	_is_equipped = equipped
+	print("Equipped state is now: ", _is_equipped)
 	equipped_changed.emit(equipped)
 	EventBus.equipment_changed.emit(ROD_ITEM_ID if equipped else "")
 

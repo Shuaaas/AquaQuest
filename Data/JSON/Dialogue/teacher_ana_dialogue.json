@@ -1,0 +1,58 @@
+{
+  "dialogue_id": "teacher_ana_dialogue",
+  "dialogue_states": [
+	{
+	  "condition": { "quest_id": "learn_post_harvest_basics", "state": "completed" },
+	  "start_node": "already_taught",
+	  "nodes": {
+		"already_taught": {
+		  "speaker": "Teacher Ana",
+		  "text": "You've already learned the basics well. Keep practicing at the dock!",
+		  "choices": []
+		}
+	  }
+	},
+	{
+	  "condition": { "quest_id": "learn_post_harvest_basics", "state": "active" },
+	  "start_node": "in_progress",
+	  "nodes": {
+		"in_progress": {
+		  "speaker": "Teacher Ana",
+		  "text": "Have you tried fishing at the dock yet? Answer the questions there to prove what you've learned.",
+		  "choices": [
+			{ "text": "Not yet, I'll go now.", "next": "" },
+			{ "text": "Can you remind me what to look for?", "next": "reminder" }
+		  ]
+		},
+		"reminder": {
+		  "speaker": "Teacher Ana",
+		  "text": "Fresh fish should have clear eyes, firm flesh, and be kept properly iced. Spoiled fish smells strong and has cloudy eyes.",
+		  "choices": []
+		}
+	  }
+	},
+	{
+	  "condition": null,
+	  "start_node": "first_meeting",
+	  "nodes": {
+		"first_meeting": {
+		  "speaker": "Teacher Ana",
+		  "text": "Welcome! I teach proper post-harvest fish handling - how to keep your catch fresh and safe. Want to learn?",
+		  "choices": [
+			{ "text": "Yes, teach me!", "next": "accept_quest" },
+			{ "text": "Maybe later.", "next": "" }
+		  ]
+		},
+		"accept_quest": {
+		  "speaker": "Teacher Ana",
+		  "text": "Wonderful! Head to the dock and answer a few questions while you fish - that's how you'll show me what you've learned. I'll also give you something to help you get started.",
+		  "actions": [
+			{ "type": "start_quest", "quest_id": "learn_post_harvest_basics" },
+			{ "type": "give_item", "item_id": "fishing_rod", "amount": 1 }
+		  ],
+		  "choices": []
+		}
+	  }
+	}
+  ]
+}

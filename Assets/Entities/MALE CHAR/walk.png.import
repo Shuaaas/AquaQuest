@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlji8l0ok6ch6"
-path="res://.godot/imported/Gemini_Generated_Image_czzpymczzpymczzp.png-b7397f3dc7246c7a2f8e4708a3212bb4.ctex"
+uid="uid://mlx5g2vxam53"
+path="res://.godot/imported/walk.png-579cd0641f9d9f8796ec5c23fe9264fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Gemini_Generated_Image_czzpymczzpymczzp.png"
-dest_files=["res://.godot/imported/Gemini_Generated_Image_czzpymczzpymczzp.png-b7397f3dc7246c7a2f8e4708a3212bb4.ctex"]
+source_file="res://Assets/Entities/MALE CHAR/walk.png"
+dest_files=["res://.godot/imported/walk.png-579cd0641f9d9f8796ec5c23fe9264fa.ctex"]
 
 [params]
 

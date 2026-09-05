@@ -25,6 +25,7 @@ func _ready() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	print("Area entered: ", area, " | is Interactable: ", area is Interactable)
 	if area is Interactable:
 		_in_range.append(area)
 		_update_closest()
@@ -55,6 +56,7 @@ func _update_closest() -> void:
 
 ## Connect PlayerInputComponent.interact_pressed to this.
 func try_interact() -> void:
+	print("try_interact called")
 	if _closest == null or not is_instance_valid(_closest):
 		return
 	_closest.interact(get_owner())
