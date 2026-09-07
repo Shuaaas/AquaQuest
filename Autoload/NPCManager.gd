@@ -81,7 +81,6 @@ func start_conversation(npc_id: String, interactor: Node, npc_node: Node) -> voi
 
 	_current_npc_node = npc_node
 	_current_interactor = interactor
-	print("Starting conversation with: ", npc_id)
 
 	var tree: Dictionary = _dialogue_trees[dialogue_id]
 	var states: Array = tree.get("dialogue_states", [])
@@ -102,10 +101,19 @@ func start_conversation(npc_id: String, interactor: Node, npc_node: Node) -> voi
 
 ## Condition schema: null (or the key omitted) always matches - use this
 ## as a fallback state, listed LAST in dialogue_states. Otherwise:
-##   {"quest_id": String, "state": String}
+##   {"quest_id": String, "state": String, "objectives_complete": bool}
 ## where state is one of "not_started", "active", "completed", "failed",
 ## compared against QuestManager.get_quest_state(). This is the entire
 ## mechanism behind "dialogue branches based on quest progress."
+##
+## "objectives_complete" is optional (added for Phase 7 - Quest System).
+## When present, it also checks QuestManager.get_quest_progress(quest_id)'s
+## "objectives_complete" flag, set by QuestObjectiveManager once every
+## objective is satisfied. This is what lets a dialogue state distinguish
+## "quest active, still working on it" from "quest active, ready to turn
+## in" - both share state == "active", only the flag differs. Conditions
+## written before this phase existed simply never set this key, so they're
+## unaffected.
 func _condition_matches(condition) -> bool:
 	if condition == null or typeof(condition) != TYPE_DICTIONARY:
 		return true
@@ -115,7 +123,16 @@ func _condition_matches(condition) -> bool:
 	var actual_state := QuestManager.get_quest_state(quest_id)
 	if actual_state == "unknown":
 		actual_state = "not_started"
-	return actual_state == required_state
+	if actual_state != required_state:
+		return false
+
+	if condition.has("objectives_complete"):
+		var required_flag: bool = condition.get("objectives_complete", false)
+		var actual_flag: bool = QuestManager.get_quest_progress(quest_id).get("objectives_complete", false)
+		if actual_flag != required_flag:
+			return false
+
+	return true
 
 
 ## Reacts to EventBus.dialogue_action_triggered, fired once per action as
@@ -123,13 +140,21 @@ func _condition_matches(condition) -> bool:
 ## action type reference table.
 func _on_dialogue_action_triggered(action: Dictionary) -> void:
 	var action_type: String = action.get("type", "")
-	print("Action triggered: ", action_type, " | ", action)
 
 	match action_type:
 		"start_quest":
 			QuestManager.start_quest(action.get("quest_id", ""))
 		"complete_quest":
-			QuestManager.complete_quest(action.get("quest_id", ""))
+			# UPGRADED for Phase 7 (Quest System): this used to call
+			# QuestManager.complete_quest() directly (bare completion, no
+			# reward). It now routes through QuestObjectiveManager, which
+			# still marks the quest completed but ALSO grants that quest's
+			# defined reward and auto-starts next_quest_id if the quest
+			# has a Data/JSON/Quests/ definition. If it doesn't, this
+			# falls back to the exact old bare-completion behavior - fully
+			# backward compatible with any dialogue JSON written before
+			# this phase existed.
+			QuestObjectiveManager.turn_in_quest(action.get("quest_id", ""))
 		"fail_quest":
 			QuestManager.fail_quest(action.get("quest_id", ""))
 		"update_quest_progress":

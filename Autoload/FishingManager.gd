@@ -222,12 +222,21 @@ func _award_points(delta: int) -> void:
 	EventBus.fishing_points_changed.emit(_points, delta)
 
 
+#func _award_catch(spot_id: String) -> void:
+	#InventoryManager.add_item(_resolve_reward_item_id(spot_id))
+#
+	#var quest_id := _get_required_quest_id(spot_id)
+	#if quest_id != "":
+		#QuestManager.update_quest_progress(quest_id, {"last_result": "caught"})
+		
 func _award_catch(spot_id: String) -> void:
 	InventoryManager.add_item(_resolve_reward_item_id(spot_id))
 
 	var quest_id := _get_required_quest_id(spot_id)
 	if quest_id != "":
-		QuestManager.update_quest_progress(quest_id, {"last_result": "caught"})
+		var progress := QuestManager.get_quest_progress(quest_id).duplicate()
+		progress["last_result"] = "caught"
+		QuestManager.update_quest_progress(quest_id, progress)
 
 
 ## See FISH SPECIES note in the class doc above.

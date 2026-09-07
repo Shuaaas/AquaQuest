@@ -1,0 +1,11 @@
+{
+  "quest_id": "visit_region2_mini",
+  "quest_type": "mini",
+  "title": "Scout Ahead",
+  "description": "Travel to Region 2 to see what's there.",
+  "objectives": [
+	{ "type": "visit_location", "region_id": "region_2" }
+  ],
+  "reward": { "item_id": "fish", "amount": 1 },
+  "next_quest_id": ""
+}

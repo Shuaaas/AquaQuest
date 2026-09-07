@@ -13,6 +13,20 @@
 	  }
 	},
 	{
+	  "condition": { "quest_id": "learn_post_harvest_basics", "state": "active", "objectives_complete": true },
+	  "start_node": "ready_to_turn_in",
+	  "nodes": {
+		"ready_to_turn_in": {
+		  "speaker": "Teacher Ana",
+		  "text": "You caught a fish and answered correctly - wonderful work! Here's something for your effort.",
+		  "actions": [
+			{ "type": "complete_quest", "quest_id": "learn_post_harvest_basics" }
+		  ],
+		  "choices": []
+		}
+	  }
+	},
+	{
 	  "condition": { "quest_id": "learn_post_harvest_basics", "state": "active" },
 	  "start_node": "in_progress",
 	  "nodes": {

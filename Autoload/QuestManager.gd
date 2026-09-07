@@ -51,6 +51,16 @@ func get_quest_state(quest_id: String) -> String:
 	return _quest_states.get(quest_id, {}).get("state", "unknown")
 
 
+## Added for Phase 7 (Quest System) - QuestObjectiveManager reads this to
+## know how far along an active quest's objectives are, and NPCManager
+## reads it to check the "objectives_complete" flag for dialogue
+## conditions. QuestManager itself still doesn't interpret what any of
+## this data MEANS - it's just returning whatever was last stored via
+## update_quest_progress().
+func get_quest_progress(quest_id: String) -> Dictionary:
+	return _quest_states.get(quest_id, {}).get("objectives", {})
+
+
 func is_quest_completed(quest_id: String) -> bool:
 	return get_quest_state(quest_id) == "completed"
 

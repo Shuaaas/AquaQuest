@@ -35,6 +35,12 @@ signal quest_started(quest_id: String)
 signal quest_updated(quest_id: String, progress: Dictionary)
 signal quest_completed(quest_id: String)
 signal quest_failed(quest_id: String)
+## Fired when every objective on an active quest is satisfied, BEFORE the
+## quest is actually completed/turned in - the player still needs to
+## return to the NPC. Distinct from quest_completed, which now only fires
+## once QuestObjectiveManager.turn_in_quest() actually runs (see Phase 7 -
+## README_QUEST_SYSTEM.md).
+signal quest_objectives_completed(quest_id: String)
 
 # --- Dialogue ---
 signal dialogue_started(dialogue_id: String)

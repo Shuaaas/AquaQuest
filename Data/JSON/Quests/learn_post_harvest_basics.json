@@ -1,0 +1,11 @@
+{
+  "quest_id": "learn_post_harvest_basics",
+  "quest_type": "main",
+  "title": "Learn the Basics",
+  "description": "Catch a fish at the dock and prove you understand proper post-harvest handling.",
+  "objectives": [
+	{ "type": "catch_fish", "fish_id": "fish", "count": 1 }
+  ],
+  "reward": { "item_id": "explorer_badge", "amount": 1 },
+  "next_quest_id": "visit_region2_mini"
+}

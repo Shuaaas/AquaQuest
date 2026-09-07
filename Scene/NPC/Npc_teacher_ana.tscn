@@ -40,7 +40,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4d56"]
-radius = 38.013157
+radius = 25.0
 
 [node name="Npc_teacher_ana" type="Area2D"]
 collision_layer = 4
@@ -51,7 +51,7 @@ npc_type = "teacher"
 prompt_text = "Talk to Teacher"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -21)
+position = Vector2(-5.9604645e-08, -22.000002)
 scale = Vector2(0.7265625, 0.71093756)
 sprite_frames = SubResource("SpriteFrames_o62pt")
 animation = &"new_animation"
@@ -59,5 +59,5 @@ autoplay = "new_animation"
 frame_progress = 0.43085113
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -22)
+position = Vector2(0, -18)
 shape = SubResource("CircleShape2D_x4d56")
