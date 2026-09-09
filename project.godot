@@ -32,6 +32,7 @@ QuestionManager="*res://Autoload/QuestionManager.gd"
 InventoryManager="*res://Autoload/InventoryManager.gd"
 NPCManager="*res://Autoload/NPCManager.gd"
 QuestObjectiveManager="*res://Autoload/QuestObjectiveManager.gd"
+FishingAreaManager="*res://Autoload/FishingAreaManager.gd"
 
 [dotnet]
 

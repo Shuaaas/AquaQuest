@@ -11,6 +11,7 @@ collision_mask = 0
 script = ExtResource("1_2fufi")
 required_quest_id = "learn_post_harvest_basics"
 possible_fish_ids = Array[String](["fish"])
+location_id = "region1_dock_north"
 prompt_text = "Fish here!"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

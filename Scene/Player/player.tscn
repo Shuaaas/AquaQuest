@@ -16,7 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c8ul0mny7uvpw" path="res://Scene/Player/interaction_component.tscn" id="18_gfwal"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ssv0"]
-height = 36.0
+radius = 8.0
+height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7m07"]
 atlas = ExtResource("10_rkjca")
@@ -837,17 +838,15 @@ collision_layer = 2
 script = ExtResource("1_ewflj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_8ssv0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3.8146973e-06, -20.000002)
+position = Vector2(0, -20.000002)
 scale = Vector2(0.609375, 0.6484375)
 sprite_frames = SubResource("SpriteFrames_v84pi")
-animation = &"reel_up"
+animation = &"idle_down"
 autoplay = "idle_down"
-frame = 4
-frame_progress = 1.0
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -888,4 +887,5 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="InteractionComponent" parent="." instance=ExtResource("18_gfwal")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -10)

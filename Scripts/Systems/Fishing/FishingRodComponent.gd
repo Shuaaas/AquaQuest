@@ -29,26 +29,33 @@ func is_equipped() -> bool:
 	return _is_equipped
 
 
+## Added for Phase 8 (Fishing Areas) - a location can require a SPECIFIC
+## rod id, not just "any rod." Only one rod item exists in the game right
+## now (ROD_ITEM_ID), so this always returns that same id or "" - it's
+## genuinely functional plumbing, just with only one real value to return
+## until a second rod item/type exists. FishingSpot compares this against
+## a location's required_rod_id when checking whether fishing can begin.
+func get_equipped_rod_id() -> String:
+	return ROD_ITEM_ID if _is_equipped else ""
+
+
 ## Wired to PlayerInputComponent.toggle_rod_pressed by Player.gd.
 func toggle() -> void:
 	if _is_equipped:
 		_set_equipped(false)
 		return
-		
-	var has_rod := InventoryManager.has_item(ROD_ITEM_ID)
-	print("Has rod: ", has_rod, " | now equipped: ", _is_equipped)
-		
+
 	if not InventoryManager.has_item(ROD_ITEM_ID):
 		EventBus.ui_notification_requested.emit("You don't have a fishing rod yet.", 2.0)
 		return
 
 	_set_equipped(true)
 
+
 func _set_equipped(equipped: bool) -> void:
 	if _is_equipped == equipped:
 		return
 	_is_equipped = equipped
-	print("Equipped state is now: ", _is_equipped)
 	equipped_changed.emit(equipped)
 	EventBus.equipment_changed.emit(ROD_ITEM_ID if equipped else "")
 

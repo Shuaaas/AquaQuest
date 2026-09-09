@@ -33,6 +33,13 @@ class_name FishingSpot
 ## a catch resolves).
 @export var possible_fish_ids: Array[String] = []
 
+## Optional. References a Data/JSON/FishingAreas/<location_id>.json
+## definition (added for Phase 8) providing required rod, related lesson,
+## question pool, and weighted fish species for this spot. Leave empty
+## for a spot with no location data - it behaves exactly as it did before
+## this phase (any rod, no lesson filter, uses possible_fish_ids only).
+@export var location_id: String = ""
+
 
 func _ready() -> void:
 	super._ready()
@@ -44,7 +51,6 @@ func interact(interactor: Node) -> void:
 		return
 
 	if required_quest_id != "" and QuestManager.get_quest_state(required_quest_id) != "active":
-		print("Quest gate blocked - required: ", required_quest_id, " | actual state: ", QuestManager.get_quest_state(required_quest_id))
 		EventBus.fishing_denied.emit(spot_id, "quest_not_active")
 		return
 
@@ -53,8 +59,19 @@ func interact(interactor: Node) -> void:
 		EventBus.fishing_denied.emit(spot_id, "rod_not_equipped")
 		return
 
+	var required_rod_id := _get_required_rod_id()
+	if required_rod_id != "" and rod.get_equipped_rod_id() != required_rod_id:
+		EventBus.fishing_denied.emit(spot_id, "wrong_rod_equipped")
+		return
+
 	interacted.emit(interactor)
 	EventBus.fishing_started.emit(spot_id)
+
+
+func _get_required_rod_id() -> String:
+	if location_id == "":
+		return ""
+	return FishingAreaManager.get_location(location_id).get("required_rod_id", "")
 
 
 ## Looks up the interacting player's FishingRodComponent via the same

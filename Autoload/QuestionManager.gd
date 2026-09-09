@@ -76,12 +76,18 @@ func _load_question_file(path: String) -> void:
 
 
 ## Returns a random question at the given difficulty tier, optionally
-## restricted to one lesson_id. Returns {} if none match - callers must
-## handle that (e.g. FishingManager falls back or denies fishing).
-func get_random_question(tier: int, lesson_id: String = "") -> Dictionary:
+## restricted to one lesson_id, and optionally further restricted to an
+## explicit list of question ids (added for Phase 8 - "Question Pool" on
+## a fishing location definition - default empty means no restriction,
+## so every call site written before this phase behaves identically).
+## Returns {} if none match - callers must handle that (e.g. FishingManager
+## falls back or denies fishing).
+func get_random_question(tier: int, lesson_id: String = "", allowed_ids: Array = []) -> Dictionary:
 	var pool: Array = _questions_by_tier.get(tier, [])
 	if lesson_id != "":
 		pool = pool.filter(func(q: Dictionary) -> bool: return q.get("lesson_id", "") == lesson_id)
+	if not allowed_ids.is_empty():
+		pool = pool.filter(func(q: Dictionary) -> bool: return allowed_ids.has(q.get("id", "")))
 
 	if pool.is_empty():
 		return {}

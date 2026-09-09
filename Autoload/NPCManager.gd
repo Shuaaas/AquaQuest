@@ -84,6 +84,7 @@ func start_conversation(npc_id: String, interactor: Node, npc_node: Node) -> voi
 
 	var tree: Dictionary = _dialogue_trees[dialogue_id]
 	var states: Array = tree.get("dialogue_states", [])
+	print("Debug - state: ", QuestManager.get_quest_state("learn_post_harvest_basics"), " | progress: ", QuestManager.get_quest_progress("learn_post_harvest_basics"))
 
 	for state in states:
 		if typeof(state) != TYPE_DICTIONARY:
@@ -155,6 +156,9 @@ func _on_dialogue_action_triggered(action: Dictionary) -> void:
 			# backward compatible with any dialogue JSON written before
 			# this phase existed.
 			QuestObjectiveManager.turn_in_quest(action.get("quest_id", ""))
+			print("Badges: ", InventoryManager.get_item_count("explorer_badge"))
+			print("Mini quest state: ", QuestManager.get_quest_state("visit_region2_mini"))
+			
 		"fail_quest":
 			QuestManager.fail_quest(action.get("quest_id", ""))
 		"update_quest_progress":

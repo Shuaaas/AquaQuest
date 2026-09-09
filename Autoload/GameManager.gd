@@ -33,6 +33,22 @@ func start_new_game() -> void:
 	EventBus.game_started.emit()
 
 
+## BUGFIX (found during Phase 8): previously this only ever set state to
+## PAUSED when pausing, with no corresponding restore on unpause - meaning
+## current_state would stay stuck at PAUSED forever after the first pause,
+## unlike the dialogue/exam handlers below which correctly restore PLAYING.
+## Fixed here since FishingManager (Phase 8) is the first real caller of
+## this method - fishing's pause/resume would have been silently broken by
+## this otherwise.
+##
+## KNOWN LIMITATION: this assumes pausing always happens FROM the PLAYING
+## state and always returns TO it. If something ever needs to pause WHILE
+## already in IN_DIALOGUE or IN_EXAM, that context would be lost (unpausing
+## would go to PLAYING instead of back to whichever state it was). No
+## current system does this - fishing's own dialogue/UI doesn't route
+## through GameManager's dialogue state at all - so this hasn't been
+## built to handle it. A proper state stack would be the real fix if that
+## need ever arises.
 func set_paused(paused: bool) -> void:
 	if is_paused == paused:
 		return
@@ -41,6 +57,8 @@ func set_paused(paused: bool) -> void:
 	EventBus.game_paused.emit(paused)
 	if paused:
 		_change_state(GameState.PAUSED)
+	elif current_state == GameState.PAUSED:
+		_change_state(GameState.PLAYING)
 
 
 func trigger_game_over(reason: String = "") -> void:

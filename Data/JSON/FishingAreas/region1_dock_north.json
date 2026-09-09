@@ -1,0 +1,11 @@
+{
+  "location_id": "region1_dock_north",
+  "required_rod_id": "fishing_rod",
+  "lesson_id": "post_harvest_basics",
+  "question_pool": [],
+  "fish_species": [
+	{ "fish_id": "tilapia", "weight": 5 },
+	{ "fish_id": "milkfish", "weight": 2 },
+	{ "fish_id": "golden_tilapia", "weight": 1 }
+  ]
+}

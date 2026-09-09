@@ -19,6 +19,15 @@ class_name FishingUI
 ## UIManager once fishing_ended actually fires, after the reel animation
 ## has already played.
 ##
+## PAUSE-SAFE BY CONSTRUCTION (Phase 8): FishingManager now calls
+## GameManager.set_paused(true) the moment a question appears, per your
+## brief's "Pause gameplay" step. Godot's default Process Mode (Inherit)
+## would make every node, including this Control and its buttons, stop
+## receiving input the instant the tree pauses - which would make the
+## question unanswerable. Rather than requiring a manual Inspector step
+## that could be forgotten, _ready() below sets this scene's Process Mode
+## to "Always" in code, guaranteeing it every time this scene loads.
+##
 ## SETUP: attach to the FishingUI.tscn root (a Control). Requires
 ## QuestionLabel and ChoicesContainer to be marked "Access as Unique Name"
 ## in the scene tree - see README_PLAYER_SYSTEM.md style setup notes for
@@ -50,6 +59,11 @@ var _is_mini_quest: bool = false
 
 
 func _ready() -> void:
+	# Set here in code, not left to a manual Inspector step - guarantees
+	# this can't be silently forgotten. See the CRITICAL SETUP STEP note
+	# in the class doc above for why this specific mode is required.
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	visible = false
 	EventBus.fishing_question_ready.connect(_on_question_ready)
 	EventBus.mini_quest_question_ready.connect(_on_mini_quest_ready)
@@ -122,6 +136,8 @@ func _on_fishing_denied(_spot_id: String, reason: String) -> void:
 	var message := "Can't fish right now."
 	if reason == "rod_not_equipped":
 		message = "Equip your fishing rod first."
+	elif reason == "wrong_rod_equipped":
+		message = "You need a different rod for this spot."
 	elif reason == "quest_not_active":
 		message = "You need to accept the right quest first."
 	elif reason == "no_question_available":
