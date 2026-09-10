@@ -18,10 +18,17 @@ extends Node
 ##       "tier": 0,                        // 0=EASY, 1=MEDIUM, 2=HARD -
 ##                                          // MUST match DDAController.DifficultyTier
 ##       "text": "What temperature should iced fish be stored at?",
+##       "image": "res://Assets/Sprites/Questions/iced_fish.png",  // optional (Phase 9)
 ##       "choices": ["0-4°C", "10-15°C", "20-25°C", "Room temperature"],
-##       "correct_index": 0
+##       "correct_index": 0,
+##       "explanation": "Keeping fish at 0-4°C slows bacterial growth..."  // optional (Phase 9)
 ##     }
 ##   ]
+## "image" and "explanation" are both optional (Phase 9 - Educational
+## Question System). This script needs NO code changes to support them -
+## it already stores each question's full parsed Dictionary as-is, so any
+## extra fields ride along automatically. FishingUI.gd is what actually
+## reads and displays them.
 
 const QUESTIONS_JSON_DIR := "res://Data/JSON/Questions/"
 

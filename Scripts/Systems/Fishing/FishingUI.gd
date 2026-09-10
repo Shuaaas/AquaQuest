@@ -15,9 +15,11 @@ class_name FishingUI
 ## deliberate: FishingManager's REELING state (the "dragging the rod"
 ## completion animation) is meant to be the visual payoff moment, and it
 ## should play with the question card already gone, not underneath it.
-## The result ("Caught it!"/"It got away.") is shown as a brief toast via
+## The result ("Caught it!"/"It got away.") is shown as a toast via
 ## UIManager once fishing_ended actually fires, after the reel animation
-## has already played.
+## has already played - and now (Phase 9) includes the question's
+## explanation text if the question had one, with a longer duration to
+## give the player time to actually read it.
 ##
 ## PAUSE-SAFE BY CONSTRUCTION (Phase 8): FishingManager now calls
 ## GameManager.set_paused(true) the moment a question appears, per your
@@ -33,18 +35,17 @@ class_name FishingUI
 ## in the scene tree - see README_PLAYER_SYSTEM.md style setup notes for
 ## this pattern.
 ##
-## OPTIONAL: a Label named "PointsLabel" (also unique-named) will show the
-## running fishing score if present - entirely optional, safe to omit.
-## A "ResultLabel" is no longer required (see CHANGE note below) but is
-## harmless to leave in your scene if you already added it.
+## OPTIONAL nodes (all safe to omit - nothing crashes, the feature they
+## back just doesn't render):
+##   PointsLabel (Label)      - running fishing score
+##   QuestionImage (TextureRect) - a question's optional "image" field
+## A "ResultLabel" is no longer used at all (see CHANGE note below).
 ##
 ## CHANGE FROM EARLIER VERSION: previously, a ResultLabel showed the
 ## outcome text INSIDE the card for 1.2 seconds before hiding. That's been
 ## replaced by hiding immediately on answer + a toast notification after
 ## fishing_ended, per the sequencing note above. If you want the result
-## shown differently (e.g. back inside the card, timed to appear AFTER the
-## reel animation instead of as a toast), _on_fishing_ended() below is the
-## one place to change.
+## shown differently, _on_fishing_ended() below is the one place to change.
 ##
 ## This scene should exist somewhere in your game's persistent UI layer
 ## (e.g. instanced as a child of your HUD/root UI scene) so it's always
@@ -53,15 +54,21 @@ class_name FishingUI
 @onready var question_label: Label = %QuestionLabel
 @onready var choices_container: VBoxContainer = %ChoicesContainer
 @onready var points_label: Label = get_node_or_null("%PointsLabel")
+@onready var question_image: TextureRect = get_node_or_null("%QuestionImage")
 
 var _answered: bool = false
 var _is_mini_quest: bool = false
+## Tracks whichever question was most recently shown (main OR mini quest -
+## whichever was answered LAST), so _on_fishing_ended can look up its
+## explanation after the card has already hidden and the question data
+## itself is no longer directly on hand.
+var _last_question_id: String = ""
 
 
 func _ready() -> void:
 	# Set here in code, not left to a manual Inspector step - guarantees
-	# this can't be silently forgotten. See the CRITICAL SETUP STEP note
-	# in the class doc above for why this specific mode is required.
+	# this can't be silently forgotten. See the PAUSE-SAFE note above for
+	# why this specific mode is required.
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	visible = false
@@ -83,6 +90,7 @@ func _on_mini_quest_ready(_spot_id: String, question: Dictionary) -> void:
 func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 	_answered = false
 	_is_mini_quest = is_mini_quest
+	_last_question_id = question.get("id", "")
 	visible = true
 
 	# Cheap framing distinction without requiring a new UI node - prepend a
@@ -91,6 +99,8 @@ func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 	# option so it works the moment this script is dropped in.
 	var prefix := "Mini Quest! " if is_mini_quest else ""
 	question_label.text = prefix + question.get("text", "")
+
+	_update_question_image(question.get("image", ""))
 
 	for child in choices_container.get_children():
 		child.queue_free()
@@ -103,13 +113,29 @@ func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 		choices_container.add_child(choice_button)
 
 
+## Shows a question's optional image if one is set AND actually exists on
+## disk, hides the slot otherwise - a missing/typo'd path degrades
+## gracefully instead of throwing a load error, same philosophy as every
+## other optional-art hook in this project (e.g. missing animations just
+## warn, never crash).
+func _update_question_image(image_path: String) -> void:
+	if question_image == null:
+		return
+
+	if image_path != "" and ResourceLoader.exists(image_path):
+		question_image.texture = load(image_path)
+		question_image.visible = true
+	else:
+		question_image.visible = false
+
+
 func _on_choice_pressed(choice_index: int) -> void:
 	if _answered:
 		return
 	_answered = true
 
 	# Hide FIRST, synchronously, before calling into FishingManager. Both
-	## submit_answer() and submit_mini_quest_answer() run everything up to
+	# submit_answer() and submit_mini_quest_answer() run everything up to
 	# their first `await` on this same call stack, so the card is already
 	# gone before the REELING state (and its animation) even begins.
 	visible = false
@@ -126,7 +152,19 @@ func _on_fishing_ended(_spot_id: String, success: bool) -> void:
 	# this) and the card has been hidden since the moment the player
 	# answered. This is purely a result toast, not a card state change.
 	var message := "Caught it!" if success else "It got away."
-	UIManager.show_notification(message, 1.5)
+
+	# Phase 9: surface the explanation of whichever question was actually
+	# answered last (main, or the mini quest if one occurred - either way
+	# _last_question_id points at the right one). Give a noticeably longer
+	# toast duration when there's real educational text to read, since 1.5
+	# seconds is nowhere near enough time to read a sentence.
+	var explanation: String = QuestionManager.get_question_by_id(_last_question_id).get("explanation", "")
+	var duration := 1.5
+	if explanation != "":
+		message += " " + explanation
+		duration = 4.5
+
+	UIManager.show_notification(message, duration)
 
 
 func _on_fishing_denied(_spot_id: String, reason: String) -> void:
