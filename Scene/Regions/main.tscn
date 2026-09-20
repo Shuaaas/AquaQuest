@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjysd7qtg2685"]
+[gd_scene load_steps=6 format=3 uid="uid://cjysd7qtg2685"]
 
 [ext_resource type="Script" uid="uid://bn8sqpdqbba3m" path="res://Scripts/Managers/main.gd" id="1_hx6h6"]
 [ext_resource type="PackedScene" uid="uid://dh8vjuejffq06" path="res://Scene/UI/fishing_ui.tscn" id="1_n1d5u"]
 [ext_resource type="PackedScene" uid="uid://det14ieymv7u6" path="res://Scene/UI/dialogue_ui.tscn" id="3_hx6h6"]
 [ext_resource type="PackedScene" uid="uid://bjnbhko7tgtjr" path="res://Scene/UI/toast_ui.tscn" id="4_yg326"]
+[ext_resource type="PackedScene" uid="uid://co838bskjyrmn" path="res://Scene/UI/exam_ui.tscn" id="5_74fnr"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_hx6h6")
@@ -15,5 +16,7 @@ script = ExtResource("1_hx6h6")
 [node name="DialogueUi" parent="CanvasLayer" instance=ExtResource("3_hx6h6")]
 
 [node name="ToastUI" parent="CanvasLayer" instance=ExtResource("4_yg326")]
+
+[node name="ExamUI" parent="CanvasLayer" instance=ExtResource("5_74fnr")]
 
 [node name="RegionContainer" type="Node2D" parent="." groups=["region_container"]]

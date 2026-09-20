@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://co838bskjyrmn"]
+
+[ext_resource type="Script" uid="uid://cqeyln305o2wo" path="res://Scripts/UI/ExamUI.gd" id="1_6uo23"]
+
+[node name="ExamUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6uo23")
+
+[node name="ProgressLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 35.0
+offset_right = 1154.0
+offset_bottom = 58.0
+
+[node name="QuestionLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -2.0
+offset_top = 109.0
+offset_right = 1150.0
+offset_bottom = 203.0
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -66.0
+offset_right = 5.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 510.0
+offset_right = 1152.0
+offset_bottom = 533.0
+
+[node name="CloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.96400005
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.672058
+grow_horizontal = 2
+grow_vertical = 0
+text = "CONTINUE"
+metadata/_edit_use_anchors_ = true

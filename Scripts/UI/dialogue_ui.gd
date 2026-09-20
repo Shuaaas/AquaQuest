@@ -35,6 +35,15 @@ var _choices_pending: bool = false
 
 
 func _ready() -> void:
+	# Added retroactively (Phase 12): dialogue itself never pauses gameplay,
+	# but a dialogue action CAN trigger something that does (e.g. "start_exam"
+	# firing mid-conversation, before this dialogue node has actually ended).
+	# Without this, DialogueUI's Continue/choice buttons freeze the instant
+	# that happens, since Godot pauses every node by default. FishingUI and
+	# ExamUI already had this fix from when pausing was introduced (Phase 8)
+	# - this scene predates that phase and was never retrofitted until now.
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	visible = false
 	continue_button.pressed.connect(_on_continue_pressed)
 

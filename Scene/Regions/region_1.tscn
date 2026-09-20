@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://c4dw38llp74av"]
+[gd_scene load_steps=37 format=4 uid="uid://c4dw38llp74av"]
 
 [ext_resource type="Texture2D" uid="uid://cdpnjscetcl0n" path="res://Assets/Environment/Tilesets/Floors_Tiles.png" id="1_y60qp"]
 [ext_resource type="Texture2D" uid="uid://jc5akuaff6uc" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="2_vaj6m"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dayyml1tq5ott" path="res://Scene/NPC/Npc_teacher_ana.tscn" id="11_e4far"]
 [ext_resource type="PackedScene" uid="uid://dk68a8726sbx3" path="res://Scene/Regions/fishing_spot.tscn" id="11_vaj6m"]
 [ext_resource type="PackedScene" uid="uid://cw1t0pa1qttub" path="res://Scene/Player/player.tscn" id="12_e4far"]
+[ext_resource type="PackedScene" uid="uid://y26fy1xsfbog" path="res://Scene/NPC/npc_examiner_santaigo.tscn" id="13_pjbp3"]
+[ext_resource type="PackedScene" uid="uid://bes50qefwfknh" path="res://Scene/Door/region_exit.tscn" id="14_j7klp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eavtg"]
 texture = ExtResource("1_y60qp")
@@ -4344,4 +4346,10 @@ rotation = 1.9325513
 [node name="NPC_teacher" parent="." instance=ExtResource("11_e4far")]
 position = Vector2(-154, -31)
 
+[node name="Npc_examiner_santaigo" parent="." instance=ExtResource("13_pjbp3")]
+position = Vector2(-290, -33)
+
 [node name="player" parent="." instance=ExtResource("12_e4far")]
+
+[node name="RegionExit" parent="." instance=ExtResource("14_j7klp")]
+position = Vector2(-231, -146)

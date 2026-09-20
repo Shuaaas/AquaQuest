@@ -60,13 +60,25 @@ func is_region_unlocked(region_id: String) -> bool:
 	return _unlocked_regions.get(region_id, false)
 
 
-func travel_to_region(region_id: String) -> void:
+## Set by travel_to_region() right before the scene change, read by
+## Player.gd on the newly-instanced Player to know which spawn point to
+## appear at - see SpawnPointComponent.gd's own "INTEGRATION HOOK" doc
+## comment, which described exactly this and was left unwired until now.
+## An autoload is the natural place for this: the OLD Player instance is
+## destroyed and a NEW one created fresh inside the just-loaded scene, so
+## nothing can pass this directly - it has to persist across that boundary.
+var pending_spawn_id: String = "default"
+
+
+func travel_to_region(region_id: String, spawn_id: String = "default") -> void:
 	if not _region_definitions.has(region_id):
 		push_error("RegionManager: unknown region_id '%s'" % region_id)
 		return
 	if not is_region_unlocked(region_id):
 		push_warning("RegionManager: region '%s' is locked" % region_id)
 		return
+
+	pending_spawn_id = spawn_id
 
 	var old_region := current_region_id
 	current_region_id = region_id

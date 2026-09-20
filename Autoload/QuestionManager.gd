@@ -21,14 +21,15 @@ extends Node
 ##       "image": "res://Assets/Sprites/Questions/iced_fish.png",  // optional (Phase 9)
 ##       "choices": ["0-4°C", "10-15°C", "20-25°C", "Room temperature"],
 ##       "correct_index": 0,
-##       "explanation": "Keeping fish at 0-4°C slows bacterial growth..."  // optional (Phase 9)
+##       "explanation": "Keeping fish at 0-4°C slows bacterial growth...",  // optional (Phase 9)
+##       "hint": "Think about what happens to bacteria in cold temperatures."  // optional (Phase 11)
 ##     }
 ##   ]
-## "image" and "explanation" are both optional (Phase 9 - Educational
-## Question System). This script needs NO code changes to support them -
-## it already stores each question's full parsed Dictionary as-is, so any
-## extra fields ride along automatically. FishingUI.gd is what actually
-## reads and displays them.
+## "image", "explanation", and "hint" are all optional. This script needs
+## NO code changes to support any of them - it already stores each
+## question's full parsed Dictionary as-is, so any extra fields ride
+## along automatically. FishingUI.gd and DDAController.gd are what
+## actually read and use them.
 
 const QUESTIONS_JSON_DIR := "res://Data/JSON/Questions/"
 

@@ -1,0 +1,6 @@
+{
+  "npc_id": "examiner_santiago",
+  "npc_type": "examiner",
+  "display_name": "Examiner Santiago",
+  "dialogue_id": "examiner_santiago_dialogue"
+}

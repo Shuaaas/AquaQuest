@@ -39,8 +39,6 @@ class_name Player
 
 
 func _ready() -> void:
-	InventoryManager.add_item("fishing_rod", 1)
-	print("Rod count: ", InventoryManager.get_item_count("fishing_rod"))
 	movement.body = self
 	persistence.body = self
 	persistence.register_provider(fishing_rod)
@@ -51,6 +49,13 @@ func _ready() -> void:
 	if is_local_authority:
 		persistence.register_with_save_manager()
 
+	# Bridges RegionManager.pending_spawn_id (set by travel_to_region(),
+	# persists across this Player instance being destroyed/recreated on a
+	# scene change) into SpawnPointComponent's own target_spawn_id export -
+	# this is the exact integration that component's doc comment described
+	# as "not wired yet." SpawnPointComponent itself stays decoupled from
+	# RegionManager by design; Player.gd (the mediator) does the bridging.
+	spawn.target_spawn_id = RegionManager.pending_spawn_id
 	spawn.resolve_and_place(self)
 
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bes50qefwfknh"]
+
+[ext_resource type="Script" uid="uid://cbmfw4r6058fw" path="res://Scripts/Systems/Region/RegionExit.gd" id="1_0elki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yb82k"]
+radius = 20.024984
+
+[node name="RegionExit" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_0elki")
+destination_region_id = "region_2"
+destination_spawn_id = "center"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yb82k")

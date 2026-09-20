@@ -1,0 +1,19 @@
+{
+  "dialogue_id": "examiner_santiago_dialogue",
+  "dialogue_states": [
+	{
+	  "condition": null,
+	  "start_node": "offer_exam",
+	  "nodes": {
+		"offer_exam": {
+		  "speaker": "Examiner",
+		  "text": "Ready to test what you've learned?",
+		  "actions": [
+			{ "type": "start_exam", "exam_id": "region1_exam" }
+		  ],
+		  "choices": []
+		}
+	  }
+	}
+  ]
+}

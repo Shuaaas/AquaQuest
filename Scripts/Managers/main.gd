@@ -16,7 +16,3 @@ extends Node
 func _ready() -> void:
 	RegionManager.unlock_region(starting_region_id)
 	RegionManager.travel_to_region(starting_region_id)
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_1:
-		DialogueManager.choose(0)

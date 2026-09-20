@@ -39,6 +39,11 @@ class_name FishingUI
 ## back just doesn't render):
 ##   PointsLabel (Label)      - running fishing score
 ##   QuestionImage (TextureRect) - a question's optional "image" field
+##   HintButton (Button)      - shown only if the question has hint text
+##                              AND DDAController allows a hint at the
+##                              current tier (Phase 11 - see its own doc)
+##   HintLabel (Label)        - where hint text appears once HintButton
+##                              is pressed
 ## A "ResultLabel" is no longer used at all (see CHANGE note below).
 ##
 ## CHANGE FROM EARLIER VERSION: previously, a ResultLabel showed the
@@ -55,6 +60,8 @@ class_name FishingUI
 @onready var choices_container: VBoxContainer = %ChoicesContainer
 @onready var points_label: Label = get_node_or_null("%PointsLabel")
 @onready var question_image: TextureRect = get_node_or_null("%QuestionImage")
+@onready var hint_button: Button = get_node_or_null("%HintButton")
+@onready var hint_label: Label = get_node_or_null("%HintLabel")
 
 var _answered: bool = false
 var _is_mini_quest: bool = false
@@ -63,6 +70,9 @@ var _is_mini_quest: bool = false
 ## explanation after the card has already hidden and the question data
 ## itself is no longer directly on hand.
 var _last_question_id: String = ""
+## Kept only long enough to populate the hint text when the button is
+## pressed - not used anywhere else.
+var _current_question_hint: String = ""
 
 
 func _ready() -> void:
@@ -77,6 +87,9 @@ func _ready() -> void:
 	EventBus.fishing_denied.connect(_on_fishing_denied)
 	EventBus.fishing_ended.connect(_on_fishing_ended)
 	EventBus.fishing_points_changed.connect(_on_points_changed)
+
+	if hint_button:
+		hint_button.pressed.connect(_on_hint_pressed)
 
 
 func _on_question_ready(_spot_id: String, question: Dictionary) -> void:
@@ -101,6 +114,7 @@ func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 	question_label.text = prefix + question.get("text", "")
 
 	_update_question_image(question.get("image", ""))
+	_update_hint_availability(question.get("hint", ""))
 
 	for child in choices_container.get_children():
 		child.queue_free()
@@ -111,6 +125,29 @@ func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 		choice_button.text = str(choices[i])
 		choice_button.pressed.connect(_on_choice_pressed.bind(i))
 		choices_container.add_child(choice_button)
+
+
+## Phase 11 (DDA Adaptation 2 - Hint Frequency). The button only appears
+## at all if BOTH are true: the question actually has hint text authored,
+## AND DDAController.should_show_hint() currently allows one for this
+## tier. A question with hint text but a HARD-tier player sees no button;
+## a question with no hint text sees no button regardless of tier.
+func _update_hint_availability(hint_text: String) -> void:
+	_current_question_hint = hint_text
+	if hint_label:
+		hint_label.visible = false
+		hint_label.text = ""
+	if hint_button == null:
+		return
+	hint_button.visible = hint_text != "" and DDAController.should_show_hint()
+
+
+func _on_hint_pressed() -> void:
+	if hint_label:
+		hint_label.text = _current_question_hint
+		hint_label.visible = true
+	if hint_button:
+		hint_button.visible = false
 
 
 ## Shows a question's optional image if one is set AND actually exists on
@@ -163,6 +200,9 @@ func _on_fishing_ended(_spot_id: String, success: bool) -> void:
 	if explanation != "":
 		message += " " + explanation
 		duration = 4.5
+
+	# Phase 11 (DDA Adaptation 5 - Educational Assistance)
+	duration *= DDAController.get_explanation_duration_multiplier()
 
 	UIManager.show_notification(message, duration)
 

@@ -33,6 +33,7 @@ InventoryManager="*res://Autoload/InventoryManager.gd"
 NPCManager="*res://Autoload/NPCManager.gd"
 QuestObjectiveManager="*res://Autoload/QuestObjectiveManager.gd"
 FishingAreaManager="*res://Autoload/FishingAreaManager.gd"
+ExamManager="*res://Autoload/ExamManager.gd"
 
 [dotnet]
 

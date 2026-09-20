@@ -5,9 +5,15 @@
 	"tier": 0,
 	"text": "What temperature should iced fish be stored at?",
 	"image": "res://Assets/Sprites/Questions/iced_fish.png",
-	"choices": ["0-4°C", "10-15°C", "20-25°C", "Room temperature"],
+	"choices": [
+	  "0-4\u00b0C",
+	  "10-15\u00b0C",
+	  "20-25\u00b0C",
+      "Room temperature"
+	],
 	"correct_index": 0,
-	"explanation": "0-4°C slows bacterial growth without freezing the flesh, keeping it fresh longer."
+	"explanation": "0-4\u00b0C slows bacterial growth without freezing the flesh, keeping it fresh longer.",
+	"hint": "Think about what happens to bacteria in cold temperatures."
   },
   {
 	"id": "r1_002",
@@ -21,7 +27,8 @@
       "It changes the fish's color"
 	],
 	"correct_index": 0,
-	"explanation": "Bacteria multiply fastest at warm temperatures - ice slows that growth dramatically."
+	"explanation": "Bacteria multiply fastest at warm temperatures - ice slows that growth dramatically.",
+	"hint": "Cold slows down living things - including microbes."
   },
   {
 	"id": "r1_003",
@@ -35,7 +42,8 @@
       "Salt curing"
 	],
 	"correct_index": 1,
-	"explanation": "Warm air speeds up bacterial growth and moisture loss, spoiling fish far faster than any preservation method."
+	"explanation": "Warm air speeds up bacterial growth and moisture loss, spoiling fish far faster than any preservation method.",
+	"hint": "Which of these choices involves the fish being warm for a while?"
   },
   {
 	"id": "r1_004",
@@ -43,9 +51,15 @@
 	"tier": 1,
 	"text": "What is the recommended ice-to-fish ratio for short-term transport?",
 	"image": "res://Assets/Sprites/Questions/ice_ratio.png",
-	"choices": ["1:1", "1:3", "3:1", "No ice needed"],
+	"choices": [
+	  "1:1",
+	  "1:3",
+	  "3:1",
+      "No ice needed"
+	],
 	"correct_index": 0,
-	"explanation": "A 1:1 ratio by weight keeps fish consistently cold throughout transport without excess bulk."
+	"explanation": "A 1:1 ratio by weight keeps fish consistently cold throughout transport without excess bulk.",
+	"hint": "Consider what happens if there isn't enough ice to go around."
   },
   {
 	"id": "r1_005",
@@ -59,7 +73,8 @@
       "Red gills"
 	],
 	"correct_index": 2,
-	"explanation": "Cloudy, sunken eyes and strong odor are classic, reliable signs of spoilage - fresh fish have neither."
+	"explanation": "Cloudy, sunken eyes and strong odor are classic, reliable signs of spoilage - fresh fish have neither.",
+	"hint": "Fresh fish and spoiled fish look different around the eyes."
   },
   {
 	"id": "r1_006",
@@ -73,7 +88,8 @@
       "During final retail display"
 	],
 	"correct_index": 1,
-	"explanation": "Transport is the weakest link in most cold chains - icing often isn't replenished and vehicles lack proper refrigeration."
+	"explanation": "Transport is the weakest link in most cold chains - icing often isn't replenished and vehicles lack proper refrigeration.",
+	"hint": "Which point in the journey from dock to market often lacks refrigeration?"
   },
   {
 	"id": "r1_007",
@@ -87,6 +103,7 @@
       "Using potable water for washing"
 	],
 	"correct_index": 1,
-	"explanation": "Histamine forms when certain fish species sit too warm for too long before being chilled - it isn't destroyed by cooking."
+	"explanation": "Histamine forms when certain fish species sit too warm for too long before being chilled - it isn't destroyed by cooking.",
+	"hint": "This has to do with fish sitting out too long before chilling."
   }
 ]

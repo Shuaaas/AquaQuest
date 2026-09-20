@@ -13,7 +13,9 @@ extends Node
 ##       required-rod-id already gated by FishingSpot itself before this
 ##       ever fires)
 ##     -> CASTING: fishing_cast_started, wait for cast animation duration
-##     -> WAITING: fishing_wait_started, wait a random bite delay
+##     -> WAITING: fishing_wait_started, wait a bite delay whose range
+##        comes from DDAController.get_bite_wait_range() (Phase 11 -
+##        Adaptation 3: Fish Bite Timing - varies by current tier)
 ##     -> fish_bit fires, wait animation should freeze immediately
 ##     -> a question is drawn (see QUESTION DRAWING below) at the current
 ##        DDA tier -> GameManager.set_paused(true) -> fishing_question_ready
@@ -25,9 +27,12 @@ extends Node
 ##        "Resume after answering"), THEN REELING animation, THEN
 ##        fishing_ended(true)
 ##   INCORRECT answer:
-##     -> points deducted, a Mini Quest question begins instead of ending
-##        the attempt yet (gameplay STAYS paused through this - the player
-##        is still "answering," just on a second chance)
+##     -> points deducted, a reinforcement message shows immediately
+##        (Phase 10 - surfaces the ORIGINAL question's explanation as
+##        encouragement, not punishment - see _show_reinforcement_message())
+##     -> a Mini Quest question begins instead of ending the attempt yet
+##        (gameplay STAYS paused through this - the player is still
+##        "answering," just on a second chance)
 ##     -> mini_quest_question_ready -> UI calls submit_mini_quest_answer(index)
 ##     CORRECT mini quest answer:
 ##       -> half the deducted points are restored
@@ -72,8 +77,6 @@ const POINTS_PER_CATCH := 10
 const POINTS_PENALTY_ON_MISS := 5
 
 const CAST_DURATION_SECONDS := 1.0
-const WAIT_DURATION_MIN_SECONDS := 1.5
-const WAIT_DURATION_MAX_SECONDS := 4.0
 const REEL_DURATION_SECONDS := 0.8
 
 var _state: FlowState = FlowState.IDLE
@@ -109,7 +112,12 @@ func _on_fishing_started(spot_id: String) -> void:
 	_state = FlowState.WAITING
 	EventBus.fishing_wait_started.emit(spot_id)
 
-	var wait_time := randf_range(WAIT_DURATION_MIN_SECONDS, WAIT_DURATION_MAX_SECONDS)
+	# Phase 11 (DDA Adaptation 3 - Fish Bite Timing): range now comes from
+	# DDAController instead of fixed constants, varying by current tier.
+	var wait_range: Vector2 = DDAController.get_bite_wait_range()
+	print("Bite wait range: ", wait_range, " at tier: ", DDAController.DifficultyTier.keys()[DDAController.current_tier])
+	
+	var wait_time := randf_range(wait_range.x, wait_range.y)
 	await get_tree().create_timer(wait_time).timeout
 	if _state != FlowState.WAITING or _current_spot_id != spot_id:
 		return
@@ -174,7 +182,30 @@ func submit_answer(answer_index: int) -> void:
 	else:
 		_pending_penalty_to_refund = POINTS_PENALTY_ON_MISS
 		_award_points(-POINTS_PENALTY_ON_MISS)
+		_show_reinforcement_message(question_id)
 		_start_mini_quest(spot_id)
+
+
+## Phase 10: the actual new piece this phase needed. Surfaces the ORIGINAL
+## question's explanation immediately, framed as encouragement rather than
+## punishment - "this reinforces learning instead of punishing mistakes"
+## per the brief. This is DISTINCT from the final result toast
+## (FishingUI._on_fishing_ended), which shows the MINI QUEST question's own
+## explanation once the whole attempt concludes - so a player who gets the
+## main question wrong sees two educational touchpoints: what they missed,
+## right away, and confirmation of the related concept once they've had a
+## chance to prove they understood it.
+func _show_reinforcement_message(question_id: String) -> void:
+	var explanation: String = QuestionManager.get_question_by_id(question_id).get("explanation", "")
+	var message := "Not quite - let's review and try again!"
+	var duration := 2.0
+	if explanation != "":
+		message += " " + explanation
+		duration = 4.5
+	# Phase 11 (DDA Adaptation 5 - Educational Assistance): EASY tier gets
+	# more time to read/absorb the explanation, HARD gets less.
+	duration *= DDAController.get_explanation_duration_multiplier()
+	UIManager.show_notification(message, duration)
 
 
 ## Triggered by a wrong main answer. Draws one question a tier easier than
@@ -255,13 +286,11 @@ func _award_points(delta: int) -> void:
 
 func _award_catch(spot_id: String) -> void:
 	InventoryManager.add_item(_resolve_reward_item_id(spot_id))
-
 	var quest_id := _get_required_quest_id(spot_id)
 	if quest_id != "":
 		var progress := QuestManager.get_quest_progress(quest_id).duplicate()
 		progress["last_result"] = "caught"
 		QuestManager.update_quest_progress(quest_id, progress)
-
 
 
 ## See FISH SPECIES note in the class doc above - tries the spot's own

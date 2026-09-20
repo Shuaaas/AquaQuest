@@ -170,12 +170,16 @@ func _on_dialogue_action_triggered(action: Dictionary) -> void:
 		"unlock_fishing_spot":
 			_unlock_fishing_spot(action.get("spot_id", ""))
 		"start_exam":
-			# Hook only. A future ExamManager (mirroring FishingManager's
-			# design - see FishingManager.gd) should listen for
-			# EventBus.exam_started and drive real multi-question exam
-			# flow. NPCManager only announces intent; it does not know
-			# how to run or grade an exam.
-			EventBus.exam_started.emit(action.get("exam_id", ""))
+			# Connect once to dialogue_ended so the exam only starts AFTER
+			# the dialogue is completely over and the player has clicked
+			# Continue. Firing exam_started synchronously here (or even
+			# deferred to the same frame) would let GameManager.set_paused(true)
+			# freeze the scene tree before the Continue button was ever shown,
+			# locking the game. The one-shot flag ensures we don't start the
+			# exam multiple times if several nodes carry this action.
+			var _exam_id: String = action.get("exam_id", "")
+			if not EventBus.dialogue_ended.is_connected(_emit_exam_started_deferred):
+				EventBus.dialogue_ended.connect(_emit_exam_started_deferred.bind(_exam_id), CONNECT_ONE_SHOT)
 		"open_shop":
 			# Hook only. Full buy/sell logic and a shop item catalog are
 			# future work for a dedicated Merchant shop UI/system. This
@@ -191,3 +195,11 @@ func _unlock_fishing_spot(spot_id: String) -> void:
 			spot.enabled = true
 			return
 	push_warning("NPCManager: no FishingSpot found with spot_id '%s' to unlock" % spot_id)
+
+
+## One-shot handler connected to dialogue_ended by the "start_exam" action.
+## Signature matches dialogue_ended (dialogue_id: String) with exam_id bound.
+## Fires exam_started only after the dialogue UI has fully closed, so
+## ExamManager's GameManager.set_paused(true) doesn't freeze the dialogue.
+func _emit_exam_started_deferred(_dialogue_id: String, exam_id: String) -> void:
+	EventBus.exam_started.emit(exam_id)

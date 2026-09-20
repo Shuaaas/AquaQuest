@@ -26,5 +26,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ToastLabel" type="Label" parent="PanelContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_vertical = 1
+autowrap_mode = 2

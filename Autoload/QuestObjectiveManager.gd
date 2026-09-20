@@ -97,7 +97,6 @@ func turn_in_quest(quest_id: String) -> void:
 
 
 func _on_item_added(item_id: String, _amount: int) -> void:
-	print("Item added: ", item_id)
 	_check_active_quests("catch_fish", {"fish_id": item_id})
 
 
@@ -184,12 +183,25 @@ func _check_all_objectives_complete(quest_id: String, def: Dictionary, progress:
 
 	var objectives: Array = def.get("objectives", [])
 	for i in range(objectives.size()):
-		var required: int = objectives[i].get("count", 1)
+		var required: int = _resolve_required_count(objectives[i])
 		var key := "obj_%d" % i
 		if progress.get(key, 0) < required:
 			return  # at least one objective still incomplete
 
-	print("Objectives complete for: ", quest_id)
 	progress["objectives_complete"] = true
 	QuestManager.update_quest_progress(quest_id, progress)
 	EventBus.quest_objectives_completed.emit(quest_id)
+
+
+## Phase 11 (DDA Adaptation 4 - Number of Required Fish): only catch_fish
+## objectives are scaled by DDAController's tier-based multiplier - the
+## base "count" authored in the quest JSON is the design-time baseline
+## and is NEVER mutated; this only affects the runtime comparison. Other
+## objective types (visit_location, answer_questions, pass_exam) are
+## unaffected, matching the literal scope of "required FISH count."
+func _resolve_required_count(objective: Dictionary) -> int:
+	var base_count: int = objective.get("count", 1)
+	if objective.get("type", "") != "catch_fish":
+		return base_count
+	var multiplier: float = DDAController.get_required_fish_multiplier()
+	return max(1, int(round(base_count * multiplier)))

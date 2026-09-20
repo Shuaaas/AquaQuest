@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://y26fy1xsfbog"]
+
+[ext_resource type="Texture2D" uid="uid://p6cw2mmu05p1" path="res://Assets/Entities/NPC EXAMINER/idle.png" id="1_hfky6"]
+[ext_resource type="Script" uid="uid://dg2hx6sa8l4w" path="res://Scripts/Systems/NPC/NPC.gd" id="1_ny762"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny762"]
+atlas = ExtResource("1_hfky6")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhjbk"]
+atlas = ExtResource("1_hfky6")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0kbn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny762")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhjbk")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u70ve"]
+radius = 25.0
+
+[node name="Npc_examiner_santaigo" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_ny762")
+npc_id = "examiner_santiago"
+npc_type = "examiner"
+prompt_text = "Talk to Santiago"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.9604645e-08, -22.000002)
+scale = Vector2(0.7265625, 0.71093756)
+sprite_frames = SubResource("SpriteFrames_0kbn1")
+animation = &"new_animation_1"
+autoplay = "new_animation_1"
+frame_progress = 0.96183765
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+shape = SubResource("CircleShape2D_u70ve")

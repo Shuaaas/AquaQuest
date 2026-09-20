@@ -1,0 +1,10 @@
+{
+  "exam_id": "region1_exam",
+  "region_id": "region_1",
+  "lesson_id": "post_harvest_basics",
+  "question_pool": [],
+  "question_count": 2,
+  "passing_score": 0.7,
+  "max_attempts": 0,
+  "next_region_id": "region_2"
+}

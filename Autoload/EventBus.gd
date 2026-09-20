@@ -64,6 +64,17 @@ signal inventory_changed
 signal exam_started(exam_id: String)
 signal question_answered(question_id: String, was_correct: bool)
 signal exam_completed(exam_id: String, score: float)
+## Added for Phase 12 (Regional Examination System). exam_started/
+## exam_completed above are UNCHANGED - GameManager and
+## QuestObjectiveManager already depend on their exact signatures and
+## neither needed to change. These three are new, additive signals for
+## the richer exam UI flow that didn't exist until this phase.
+signal exam_question_ready(exam_id: String, question_number: int, total_questions: int, question: Dictionary)
+## Fires once, after the whole exam is graded - richer than exam_completed
+## (which only carries exam_id+score, kept minimal for QuestObjectiveManager).
+## This is what ExamUI's result screen actually reads.
+signal exam_result_ready(exam_id: String, correct_count: int, total_questions: int, score: float, passed: bool, next_region_id: String)
+signal exam_denied(exam_id: String, reason: String)
 
 # --- Dynamic Difficulty Adjustment ---
 signal difficulty_adjusted(new_difficulty_tier: int, reason: String)
