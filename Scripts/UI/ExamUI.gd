@@ -97,7 +97,9 @@ func _on_close_pressed() -> void:
 
 func _on_exam_denied(_exam_id: String, reason: String) -> void:
 	var message := "Can't start the exam right now."
-	if reason == "max_attempts_reached":
+	if reason == "quest_not_completed":
+		message = "Finish the related quest before taking this exam."
+	elif reason == "max_attempts_reached":
 		message = "You've used all your attempts for this exam."
 	elif reason == "no_questions_available":
 		message = "No exam questions are available yet."

@@ -1577,6 +1577,7 @@ tile_set = SubResource("TileSet_1c80g")
 [node name="player" parent="." instance=ExtResource("7_8wk22")]
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(57, 220)
+position = Vector2(54, 143)
+gizmo_extents = 0.0
 script = ExtResource("8_s4q1m")
-spawn_id = "center"
+spawn_id = "west_entrance"

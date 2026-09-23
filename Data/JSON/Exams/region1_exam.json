@@ -1,6 +1,7 @@
 {
   "exam_id": "region1_exam",
   "region_id": "region_1",
+  "required_quest_id": "learn_post_harvest_basics",
   "lesson_id": "post_harvest_basics",
   "question_pool": [],
   "question_count": 2,

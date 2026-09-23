@@ -21,8 +21,11 @@ extends Node
 ## FLOW:
 ##   NPCManager's "start_exam" action -> EventBus.exam_started (unchanged
 ##       signal, now actually consumed)
-##     -> checks attempt limit (if the exam defines one) and an active-
-##        exam guard, denies with exam_denied if either fails
+##     -> checks a required prerequisite quest is fully COMPLETED (not
+##        just active - an exam tests knowledge after the learning is
+##        done, unlike FishingSpot/RegionExit which gate on "active"),
+##        checks attempt limit (if the exam defines one), and an active-
+##        exam guard - denies with exam_denied if any fail
 ##     -> GameManager.set_paused(true) (same pattern as fishing)
 ##     -> draws `question_count` DISTINCT random questions at the current
 ##        DDA tier (no repeats within one attempt - tracked here, not in
@@ -104,6 +107,12 @@ func _on_exam_started(exam_id: String) -> void:
 		return
 
 	var def: Dictionary = _exam_definitions[exam_id]
+
+	var required_quest_id: String = def.get("required_quest_id", "")
+	if required_quest_id != "" and QuestManager.get_quest_state(required_quest_id) != "completed":
+		EventBus.exam_denied.emit(exam_id, "quest_not_completed")
+		return
+
 	var max_attempts: int = def.get("max_attempts", 0)
 	if max_attempts > 0 and _exam_history.get(exam_id, []).size() >= max_attempts:
 		EventBus.exam_denied.emit(exam_id, "max_attempts_reached")
@@ -200,9 +209,7 @@ func _finish_exam() -> void:
 
 	if passed and next_region_id != "":
 		RegionManager.unlock_region(next_region_id)
-		
-	print("Region 2 unlocked: ", RegionManager.is_region_unlocked("region_2"))
-	print("Attempts so far: ", ExamManager.get_attempt_count(exam_id))
+
 	# exam_completed's signature is UNCHANGED from before this phase - this
 	# is what silently satisfies QuestObjectiveManager's "pass_exam"
 	# objective type, which has been listening since Phase 7.

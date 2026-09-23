@@ -10,7 +10,7 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_0elki")
 destination_region_id = "region_2"
-destination_spawn_id = "center"
+destination_spawn_id = "west_entrance"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yb82k")
