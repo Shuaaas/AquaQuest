@@ -139,6 +139,15 @@ signal fishing_reel_started(spot_id: String, success: bool)
 ## reusing/changing its signature) so existing UI code isn't forced to
 ## change; a UI can choose to reuse the same rendering for both if it wants.
 signal mini_quest_question_ready(spot_id: String, question: Dictionary)
+## Added for the Mini Quest Reinforcement fix. mini_quest_question_ready
+## above now fires once PER REINFORCEMENT ROUND (it can repeat several
+## times if the player keeps answering wrong) - but DDAController's
+## "Mini Quests Triggered" (the AQPI M term) must only count ONE trigger
+## per main-question failure, not one per round, or it would double-count.
+## This fires exactly once, the first time a main question failure starts
+## a reinforcement loop - DDAController listens to THIS for its counter,
+## not mini_quest_question_ready.
+signal mini_quest_triggered(spot_id: String)
 ## new_total is the running score after this change; delta is what just
 ## changed (positive on a catch, negative on a wrong answer, positive again
 ## on a successful Mini Quest half-refund).

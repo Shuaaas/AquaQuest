@@ -29,27 +29,43 @@ extends Node
 ##   INCORRECT answer:
 ##     -> points deducted, a reinforcement message shows immediately
 ##        (Phase 10 - surfaces the ORIGINAL question's explanation as
-##        encouragement, not punishment - see _show_reinforcement_message())
-##     -> a Mini Quest question begins instead of ending the attempt yet
-##        (gameplay STAYS paused through this - the player is still
-##        "answering," just on a second chance)
+##        encouragement, not punishment - see _show_concept_feedback())
+##     -> a Mini Quest REINFORCEMENT LOOP begins instead of ending the
+##        attempt (gameplay STAYS paused through the whole loop - the
+##        player is still "answering," just working through it)
 ##     -> mini_quest_question_ready -> UI calls submit_mini_quest_answer(index)
 ##     CORRECT mini quest answer:
 ##       -> half the deducted points are restored
-##       -> _finish_attempt: unpause, REELING(false), fishing_ended(false),
-##          flow resets to IDLE so the player can immediately interact
-##          again for a fresh attempt at the SAME spot
+##       -> the ORIGINAL main question is RESUMED - the exact same stored
+##          Dictionary re-emitted via fishing_question_ready, never
+##          replaced by a new random question - and the player answers it
+##          again. The attempt only actually ends once this resumed main
+##          question is answered CORRECTLY (looping back through this same
+##          INCORRECT branch again if failed once more - see
+##          submit_answer()'s own comment on this).
 ##     INCORRECT mini quest answer:
-##       -> DESIGN DECISION (not specified in the brief): the attempt ends
-##          entirely here too - unpause, same REELING beat, fishing_ended(false).
-##          No further retry loop. If a different penalty is wanted, this
-##          is the one place to change - see submit_mini_quest_answer() below.
+##       -> the loop CONTINUES - another question related to the same
+##          concept is shown (see get_related_question() in
+##          QuestionManager.gd), not a new random unrelated one, and not
+##          the end of the attempt. This repeats until the player answers
+##          one correctly - there is no way to bypass the Mini Quest
+##          without demonstrating understanding. See _start_mini_quest()
+##          and submit_mini_quest_answer() below for the full mechanism.
 ##
-## Every path that ends an attempt - success, mini-quest resolution either
-## way, or even the no-question-available edge cases - funnels through the
-## single _finish_attempt() helper below, which is also the ONLY place
-## that unpauses. This guarantees gameplay can never get stuck paused,
-## the same centralization that already fixed a sprite-stuck bug earlier.
+## Every path that ends an attempt - success (whether on the first try or
+## after resuming from a reinforcement loop), or the no-question-available
+## edge cases - funnels through the single _finish_attempt() helper below,
+## which is also the ONLY place that unpauses. This guarantees gameplay
+## can never get stuck paused, the same centralization that already fixed
+## a sprite-stuck bug earlier.
+##
+## MINI QUEST RELATEDNESS: reinforcement questions are chosen by
+## QuestionManager.get_related_question(), which prefers a SIMPLER
+## question (lower tier) sharing the same `concept_id` as whatever was
+## just failed - not an unrelated random draw. A question without
+## `concept_id` set falls back to the old tier-based random draw, so
+## existing content without that field keeps working, just without true
+## conceptual relatedness until it's authored in.
 ##
 ## QUESTION DRAWING (Phase 8): if the spot being fished has a `location_id`
 ## (see FishingSpot.gd), _draw_question() resolves that location's
@@ -83,6 +99,12 @@ var _state: FlowState = FlowState.IDLE
 var _current_spot_id: String = ""
 var _current_question: Dictionary = {}
 var _current_mini_question: Dictionary = {}
+## Tracks which reinforcement question ids have been shown THIS
+## reinforcement loop (reset on each NEW main-question failure), so
+## _start_mini_quest doesn't immediately repeat the same question and so
+## the "first round" of a loop can be detected (is_empty()) for the
+## once-per-loop mini_quest_triggered signal.
+var _mini_quest_seen_ids: Array = []
 var _pending_penalty_to_refund: int = 0
 
 var _points: int = 0
@@ -115,8 +137,6 @@ func _on_fishing_started(spot_id: String) -> void:
 	# Phase 11 (DDA Adaptation 3 - Fish Bite Timing): range now comes from
 	# DDAController instead of fixed constants, varying by current tier.
 	var wait_range: Vector2 = DDAController.get_bite_wait_range()
-	print("Bite wait range: ", wait_range, " at tier: ", DDAController.DifficultyTier.keys()[DDAController.current_tier])
-	
 	var wait_time := randf_range(wait_range.x, wait_range.y)
 	await get_tree().create_timer(wait_time).timeout
 	if _state != FlowState.WAITING or _current_spot_id != spot_id:
@@ -182,7 +202,16 @@ func submit_answer(answer_index: int) -> void:
 	else:
 		_pending_penalty_to_refund = POINTS_PENALTY_ON_MISS
 		_award_points(-POINTS_PENALTY_ON_MISS)
-		_show_reinforcement_message(question_id)
+		_show_concept_feedback(question_id, "Not quite - let's review and try again!")
+		# A NEW reinforcement loop starts here - reset the seen-ids list so
+		# _start_mini_quest treats this as round 1 (fires mini_quest_triggered
+		# once, and won't accidentally think a question from some earlier,
+		# already-finished loop is "already seen"). Note this also covers the
+		# case where _current_question is a RESUMED main question that was
+		# failed again after an earlier successful reinforcement round - each
+		# fresh failure of the main question, resumed or original, starts its
+		# own new loop, per the existing point-penalty rule applying every time.
+		_mini_quest_seen_ids = []
 		_start_mini_quest(spot_id)
 
 
@@ -195,9 +224,15 @@ func submit_answer(answer_index: int) -> void:
 ## main question wrong sees two educational touchpoints: what they missed,
 ## right away, and confirmation of the related concept once they've had a
 ## chance to prove they understood it.
-func _show_reinforcement_message(question_id: String) -> void:
+## Phase 10: surfaces a question's explanation as encouragement, not
+## punishment - "this reinforces learning instead of punishing mistakes"
+## per the brief. Generalized (Mini Quest Reinforcement fix) to work for
+## ANY feedback moment (initial main-question failure, a wrong
+## reinforcement answer, or a passed reinforcement round) rather than
+## being hardcoded to only the first case.
+func _show_concept_feedback(question_id: String, lead_in: String) -> void:
 	var explanation: String = QuestionManager.get_question_by_id(question_id).get("explanation", "")
-	var message := "Not quite - let's review and try again!"
+	var message := lead_in
 	var duration := 2.0
 	if explanation != "":
 		message += " " + explanation
@@ -208,33 +243,77 @@ func _show_reinforcement_message(question_id: String) -> void:
 	UIManager.show_notification(message, duration)
 
 
-## Triggered by a wrong main answer. Draws one question a tier easier than
-## the player's current DDA tier (clamped to EASY), falling back to the
-## same tier if no easier question exists yet, so this never silently
-## soft-locks a region that only has one difficulty of content authored.
+## Triggered by a wrong main answer, OR by a wrong reinforcement answer
+## continuing the SAME loop. Draws a question RELATED to the concept
+## behind the currently-failed question (_current_question if this is
+## the first round, _current_mini_question if continuing a loop) via
+## QuestionManager.get_related_question() - falling back to the old
+## tier-based unrelated random draw ONLY if that question has no
+## concept_id set (keeps existing content without concept_id working
+## exactly as before, just without true relatedness).
+##
 ## No REELING beat and no unpause happens here - gameplay is still paused
 ## from the main question, the player gets a second chance before anything
 ## resumes.
 func _start_mini_quest(spot_id: String) -> void:
-	var main_tier: int = DDAController.get_current_tier()
-	var mini_tier: int = max(main_tier - 1, DDAController.DifficultyTier.EASY)
+	# Whichever question is CURRENTLY the one the player just failed -
+	# either the original main question (round 1) or the previous
+	## reinforcement question (a repeat round within the same loop).
+	var failed_question: Dictionary = _current_mini_question if not _mini_quest_seen_ids.is_empty() else _current_question
+	var concept_id: String = failed_question.get("concept_id", "")
+	var preferred_tier: int = failed_question.get("tier", DDAController.get_current_tier())
 
-	var question := _draw_question(spot_id, mini_tier)
-	if question.is_empty():
-		question = _draw_question(spot_id, main_tier)
+	# Fires exactly once per loop - see EventBus.mini_quest_triggered's own
+	# doc comment for why this must be separate from mini_quest_question_ready.
+	if _mini_quest_seen_ids.is_empty():
+		EventBus.mini_quest_triggered.emit(spot_id)
+
+	# BUGFIX: _mini_quest_seen_ids alone isn't enough to exclude - it starts
+	# EMPTY on round 1, which meant the original main question's own id was
+	# never excluded on the first call, so the "reinforcement" question
+	# could end up being the exact same question the player just failed.
+	# The original main question's id must always be excluded, every round,
+	# regardless of how many mini-quest rounds have happened.
+	var exclude_ids: Array = _mini_quest_seen_ids.duplicate()
+	var original_question_id: String = _current_question.get("id", "")
+	if original_question_id != "" and not exclude_ids.has(original_question_id):
+		exclude_ids.append(original_question_id)
+
+	var question := QuestionManager.get_related_question(concept_id, preferred_tier, exclude_ids)
 
 	if question.is_empty():
-		# No question available at any nearby tier - end the attempt rather
-		# than leave the player stuck with no way to proceed.
+		# No concept_id on the failed question (or no related content
+		# authored yet) - fall back to the old tier-based unrelated draw,
+		# exactly the pre-fix behavior, so content without concept_id keeps
+		# working rather than dead-ending.
+		var main_tier: int = DDAController.get_current_tier()
+		var mini_tier: int = max(main_tier - 1, DDAController.DifficultyTier.EASY)
+		question = _draw_question(spot_id, mini_tier)
+		if question.is_empty():
+			question = _draw_question(spot_id, main_tier)
+
+	if question.is_empty():
+		# No question available anywhere - end the attempt rather than
+		# leave the player stuck with no way to proceed.
 		await _finish_attempt(spot_id, false)
 		return
 
+	_mini_quest_seen_ids.append(question.get("id", ""))
 	_current_mini_question = question
 	_state = FlowState.AWAITING_MINI_ANSWER
 	EventBus.mini_quest_question_ready.emit(spot_id, question)
 
 
 ## Called by the fishing UI when the player answers the MINI QUEST question.
+##
+## CORE FIX: a wrong answer here no longer ends the attempt. It stays in
+## the reinforcement loop, showing another related question, until the
+## player answers one correctly - matching "the player must eventually
+## answer the Mini Quest correctly before the Main Quest can resume."
+## A correct answer does NOT finish the attempt either - it resumes the
+## ORIGINAL main question (never replaced by a new random one) by
+## re-emitting fishing_question_ready with the SAME stored _current_question,
+## reusing FishingUI's existing rendering with no new UI code needed.
 func submit_mini_quest_answer(answer_index: int) -> void:
 	if _state != FlowState.AWAITING_MINI_ANSWER:
 		push_warning("FishingManager: submit_mini_quest_answer called with no active mini quest, ignoring")
@@ -249,11 +328,22 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 	if was_correct:
 		var refund := int(_pending_penalty_to_refund / 2.0)
 		_award_points(refund)
-	# See the class doc's "INCORRECT mini quest answer" note - both branches
-	# end the attempt the same way (no fish caught either way), they only
-	# differ in whether points were refunded above.
+		_pending_penalty_to_refund = 0
+		_show_concept_feedback(question_id, "Concept reinforced! Let's try that question again.")
 
-	await _finish_attempt(spot_id, false)
+		# Resume the ORIGINAL main question - same stored Dictionary, not a
+		# fresh draw. FishingUI already knows how to render this via the
+		# exact signal it was already listening to for the first attempt.
+		_current_mini_question = {}
+		_mini_quest_seen_ids = []
+		_state = FlowState.AWAITING_MAIN_ANSWER
+		EventBus.fishing_question_ready.emit(spot_id, _current_question)
+	else:
+		_show_concept_feedback(question_id, "Still not quite - let's try a related question.")
+		# Stay in the SAME loop - _mini_quest_seen_ids already has this
+		# question's id, so _start_mini_quest won't immediately repeat it,
+		# and won't re-fire mini_quest_triggered (the list isn't empty).
+		_start_mini_quest(spot_id)
 
 
 ## The single place every ending path funnels through - see the class doc
@@ -334,4 +424,5 @@ func _reset_to_idle() -> void:
 	_current_spot_id = ""
 	_current_question = {}
 	_current_mini_question = {}
+	_mini_quest_seen_ids = []
 	_pending_penalty_to_refund = 0

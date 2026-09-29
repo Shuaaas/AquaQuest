@@ -77,8 +77,7 @@ const MAX_TIME_SECONDS := 600.0  # "Maximum Time = 10 minutes" - given exactly b
 
 ## How many answered questions (main + mini quest combined) between each
 ## AQPI recalculation. See EVALUATION WINDOW note above.
-@export var evaluation_window_size: int = 3
-#10
+@export var evaluation_window_size: int = 10
 
 ## PROPOSED thresholds, not official thesis values - see THRESHOLDS note
 ## above. AQPI below easy_threshold -> EASY. At/above hard_threshold -> HARD.
@@ -90,7 +89,7 @@ const MAX_TIME_SECONDS := 600.0  # "Maximum Time = 10 minutes" - given exactly b
 ## promotion rule. See STREAK RULE note above.
 @export var streak_length_for_promotion: int = 5
 
-var current_tier: DifficultyTier = DifficultyTier.EASY
+var current_tier: DifficultyTier = DifficultyTier.MEDIUM
 var last_aqpi_score: float = 0.0
 
 # --- Evaluation window counters (reset every evaluation_window_size questions) ---
@@ -111,6 +110,7 @@ func _ready() -> void:
 	EventBus.question_answered.connect(_on_question_answered)
 	EventBus.fishing_question_ready.connect(_on_question_shown)
 	EventBus.mini_quest_question_ready.connect(_on_mini_question_shown)
+	EventBus.mini_quest_triggered.connect(_on_mini_quest_triggered)
 	EventBus.fishing_points_changed.connect(_on_points_changed)
 	SaveManager.register_section("dda", _get_save_data, _apply_save_data)
 
@@ -120,10 +120,21 @@ func _on_question_shown(_spot_id: String, _question: Dictionary) -> void:
 
 
 func _on_mini_question_shown(_spot_id: String, _question: Dictionary) -> void:
+	# Response time is legitimately measured per QUESTION SHOWN, so this
+	# stays connected to mini_quest_question_ready even though that can
+	# now fire multiple times in one reinforcement loop - each round is a
+	# real question the player spends real time answering.
 	_question_shown_at_msec = Time.get_ticks_msec()
-	# A Mini Quest only ever begins after a wrong main answer - this IS the
-	# "Mini Quests Triggered" event the M term counts. Counted here rather
-	# than in FishingManager so all AQPI bookkeeping stays in one place.
+
+
+## Fixed as part of the Mini Quest Reinforcement rework: this used to be
+## incremented inside _on_mini_question_shown, which fires once per
+## reinforcement ROUND - meaning a player who failed a Mini Quest 3 times
+## in one loop would have counted as 3 separate "Mini Quests Triggered"
+## for the AQPI M term, when it was really only ONE failure event needing
+## reinforcement. mini_quest_triggered (a new, distinct signal) fires
+## exactly once per loop, fixing this without changing the M formula itself.
+func _on_mini_quest_triggered(_spot_id: String) -> void:
 	_mini_quests_triggered += 1
 
 
@@ -194,8 +205,7 @@ func _evaluate_aqpi() -> void:
 	if current_tier != previous_tier:
 		var reason := "aqpi_promoted" if current_tier > previous_tier else "aqpi_demoted"
 		EventBus.difficulty_adjusted.emit(current_tier, reason)
-	
-	print("AQPI: ", aqpi, " (A=", a, " T=", t, " M=", m, " P=", p, ") -> tier: ", DifficultyTier.keys()[current_tier])
+
 	_reset_window()
 
 
@@ -295,7 +305,7 @@ func _get_save_data() -> Dictionary:
 
 
 func _apply_save_data(data: Dictionary) -> void:
-	current_tier = data.get("current_tier", DifficultyTier.EASY)
+	current_tier = data.get("current_tier", DifficultyTier.MEDIUM)
 	last_aqpi_score = data.get("last_aqpi_score", 0.0)
 	# Evaluation-window counters and the consecutive streak intentionally
 	# do NOT persist across save/load - they reset fresh each session,

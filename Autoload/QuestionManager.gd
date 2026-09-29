@@ -22,14 +22,20 @@ extends Node
 ##       "choices": ["0-4°C", "10-15°C", "20-25°C", "Room temperature"],
 ##       "correct_index": 0,
 ##       "explanation": "Keeping fish at 0-4°C slows bacterial growth...",  // optional (Phase 9)
-##       "hint": "Think about what happens to bacteria in cold temperatures."  // optional (Phase 11)
+##       "hint": "Think about what happens to bacteria in cold temperatures.",  // optional (Phase 11)
+##       "concept_id": "cold_storage_basics"  // optional (Mini Quest fix) -
+##                                             // groups related questions so
+##                                             // a wrong answer can trigger a
+##                                             // reinforcement question about
+##                                             // the SAME underlying concept,
+##                                             // not just a random draw
 ##     }
 ##   ]
-## "image", "explanation", and "hint" are all optional. This script needs
-## NO code changes to support any of them - it already stores each
-## question's full parsed Dictionary as-is, so any extra fields ride
-## along automatically. FishingUI.gd and DDAController.gd are what
-## actually read and use them.
+## "image", "explanation", "hint", and "concept_id" are all optional. This
+## script needs NO code changes to support any of them - it already stores
+## each question's full parsed Dictionary as-is, so any extra fields ride
+## along automatically. FishingUI.gd, DDAController.gd, and
+## FishingManager.gd are what actually read and use them.
 
 const QUESTIONS_JSON_DIR := "res://Data/JSON/Questions/"
 
@@ -104,6 +110,46 @@ func get_random_question(tier: int, lesson_id: String = "", allowed_ids: Array =
 
 func get_question_by_id(question_id: String) -> Dictionary:
 	return _questions_by_id.get(question_id, {})
+
+
+## Added for the Mini Quest Reinforcement fix. Finds a question sharing
+## the same concept_id as a failed question, for genuine reinforcement
+## rather than an unrelated random draw. Preference order:
+##   1. Same concept, LOWER tier than preferred_tier, not in exclude_ids
+##      (a genuinely simpler prerequisite question - the intended case)
+##   2. Same concept, ANY tier, not in exclude_ids (still related, just
+##      not necessarily simpler - used when a concept has no easier
+##      sibling authored yet)
+##   3. Same concept, ANY tier, even ones already in exclude_ids (allows
+##      repeats rather than dead-ending a reinforcement loop when a
+##      concept only has one or two questions total)
+## Returns {} only if concept_id is empty or truly no question anywhere
+## shares it - callers (FishingManager) fall back to the old tier-based
+## random draw in that case, preserving behavior for content that hasn't
+## been given concept_id yet.
+func get_related_question(concept_id: String, preferred_tier: int, exclude_ids: Array = []) -> Dictionary:
+	if concept_id == "":
+		return {}
+
+	var same_concept: Array = _questions_by_id.values().filter(
+		func(q: Dictionary) -> bool: return q.get("concept_id", "") == concept_id
+	)
+	if same_concept.is_empty():
+		return {}
+
+	var unseen_and_simpler: Array = same_concept.filter(
+		func(q: Dictionary) -> bool: return not exclude_ids.has(q.get("id", "")) and q.get("tier", 1) < preferred_tier
+	)
+	if not unseen_and_simpler.is_empty():
+		return unseen_and_simpler[randi() % unseen_and_simpler.size()]
+
+	var unseen_any_tier: Array = same_concept.filter(
+		func(q: Dictionary) -> bool: return not exclude_ids.has(q.get("id", ""))
+	)
+	if not unseen_any_tier.is_empty():
+		return unseen_any_tier[randi() % unseen_any_tier.size()]
+
+	return same_concept[randi() % same_concept.size()]
 
 
 ## Evaluates a submitted answer against the stored correct_index. Returns

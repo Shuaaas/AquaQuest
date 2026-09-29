@@ -13,7 +13,8 @@
 	],
 	"correct_index": 0,
 	"explanation": "0-4\u00b0C slows bacterial growth without freezing the flesh, keeping it fresh longer.",
-	"hint": "Think about what happens to bacteria in cold temperatures."
+	"hint": "Think about what happens to bacteria in cold temperatures.",
+	"concept_id": "cold_storage_basics"
   },
   {
 	"id": "r1_002",
@@ -28,7 +29,8 @@
 	],
 	"correct_index": 0,
 	"explanation": "Bacteria multiply fastest at warm temperatures - ice slows that growth dramatically.",
-	"hint": "Cold slows down living things - including microbes."
+	"hint": "Cold slows down living things - including microbes.",
+	"concept_id": "cold_storage_basics"
   },
   {
 	"id": "r1_003",
@@ -43,7 +45,8 @@
 	],
 	"correct_index": 1,
 	"explanation": "Warm air speeds up bacterial growth and moisture loss, spoiling fish far faster than any preservation method.",
-	"hint": "Which of these choices involves the fish being warm for a while?"
+	"hint": "Which of these choices involves the fish being warm for a while?",
+	"concept_id": "spoilage_causes"
   },
   {
 	"id": "r1_004",
@@ -59,7 +62,8 @@
 	],
 	"correct_index": 0,
 	"explanation": "A 1:1 ratio by weight keeps fish consistently cold throughout transport without excess bulk.",
-	"hint": "Consider what happens if there isn't enough ice to go around."
+	"hint": "Consider what happens if there isn't enough ice to go around.",
+	"concept_id": "ice_and_transport"
   },
   {
 	"id": "r1_005",
@@ -74,7 +78,8 @@
 	],
 	"correct_index": 2,
 	"explanation": "Cloudy, sunken eyes and strong odor are classic, reliable signs of spoilage - fresh fish have neither.",
-	"hint": "Fresh fish and spoiled fish look different around the eyes."
+	"hint": "Fresh fish and spoiled fish look different around the eyes.",
+	"concept_id": "spoilage_causes"
   },
   {
 	"id": "r1_006",
@@ -89,7 +94,8 @@
 	],
 	"correct_index": 1,
 	"explanation": "Transport is the weakest link in most cold chains - icing often isn't replenished and vehicles lack proper refrigeration.",
-	"hint": "Which point in the journey from dock to market often lacks refrigeration?"
+	"hint": "Which point in the journey from dock to market often lacks refrigeration?",
+	"concept_id": "ice_and_transport"
   },
   {
 	"id": "r1_007",
@@ -104,6 +110,23 @@
 	],
 	"correct_index": 1,
 	"explanation": "Histamine forms when certain fish species sit too warm for too long before being chilled - it isn't destroyed by cooking.",
-	"hint": "This has to do with fish sitting out too long before chilling."
+	"hint": "This has to do with fish sitting out too long before chilling.",
+	"concept_id": "spoilage_causes"
+  },
+  {
+	"id": "r1_008",
+	"lesson_id": "post_harvest_basics",
+	"tier": 0,
+	"text": "Does fish spoil faster when left warm, or when kept cold?",
+	"choices": [
+	  "Faster when warm",
+	  "Faster when cold",
+	  "Same either way",
+      "Fish don't spoil"
+	],
+	"correct_index": 0,
+	"explanation": "Warmth speeds up the bacteria that cause spoilage - this is the core idea behind every post-harvest handling rule.",
+	"hint": "Think about why we use ice at all.",
+	"concept_id": "spoilage_causes"
   }
 ]
