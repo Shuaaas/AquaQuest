@@ -181,10 +181,13 @@ func _on_dialogue_action_triggered(action: Dictionary) -> void:
 			if not EventBus.dialogue_ended.is_connected(_emit_exam_started_deferred):
 				EventBus.dialogue_ended.connect(_emit_exam_started_deferred.bind(_exam_id), CONNECT_ONE_SHOT)
 		"open_shop":
-			# Hook only. Full buy/sell logic and a shop item catalog are
-			# future work for a dedicated Merchant shop UI/system. This
-			# just announces that a shop screen should open.
-			EventBus.shop_opened.emit(_current_npc_node)
+			# Deferred the same way "start_exam" is: emitting shop_opened
+			# synchronously here would open the shop while the dialogue is
+			# still active, so closing the shop would leave the DialogueUI
+			# visible with a stale Continue button. Waiting for dialogue_ended
+			# (one-shot) ensures the dialogue fully closes first.
+			if not EventBus.dialogue_ended.is_connected(_emit_shop_opened_deferred):
+				EventBus.dialogue_ended.connect(_emit_shop_opened_deferred, CONNECT_ONE_SHOT)
 		_:
 			push_warning("NPCManager: unknown action type '%s'" % action_type)
 
@@ -203,3 +206,11 @@ func _unlock_fishing_spot(spot_id: String) -> void:
 ## ExamManager's GameManager.set_paused(true) doesn't freeze the dialogue.
 func _emit_exam_started_deferred(_dialogue_id: String, exam_id: String) -> void:
 	EventBus.exam_started.emit(exam_id)
+
+
+## One-shot handler connected to dialogue_ended by the "open_shop" action.
+## Fires shop_opened only after the dialogue UI has fully closed, so the
+## ShopUI doesn't overlap with a still-active dialogue (which would leave
+## the DialogueUI visible with a stale Continue button after closing the shop).
+func _emit_shop_opened_deferred(_dialogue_id: String) -> void:
+	EventBus.shop_opened.emit(_current_npc_node)

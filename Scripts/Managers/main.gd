@@ -11,8 +11,17 @@ extends Node
 ## hardcoded in RegionManager, since "where does a new game begin" is a
 ## Main-scene/boot concern, not something RegionManager should assume.
 @export var starting_region_id: String = "region_1"
-
+@onready var inventory_ui: Control = $CanvasLayer/InventoryUI
 
 func _ready() -> void:
 	RegionManager.unlock_region(starting_region_id)
 	RegionManager.travel_to_region(starting_region_id)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_I: inventory_ui.visible = not inventory_ui.visible
+			KEY_L: print("points: ", FishingManager.get_points(), " | earned: ", FishingManager.get_total_points_earned(), " | spent: ", FishingManager.get_total_points_spent(), " | performance: ", FishingManager.get_performance_points())
+			KEY_N: SaveManager.save_game(0)
+			KEY_M: SaveManager.load_game(0)

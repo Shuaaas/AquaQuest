@@ -84,6 +84,12 @@ signal shop_opened(merchant: Node)
 signal shop_closed
 signal item_purchased(item_id: String, price: int)
 signal item_sold(item_id: String, price: int)
+## Added for Phase 13 (Inventory & Shop). shop_opened/shop_closed/
+## item_purchased/item_sold above are all UNCHANGED from the NPC System
+## phase - this is the one genuinely new signal, carrying the resolved
+## catalog (prices, stock) a ShopUI needs to actually render anything,
+## since shop_opened alone only carries the merchant node.
+signal shop_catalog_ready(shop_id: String, catalog: Array)
 
 # --- Audio ---
 signal play_sfx_requested(sfx_id: String)

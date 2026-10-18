@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://embcjtxw7jhj"]
+
+[ext_resource type="Script" uid="uid://b2js834erhkw" path="res://Scripts/Systems/Inventory/ShopUI.gd" id="1_i8ip8"]
+
+[node name="ShopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i8ip8")
+metadata/_edit_use_anchors_ = true
+
+[node name="BuyListContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 67.0
+offset_right = 1150.0
+offset_bottom = 567.0
+
+[node name="CloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.0
+offset_top = -31.0
+offset_right = 29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CLOSE"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.019000001
+offset_left = 1094.0
+offset_top = 11.0
+offset_right = 1116.112
+offset_bottom = 34.0
+text = "SHOP"

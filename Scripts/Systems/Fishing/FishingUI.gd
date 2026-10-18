@@ -58,10 +58,12 @@ class_name FishingUI
 
 @onready var question_label: Label = %QuestionLabel
 @onready var choices_container: VBoxContainer = %ChoicesContainer
+@onready var tier_label: Label = get_node_or_null("%TierLabel")
 @onready var points_label: Label = get_node_or_null("%PointsLabel")
 @onready var question_image: TextureRect = get_node_or_null("%QuestionImage")
 @onready var hint_button: Button = get_node_or_null("%HintButton")
 @onready var hint_label: Label = get_node_or_null("%HintLabel")
+
 
 var _answered: bool = false
 var _is_mini_quest: bool = false
@@ -90,6 +92,8 @@ func _ready() -> void:
 
 	if hint_button:
 		hint_button.pressed.connect(_on_hint_pressed)
+	_update_tier_label()
+	EventBus.difficulty_adjusted.connect(_on_difficulty_adjusted)
 
 
 func _on_question_ready(_spot_id: String, question: Dictionary) -> void:
@@ -148,6 +152,17 @@ func _on_hint_pressed() -> void:
 		hint_label.visible = true
 	if hint_button:
 		hint_button.visible = false
+
+
+func _update_tier_label() -> void:
+	if tier_label == null:
+		return
+	var names := ["Easy", "Medium", "Hard"]
+	var tier: int = DDAController.get_current_tier()
+	tier_label.text = names[tier]
+
+func _on_difficulty_adjusted(_new_tier: int, _reason: String) -> void:
+	_update_tier_label()
 
 
 ## Shows a question's optional image if one is set AND actually exists on
@@ -226,3 +241,4 @@ func _on_fishing_denied(_spot_id: String, reason: String) -> void:
 func _on_points_changed(new_total: int, _delta: int) -> void:
 	if points_label:
 		points_label.text = "Points: %d" % new_total
+		

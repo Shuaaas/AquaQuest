@@ -1,0 +1,17 @@
+{
+  "dialogue_id": "merchant_lola_dialogue",
+  "dialogue_states": [
+	{
+	  "condition": null,
+	  "start_node": "greeting",
+	  "nodes": {
+		"greeting": {
+		  "speaker": "Merchant Lola",
+		  "text": "Welcome! Take a look at my wares.",
+		  "actions": [ { "type": "open_shop" } ],
+		  "choices": []
+		}
+	  }
+	}
+  ]
+}

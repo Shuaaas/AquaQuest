@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://c4dw38llp74av"]
+[gd_scene load_steps=38 format=4 uid="uid://c4dw38llp74av"]
 
 [ext_resource type="Texture2D" uid="uid://cdpnjscetcl0n" path="res://Assets/Environment/Tilesets/Floors_Tiles.png" id="1_y60qp"]
 [ext_resource type="Texture2D" uid="uid://jc5akuaff6uc" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="2_vaj6m"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cw1t0pa1qttub" path="res://Scene/Player/player.tscn" id="12_e4far"]
 [ext_resource type="PackedScene" uid="uid://y26fy1xsfbog" path="res://Scene/NPC/npc_examiner_santaigo.tscn" id="13_pjbp3"]
 [ext_resource type="PackedScene" uid="uid://bes50qefwfknh" path="res://Scene/Door/region_exit.tscn" id="14_j7klp"]
+[ext_resource type="PackedScene" uid="uid://b6myu8q4wv0dh" path="res://Scene/NPC/npc_merchant_lola.tscn" id="15_78okj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eavtg"]
 texture = ExtResource("1_y60qp")
@@ -4344,10 +4345,13 @@ position = Vector2(-626, 157.00003)
 rotation = 1.9325513
 
 [node name="NPC_teacher" parent="." instance=ExtResource("11_e4far")]
-position = Vector2(-455, 148)
+position = Vector2(-458, 84)
 
 [node name="Npc_examiner_santaigo" parent="." instance=ExtResource("13_pjbp3")]
-position = Vector2(-290, -33)
+position = Vector2(-153, -44)
+
+[node name="npc_merchant_lola" parent="." instance=ExtResource("15_78okj")]
+position = Vector2(133, -38)
 
 [node name="player" parent="." instance=ExtResource("12_e4far")]
 

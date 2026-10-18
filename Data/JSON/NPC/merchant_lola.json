@@ -1,0 +1,6 @@
+{
+  "npc_id": "merchant_lola",
+  "npc_type": "merchant",
+  "display_name": "Merchant Lola",
+  "dialogue_id": "merchant_lola_dialogue"
+}

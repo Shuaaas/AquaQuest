@@ -81,9 +81,10 @@ extends Node
 ## Existing spots using only possible_fish_ids are completely unaffected.
 ##
 ## NOT YET BUILT (same "hook, not full system" honesty as other phases):
-## a real point-persistence/leaderboard concept (points reset to 0 on
-## game restart right now), and multiple simultaneous fishing sessions
+## a leaderboard concept, and multiple simultaneous fishing sessions
 ## (single-player scope, same assumption the rest of this project makes).
+## (Point persistence was on this list until the Phase 13 points-as-currency
+## fix - points now save/load via SaveManager's "points" section.)
 
 enum FlowState { IDLE, CASTING, WAITING, AWAITING_MAIN_ANSWER, AWAITING_MINI_ANSWER, REELING }
 
@@ -91,6 +92,7 @@ const PLACEHOLDER_FISH_ITEM_ID := "fish"
 
 const POINTS_PER_CATCH := 10
 const POINTS_PENALTY_ON_MISS := 5
+const POINTS_PER_MINI_CORRECT := 5
 
 const CAST_DURATION_SECONDS := 1.0
 const REEL_DURATION_SECONDS := 0.8
@@ -107,15 +109,94 @@ var _current_mini_question: Dictionary = {}
 var _mini_quest_seen_ids: Array = []
 var _pending_penalty_to_refund: int = 0
 
+## THE single source of truth for the player's points - this variable has
+## always been here; the shop now spends from it instead of a separate coin
+## item. Nothing outside this script writes it directly: gameplay changes go
+## through _award_points(), shop purchases through spend_points().
 var _points: int = 0
+
+## Ledger fields (Phase 13 fix - points as shop currency). Added because
+## spending lowers _points, and anything that wants to measure PERFORMANCE
+## (a Performance Board, a progression-eligibility check) must not be
+## fooled by how much the player chose to spend.
+##   _total_points_earned: gross gameplay awards (catches, Mini Quest
+##       refunds). Never reduced by penalties or spending.
+##   _total_points_spent:  lifetime points spent in the shop.
+## Penalties (wrong answers) reduce _points only - they are not "spending".
+## So: _points = earned - penalties - spent, and the spend-proof
+## performance figure (earned - penalties) is get_performance_points().
+var _total_points_earned: int = 0
+var _total_points_spent: int = 0
 
 
 func _ready() -> void:
 	EventBus.fishing_started.connect(_on_fishing_started)
+	# Points were never persisted before this fix - they reset to 0 on every
+	# restart, which would have made any spent/earned balance meaningless
+	# across sessions. Same register_section pattern every other manager uses.
+	SaveManager.register_section("points", _get_points_save_data, _apply_points_save_data)
 
 
+## Current spendable balance (unchanged meaning - this is what the shop
+## checks and what PointsLabel displays).
 func get_points() -> int:
 	return _points
+
+
+func get_total_points_earned() -> int:
+	return _total_points_earned
+
+
+func get_total_points_spent() -> int:
+	return _total_points_spent
+
+
+## Net gameplay score (earned minus penalties), UNAFFECTED by shop
+## spending. This is the figure to use for any progression-eligibility or
+## Performance Board logic, so spending points can never lower it.
+## Nothing in the project reads points for progression today (verified by
+## code search - Exam/Region/Quest/NPC managers do not), so this is
+## provided for that future use rather than wired into anything yet.
+func get_performance_points() -> int:
+	return _points + _total_points_spent
+
+
+func can_afford(amount: int) -> bool:
+	return amount >= 0 and _points >= amount
+
+
+## The ONLY way points leave the balance for a purchase. Returns false and
+## changes nothing if the balance is insufficient. Emits
+## fishing_points_changed with a NEGATIVE delta - DDAController only counts
+## positive deltas toward the AQPI P term ("Earned Points"), so spending
+## can never inflate or deflate that metric.
+func spend_points(amount: int) -> bool:
+	if not can_afford(amount):
+		return false
+	if amount == 0:
+		return true
+	_points -= amount
+	_total_points_spent += amount
+	EventBus.fishing_points_changed.emit(_points, -amount)
+	return true
+
+
+func _get_points_save_data() -> Dictionary:
+	return {
+		"points": _points,
+		"total_earned": _total_points_earned,
+		"total_spent": _total_points_spent,
+	}
+
+
+func _apply_points_save_data(data: Dictionary) -> void:
+	# int() because JSON round-trips whole numbers as floats.
+	_points = int(data.get("points", 0))
+	_total_points_earned = int(data.get("total_earned", 0))
+	_total_points_spent = int(data.get("total_spent", 0))
+	# delta 0 on purpose: refreshes any PointsLabel without registering as
+	# an "earned" award in DDAController (it ignores deltas <= 0).
+	EventBus.fishing_points_changed.emit(_points, 0)
 
 
 func _on_fishing_started(spot_id: String) -> void:
@@ -297,7 +378,8 @@ func _start_mini_quest(spot_id: String) -> void:
 		# leave the player stuck with no way to proceed.
 		await _finish_attempt(spot_id, false)
 		return
-
+	print("Reinforcement question: ", question.get("id",""), " concept: ", question.get("concept_id",""))
+	
 	_mini_quest_seen_ids.append(question.get("id", ""))
 	_current_mini_question = question
 	_state = FlowState.AWAITING_MINI_ANSWER
@@ -326,8 +408,7 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 	var spot_id := _current_spot_id
 
 	if was_correct:
-		var refund := int(_pending_penalty_to_refund / 2.0)
-		_award_points(refund)
+		_award_points(POINTS_PER_MINI_CORRECT)
 		_pending_penalty_to_refund = 0
 		_show_concept_feedback(question_id, "Concept reinforced! Let's try that question again.")
 
@@ -339,6 +420,7 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 		_state = FlowState.AWAITING_MAIN_ANSWER
 		EventBus.fishing_question_ready.emit(spot_id, _current_question)
 	else:
+		_award_points(-POINTS_PENALTY_ON_MISS)
 		_show_concept_feedback(question_id, "Still not quite - let's try a related question.")
 		# Stay in the SAME loop - _mini_quest_seen_ids already has this
 		# question's id, so _start_mini_quest won't immediately repeat it,
@@ -364,6 +446,8 @@ func _finish_attempt(spot_id: String, success: bool) -> void:
 
 func _award_points(delta: int) -> void:
 	_points += delta
+	if delta > 0:
+		_total_points_earned += delta
 	EventBus.fishing_points_changed.emit(_points, delta)
 
 

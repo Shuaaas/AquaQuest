@@ -89,7 +89,7 @@ const MAX_TIME_SECONDS := 600.0  # "Maximum Time = 10 minutes" - given exactly b
 ## promotion rule. See STREAK RULE note above.
 @export var streak_length_for_promotion: int = 5
 
-var current_tier: DifficultyTier = DifficultyTier.MEDIUM
+var current_tier: DifficultyTier = DifficultyTier.EASY
 var last_aqpi_score: float = 0.0
 
 # --- Evaluation window counters (reset every evaluation_window_size questions) ---

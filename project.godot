@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+EventBus="*res://Autoload/EventBus.gd"
 GameManager="*res://Autoload/GameManager.gd"
 RegionManager="*res://Autoload/RegionManager.gd"
 QuestManager="*res://Autoload/QuestManager.gd"
@@ -25,7 +26,6 @@ SaveManager="*res://Autoload/SaveManager.gd"
 AudioManager="*res://Autoload/AudioManager.gd"
 UIManager="*res://Autoload/UIManager.gd"
 DDAController="*res://Autoload/DDAController.gd"
-EventBus="*res://Autoload/EventBus.gd"
 SceneLoader="*res://Autoload/SceneLoader.gd"
 FishingManager="*res://Autoload/FishingManager.gd"
 QuestionManager="*res://Autoload/QuestionManager.gd"
@@ -34,6 +34,8 @@ NPCManager="*res://Autoload/NPCManager.gd"
 QuestObjectiveManager="*res://Autoload/QuestObjectiveManager.gd"
 FishingAreaManager="*res://Autoload/FishingAreaManager.gd"
 ExamManager="*res://Autoload/ExamManager.gd"
+ItemDatabase="*res://Autoload/ItemDatabase.gd"
+ShopManager="*res://Autoload/ShopManager.gd"
 
 [dotnet]
 

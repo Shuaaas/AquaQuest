@@ -1,0 +1,84 @@
+[
+  {
+	"item_id": "fishing_rod",
+	"display_name": "Fishing Rod",
+	"description": "A sturdy rod for catching fish.",
+	"category": "item",
+	"icon": "res://Assets/Icons/fishing_rod.png",
+	"max_stack": 1,
+	"sellable": false,
+	"buy_price": 0,
+	"sell_price": 0
+  },
+  {
+	"item_id": "explorer_badge",
+	"display_name": "Explorer's Badge",
+	"description": "Proof you completed your first quest.",
+	"category": "quest_item",
+	"icon": "res://Assets/Icons/explorer_badge.png",
+	"max_stack": 1,
+	"sellable": false
+  },
+  {
+	"item_id": "fish",
+	"display_name": "Fish",
+	"description": "A common catch.",
+	"category": "material",
+	"icon": "res://Assets/Icons/fish.png",
+	"max_stack": 999,
+	"sellable": true,
+	"sell_price": 3
+  },
+  {
+	"item_id": "tilapia",
+	"display_name": "Tilapia",
+	"description": "A freshwater staple, common in local markets.",
+	"category": "material",
+	"icon": "res://Assets/Icons/tilapia.png",
+	"max_stack": 999,
+	"sellable": true,
+	"sell_price": 4
+  },
+  {
+	"item_id": "milkfish",
+	"display_name": "Milkfish",
+	"description": "The national fish - prized for its delicate flavor.",
+	"category": "material",
+	"icon": "res://Assets/Icons/milkfish.png",
+	"max_stack": 999,
+	"sellable": true,
+	"sell_price": 6
+  },
+  {
+	"item_id": "golden_tilapia",
+	"display_name": "Golden Tilapia",
+	"description": "A rare, shimmering variant. Fetches a high price.",
+	"category": "material",
+	"icon": "res://Assets/Icons/golden_tilapia.png",
+	"max_stack": 999,
+	"sellable": true,
+	"sell_price": 25
+  },
+  {
+	"item_id": "energy_bait",
+	"display_name": "Energy Bait",
+	"description": "A quick snack that steadies your nerves before answering.",
+	"category": "consumable",
+	"icon": "res://Assets/Icons/energy_bait.png",
+	"max_stack": 20,
+	"sellable": true,
+	"buy_price": 10,
+	"sell_price": 3
+  },
+  {
+	"item_id": "fisher_hat",
+	"display_name": "Fisher's Hat",
+	"description": "A simple woven hat worn by local fisherfolk.",
+	"category": "costume",
+	"icon": "res://Assets/Icons/fisher_hat.png",
+	"max_stack": 1,
+	"sellable": true,
+	"buy_price": 50,
+	"sell_price": 15
+  }
+]

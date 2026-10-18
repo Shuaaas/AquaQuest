@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6myu8q4wv0dh"]
+
+[ext_resource type="Script" uid="uid://dg2hx6sa8l4w" path="res://Scripts/Systems/NPC/NPC.gd" id="1_xdcti"]
+[ext_resource type="Texture2D" uid="uid://cxe1qql8grmcj" path="res://Assets/Entities/NPC MERCHANT/idle.png" id="2_xdcti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuusl"]
+atlas = ExtResource("2_xdcti")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cys5a"]
+atlas = ExtResource("2_xdcti")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0kbn1"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuusl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cys5a")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u70ve"]
+radius = 25.0
+
+[node name="npc_merchant_lola" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_xdcti")
+npc_id = "merchant_lola"
+npc_type = "merchant"
+shop_id = "general_store"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.9604645e-08, -22.000002)
+scale = Vector2(0.7265625, 0.71093756)
+sprite_frames = SubResource("SpriteFrames_0kbn1")
+animation = &"new_animation_1"
+autoplay = "new_animation_1"
+frame_progress = 0.43477058
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+shape = SubResource("CircleShape2D_u70ve")
