@@ -1,0 +1,155 @@
+[gd_scene load_steps=2 format=3 uid="uid://cffcgxtrcr7hw"]
+
+[ext_resource type="Script" uid="uid://ba8unghvxnjij" path="res://Scripts/UI/PerformanceBoard.gd" id="1_pb"]
+
+[node name="PerformanceBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pb")
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.07, 0.12, 0.95)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxMain" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "PERFORMANCE BOARD "
+
+[node name="SepA" type="HSeparator" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+
+[node name="SectionSummary" type="Label" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[ Summary ]"
+
+[node name="AccuracyLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Accuracy: —"
+
+[node name="CorrectLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Correct: —"
+
+[node name="IncorrectLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Incorrect: —"
+
+[node name="PointsLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Points: —"
+
+[node name="AQPILabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AQPI: —"
+
+[node name="TierLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Difficulty: —"
+
+[node name="TimeLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Time: —"
+
+[node name="MiniLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mini Quests: —"
+
+[node name="SepB" type="HSeparator" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+
+[node name="SectionRegions" type="Label" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[ Regions ]"
+
+[node name="RegionContainer" type="VBoxContainer" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SepC" type="HSeparator" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+
+[node name="SectionExams" type="Label" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[ Regional Exam History ]"
+
+[node name="ExamContainer" type="VBoxContainer" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SepD" type="HSeparator" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+
+[node name="SectionQuests" type="Label" parent="ScrollContainer/VBoxMain"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[ Quest Log ]"
+
+[node name="QuestContainer" type="VBoxContainer" parent="ScrollContainer/VBoxMain"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ButtonRow" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="CloseButton" type="Button" parent="ButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CLOSE"
+
+[node name="ExportButton" type="Button" parent="ButtonRow"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EXPORT CSV"

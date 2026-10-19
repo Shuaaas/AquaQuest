@@ -36,6 +36,7 @@ FishingAreaManager="*res://Autoload/FishingAreaManager.gd"
 ExamManager="*res://Autoload/ExamManager.gd"
 ItemDatabase="*res://Autoload/ItemDatabase.gd"
 ShopManager="*res://Autoload/ShopManager.gd"
+PerformanceTracker="*res://Autoload/PerformanceTracker.gd"
 
 [dotnet]
 
