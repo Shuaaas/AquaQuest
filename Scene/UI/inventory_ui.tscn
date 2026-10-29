@@ -22,6 +22,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="CodexButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Codex"
+
 [node name="FilterContainer" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2

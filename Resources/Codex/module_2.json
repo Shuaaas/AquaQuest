@@ -1,0 +1,598 @@
+{
+  "schema_version": 1,
+  "module_id": "module_2",
+  "module_number": 2,
+  "module_title": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+  "source": {
+    "path": "res://docs/modules/Module_2.pdf",
+    "page_count": 7,
+    "sha256": "1d27e0850dfa5d61ed14126df7b7aa85f46cbc77d60448fcf709abb14e913c35",
+    "page_numbering": "one_based_pdf_page",
+    "author": "QUENNIE M. BILUGAN",
+    "institution": "Cavite State University Naic",
+    "credits_as_extracted": "MODULE 2\nPrepared by:\nQUENNIE M. BILUGAN\nFaculty, Fisheries and Aquatic Sciences Department\nCavite State University Naic\nEmail: quennie.bilugan@cvsu.edu.ph\nOBJECTIVES"
+  },
+  "objectives": {
+    "content": "After completing this chapter, the students must be able to:\n\n1. Discuss the factors affecting the rates of spoilage based on the species natural composition.\n\n2. Discuss how the fishing gear and method affect the initial quality of fish.",
+    "source_pages": [
+      1
+    ]
+  },
+  "references": [
+    {
+      "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+      "source_pages": [
+        7
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "FAO. 2001. The composition of fish. Retrieved at\nhttp://www.fao.org/3/x5916e01.htm#Why%20composition%20is%20important",
+      "source_pages": [
+        7
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "FAO. 1996. Freshwater Fish as Raw Material for Processing. Retrieved at\nhttp://www.fao.org/3/w0495e/w0495E02.htm",
+      "source_pages": [
+        7
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "FAO. 2002. A Fishery Manager's Guidebook - Management Measures and Their Application\nRetrieved from http://www.fao.org/3/y3427e/y3427e04.htm#bm04.5",
+      "source_pages": [
+        7
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "FAO. 1982. Fisheries Code of Conduct. Retrieved from\nhttp://www.fao.org/3/v9878e/v9878e00.htm#8",
+      "source_pages": [
+        7
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Madley, S. 2020. Cross-setion image of fsh with label. Retrieved at\nhttps://www.pinterest.ph/pin/208432288987070790/",
+      "source_pages": [
+        7
+      ],
+      "scope": "module_bibliography"
+    }
+  ],
+  "source_activities": [
+    {
+      "heading": "Assignment",
+      "content": "Assignment:\nMake an essay and discuss the factors affecting the rates of spoilage based on the species natural\ncomposition.\n1. How does the fishing gear and method affect the initial quality of fish? Elaborate your\nanswer.\n2. What are the factors affecting the quality of fish meat being sold in the market? Explain\nyour answer.\nActivity:\n1. Submit a drawing of a cross-section part of the fish and label its parts.\n2. Draw one specific fishing gear, include the name of the gear, what specific fish it catches\nand the right method of handling it to ensure the quality of the fish.",
+      "source_pages": [
+        7
+      ],
+      "origin": "existing_source_activity"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "module_2_lesson_1",
+      "module_id": "module_2",
+      "module_number": 2,
+      "module_title": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+      "title": "FISH COMPOSITION AND MUSCULATURE",
+      "summary": "The source introduces the nutritional value of fish and the structures of fish and muscle tissue.",
+      "sections": [
+        {
+          "heading": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+          "content": "Fish and other aquatic resources are one of the important ingredients or raw material in our everyday food because we all know that these foods give us a lot of different nutrients for our body to function properly. Especially during this time of pandemic, fishery resources are essential to be included in our diet to increase our immune system and fight against bacteria and viruses. Why is fish composition important? Several type of person like processors, the nutritionists, cooks and consumers have interest in the composition of fish. The processor needs to identify the quality of the raw material before he can apply correct procedures of fish curing like chilling, freezing, smoking or canning. The nutritionist, on the other hand, needs to know what contribution the fish can make to the diet and to health, and also, the cook must know for example whether a fish is normally thin or fatty in order to prepare it for the meal. Lastly, the consumer is interested not only in whether a particular fish tastes good, which is a matter of opinion, but also in whether it is nutritious. Fish is one of the most essential sources of high grade protein accessible to human in this starving world, and information of its composition is crucial if the fullest use is to be made of it.",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Nutritive Value of Fish",
+          "content": "Nutritive Value of Fish\n\n• Fish is an excellent source of nutrients.\n\n• Fish oils contain polyunsaturated fatty acids (PUFA) and omega-3 which cannot be found in significant amount in other common foods.\n\n• Fish are excellent source of Vitamin A and B complex, and minerals such as iodine, fluoride, selenium and zinc.\n\n• Mussels and oysters have higher levels of iron compare to red meats.",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Structure of Fish (Bony and Cartilaginous Fish)",
+          "content": "Structure of Fish (Bony and Cartilaginous Fish)\n\n1. Skeleton (consist of skull backbone, rib cage and fin supports).\n\n2. Muscle tissues with little amount of connective tissues and fat, supported by skeleton\n\n3. Skin and fins (frequently scaly in finfish)\n\n4. Viscera (including the alimentary canal and associated organs and urogenital system)",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Structure of Fish Muscles",
+          "content": "Structure of Fish Muscles\n\n• Edible amount (portion of edible meat) of bony fish is about 60% of its whole weight or depending on the anatomy, species, size and condition.\n\n• Muscle contain:\n\n• myotomes (muscular tissue)\n\n• myocommata (connective tissue)\n\n• fat\n\n• Unit structure of muscle tissue is muscle cell, also called fiber because it is long and narrow.\n\n• Length of fiber and thickness of mycommata increases with age.\n\n• 90% of white muscle (light or no pigment) is the sprinting muscle for abrupt, fast movements like escaping predator or catching preys.\n\n• 10% is the red (dark) because of myoglobin pigment which is used as cruising muscle for slow or continuous movement. Photo from Pinterest\n\n• Dark muscle is recorded to have higher levels of lipids, hemoglobin, glycogen, and most vitamins.\n\n• Pelagic fishes that swim almost continuously contain up to 48% dark muscle.\n\n• Myocommata contain mostly protein collagen.\n\n• Bony fish contain 3% collagen; cartilaginous fish contains 16%.\n\n• Perimysium envelops the muscle bundle\n\n• Endomysium enclose the muscle cell or fiber.\n\n• Connective tissue protein found 17% of the total protein in mammals.",
+          "source_pages": [
+            2,
+            3
+          ],
+          "image_ids": [
+            "module_2_fish_cross_section"
+          ]
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Myotomes",
+          "definition": "Muscular tissue.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Myocommata",
+          "definition": "Connective tissue.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Muscle fiber",
+          "definition": "The unit structure of muscle tissue, also called a muscle cell because it is long and narrow.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Perimysium",
+          "definition": "Envelops the muscle bundle.",
+          "source_pages": [
+            3
+          ]
+        },
+        {
+          "term": "Endomysium",
+          "definition": "Encloses the muscle cell or fiber.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_2_fish_cross_section",
+          "path": "res://Assets/Codex/module_2/fish_cross_section.png",
+          "caption": "Photo from Pinterest",
+          "source_pages": [
+            3
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        2,
+        3
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2001. The composition of fish. Retrieved at\nhttp://www.fao.org/3/x5916e01.htm#Why%20composition%20is%20important",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1996. Freshwater Fish as Raw Material for Processing. Retrieved at\nhttp://www.fao.org/3/w0495e/w0495E02.htm",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2002. A Fishery Manager's Guidebook - Management Measures and Their Application\nRetrieved from http://www.fao.org/3/y3427e/y3427e04.htm#bm04.5",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1982. Fisheries Code of Conduct. Retrieved from\nhttp://www.fao.org/3/v9878e/v9878e00.htm#8",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Madley, S. 2020. Cross-setion image of fsh with label. Retrieved at\nhttps://www.pinterest.ph/pin/208432288987070790/",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_nutrition_and_postmortem",
+          "source_pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "detail": "Health claims, species comparisons, and some incomplete or awkward post-mortem statements are retained from the source; instructor review is pending."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_2_lesson_2",
+      "module_id": "module_2",
+      "module_number": 2,
+      "module_title": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+      "title": "Composition of Fish",
+      "summary": "The source describes proteins, lipids, vitamins, minerals, other components, and concerns about contaminants in raw materials.",
+      "sections": [
+        {
+          "heading": "Composition of Fish",
+          "content": "Composition of Fish\n\n• Component of fish vary greatly from species vary from species, age sex, environment and season.\n\n• Difference in the chemical elements of fish are closely related to feed intake.",
+          "source_pages": [
+            3
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Protein",
+          "content": "Protein\n\n• Composed of building blocks – amino acids\n\n• Most fish contain usually 16-22% high quality protein.\n\n• Essential for building and repair of muscles, internal organs, skin and hair.\n\n• Lysine and methionine, which is included in the essential amino acids, are lacking in cereal and root-crop based diets.\n\n• Lack of protein lowers one’s resistance to diseases and hinders growth.",
+          "source_pages": [
+            3
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Fat (Lipids)",
+          "content": "Fat (Lipids)\n\n• Fish fat usually ranges from 1.0-25%, but, in tropical species it rarely exceeds 5%.\n\n• 80% of fish flesh is usually made up of water and fat.\n\n• Fish lipids consists of long –chain highly unsaturated fatty acids (14-22 carbon atoms).\n\n• Rich in high-grade polyunsaturated fatty acids (PUFAs) → omega-3\n\n• 2 out of 7 omega-3 are not found in beef, pork and vegetables.\n\n• Eicosapentanoic acid (EPA)\n\n• Docosahexaenoic acid (DHA)\n\n• DHA essential for brain development and growth.\n\n• Effects of fish oil to humans:\n\n• Decreases blood circulatory diseases\n\n• Decreases serum total cholesterol levels\n\n• Increases high density lipoprotein cholesterol which is useful to human health.\n\nCan prevent heart and other diseases.",
+          "source_pages": [
+            3,
+            4
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Vitamins",
+          "content": "Vitamins\n\n• Varies from species to species and season of the year.\n\n• Vitamins that can be found in red meat are:\n\n• A (retinol)\n\n• B1 (thiamine)\n\n• B2 (riboflavin)\n\n• B12 (cyanocobalamin)\n\n• D3 (cholecalciferol)\n\n• Skin has more retinol, thiamine and riboflavin than in flesh\n\n• Liver has a lot of vitamin A, D3, and vitamins B3 (niacin).\n\n• Important sources of vitamin B6 (pyridoxine) and B3 are mollusk and crustaceans.\n\n• Vitamin A prevents night blindness, promotes growth, and reduces susceptibility to infections, dry skin and dry hair.\n\n• Vitamin Bgroup prevents mental depression convulsions, irritability, anemia, nerve damage, skin rashes tissue degeneration and weight loss.\n\n• Vitamin D3 assist in the calcium metabolism, which is a unique vitamin in fish.",
+          "source_pages": [
+            4
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Minerals",
+          "content": "Minerals\n\n• Iodine, which is needed by the thyroid to function properly, is abundant in fish, seaweeds, mollusks and crustaceans. It is also responsible for brain development of humans.\n\n• Fluorides in fish gives protection against tooth decay.\n\n• Selenium helps in preventing heart diseases and possibly cancer.\n\n• Fish are low in sodium making it good for health conscious people.",
+          "source_pages": [
+            4
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Other components",
+          "content": "Other components\n\n• The moisture content of fish ranges from 66-81%.\n\n• Marine invertebrates are rich in taurine, sulphonic amino-acid (major component of nitrogenous extractives)\n\n• Fishes are low in carbohydrates amounting of 0.5%. The characterization of food emphasizes that the main food ingredients as well as the raw materials used for its production must be healthy and nutritious. However, contamination of the environment is rapidly increasing, especially through the use of chemicals in agriculture or in industry. For that reason, certain countries establish limits and recommendations for allowable levels of chemical contaminants in which when the chemical exceeds the standard level it will lead to exclusion of such raw material from the production of food for human consumption.",
+          "source_pages": [
+            4
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Protein",
+          "definition": "Composed of building blocks called amino acids; the source describes protein as essential for building and repair of muscles, internal organs, skin and hair.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        3,
+        4
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2001. The composition of fish. Retrieved at\nhttp://www.fao.org/3/x5916e01.htm#Why%20composition%20is%20important",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1996. Freshwater Fish as Raw Material for Processing. Retrieved at\nhttp://www.fao.org/3/w0495e/w0495E02.htm",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2002. A Fishery Manager's Guidebook - Management Measures and Their Application\nRetrieved from http://www.fao.org/3/y3427e/y3427e04.htm#bm04.5",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1982. Fisheries Code of Conduct. Retrieved from\nhttp://www.fao.org/3/v9878e/v9878e00.htm#8",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Madley, S. 2020. Cross-setion image of fsh with label. Retrieved at\nhttps://www.pinterest.ph/pin/208432288987070790/",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_nutrition_and_postmortem",
+          "source_pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "detail": "Health claims, species comparisons, and some incomplete or awkward post-mortem statements are retained from the source; instructor review is pending."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_2_lesson_3",
+      "module_id": "module_2",
+      "module_number": 2,
+      "module_title": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+      "title": "Post mortem Changes and Fish Quality Assurance Methods",
+      "summary": "The module describes slime secretion, rigor mortis, autolysis, and microbiological decomposition after fish death.",
+      "sections": [
+        {
+          "heading": "Post mortem Changes and Fish Quality Assurance Methods",
+          "content": "Post mortem Changes and Fish Quality Assurance Methods On the death of the fish, processes of physical and chemical change caused by enzymes and micro-organisms begin to happen. The widespread decay of the fish is the final result of those changes. Post-mortem changes which happen in fish tissue occur in the following phases: - slime secretion on the surface of fish - rigor mortis - autolysis as enzymatic decomposition of tissues - microbiological spoilage The duration of each phase can change or overlap with one another. Factors such as storage conditions, especially the temperature will significantly influence these processes.",
+          "source_pages": [
+            4,
+            5
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Slime secretion",
+          "content": "Slime secretion Slime is created in certain cells of fish skin and the process will start right after the fish died. Fish which secrete great amounts of slime have a week or poor developed scales; very frequently, the amount of slime reaches 2-3% of the fish mass and that produces problems during processing. The secretion process stops with the onset of rigor mortis. Slime contains large quantities of nitrogenous compounds and these provide good nourishment for microorganisms that originates from the environment. Thus, slime spoils the fish quickly by first producing an unpleasant smell to the fish, and then giving way for further and deeper bacterial penetration into the fish.",
+          "source_pages": [
+            5
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Rigor mortis",
+          "content": "Rigor mortis Rigor mortis is a result of complex biochemical reactions which cause muscle fibers to shorten and tighten, and finally the fish becomes stiff. Rigor mortis has many scientific results. If, for example, the bones were removed earlier to rigor mortis the length of the fillet reduces by 30%. Also, the fillet becomes broader and thicker because its size does not vary. In those fatty fish, rigor mortis is more intensive. Rigor mortis happen later when fish is put to death right after from the removal from water while those fish which died after a long agony reaches the state faster. Excessive and harsh handling of the fish can fasten the time of occurrence and duration of rigor mortis. Such treatment causes stress in live fish. Fish body temperature is a critical factor in the beginning and duration of the rigor mortis process. The higher the temperature the earlier it begins and the faster it stops. This is proven by enzymatic reactions whose speed rises with increased temperature. At high temperatures it results in greater changes in proteins, causing higher loss of tissue juices, e.g., during processing. Usually, the later rigor mortis begins and the longer it lasts.",
+          "source_pages": [
+            5
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Autolysis",
+          "content": "Autolysis When the fish died, a complex biochemical process begins, leading to a decomposition of basic compounds of tissues which happen under the effect of enzymes. This decomposition includes proteins, lipids and carbohydrates. Its intensity is not the same for all compounds and the decomposition of one can influence the decomposition of the others. The quality of fish as a raw material for consumption or for processing depends mainly on proteolysis, the decomposition of proteins. This is the process after rigor mortis. The finished products of protein hydrolysis, with the effect of enzymes, are: amino-acids and other low- molecular substances that can affect the sensory features of fish. A similar situation affects the products of lipid autolysis: therefore, autolysis cannot be qualified as a phase in the spoilage process. During autolysis, excessive changes happen in the structure of fish’s muscle tissue which becomes softer, and very often falls into layers along the myosepts. In small fish, damage of the belly occurs. From the technological assessment, it is negative since the proteolysis process leads to a reduction in the capacity of tissue to hold tissue juice, causing toughness of texture of the final product. The decomposition of proteins creates ideal conditions for the growth of bacteria.",
+          "source_pages": [
+            5,
+            6
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Microbiological decomposition",
+          "content": "Microbiological decomposition The muscle tissue of live fish is normally sterile but bacteria lives in the alimentary tract and on the skin, and from there, they penetrate into the muscles e.g. through the blood vessels. This process is further supported by physical changes in the tissue as the outcome of rigor mortis and autolysis. Bacteria are able to decompose proteins, but products of proteolysis such as amino- acids and other low-molecular nitrogenous compounds provide better nourishment. Thus, it was found that, due to lower content of nitrogenous compounds, freshwater fish tissue undergoes microbiological decomposition more slowly than marine fish tissue. Micro-organisms cause decomposition of not only proteins but other compounds containing nitrogen, lipids to peroxides, aldehydes, ketones and lower aliphatic acids. Though, the decomposition of nitrogenous compounds occurs much faster than in the case of lipids. Compounds such ammonia, hydrogen sulphide and mercaptans, indole, skatole, etc., are the end products of microbiological spoilage of fish that produces an unpleasant and then disgusting flavor. Dispersion of bacteria into fish tissue and microbiological decomposition, initiates with autolysis and these processes are almost similar. On the other hand, their rate and intensity closely depend on the storage temperature. Low temperature intensely hinders the activity of micro-organisms in the autolysis process controls.",
+          "source_pages": [
+            6
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Rigor mortis",
+          "definition": "Complex biochemical reactions cause muscle fibers to shorten and tighten, and the fish becomes stiff.",
+          "source_pages": [
+            5
+          ]
+        },
+        {
+          "term": "Proteolysis",
+          "definition": "The decomposition of proteins.",
+          "source_pages": [
+            5
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        4,
+        5,
+        6
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2001. The composition of fish. Retrieved at\nhttp://www.fao.org/3/x5916e01.htm#Why%20composition%20is%20important",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1996. Freshwater Fish as Raw Material for Processing. Retrieved at\nhttp://www.fao.org/3/w0495e/w0495E02.htm",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2002. A Fishery Manager's Guidebook - Management Measures and Their Application\nRetrieved from http://www.fao.org/3/y3427e/y3427e04.htm#bm04.5",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1982. Fisheries Code of Conduct. Retrieved from\nhttp://www.fao.org/3/v9878e/v9878e00.htm#8",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Madley, S. 2020. Cross-setion image of fsh with label. Retrieved at\nhttps://www.pinterest.ph/pin/208432288987070790/",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_nutrition_and_postmortem",
+          "source_pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "detail": "Health claims, species comparisons, and some incomplete or awkward post-mortem statements are retained from the source; instructor review is pending."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_2_lesson_4",
+      "module_id": "module_2",
+      "module_number": 2,
+      "module_title": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+      "title": "IDEAL FISHING GEAR AND METHODS FOR GOOD QUALITY FISH CATCH",
+      "summary": "Fishing-gear selection and operation affect catch quality; the source discusses selectivity, injury, stress, and handling examples.",
+      "sections": [
+        {
+          "heading": "IDEAL FISHING GEAR AND METHODS FOR GOOD QUALITY FISH CATCH",
+          "content": "Fisheries management includes different management procedures. Among these are technical regulations on fishing gears in order to acquire the main objective of high sustainable yield in the fisheries. There are guidelines e.g. on mesh size to improve the selective properties of a fishing 22 gear for the bycatches of juvenile fish to be reduced – for the protection of recruitment to the larger size groups of a fish stock including the spawning stock. Some criteria for the ideal fishing gear could be: a. very selective for the target size and species, with slight direct or indirect impact on non- target species, sizes and habitats (Code of Conduct, Paragraphs 7.2.2, 8.4.7, 8.5.1 ñ\n\n8.5.4) ; b. effective and giving high catches of target species at lowest possible cost; and c. quality-orientated and producing catches of high quality (Code of Conduct, Paragraph\n\n8.4.4). Based on these and additional standards that could be supplemented to the list, it can easily be stated that the ideal fishing gear does not exist, as no fishing gear achieves the whole list of desired standards and properties. However, in the process of shifting towards sustainable fisheries management, different fishing gears with their specific properties and capability for improvement are an important section in the “fisheries manager’s toolbox” A basic understanding of the properties, function and operation of the major fishing gears and methods is therefore essential in decision making in fisheries management, mainly when it comes to technical measures in fisheries regulations. The influence of the fishing gear on fish catch is the first and perhaps the most significant element that affects catch quality. As the fish comes into physical contact with the device, this defines the maximum quality attainable for the rest of the processing stages. Optimal fishing gear should reduce injury, stress and exhaustion of captured fish as much as possible. Exhaustion and stress lead to lower pH levels in the fish muscles accelerating rigor mortis and reducing time allowed for processing (Joensen et al. 2016). Injuries (even those not visible) can also lead to discarding (Svorken, 2015). It is of immediate economic interest to ensure the maximum quality of catch. Characteristics of fishing gears and the way they are being operated also affect the quality of the catch, therefore having an indirect ecosystem effect by the misuse of natural resources. In gillnet fishing, poor quality results from too long soaking time. This results in fish dying in the nets and either rotting or becoming damaged by scavengers; thus, that part of the catch is not marketable and has to be discarded. This may also be a problem in longline and pot fishing. In trawling, particularly with large catches, it is not uncommon that part of the catch is ruined by squeezing in the trawl bag or becomes of inferior quality because of too long storage on deck before it is processed. This too is contrary to the requirements of the Code of Conduct (Paragraph 8.4.4).",
+          "source_pages": [
+            6,
+            7
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [],
+      "examples": [
+        {
+          "title": "Gear and catch quality",
+          "content": "Long soaking times in gillnets can lead to fish dying, rotting or scavenger damage; large trawl catches may be squeezed in the trawl bag.",
+          "source_pages": [
+            7
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        6,
+        7
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2001. The composition of fish. Retrieved at\nhttp://www.fao.org/3/x5916e01.htm#Why%20composition%20is%20important",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1996. Freshwater Fish as Raw Material for Processing. Retrieved at\nhttp://www.fao.org/3/w0495e/w0495E02.htm",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2002. A Fishery Manager's Guidebook - Management Measures and Their Application\nRetrieved from http://www.fao.org/3/y3427e/y3427e04.htm#bm04.5",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 1982. Fisheries Code of Conduct. Retrieved from\nhttp://www.fao.org/3/v9878e/v9878e00.htm#8",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Madley, S. 2020. Cross-setion image of fsh with label. Retrieved at\nhttps://www.pinterest.ph/pin/208432288987070790/",
+          "source_pages": [
+            7
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    }
+  ]
+}

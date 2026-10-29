@@ -37,10 +37,15 @@ ExamManager="*res://Autoload/ExamManager.gd"
 ItemDatabase="*res://Autoload/ItemDatabase.gd"
 ShopManager="*res://Autoload/ShopManager.gd"
 PerformanceTracker="*res://Autoload/PerformanceTracker.gd"
+CodexManager="*res://Autoload/CodexManager.gd"
 
 [dotnet]
 
 project/assembly_name="AquaQuestt"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [input]
 

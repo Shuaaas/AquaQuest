@@ -1,0 +1,598 @@
+{
+  "schema_version": 1,
+  "module_id": "module_4",
+  "module_number": 4,
+  "module_title": "TRADITIONAL FISH PROCESSING METHODS",
+  "source": {
+    "path": "res://docs/modules/Module_4.pdf",
+    "page_count": 13,
+    "sha256": "e6953afd0dc1212a3622ca158012718d12d722c3ba2cbfe857fdeabab27bc4c6",
+    "page_numbering": "one_based_pdf_page",
+    "author": "QUENNIE M. BILUGAN",
+    "institution": "Cavite State University Naic",
+    "credits_as_extracted": "MODULE 4\nPrepared by:\n\nQUENNIE M. BILUGAN\nFaculty, Fisheries and Aquatic Sciences Department\nCavite State University Naic\nEmail: qmbilugan@cvsu-naic.edu.ph\nOBJECTIVES\nTRADITIONAL FISH PROCESSING METHODS"
+  },
+  "objectives": {
+    "content": "After the completion of the chapter, students should be able to:\n\n1. understand the basics of each type of fish preservation method\n\n2. discuss the advantages and disadvantages of employing traditional methods\n\n3. be familiar to the common defects associated to salting, smoking and drying",
+    "source_pages": [
+      1
+    ]
+  },
+  "references": [
+    {
+      "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+      "source_pages": [
+        3
+      ],
+      "scope": "salting_bibliography"
+    },
+    {
+      "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+      "source_pages": [
+        3
+      ],
+      "scope": "salting_bibliography"
+    }
+  ],
+  "source_activities": [],
+  "lessons": [
+    {
+      "id": "module_4_lesson_1",
+      "module_id": "module_4",
+      "module_number": 4,
+      "module_title": "TRADITIONAL FISH PROCESSING METHODS",
+      "title": "FISH CURING",
+      "summary": "Fish curing is introduced as preservation through salting, drying, dehydration, smoking, and pickling or marinating.",
+      "sections": [
+        {
+          "heading": "FISH CURING",
+          "content": "FISH CURING Before we discuss the different fish processing methods, let’s first explain what fish curing is. According to Paler-Calmorin (2006), Fish Curing is the method of preserving fish and other fishery products by means of salting, drying, dehydration, smoking and pickling or marinating. Fish curing is considered the oldest and simplest method of fish preservation.",
+          "source_pages": [
+            1
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Fish curing",
+          "definition": "Preserving fish and other fishery products by salting, drying, dehydration, smoking and pickling or marinating.",
+          "source_pages": [
+            1
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        1
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "salting_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            3
+          ],
+          "scope": "salting_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_4_lesson_2",
+      "module_id": "module_4",
+      "module_number": 4,
+      "module_title": "TRADITIONAL FISH PROCESSING METHODS",
+      "title": "SALTING",
+      "summary": "The source explains salt preservation, factors affecting penetration, salting methods and products, and defects in salted fish.",
+      "sections": [
+        {
+          "heading": "SALTING",
+          "content": "SALTING Salting is one of the fish curing methods. Salt is the main preservative agent used to lengthen the shelf-life of fish and other fishery products. Salt is used in almost all methods of fish preservation except in icing, refrigeration and freezing ( Paler-Calmorin, 2006). It can be classified as solar salt (evaporation of seawater by sun), mined salt from the underground salt deposits or dried up salt lakes, and evaporated salts from deeply buried salts deposits (Espejo-Hermes, 2004). Salt preserves the fish by lowering the moisture content through the process of osmosis, where by the moisture in the body of fish is removed while salts enter it through the skin as semipermeable membrane. The flow of water is from lesser to greater conc entration. Thus, when fish is soaked in concentrated brine solution, the water inside flows out rapidly through the skin. Eventually, when the concentration of the solution inside the cell walls into the protoplasm equals that of the brine, the salting pro cess is completed and the fish is said to be thoroughly struck. Moreover, if the fish is salted with dry salt and has reached the condition of thoroughly struck, there are undissolved salts outside its body because of the equal concentration of salt inside and outside the body and the ceasing of the flow of the brine solution (Paler-Calmorin, 2006).",
+          "source_pages": [
+            1,
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Factors that influence the penetration of salt",
+          "content": "Factors that influence the penetration of salt\n\n1) Fat content of fish – In fatty fish like milkfish, herring, mojarras, mullet, sardine, short -bodied mackerel and many others, their fat content serves as a barrier in salt penetration because it is blocking the process of osmosis (Paler -Calmorin, 2006). High protein content (18-19%) is believed to influence the attainment of osmotic equilibrium long before the internal salt concentration approaches the outer salt concentration (Espejo-Hermes, 2004).\n\n2) Thickness of the flesh – Bigger fish tends to have thicker flesh therefore salt penetration is slower (Paler-Calmorin, 2006). At tropical ambient temperature, a delay in preparation would allow decomposition at the center of the thick muscles before the salt concentration has reached the level high enough to prevent spoilage (Espejo-Hermes, 2004).\n\n3) Temperature during salting – Since there is higher temperature during dry season, penetration of salt is faster than rainy seasons which have lower temperature. Bacterial spoilage is also faster during dry season than rainy season (Paler-Calmorin, 2006).\n\n4) Freshness of fish – Salt penetration tends to be slower when the fish is fresh but has greater weight gain. But if the fish is salted in stale condition, fast salt penetration happens and greater weight loss (Paler-Calmorin, 2006).\n\n5) Purity of salt – pure salt tends to penetrate faster than salts with the presence of impurities like magnesium and calcium salts. There is also good flavor and appearance of the color of salted fish that uses pure salt than with impure salt that has a biting taste (Paler-Calmorin, 2006).",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Methods of Salting",
+          "content": "Methods of Salting\n\n1) Kench Salting – This is locally known as binuro. The fish is heavily salted, with the ratio of 1:7 (1 part fish to 7 parts of salt). Before they are salted, they are soaked for 30 minutes in 10%brine solution (1 part of salt to 9 parts of water) to leach the blood and then partially dried for two hours. They are packed in newspapers (for home consumption) and in wooden boxes (for commercial purposes). The species of fish commonly used in kench salting are Indian sardine or tamban tuloy (Sardinella longiceps), Fimbriated herring or tunsoy ( Sardinella fimbriata), Short-bodied mackerel or hasa -hasa (Rastrelliger brachysoma), Striped mackerel or alumahan (Rastelliger chrysozomus) and yellow-striped crevalle or salay-salay (Caranx leptolepsis) (Paler-Calmorin, 2006).\n\n2) Dry Salting – In this method, the fishery product is dried first before salting it. For instance, salted alamang or small shrimps. Fresh small shrimps are dried first before salting them. The ratio of salt and shrimp is 1:5 (1 part of salt to 5 parts of shrimp). You can also add sugar to salted pound shrimp with a ratio of 1:32 (1 part of sugar to 32 parts of salted pound shrimp) (Paler-Calmorin, 2006). Dry salting is recommended in lean fish due to oxidation problems in fatty fish (Espejo-Hermes, 2004).\n\n3) Dry salting to make brine – This method is locally known as tinabal by the Cebuanos. The species of fish commonly used in dry salting to make brine are short-bodied mackerel, striped mackerel, yellow- striped crevalle and yaito tuna or aloy. Included in the process is soaking the fish in 10% brine solution for 30 minutes and the ratio of salt is 1:4 or 1:3 (1 part of salt to 3 or 4parts of fish) or by 20 -25% by weight (Paler-Calmorin, 2006). Salted Viscera – The viscera of the foregoing fish can still be utilized into salted viscera or dayok. Salted viscera are commercially sold in domestic markets even more palatable and salable than any other salted products. It can be done by cleaning and washing the viscera thoroughly. Drain it for 30 minutes. Then blend it thoroughly with salt in a ratio of 1:5 (1 part of salt to 5 parts of viscera) and let it stand for 45 minutes. After this, drain it for 2 hours then put it in a clean bottle (Paler-Calmorin, 2006).\n\n4) Brine salting – This method is locally known by Cebuanos as ginamos. The brine salted fish are stored for one month or two and usually eaten raw or uncooked with calamansi juice or vinegar. The brine of this salted product is called una which is used as seasoning for broth and vegetables. The salt can be mix with fish with a proportion of 20% or 25% of the fish’s weight (Paler-Calmorin, 2006).\n\n5) Fermenting – This method has two products, namely fish paste or bagoong and fish sauce or patis. Fish are dry salted and left to ferment so that protein hydrolyzes to produce paste and sauce. Some fish processors apply papain to make the fermentation period shorter and faster. The common species used in fermentation are anchovy, sardine, herring shad, silverside and slipmouth (Paler -Calmorin,\n\n2006).",
+          "source_pages": [
+            2,
+            3
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Spoilage of Salted Fish",
+          "content": "Spoilage of Salted Fish Espejo-Hermes named 6 types of spoilage of salted products. These are the following:\n\na) Pink or Reddening - This is the most common defect of salted and dried fishery products which is caused by the presence of some species of halophilic bacteria most often causing pink or rose color. The two groups of halophilic bacteria most often causing pink are Pseudomonas salinaria and Sarcina littoralis. These organisms are found in almost all new solar salt or other salt prepared from the seawater. Storing of salt in dry condition for at least a year will reduce contamination by these organisms. Pink (or red) organisms are hard to control. However, if the product is treated immediately after the detection of reddening by washing the product in freshwater, the spoilage can be controlled.\n\nb) Dun – is characterized by the appearance of light brown spots or fawn spots. This spoilage is caused by the growth of molds of the Wallemia genus. They can grow in salt concentration between 5 -26%, with optimum relative humidity of 75%, temperature between 10-37oC (optimum at 25 oC) and pH of 2-8 with optimum of 6-7. Good sanitation, good ventilation and drying of all areas in the plant will help control the growth of the mold.\n\nc) Sliming – slimy fish is characterized by a semi -greasy, sticky, glistening layer of yellow -gray or beige color. It is caused by the growth of slime -producing bacteria, that thrive in low concentration of salt (6-12%). The used of low -quality fish, a slow salting pr ocess and poor atmospheric conditions (high temperature and relative humidity) are main causes of this spoilage.\n\nd) Souring – This condition is due to improper salting which results to uneven distribution of salt through out the muscles of the fish.\n\ne) Salt Burn – this is due to the excessive amount of fine salt that draws out the surface moisture so rapidly that protein coagulates to the extent that rehydration of the salted product is difficult to attain.\n\nf) “Putty” Fish – This type of spoilage is somewhat related to sliming during which degradative bacteria gain a hold when the temperature is too high. This occurs in the thick parts of the salted fish where the rate of increase in salt concentration is slowest. The remedy is similar to that for the slime prevention.",
+          "source_pages": [
+            3
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Osmosis",
+          "definition": "The source describes moisture removal from the fish while salt enters through the skin as a semipermeable membrane.",
+          "source_pages": [
+            1
+          ]
+        },
+        {
+          "term": "Dun",
+          "definition": "Light brown or fawn spots caused by molds of the Wallemia genus.",
+          "source_pages": [
+            3
+          ]
+        },
+        {
+          "term": "Salt Burn",
+          "definition": "Excess fine salt draws surface moisture so rapidly that protein coagulates and rehydration becomes difficult.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "title": "Fermented products",
+          "content": "Fish paste or bagoong and fish sauce or patis are the two products named in the source.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        1,
+        2,
+        3
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "salting_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            3
+          ],
+          "scope": "salting_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_salting_ratio",
+          "source_pages": [
+            2
+          ],
+          "detail": "Kench salting is printed as 1:7, explicitly 1 part fish to 7 parts salt. Retained as written, pending instructor confirmation."
+        },
+        {
+          "id": "source_processing_instructions",
+          "source_pages": [
+            2,
+            3,
+            4,
+            7,
+            9,
+            12,
+            13
+          ],
+          "detail": "Food-processing ratios, chemical treatments, temperatures and storage durations are preserved course text, not independently validated operating guidance. Source typos include \"brain\" and \"called\" in the smoking procedure."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_4_lesson_3",
+      "module_id": "module_4",
+      "module_number": 4,
+      "module_title": "TRADITIONAL FISH PROCESSING METHODS",
+      "title": "DRYING",
+      "summary": "The source describes drying and dehydration, two drying phases, drying methods, and defects in dried fish.",
+      "sections": [
+        {
+          "heading": "DRYING",
+          "content": "DRYING Drying may be defined as the process in which moisture is removed by exposure to natural air currents and humidity regulated by climatic conditions (Paler-Calmorin, 2006). It can be effected through evaporation, or other techniques such as the use of press ure or absorbent pads and through the addition of salt (Espejo - Hermes, 2004). An example of drying is exposing fish and other fishery products to the heat of the sun. On the other hand, dehydration is a process of removing moisture with the use of mechanic al device which controls relative humidity. An example of dehydration is using the artificial heat of oven, kiln, or dehydrator with or without air circulation (Paler-Calmorin, 2006). Drying and dehydration preserve fish and other fishery products by removing moisture through osmosis. The safe moisture content for dried fish is 20%. However, 15% moisture prevents growth of spoilage microorganisms, especially if dried products are treated with chemicals prior to drying (Paler-Calmorin, 2006). Drying is often used in combination with salting and/or smoking for additional preservation. In many traditional fisheries, the power of sun, wind or frost is still used. The exposure of the fish to the warming effects of the sun or the drying effect of frost helps the removal of moisture from the surface of the fish. The removal of moisture is accelerated by the passing wind air or currents that carry away the surface water of the fish (Espejo-Hermes, 2004). Sun-drying is a conventional method of preserving fish but dipping the fish in 1% sorbistat (brand name of sorbic acid) for 10 minutes can prevent mold growth and extend shelf-life for five months (Paler - Calmorin, 2006). In finding the moisture content of the dried fish, and other fishery products, the formula is as follows:\n\n%Moisture = (Wd / Wf) x 100\n\nWhere:\nWd = Weight of dried fish\nWf = Weight of fresh fish",
+          "source_pages": [
+            4
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Phases of drying",
+          "content": "Phases of drying Espejo-Hermes (2004) enumerated 2 phases that takes place during drying and the factors affecting these phases.\n\nA) Constant Rate Period – In this phase water on or near the surface of the fish evaporates. This phase is called as the “constant rate period” because drying continues at a constant rate equal to the rate of evaporation from a free surface. The rate of drying during this phase is influence by:\n\n1. Surface area of fish – the larger surfaced area exposed to drying air, the faster the evaporation of moisture.\n\n2. Relative humidity of the air – it can influence the drying rate by limiting the amount of water the air can absorb.\n\n3. Temperature – it affects the rate of heat transfer and relative humidity. Warm air holds more moisture than cold air. If air temperature is raised without the addition of water, the relative humidity drops. Lower relative humidity favor more rapid evaporation and higher drying rates. The amount of heat transferred to the fish is equal to the difference in temperature between the air and the product. High temperature differences increase the heat transfer and drying rate. Partial cooking occurs when the air temperature is high.\n\n4. Product thickness – the thicker the fish, the slower the drying rate. A greater percentage of the water present is removed from thinner fish than from thick ones due to a shorter diffusion path length in the former.\n\n5. Salt content – the lower the salt content, the faster the drying rate. Heavily salted fish will form a salt crust at the surface that will reduce the diffusion rate of water and subsequently the drying rate.\n\nB) Falling Rate Period – starts when the water on or near the surface of the fish has already evaporated. This phase is generally characterized by a slowly decreasing rate of drying. The water molecules take a longer time to reach the surface from the deeper parts of the fish. Sev eral factors affect the drying rate during this phase:\n\n1. Product shape – shape, size and thickness of the fish will affect the drying rate diffusion of water is a function of thickness, thus the thicker the flesh, the longer the drying time.\n\n2. Temperature – drying proceeds more rapidly with increasing temperature at least until cooking or other product changes occur.\n\n3. Relative Humidity (RH) – the rate of drying is the function of the differences between product initial and equilibrium water content. Since equilibrium water content depends on RH the drying rate will also change with relative humidity. However, this is only significant when the RH value is very high.\n\n4. Salt content – high concentration of salt solution removes more water by osmotic effects. Hence in general, evaporative drying requires a short drying time for strong salted fish.",
+          "source_pages": [
+            4,
+            5
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Methods of Drying",
+          "content": "Methods of Drying According to the book of Espejo -Hermes (2004), there are many types of dryers used in drying/dehydration of fishery products depending on the nature of commodity to be dried, the desired form of the finished product, economics and operating conditions.\n\nA) Air or contact drying – heat is transferred to the fish from heated surface and air movement above the fish removes moisture. Sun drying, though considered the most economical method of drying, is very dependent on rain, change of humidity, cloud cover, contamination from dust , insects, rodents and the like. To further the drying process using the principle of air or contact drying, other types of dryers have been designed locally. These dryers allow drying regardless of weather conditions and can produce more uniform product. Example of these dryers are the multi-source dryers and the so-called mechanical dryers. Multi-source dryers operate on different sources of energy (sun, solids and other low-cost fuel materials such as agrowaste). Mechanical dryers depend mainly on power produced by electricity in order to function. Although these dryers are more efficient than solar dryers, the cost of constructing these dryers is quite high, hence their use is limited to commercial processing plants. Figure 1. Drying of fish using air or contact drying. Photo retrieved at https://upload.wikimedia.org/wikipedia\n\nB) Vacuum drying – it uses conduction by contact with a heated surface or radiation to evaporate the water, which is removed by the vacuum pump. Vacuum drying allows rapid drying at a low temperature, resulting in greater retention of nutrients (e.g., ascorbic acid). Figure 2. Sample lay-out of vacuum drying process. Photo retrieved at https://images.slideplayer.com\n\nC) Freeze drying – depends on the attainment of the very low pressure by highly efficient vacuum pumps in a sealed chamber containing the product. The fish, in contact with refrigerated plates, freezes. At low pressure below 0.64 kPa (kiloPascal), ice sublimes and the vapor is removed from the product by the vacuum pump. Figure 3. Sample lay-out of freeze drying process. Photo retrieved at https://ars.els-cdn.com In the book of Paler-Calmorin (2006), 2 methods of drying were enumerated:\n\nA) Dry salting – this is where the fish are sprinkled and blended thoroughly with dry salt before drying under the heat of the sun.\n\nB) Brine salting – the fish are soaked in saturated brine solution few hours prior to drying under the sun.",
+          "source_pages": [
+            5,
+            6,
+            7
+          ],
+          "image_ids": [
+            "module_4_air_contact_drying",
+            "module_4_vacuum_drying",
+            "module_4_freeze_drying",
+            "module_4_source_moisture_formula"
+          ]
+        },
+        {
+          "heading": "Spoilage and Defects of Dried Fish",
+          "content": "Spoilage and Defects of Dried Fish\n\nA) Case hardening – Rapid drying which results to drying out of the outer portion of the fish while the inner portion is still moist causes case hardening. The product has a chalky white appearance and is hard and brittle.\n\nB) Mold growth – the growth of black, blue and green molds on dried fish is due to high moisture content. Unpacked dried fish with low initial moisture content will take up sufficient water to allow mold growth if the relative humidity is greater that 75%.\n\nC) Reddening – Red halophilic (salt -loving) bacteria that grow on dried fish when impure salt is used causa reddening in dried fish.\n\nD) Insect attack – a major problem in the control of losses and wastage of dried fish in many developing countries. Measure can be taken to avoid insect attack: a. Proper packaging of the dried product. b. Dipping before drying in a dilute solution of the odorless insecticide pyrethrum or light dusting of the product with the dried substance. c. Fumigation of spaces where dried fish is stored.",
+          "source_pages": [
+            7
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Drying",
+          "definition": "Removal of moisture by exposure to natural air currents and humidity regulated by climatic conditions.",
+          "source_pages": [
+            4
+          ]
+        },
+        {
+          "term": "Dehydration",
+          "definition": "Removal of moisture using a mechanical device that controls relative humidity.",
+          "source_pages": [
+            4
+          ]
+        },
+        {
+          "term": "Case hardening",
+          "definition": "Rapid drying dries the outer portion of the fish while the inner portion remains moist.",
+          "source_pages": [
+            7
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "title": "Drying and dehydration",
+          "content": "The source contrasts exposing fish to the heat of the sun with artificial heat from an oven, kiln or dehydrator.",
+          "source_pages": [
+            4
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_4_air_contact_drying",
+          "path": "res://Assets/Codex/module_4/air_contact_drying.png",
+          "caption": "Figure 1. Drying of fish using air or contact drying. Photo retrieved at https://upload.wikimedia.org/wikipedia",
+          "source_pages": [
+            6
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_vacuum_drying",
+          "path": "res://Assets/Codex/module_4/vacuum_drying.png",
+          "caption": "Figure 2. Sample lay-out of vacuum drying process. Photo retrieved at https://images.slideplayer.com",
+          "source_pages": [
+            6
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_freeze_drying",
+          "path": "res://Assets/Codex/module_4/freeze_drying.png",
+          "caption": "Figure 3. Sample lay-out of freeze drying process. Photo retrieved at https://ars.els-cdn.com",
+          "source_pages": [
+            6
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_source_moisture_formula",
+          "path": "res://Assets/Codex/module_4/source_moisture_formula.png",
+          "caption": "Moisture formula and variable labels as printed in Module 4 page 4; instructor review required.",
+          "source_pages": [
+            4
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "references": [],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_drying_formula",
+          "source_pages": [
+            4
+          ],
+          "detail": "The source labels (Wd/Wf) x 100 as %Moisture, with Wd = weight of dried fish and Wf = weight of fresh fish. Do not substitute a different formula without instructor approval."
+        },
+        {
+          "id": "source_moisture_thresholds",
+          "source_pages": [
+            4,
+            7
+          ],
+          "detail": "This source states 20% and 15% moisture conditions; Module 5 page 2 states 10%. These statements need contextual reconciliation by the instructor."
+        },
+        {
+          "id": "source_processing_instructions",
+          "source_pages": [
+            2,
+            3,
+            4,
+            7,
+            9,
+            12,
+            13
+          ],
+          "detail": "Food-processing ratios, chemical treatments, temperatures and storage durations are preserved course text, not independently validated operating guidance. Source typos include \"brain\" and \"called\" in the smoking procedure."
+        },
+        {
+          "id": "source_incomplete_citations",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "detail": "These topics contain inline citations and image credits but no separate bibliography in their pages. The page 3 bibliography belongs to the salting topic."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_4_lesson_4",
+      "module_id": "module_4",
+      "module_number": 4,
+      "module_title": "TRADITIONAL FISH PROCESSING METHODS",
+      "title": "SMOKING",
+      "summary": "The source describes smoking preservation, smoke generation, smoking methods, smokehouses, procedure, and spoilage.",
+      "sections": [
+        {
+          "heading": "SMOKING",
+          "content": "SMOKING Smoking or smoke-curing is a method of preserving fish by the application of smoke with the aid of salting, drying and heat treatment (Paler -Calmorin, 2006). Smoking of fish is usually carried out using a smokehouse to control the proper burning of wood. Several interrelated steps in smoking contribute to the preservation of smoked fish (Espejo-Hermes, 2004):\n\n• Salting – Salting makes the flesh firm and easy to handle. It also improves the flavor and appearance of the smoked product. The preservation of smoked fish cannot depend solely on the salting process due to the low salt content (around 2-5%) in the product.\n\n• Heat treatment – the heat generated during smoking contributes to the bactericidal effect of smoking. Heat treatment and pre -cooking, as in the traditional methods of smoking do not only kill microorganisms and inactivate enzymes but also make the flesh firm and less susceptible to autolysis.\n\n• Smoke deposition – the smoke components are partially responsible. Smoke is composed of vapors and particulates. The vapors or compounds given off by the burning wood or similar materials. Vapor and particulates seem to have similar chemical components however, the proportion of their chemical constituents differ. The chemical constituents of smoke are numerous and over 200 components have been identified in the vapors. The more abundant chemicals found in wood smoke include carbonyls, organic acids, phenol s, organic bases, alcohols, hydrocarbons (including polycyclic aromatics) and gases such as carbon dioxide, carbon monoxide, oxygen, nitrogen, and nitrous oxide. Smoke has both antioxidant and bactericidal properties. The bactericidal properties of smoke a re mainly due to carboxylic acid and phenols. Smoked seafood may contain up to about 0.5 g of smoke constituents per 100 g tissue.\n\n• Drying – Evaporation of water occurs simultaneously with smoke deposition. The amount of moisture removed from the fish depends upon the temperature of the smokehouse and the length of the smoking time. The longer the fish is smoked the drier it becomes.",
+          "source_pages": [
+            8
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Factors Affecting the Generation of Smoke",
+          "content": "Factors Affecting the Generation of Smoke\n\n1) Type of wood – Generation of smoke is commonly done by raising the temperature of wood, sawdust or wood chips sufficient to produce smoke but not flame. For smoking purposes, almost any kind of hardwood may be used. Soft wood is not recommended due to its resinous nat ure and its tendency to impart acrid flavors and odors on the smoked products.\n\n2) Temperature – high temperature cause cooking, more rapid drying lower relative humidity (unless relative humidity is controlled), and a more rapid chemical reaction between the smoke components and the product. The quicker the product dries, the less smoke is absorbed . Hot smoking cooks the fish causing a critical change in protein which in turn affects smoke absorption.\n\n3) Relative Humidity (RH) -high RH favors absorption of smoke but slower drying. The best RH is for smoking is about 60%. Low RH lessens both the amount of and rate of smoke absorption, while at higher relative humidity the products takes too long to reach smoke saturation.\n\n4) Smoke velocity, density and air flow – Smoke absorption, in terms of rate and balance concentration, is improved by increasing the smoke velocities. This could be due to two factors. First, higher velocities replenish the smoke near the product that helps maintain the higher concentrations of smoke vapors close to the product. Second, the movement of smoke and air by the product decreases by the air surface film thickness, reducing the diffusion path length from the bulk of the smoke into the product.",
+          "source_pages": [
+            8
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Types of Smoking",
+          "content": "Types of Smoking Smoking of fish can be either cold or hot depending upon the temperature of the smokehouse. Smoking of fish can also be done with or without using a smokehouse, by using liquid smoke or electrostatic smoking.\n\n1) Hot Smoking – During hot smoking, the temperature may reach 70-80oC. the product is cooked during smoking and be eaten without further cooking. The smoked product is usually flavorful and juicy and has limited keeping quality if not stored at low temperature or dried to a stable moisture level. The desirable characteris tic flavor of hot -smoked products is due to eugenol, syringaldehyde, acetosyringone, and acetovanillone. It is believed that the sweet aroma tones down the heavy, smoky aromas of the phenols. The main disadvantage of hot smoking is the deposition of carcinogenic substances on fish during smoking. One of these cancer -causing compounds is 3,4 benzo -pyrene, which is found mostly absorbed at 70-80oC. Hot smoking is the main type of smoking fishery products in the Philippines. Figure 4. Hot Smoking. Photo retrieved at https://www.wealdsmokery.co.uk/\n\n2) Cold Smoking - In cold smoking, the temperature usually does not exceed 30oC and the product is not cooked. Cold smoked fish are also perishable unless they are heavily salted or kept at low temperatures (chilled or frozen). The typical flavor in cold-smoked products is mainly due to guaiacol, maltol, phenol and m -cresol. At pres ent, cold smoked products similar to smoked salmon are being locally produced from Spanish mackerel. Figure 5. Cold Smoking. Photo retrieved at https://img.youtube.com/\n\n3) Liquid smoke application - Liquid smoke is a liquid that has been used to absorb smoke and then concentrated. Controlled burning of particular types of hardwood produces smoke. The use of liquid smoke is rapid and easier than the conventional method. Furthermore, it eliminates the emission problems associated with traditional smoking since the tars, resins and many other organic chemicals including benzopyrene have been removed during the manufact uring process through aging and filtration. Liquid smoke can be used by direct addition to the product or by surface applications such as wetting, dipping, spraying and atomization. In atomization, the very concentrated liquid smoke medium is evaporated in the form of throw smoke in the smokehouse. Smoke flavoring are available in an aqueous medium, oil medium, or in dry powder form. in spite of the various advantages of liquid smoking, it has limitations such as difficulty and exactly duplicating the flavor and color of traditionally smoked products. Figure 6. Sample Liquid Smoke product. Photo retrieved at https://www.seriouseats.com/\n\n4) Electrostatic smoking - This is a smoking process in which the smoke particles acquire in electrical charge (usually a positive charge) by passing through a high voltage field. On the other hand, the product is given a negative charge, does attracting the positively charged s moke particles which are deposited on the products surface. Electrostatic smoking results to rapid smoking, however, it induces smoke particle deposition on the product. The process may present hazards to plant staff due to the utilization of high voltage . Figure 7. Sample lay-out of Continuous Salting-Drying-Smoking Process. Retrieved at https://archimer.ifremer.fr/",
+          "source_pages": [
+            9,
+            10
+          ],
+          "image_ids": [
+            "module_4_hot_smoking",
+            "module_4_cold_smoking",
+            "module_4_liquid_smoke",
+            "module_4_continuous_salting_drying_smoking"
+          ]
+        },
+        {
+          "heading": "Types of Smokehouse",
+          "content": "Types of Smokehouse The types of smokehouse in the philippines vary from simple clay pot (pelon) to the more sophisticated mechanical types. the size of the smokehouse depends on the projected production volume of the processor. a brief description of some local smokehouse is given below.\n\n1) Clay pot (Pelon) - the smokehouse is a single container, which measures approximately 60 cm x 45cm. Bamboo mesh trays are placed inside supported by iron rods. The fire is built inside the container.\n\n2) Drum type - this unit is usually made from standard 44-gallon drum with its top end removed. The smokehouse measures approximately 87 cm high x 56 cm diameter. simple wire mesh trays are placed inside supported by ironclads. A hole is cut on the side near the bottom for inserting the fuel. the cut-off end of the drum is used as the top cover.\n\n3) Variation of drum type - drums are cut into halves and embedded in clay or concrete frames. the smokehouse measures approximately 135 cm x 90 cm x 60 cm. Bamboo are placed on the top. The fire is lit inside the through the top.\n\n4) Concrete type - this smokehouse is made entirely of concrete and measures approximately 600 cm x 210cm x 165 cm. The unit has a chamber on top when a series of wood measures are placed for smoking. Enough space is also provided around this chamber where a person can move around. The fire area is situated at the base of the smoking unit near the ladder.\n\n5) Concrete type with metal chamber for smoking tray - This smoking unit measures approximately 90 cm x 35 cm x 75 cm. It consists of a concrete framework and metal chamber for the smoking tray.The fire is lit through the back of the framework. Modified smokehouses using empty oil drums have been designed locally and in some Asia-Pacific countries such as Papua New Guinea and Indonesia. Mechanical smokehouses or kilns are becoming popular in some countries because of their advantages in use (uniform product and hygienic preparation, less health risk to workers and others). In the Philippines, a locally fabricated mechanical kiln similar to the imported AFOS smokehouse has been designed by Trinidad and partners.",
+          "source_pages": [
+            11
+          ],
+          "image_ids": [
+            "module_4_mechanical_smokehouse",
+            "module_4_domestic_smokehouses",
+            "module_4_modified_drum_smokehouses"
+          ]
+        },
+        {
+          "heading": "Smoking Procedure",
+          "content": "Smoking Procedure\n\n1) Raw Material Only fresh fish must be used for smoking. Low quality fish often results in a soft and sticky product with a dull, matte surface.\n\n2) Cleaning Proper cutting and washing must be observed. getting and washing remove microorganisms and enzymes that are in the digestive tract. Blood, gills, and kidney are prone to spoilage and must be removed\n\n3) Salting Fish may be dry salted (sprinkled with salt) or brined. Brining can be done by soaking the fish in salt solution or by cooking the fish in brine solution. the concentration of the brain must not be lower than 8% to avoid swelling of the fish tissue.\n\n4) Rinsing Rinsing is carried out to remove excess salt from the surface of the fish. When this step is omitted, the more concentrated salt solution in the fish surface crystallizes during the drying and smoking process resulting to unsightly powdery deposits. the u se of chilled potable water (around 5 to 10 degrees celsius for at least 10 minutes) for rinsing is found suitable.\n\n5) Drying The fish are arranged in smoking place to allow excess water to drain. drying in the fish is essential for proper deposition of smoke in the fish. sun or air drying for 30 to 45 minutes until the fish is “dry to the touch” can accomplish this.\n\n6) Smoking The fuel for smoking can be hardwood, coconut husk, corn cob, sugar cane, waste, and peanut husks. The temperature, relative humidity, and density of smoke must be regulated during smoking. The more smoke is evolved when moist fuel is used.\n\n7) Packaging and Storage Smoked fish must be properly called before packaging. Clean banana leaves can be used to wrap smoked products.Smoked fish are considered perishable (can keep for 2 to 3 days only) and hence must be refrigerated or frozen after packaging in polyethylene bag s. Smoked fish can keep longer if the salt content is high or if dried to low moisture content.",
+          "source_pages": [
+            12,
+            13
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Spoilage of Smoked Fish",
+          "content": "Spoilage of Smoked Fish Mold and bacterial spoilage Mold and bacterial spoilage occur due to the high moisture content of the smoked product. To prevent bacterial and mold growth, the product must be stored at low temperatures. Rapid cooling of the smoked product must be done to avoid unnecessary spoilage.",
+          "source_pages": [
+            13
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Smoking or smoke-curing",
+          "definition": "Preserving fish by applying smoke with salting, drying and heat treatment.",
+          "source_pages": [
+            8
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "title": "Local smokehouses",
+          "content": "The source describes clay pot, drum, and concrete smokehouse types.",
+          "source_pages": [
+            11
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_4_hot_smoking",
+          "path": "res://Assets/Codex/module_4/hot_smoking.png",
+          "caption": "Figure 4. Hot Smoking. Photo retrieved at https://www.wealdsmokery.co.uk/",
+          "source_pages": [
+            9
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_cold_smoking",
+          "path": "res://Assets/Codex/module_4/cold_smoking.png",
+          "caption": "Figure 5. Cold Smoking. Photo retrieved at https://img.youtube.com/",
+          "source_pages": [
+            9
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_liquid_smoke",
+          "path": "res://Assets/Codex/module_4/liquid_smoke.png",
+          "caption": "Figure 6. Sample Liquid Smoke product. Photo retrieved at https://www.seriouseats.com/",
+          "source_pages": [
+            10
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_continuous_salting_drying_smoking",
+          "path": "res://Assets/Codex/module_4/continuous_salting_drying_smoking.png",
+          "caption": "Figure 7. Sample lay-out of Continuous Salting-Drying-Smoking Process. Retrieved at https://archimer.ifremer.fr/",
+          "source_pages": [
+            10
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_mechanical_smokehouse",
+          "path": "res://Assets/Codex/module_4/mechanical_smokehouse.png",
+          "caption": "Fig. 21. Mechanical Smokehouse (Source: Trinidad, 1997)",
+          "source_pages": [
+            11
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_domestic_smokehouses",
+          "path": "res://Assets/Codex/module_4/domestic_smokehouses.png",
+          "caption": "Fig. 19. Smokehouses in the Philippines (Source: Espejo, 1980)",
+          "source_pages": [
+            12
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_4_modified_drum_smokehouses",
+          "path": "res://Assets/Codex/module_4/modified_drum_smokehouses.png",
+          "caption": "Fig. 20. Modified Drum Smokehouse (Source: Espejo-Hermes, 1996)",
+          "source_pages": [
+            12
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "references": [],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_processing_instructions",
+          "source_pages": [
+            2,
+            3,
+            4,
+            7,
+            9,
+            12,
+            13
+          ],
+          "detail": "Food-processing ratios, chemical treatments, temperatures and storage durations are preserved course text, not independently validated operating guidance. Source typos include \"brain\" and \"called\" in the smoking procedure."
+        },
+        {
+          "id": "source_incomplete_citations",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "detail": "These topics contain inline citations and image credits but no separate bibliography in their pages. The page 3 bibliography belongs to the salting topic."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    }
+  ]
+}

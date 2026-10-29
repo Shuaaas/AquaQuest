@@ -16,7 +16,7 @@ extends Node
 ## definitions follow the same convention here instead, for consistency
 ## and because nothing else in the project needs the Resource editor.
 ##
-## DATA LOCATION: Data/JSON/Items/*.json, each file an array of item
+## DATA LOCATION: Data/JSON/Item/*.json, each file an array of item
 ## definitions (same shape as Data/JSON/Questions/*.json).
 ##
 ## EXPECTED JSON SHAPE:
@@ -66,7 +66,7 @@ extends Node
 ## (recipes referencing item_ids, same JSON-array-of-definitions pattern)
 ## - no crafting logic exists yet, this just doesn't block it later.
 
-const ITEMS_JSON_DIR := "res://Data/JSON/Items/"
+const ITEMS_JSON_DIR := "res://Data/JSON/Item/"
 const DEFAULT_MAX_STACK := 999
 
 # item_id -> item definition Dictionary

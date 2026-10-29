@@ -1,0 +1,698 @@
+{
+  "schema_version": 1,
+  "module_id": "module_5",
+  "module_number": 5,
+  "module_title": "METHODS OF FISH PRESERVATION",
+  "source": {
+    "path": "res://docs/modules/Module_5.pdf",
+    "page_count": 3,
+    "sha256": "cc04f7cfadb35e300e3c37f8e1dafcf76b7cea88cc55221d5988a6dccabc69e2",
+    "page_numbering": "one_based_pdf_page",
+    "author": "QUENNIE M. BILUGAN",
+    "institution": "Cavite State University Naic",
+    "credits_as_extracted": "MODULE 5\nPrepared by:\n\nQUENNIE M. BILUGAN\nFaculty, Fisheries and Aquatic Sciences Department\nCavite State University Naic\nEmail: qmbilugan@cvsu-naic.edu.ph\nOBJECTIVES\nMETHODS OF FISH PRESERVATION"
+  },
+  "objectives": {
+    "content": "After the completion of the chapter, students should be able to:\n\n1. discuss the difference of each methods.\n\n2. provide examples of such methods.",
+    "source_pages": [
+      1
+    ]
+  },
+  "references": [
+    {
+      "text": "Anonymous. Guidelines for the handling of fish packed in a controlled atmosphere. UK: Sea Fish Industry\nAuthority. 1985",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Anonymous. Processing and Preservation of Fish; Value Added Fishery Products . Retrieved at\nhttp://ecoursesonline.iasri.res.in/pluginfile.php/6693/mod_resource/content/1/Lesson_29.htm",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "BFAR. Fisheries Post-harvest Technologies. Bureau of Fisheries and Aquatic Resources. PCA Bldg. Diliman, Quezon\nCity, Philippines.",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Fellows., P. J. 2016. Packaging (Chapter 24). Food Processing Technology. Principles and Practice. 4th Edition\nWoodhead Publishing, Elsevier: Duxford, UK. 949–1044.",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Gonçalves Alex A. Ozone as a safe and environmentally friendly tool for the seafood industry. J of Aqua Food Prod\nTechnol. 2015;25(2):210–229",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Mahmud A, Abraha B, Samuel M, et al. Fish preservation: a multi -dimensional approach. MOJ Food Process\nTechnol. 2018;6(3):303-310. DOI: 10.15406/mojfpt.2018.06.00180",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Processing and fish preservation – nptel. Re trieved at https://pdf4pro.com/view/processing-and-fish-\npreservation-nptel-205325.html",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Rooney, M. L. 1995. Overview of active food packaging. Rooney, M. L., ed. Active F ood Packaging. Blackie\nAcademic and Professional: Glasgow. 1–37",
+      "source_pages": [
+        3
+      ],
+      "scope": "module_bibliography"
+    }
+  ],
+  "source_activities": [],
+  "lessons": [
+    {
+      "id": "module_5_lesson_1",
+      "module_id": "module_5",
+      "module_number": 5,
+      "module_title": "METHODS OF FISH PRESERVATION",
+      "title": "TEMPERATURE CONTROL",
+      "summary": "The source introduces preservation and high-temperature treatment; its chilling and freezing lectures are referenced attachments that were not supplied.",
+      "sections": [
+        {
+          "heading": "METHODS OF FISH PRESERVATION",
+          "content": "Preservation is a very important aspect of the fisheries. Normally the fish farms or other fish capturing sites are located far off from the market place and there is chance of fish decomposition and the uncertainties of their sale in market. When the fishe s are caught in numbers, greater than the amount of consumption, their preservation becomes a necessity for their future use. Preservation and processing, therefore become a very important part of commercial fisheries. It is done in such a manner that the fishes remain fresh for a long time, with a minimum loss of flavor, taste, odor, nutritive value and the digestibility of their flesh. Freshness is usually judged in the trade entirely by appearance, odor and texture of the raw fish.",
+          "source_pages": [
+            1
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "TEMPERATURE CONTROL",
+          "content": "TEMPERATURE CONTROL\n\n1. Chilling Please refer to the attached file for the lecture part.\n\n2. Freezing Please refer to the attached file for the lecture part.\n\n3. Use of High Temperature A method of preserving fish by the use of high temperature in a hermitically sealed container sufficient to kill pathogens and render spoilage microorganisms and enzymes inactive.",
+          "source_pages": [
+            1
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Types of heat treatments",
+          "content": "Types of heat treatments\n\na) Pasteurization – A mild treatment given to foods that do not support the growth of highly resistant microorganism. Heat treatment sufficient to kill pathogens and most vegetative cells; spores may survive\n\nb) Sterilization – A severe heat treatment given to foods capable of supporting the growth of heat resistant microorganisms. A process designed to destroy virtually all microorganisms regardless of their heat resistance. Any survivors will be spores incapable of reproducing under normal conditions. Absolute sterilization – destruction of all microorganisms vs. Commercial sterilization – Temperature of 110oC - 130 oC are used to destroy or render inactive all microorganisms that could cause toxicity or spoilage",
+          "source_pages": [
+            1
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Pasteurization",
+          "definition": "A mild treatment sufficient to kill pathogens and most vegetative cells; spores may survive, according to the source.",
+          "source_pages": [
+            1
+          ]
+        },
+        {
+          "term": "Sterilization",
+          "definition": "A severe heat treatment described in the source as designed to destroy virtually all microorganisms regardless of heat resistance.",
+          "source_pages": [
+            1
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        1
+      ],
+      "references": [
+        {
+          "text": "Anonymous. Guidelines for the handling of fish packed in a controlled atmosphere. UK: Sea Fish Industry\nAuthority. 1985",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Anonymous. Processing and Preservation of Fish; Value Added Fishery Products . Retrieved at\nhttp://ecoursesonline.iasri.res.in/pluginfile.php/6693/mod_resource/content/1/Lesson_29.htm",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "BFAR. Fisheries Post-harvest Technologies. Bureau of Fisheries and Aquatic Resources. PCA Bldg. Diliman, Quezon\nCity, Philippines.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Fellows., P. J. 2016. Packaging (Chapter 24). Food Processing Technology. Principles and Practice. 4th Edition\nWoodhead Publishing, Elsevier: Duxford, UK. 949–1044.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Gonçalves Alex A. Ozone as a safe and environmentally friendly tool for the seafood industry. J of Aqua Food Prod\nTechnol. 2015;25(2):210–229",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Mahmud A, Abraha B, Samuel M, et al. Fish preservation: a multi -dimensional approach. MOJ Food Process\nTechnol. 2018;6(3):303-310. DOI: 10.15406/mojfpt.2018.06.00180",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Processing and fish preservation – nptel. Re trieved at https://pdf4pro.com/view/processing-and-fish-\npreservation-nptel-205325.html",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Rooney, M. L. 1995. Overview of active food packaging. Rooney, M. L., ed. Active F ood Packaging. Blackie\nAcademic and Professional: Glasgow. 1–37",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "partial_source_missing_supplement",
+      "review_flags": [
+        {
+          "id": "source_missing_chilling_freezing",
+          "source_pages": [
+            1
+          ],
+          "detail": "The separate chilling and freezing lecture files referenced here were not supplied."
+        },
+        {
+          "id": "source_preservation_claims",
+          "source_pages": [
+            1,
+            2
+          ],
+          "detail": "Heat-treatment, packaging gas ratios, ozone, irradiation and pickling statements are retained source claims pending instructor review; the drying threshold differs from Module 4."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_5_lesson_2",
+      "module_id": "module_5",
+      "module_number": 5,
+      "module_title": "METHODS OF FISH PRESERVATION",
+      "title": "USE OF ADDITIVES",
+      "summary": "The source refers to a separate lecture attachment; the actual additives lecture is absent from the supplied PDFs.",
+      "sections": [
+        {
+          "heading": "USE OF ADDITIVES",
+          "content": "USE OF ADDITIVES Please refer to the attached file for the lecture part.",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        2
+      ],
+      "references": [
+        {
+          "text": "Anonymous. Guidelines for the handling of fish packed in a controlled atmosphere. UK: Sea Fish Industry\nAuthority. 1985",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Anonymous. Processing and Preservation of Fish; Value Added Fishery Products . Retrieved at\nhttp://ecoursesonline.iasri.res.in/pluginfile.php/6693/mod_resource/content/1/Lesson_29.htm",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "BFAR. Fisheries Post-harvest Technologies. Bureau of Fisheries and Aquatic Resources. PCA Bldg. Diliman, Quezon\nCity, Philippines.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Fellows., P. J. 2016. Packaging (Chapter 24). Food Processing Technology. Principles and Practice. 4th Edition\nWoodhead Publishing, Elsevier: Duxford, UK. 949–1044.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Gonçalves Alex A. Ozone as a safe and environmentally friendly tool for the seafood industry. J of Aqua Food Prod\nTechnol. 2015;25(2):210–229",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Mahmud A, Abraha B, Samuel M, et al. Fish preservation: a multi -dimensional approach. MOJ Food Process\nTechnol. 2018;6(3):303-310. DOI: 10.15406/mojfpt.2018.06.00180",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Processing and fish preservation – nptel. Re trieved at https://pdf4pro.com/view/processing-and-fish-\npreservation-nptel-205325.html",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Rooney, M. L. 1995. Overview of active food packaging. Rooney, M. L., ed. Active F ood Packaging. Blackie\nAcademic and Professional: Glasgow. 1–37",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "source_placeholder_only",
+      "review_flags": [
+        {
+          "id": "source_missing_additives",
+          "source_pages": [
+            2
+          ],
+          "detail": "The separate additives lecture file referenced here was not supplied."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_5_lesson_3",
+      "module_id": "module_5",
+      "module_number": 5,
+      "module_title": "METHODS OF FISH PRESERVATION",
+      "title": "USE OF PACKAGING TECHNOLOGIES",
+      "summary": "The source describes modified-atmosphere and vacuum packaging and gives gas-mixture and gas-to-product ratios.",
+      "sections": [
+        {
+          "heading": "USE OF PACKAGING TECHNOLOGIES",
+          "content": "USE OF PACKAGING TECHNOLOGIES Packaging technologies involving either the replacement of air by certain gases (such as, CO 2, O2, N2 or combination of all) termed as modified atmosphere packaging (MAP) or removal of air and thus reducing the headspace to possible minimum (Vacuum packing VP) has been used in the preservation of muscle and plant foods. The use of packaging material with low gas and water permeability is very crucial in such technologies in order to prevent the exchange of gases between the interior and exterior of the packaged product and thus maintain the right atmospheric conditions around the product. The preservative effect of such technology is based on the atmospheric condition they create around the product. This condition establishes a significant hurdle for most strictly aerobic and facultative spoilage microorganisms. Moreover, lipid oxidation ca n also be prevented to some extent. Anon recommended that the retail pack for lean fish and shell fish to be composed of a mixture of CO 2:N2:O2 in a ratio of (40:30:30) and CO2:N2 (60:40) for fatty and smoked fish. The gas:product ratio of MAP packed fish is also recommended to be in the range of 2:1–5:1, where CO2 concentration can be maintained between 20–100%",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Modified atmosphere packaging (MAP)",
+          "definition": "Replacement of air by certain gases or combinations of gases.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Vacuum packing (VP)",
+          "definition": "Removal of air to reduce headspace to the possible minimum.",
+          "source_pages": [
+            2
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        2
+      ],
+      "references": [
+        {
+          "text": "Anonymous. Guidelines for the handling of fish packed in a controlled atmosphere. UK: Sea Fish Industry\nAuthority. 1985",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Anonymous. Processing and Preservation of Fish; Value Added Fishery Products . Retrieved at\nhttp://ecoursesonline.iasri.res.in/pluginfile.php/6693/mod_resource/content/1/Lesson_29.htm",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "BFAR. Fisheries Post-harvest Technologies. Bureau of Fisheries and Aquatic Resources. PCA Bldg. Diliman, Quezon\nCity, Philippines.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Fellows., P. J. 2016. Packaging (Chapter 24). Food Processing Technology. Principles and Practice. 4th Edition\nWoodhead Publishing, Elsevier: Duxford, UK. 949–1044.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Gonçalves Alex A. Ozone as a safe and environmentally friendly tool for the seafood industry. J of Aqua Food Prod\nTechnol. 2015;25(2):210–229",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Mahmud A, Abraha B, Samuel M, et al. Fish preservation: a multi -dimensional approach. MOJ Food Process\nTechnol. 2018;6(3):303-310. DOI: 10.15406/mojfpt.2018.06.00180",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Processing and fish preservation – nptel. Re trieved at https://pdf4pro.com/view/processing-and-fish-\npreservation-nptel-205325.html",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Rooney, M. L. 1995. Overview of active food packaging. Rooney, M. L., ed. Active F ood Packaging. Blackie\nAcademic and Professional: Glasgow. 1–37",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_preservation_claims",
+          "source_pages": [
+            1,
+            2
+          ],
+          "detail": "Heat-treatment, packaging gas ratios, ozone, irradiation and pickling statements are retained source claims pending instructor review; the drying threshold differs from Module 4."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_5_lesson_4",
+      "module_id": "module_5",
+      "module_number": 5,
+      "module_title": "METHODS OF FISH PRESERVATION",
+      "title": "REMOVAL OF MOISTURE",
+      "summary": "The source describes natural and artificial drying and its stated moisture condition for storage.",
+      "sections": [
+        {
+          "heading": "REMOVAL OF MOISTURE",
+          "content": "REMOVAL OF MOISTURE Drying involves dehydration i.e. the removal of moisture contents of fish, so that the bacterial decomposition or enzymic autolysis does not occur. When moisture contents reduce up to 10%, the fishes are not spoiled provided they are stored in dry conditions. Fish drying is achieved either naturally or by artificial means. In natural drying the fishes after being caught are washed and dried in the sunshine. In artificial drying the killed fishes are cleaned, gutted and have their heads removed. They are then cut lengthwise to remove large parts of their spinal column, followed by washing and drying them mechanically.",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        2
+      ],
+      "references": [
+        {
+          "text": "Anonymous. Guidelines for the handling of fish packed in a controlled atmosphere. UK: Sea Fish Industry\nAuthority. 1985",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Anonymous. Processing and Preservation of Fish; Value Added Fishery Products . Retrieved at\nhttp://ecoursesonline.iasri.res.in/pluginfile.php/6693/mod_resource/content/1/Lesson_29.htm",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "BFAR. Fisheries Post-harvest Technologies. Bureau of Fisheries and Aquatic Resources. PCA Bldg. Diliman, Quezon\nCity, Philippines.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Fellows., P. J. 2016. Packaging (Chapter 24). Food Processing Technology. Principles and Practice. 4th Edition\nWoodhead Publishing, Elsevier: Duxford, UK. 949–1044.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Gonçalves Alex A. Ozone as a safe and environmentally friendly tool for the seafood industry. J of Aqua Food Prod\nTechnol. 2015;25(2):210–229",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Mahmud A, Abraha B, Samuel M, et al. Fish preservation: a multi -dimensional approach. MOJ Food Process\nTechnol. 2018;6(3):303-310. DOI: 10.15406/mojfpt.2018.06.00180",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Processing and fish preservation – nptel. Re trieved at https://pdf4pro.com/view/processing-and-fish-\npreservation-nptel-205325.html",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Rooney, M. L. 1995. Overview of active food packaging. Rooney, M. L., ed. Active F ood Packaging. Blackie\nAcademic and Professional: Glasgow. 1–37",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_preservation_claims",
+          "source_pages": [
+            1,
+            2
+          ],
+          "detail": "Heat-treatment, packaging gas ratios, ozone, irradiation and pickling statements are retained source claims pending instructor review; the drying threshold differs from Module 4."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_5_lesson_5",
+      "module_id": "module_5",
+      "module_number": 5,
+      "module_title": "METHODS OF FISH PRESERVATION",
+      "title": "OTHER PROCESSING METHODOLOGIES",
+      "summary": "The source describes ozonation, three irradiation dose categories, and pickling.",
+      "sections": [
+        {
+          "heading": "OTHER PROCESSING METHODOLOGIES",
+          "content": "OTHER PROCESSING METHODOLOGIES",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Ozonation",
+          "content": "Ozonation: Ozone has been studied for its potential in disinfecting and improving the sensory quality of seafoods. Gonçalves stated that antimicrobial effect of ozone depends on its concentration, contact time, temperature and the production system used. According to Gonçalves, low concentrations of ozone in solutions can decrease the half–life of ozone and thus weakening its bactericidal effect.",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Irradiation",
+          "content": "Irradiation: Irradiation in foods is described in three different ways that do not involve heat treatments. Radurization (cold pasteurization) involves the use of low doses (<1kGy) which inactivates non –spore forming bacteria. Radicidation reduce the number of viable and non –spore forming pathogenic bacteria and parasites using intermediate doses (2 –8kGy). Radappertization (cold sterilization) is used to eliminate highly pathogenic bacteria such as, Clostridium botulinum at high doses (>10kGy). (Note: kGy = kilogray, unit of measurement of radiation absorbed dose. Source: https://www.aqua-calc.com/)",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Pickling",
+          "content": "Pickling: Pickling is one of the safest means of preservation of fish. Pickles prepared from fish are gaining acceptance in recent days, since they add to the palatability to starch based bland tasting Asian dishes; besides being nutritious. Fish pickles are good appetizers too. At present there is an expanding export and domestic market for fish pickles. It is prepared by cutting the edible portion of the fish into small pieces, followed by deep frying in vegetable oil and are subsequently mixed with vineg ar and salt for preservation, along with fried condiments and species for flavor development. The material is then generally kept for a minimum of 24 hrs for maturing before packing.",
+          "source_pages": [
+            2
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "kGy",
+          "definition": "Kilogray, a unit of measurement of radiation absorbed dose, as defined in the source note.",
+          "source_pages": [
+            2
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        2
+      ],
+      "references": [
+        {
+          "text": "Anonymous. Guidelines for the handling of fish packed in a controlled atmosphere. UK: Sea Fish Industry\nAuthority. 1985",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Anonymous. Processing and Preservation of Fish; Value Added Fishery Products . Retrieved at\nhttp://ecoursesonline.iasri.res.in/pluginfile.php/6693/mod_resource/content/1/Lesson_29.htm",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "BFAR. Fisheries Post-harvest Technologies. Bureau of Fisheries and Aquatic Resources. PCA Bldg. Diliman, Quezon\nCity, Philippines.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Fellows., P. J. 2016. Packaging (Chapter 24). Food Processing Technology. Principles and Practice. 4th Edition\nWoodhead Publishing, Elsevier: Duxford, UK. 949–1044.",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Gonçalves Alex A. Ozone as a safe and environmentally friendly tool for the seafood industry. J of Aqua Food Prod\nTechnol. 2015;25(2):210–229",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Mahmud A, Abraha B, Samuel M, et al. Fish preservation: a multi -dimensional approach. MOJ Food Process\nTechnol. 2018;6(3):303-310. DOI: 10.15406/mojfpt.2018.06.00180",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Processing and fish preservation – nptel. Re trieved at https://pdf4pro.com/view/processing-and-fish-\npreservation-nptel-205325.html",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Rooney, M. L. 1995. Overview of active food packaging. Rooney, M. L., ed. Active F ood Packaging. Blackie\nAcademic and Professional: Glasgow. 1–37",
+          "source_pages": [
+            3
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_preservation_claims",
+          "source_pages": [
+            1,
+            2
+          ],
+          "detail": "Heat-treatment, packaging gas ratios, ozone, irradiation and pickling statements are retained source claims pending instructor review; the drying threshold differs from Module 4."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    }
+  ]
+}

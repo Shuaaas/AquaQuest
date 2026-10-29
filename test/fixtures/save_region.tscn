@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Systems/Player/PlayerSpawnPoint.gd" id="1_spawn"]
+[ext_resource type="PackedScene" path="res://Scene/Player/player.tscn" id="2_player"]
+
+[node name="SaveTestRegion" type="Node2D"]
+
+[node name="DefaultSpawn" type="Marker2D" parent="."]
+position = Vector2(50, 60)
+script = ExtResource("1_spawn")
+
+[node name="player" parent="." instance=ExtResource("2_player")]

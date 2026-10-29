@@ -137,6 +137,11 @@ func _ready() -> void:
 	SaveManager.register_section("points", _get_points_save_data, _apply_points_save_data)
 
 
+## Read-only gate for menus that must not interrupt a cast or reinforcement.
+func is_fishing() -> bool:
+	return _state != FlowState.IDLE
+
+
 ## Current spendable balance (unchanged meaning - this is what the shop
 ## checks and what PointsLabel displays).
 func get_points() -> int:

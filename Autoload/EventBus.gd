@@ -60,6 +60,11 @@ signal item_added(item_id: String, amount: int)
 signal item_removed(item_id: String, amount: int)
 signal inventory_changed
 
+# --- Learning Codex ---
+signal codex_open_requested
+signal codex_lesson_unlocked(lesson_id: String)
+signal codex_progress_changed
+
 # --- Exams / Questions (educational core loop) ---
 signal exam_started(exam_id: String)
 signal question_answered(question_id: String, was_correct: bool)

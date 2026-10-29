@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjysd7qtg2685"]
+[gd_scene load_steps=10 format=3 uid="uid://cjysd7qtg2685"]
 
 [ext_resource type="Script" uid="uid://bn8sqpdqbba3m" path="res://Scripts/Managers/main.gd" id="1_hx6h6"]
 [ext_resource type="PackedScene" uid="uid://dh8vjuejffq06" path="res://Scene/UI/fishing_ui.tscn" id="1_n1d5u"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://embcjtxw7jhj" path="res://Scene/UI/shop_ui.tscn" id="6_cuued"]
 [ext_resource type="PackedScene" uid="uid://cgns8hoebjd4" path="res://Scene/UI/inventory_ui.tscn" id="7_vpkto"]
 [ext_resource type="PackedScene" uid="uid://cffcgxtrcr7hw" path="res://Scene/UI/performance_board.tscn" id="8_perfboard"]
+[ext_resource type="PackedScene" path="res://Scene/UI/CodexUI.tscn" id="9_codex"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_hx6h6")
@@ -33,5 +34,7 @@ offset_left = 1.0
 offset_top = 2.0
 offset_right = 1.0
 offset_bottom = 2.0
+
+[node name="CodexUI" parent="CanvasLayer" instance=ExtResource("9_codex")]
 
 [node name="RegionContainer" type="Node2D" parent="." groups=["region_container"]]

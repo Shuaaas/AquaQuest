@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "title": "AquaQuest Post-Harvest Fisheries Codex",
+  "modules": [
+    {
+      "id": "module_1",
+      "number": 1,
+      "title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+      "path": "res://Resources/Codex/module_1.json",
+      "source_page_count": 20,
+      "lessons": [
+        {
+          "id": "module_1_lesson_1",
+          "title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+          "source_pages": [
+            3,
+            4
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_1_lesson_2",
+          "title": "STATUS OF PHILIPPINE FISHERY AND THE CURRENT TRENDS",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_1_lesson_3",
+          "title": "FISHERIES POST HARVEST LOSSES IN THE PHILIPPINES",
+          "source_pages": [
+            16,
+            17
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_1_lesson_4",
+          "title": "POST HARVEST MACHINERIES AND EQUIPMENT",
+          "source_pages": [
+            18,
+            19
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        }
+      ]
+    },
+    {
+      "id": "module_2",
+      "number": 2,
+      "title": "FISH AND OTHER AQUATIC SPECIES AS RAW MATERIAL",
+      "path": "res://Resources/Codex/module_2.json",
+      "source_page_count": 7,
+      "lessons": [
+        {
+          "id": "module_2_lesson_1",
+          "title": "FISH COMPOSITION AND MUSCULATURE",
+          "source_pages": [
+            2,
+            3
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_2_lesson_2",
+          "title": "Composition of Fish",
+          "source_pages": [
+            3,
+            4
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_2_lesson_3",
+          "title": "Post mortem Changes and Fish Quality Assurance Methods",
+          "source_pages": [
+            4,
+            5,
+            6
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_2_lesson_4",
+          "title": "IDEAL FISHING GEAR AND METHODS FOR GOOD QUALITY FISH CATCH",
+          "source_pages": [
+            6,
+            7
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        }
+      ]
+    },
+    {
+      "id": "module_3",
+      "number": 3,
+      "title": "FISH SPOILAGE",
+      "path": "res://Resources/Codex/module_3.json",
+      "source_page_count": 5,
+      "lessons": [
+        {
+          "id": "module_3_lesson_1",
+          "title": "Fish Spoilage",
+          "source_pages": [
+            1
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_3_lesson_2",
+          "title": "BACTERIA",
+          "source_pages": [
+            1,
+            2
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_3_lesson_3",
+          "title": "MOLDS",
+          "source_pages": [
+            2,
+            3
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_3_lesson_4",
+          "title": "YEAST",
+          "source_pages": [
+            3
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_3_lesson_5",
+          "title": "ENZYMES",
+          "source_pages": [
+            3
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_3_lesson_6",
+          "title": "CHEMICAL SPOILAGE",
+          "source_pages": [
+            4
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_3_lesson_7",
+          "title": "Changes of Fish after Death",
+          "source_pages": [
+            4
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        }
+      ]
+    },
+    {
+      "id": "module_4",
+      "number": 4,
+      "title": "TRADITIONAL FISH PROCESSING METHODS",
+      "path": "res://Resources/Codex/module_4.json",
+      "source_page_count": 13,
+      "lessons": [
+        {
+          "id": "module_4_lesson_1",
+          "title": "FISH CURING",
+          "source_pages": [
+            1
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_4_lesson_2",
+          "title": "SALTING",
+          "source_pages": [
+            1,
+            2,
+            3
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_4_lesson_3",
+          "title": "DRYING",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_4_lesson_4",
+          "title": "SMOKING",
+          "source_pages": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        }
+      ]
+    },
+    {
+      "id": "module_5",
+      "number": 5,
+      "title": "METHODS OF FISH PRESERVATION",
+      "path": "res://Resources/Codex/module_5.json",
+      "source_page_count": 3,
+      "lessons": [
+        {
+          "id": "module_5_lesson_1",
+          "title": "TEMPERATURE CONTROL",
+          "source_pages": [
+            1
+          ],
+          "content_status": "partial_source_missing_supplement"
+        },
+        {
+          "id": "module_5_lesson_2",
+          "title": "USE OF ADDITIVES",
+          "source_pages": [
+            2
+          ],
+          "content_status": "source_placeholder_only"
+        },
+        {
+          "id": "module_5_lesson_3",
+          "title": "USE OF PACKAGING TECHNOLOGIES",
+          "source_pages": [
+            2
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_5_lesson_4",
+          "title": "REMOVAL OF MOISTURE",
+          "source_pages": [
+            2
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        },
+        {
+          "id": "module_5_lesson_5",
+          "title": "OTHER PROCESSING METHODOLOGIES",
+          "source_pages": [
+            2
+          ],
+          "content_status": "extracted_requires_instructor_review"
+        }
+      ]
+    }
+  ]
+}

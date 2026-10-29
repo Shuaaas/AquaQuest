@@ -3,7 +3,7 @@ extends Node
 ##
 ## Tracks item counts the player holds. Item *definitions* (name, icon,
 ## description, category, stack limits, prices) live in
-## Data/JSON/Items/*.json, owned by ItemDatabase (Phase 13 - Inventory &
+## Data/JSON/Item/*.json, owned by ItemDatabase (Phase 13 - Inventory &
 ## Shop) - this script never hardcodes item data, only counts, so adding
 ## a new item never requires editing this script. (This doc comment
 ## previously said definitions would live as .tres Resource files under

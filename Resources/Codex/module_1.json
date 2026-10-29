@@ -1,0 +1,1091 @@
+{
+  "schema_version": 1,
+  "module_id": "module_1",
+  "module_number": 1,
+  "module_title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+  "source": {
+    "path": "res://docs/modules/Module_1.pdf",
+    "page_count": 20,
+    "sha256": "071a8303bcb7c32b6fe9d62b8ef4af1f483dc612e7ff4d3ce2845e4f42f3ecca",
+    "page_numbering": "one_based_pdf_page",
+    "author": "QUENNIE M. BILUGAN",
+    "institution": "Cavite State University Naic",
+    "credits_as_extracted": "MODULE 1\nPrepared by:\nQUENNIE M. BILUGAN\nFaculty, Fisheries and Aquatic Sciences Department\nCavite State University Naic\nEmail: quennie.bilugan@cvsu.edu.ph\nOBJECTIVES"
+  },
+  "objectives": {
+    "content": "After completing this chapter, the students must be able to:\n\n1. be familiar to the current status of Philippine fishery resources\n\n2. understand the need to manage post-harvest losses",
+    "source_pages": [
+      1
+    ]
+  },
+  "references": [
+    {
+      "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Comprehensive Post-Harvest,\nMarketing and Ancillary Industries Plan 2018-2022. Retrieved at\nhttps://www.bfar.da.gov.ph/files/img/photos/CPHMAIP20182022.pdf",
+      "source_pages": [
+        19
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Philippine Fisheries Profile of 2018.\nRetrieved at https://www.bfar.da.gov.ph/publication",
+      "source_pages": [
+        19
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2021. Philippine Fisheries Profile 2021.\nRetrieved at https://www.bfar.da.gov.ph/wp-content/uploads/2022/11/2021-Fisheries-\nProfile-FINAL-FILE.pdf",
+      "source_pages": [
+        19
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "DA-AFID. 2018. DA-BFAR holds fisheries production and post-harvest equipment showcase at\nWorld Trade Center. Retrieved at https://www.da.gov.ph/da-bfar-holds-fisheries-\nproduction-and-post-harvest-equipment-showcase-at-world-trade-center/",
+      "source_pages": [
+        19
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+      "source_pages": [
+        19
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "FAO. 2020. New fish smoking ovens launched in Asia. Retrieved at\nhttp://www.fao.org/news/story/en/item/1068741/icode/",
+      "source_pages": [
+        19
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "FAO. 2020. The FTT-Thiaroye processing technique, an innovation for post-harvest loss\nreduction in fisheries and aquaculture, presented at the 1st PHL Congress in Rome.\nRetrived at http://www.fao.org/food-loss-reduction/news/detail/en/c/359611/",
+      "source_pages": [
+        20
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Lamarca, NS. J. 2020. Fisheries Country Profile: Philippines. Retrieved at\nhttp://www.seafdec.org/fisheries-country-profile-philippines/",
+      "source_pages": [
+        20
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Manalili, N. M., Yaptenco, K. F. & Manilay, A. A. 2015. Rapid Appraisal of the Postharvest\nFacilities Projects in the Philippines. Retrieved at\nhttps://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps1531.pdf",
+      "source_pages": [
+        20
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+      "source_pages": [
+        20
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Romero, C.E. 2017. Philippine Fisheries Sector Initiatives on Postharvest Losses Reduction.\nRetrived at http://apec-flows.ntu.edu.tw/upload/edit/file/2%20SR_2017_C_S3-\n11_Philippine.pdf",
+      "source_pages": [
+        20
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Tadifa, G. C., Banicod, R. J. S., Peralta, D. M., Ramos, C. A. M., & Montojo, U. M. (2022). A\nStudy on Postharvest Losses in Fisheries Owing to Changes in Market Supply and\nDemand in the Philippines. Philippine Journal of Fisheries, 29(2).\nhttps://doi.org/10.31398/tpjf/29.2.2020A0019",
+      "source_pages": [
+        20
+      ],
+      "scope": "module_bibliography"
+    }
+  ],
+  "source_activities": [
+    {
+      "heading": "PRE-TEST",
+      "content": "Direction: Encircle the letter that corresponds to the right answer.\n1. What is Post-harvest Fisheries?\na. Fish culture c. Fish preservation\nb. Fish capture d. Fish cultivation\n2. The edible portion of bony fish is about %.\na. 50% b. 60% c. 70% d. 80%\n3. It is called the muscular tissue of fish.\na. Myotomes c. Myothomes\nb. Myocommata d. Myochondria\n4. The connective tissue is called .\na. Myotomes c. Myothomes\nb. Myocommata d. Myochondria\n5. The red (dark) muscle in fish is cause by __________ pigment.\na. Hemoglobin c. Myoglobin\nb. Homoglobin d. Myoblogin\n6. Most fish contain high quality of _________ ranging from 16-22%.\na. Fat b. Vitamins c. Minerals d. Protein\n7. Fish fat is rich in high-grade polyunsaturated fatty acid, so called as _________.\na. Omega-3 c. Omega-8\nb. Omega-6 d. Omega-10\n8. ______________ are devices characterized by gear movements, and/or the pursuit of the\ntarget species by towing, lifting, and pushing the gears, surrounding, covering, dredging,\npumping and scaring the target species to impoundments.\na. Passive Gear c. Active Gear\nb. Pass Gear d. Moving Gear\n9. are devices characterized by the absence of gear movements and/or the pursuit of the\ntarget species\na. Passive Gear c. Active Gear\nb. Pass Gear d. Moving Gear\n10. Optimal fishing gear should reduce ______________ of captured fish as much as\npossible because it lead to lower pH levels in the fish muscles accelerating rigor mortis\nand reducing time allowed for processing.\na. injury b. stress c. exhaustion d. all of the above",
+      "source_pages": [
+        2
+      ],
+      "origin": "existing_source_activity"
+    },
+    {
+      "heading": "Assignment",
+      "content": "Assignment: (Deadline of submission: next week)\n1. As a student, how can you help in the current status of the Philippine fishery? (10 points)\n2. Give at least three causes of loss in post-harvest fisheries and explain how we can\nmanage those losses. (15 points)\n3. Give other innovative ways or techniques in fish processing. (10 points)",
+      "source_pages": [
+        19
+      ],
+      "origin": "existing_source_activity"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "module_1_lesson_1",
+      "module_id": "module_1",
+      "module_number": 1,
+      "module_title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+      "title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+      "summary": "Processing technology delays spoilage and supports the uses of fishery products described in the module.",
+      "sections": [
+        {
+          "heading": "What is Post-Harvest Fisheries?",
+          "content": "LESSON 1: INTRODUCTION TO POST-HARVEST FISHERIES What is Post-Harvest Fisheries? Calmorin (2006) defined it as the method of processing fish and other fishery products after harvesting the fish to lengthen its shelf-life either by icing, freezing, salting, drying, smoking, pickling, or canning. Fish processing technology includes the different processes and techniques employed in the post- harvest handling, processing and marketing of aquatic products from the time of harvest to its final utilization (Espejo-Hermes, 2004). The application of processing technology in aquatic products is aimed mainly at preventing or delaying spoilage brought about by microorganisms, enzymes and physical or mechanical means (Espejo-Hermes, 2004).",
+          "source_pages": [
+            3
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Importance of Post-Harvest Fisheries",
+          "content": "Importance of Post-Harvest Fisheries Calmorin (2006) list 13 importance of post-harvest fisheries.\n\n1. Lengthen the shelf-life of fish and other fishery products, therefore, preserves fish and other fishery products which may be discarded during oversupply season.\n\n2. Retains or improves the nutritive values and quality attributes (odor, color, flavor and texture) of fish and fishery products. For example, canning of fish in Spanish style improved the nutritive value of the fish since there is addition of tomato sauce which is rich in Vitamin C.\n\n3. Utilizes fish wastes as offal of boneless milkfish (Chanos chanos), boneless siganid (Teuthis javus), goatfish (Upeneoides sulfureus), tapa, canned tuna (Neothunnus micropterus), canned sardine (Sardinella spp.), etc. which are thrown or eaten by cats and dogs into added-value products (e.g. polvoron, burger luncheon meat, balls, spread, embotido, siopao, lumpia, sausage, biscuits and many others).\n\n4. Alleviates malnutrition problem of the country. The main value of processed fish and fishery products is protein. For fish value added products’ nutritive values from fish bone meal are protein and calcium. Protein builds and repairs worn out tissues of the body. Calcium prevents osteoporosis (bone decay) and dental caries (tooth decay).\n\n5. Alleviates poverty. Many Filipinos are below poverty line. They live even in squatter places. Through post-harvest fisheries technologies, like bangus deboning, goatfish tapa, fish value-added products from milkfish bone meal, goatfish bone meal, siganid bone meal and many others, housewives, rural folk and fisherfolk can put up small and medium enterprises of these technologies and their livelihood projects, therefore, supplement their income, lessen poverty and improve quality of life.\n\n6. Lessen food problem in times of scarcity. During typhoon, scarcity of food occurs. Hence, processed fish and fishery products lessen food problem.\n\n7. Reduces importation of canned fishery products, therefore, increase dollar reserves.\n\n8. Solves unemployment problem of the country. Many college graduates, jobless adults and out-of-school youths are unemployed. If they put up livelihood projects on bangus deboning, fish drying, fish salting, fish smoking, fish canning, and many others, they can be self-employed.\n\n9. Makes the country self-sufficient through exportation of fish and fishery products. For instance, boneless milkfish, dried fish, frozen headless prawn, frozen fish fillets and many others are already exported, thus, makes the country independent through exportation of the foregoing products.\n\n10. Encourages fishermen to upgrade their methods and techniques in catching fish in order to have high quality supply of catch to post harvest fisheries processors.\n\n11. Helps in socioeconomic recovery and austerity measures of the country. Putting up a small and medium enterprises (SME’s) of post-harvest fisheries technologies by housewives, rural folks, and fisherfolks as their livelihood projects might help the socioeconomic recovery of the country since the abovementioned individuals will be paying taxes based on the sales of their SME’s\n\n12. Encourages Filipinos as protein-eaters and calcium eaters rather than fat eaters therefore, relieving hypertension cases of the individuals.\n\n13. Aids the country’s program on waste management by recycling – reusing – reducing fish wastes by developing them into fish value-added products in order to achieve zero fish wastes. For example, offal of boneless milkfish, goatfish tapa, canned sardines canned tuna, boneless siagnid and many others are not thrown but utilized into nutritious fish value-added products such as polvoron, burger luncheon meat, balls, spread, embotido, siopao, lumpia, sausage, biscuits and many others.",
+          "source_pages": [
+            3,
+            4
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Post-Harvest Fisheries",
+          "definition": "The method of processing fish and other fishery products after harvesting to lengthen shelf-life by icing, freezing, salting, drying, smoking, pickling, or canning.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "title": "Fish waste utilization",
+          "content": "The source lists value-added products including polvoron, burger luncheon meat, balls, spread, embotido, siopao, lumpia, sausage and biscuits.",
+          "source_pages": [
+            3,
+            4
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        3,
+        4
+      ],
+      "references": [
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Comprehensive Post-Harvest,\nMarketing and Ancillary Industries Plan 2018-2022. Retrieved at\nhttps://www.bfar.da.gov.ph/files/img/photos/CPHMAIP20182022.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Philippine Fisheries Profile of 2018.\nRetrieved at https://www.bfar.da.gov.ph/publication",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2021. Philippine Fisheries Profile 2021.\nRetrieved at https://www.bfar.da.gov.ph/wp-content/uploads/2022/11/2021-Fisheries-\nProfile-FINAL-FILE.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "DA-AFID. 2018. DA-BFAR holds fisheries production and post-harvest equipment showcase at\nWorld Trade Center. Retrieved at https://www.da.gov.ph/da-bfar-holds-fisheries-\nproduction-and-post-harvest-equipment-showcase-at-world-trade-center/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. New fish smoking ovens launched in Asia. Retrieved at\nhttp://www.fao.org/news/story/en/item/1068741/icode/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. The FTT-Thiaroye processing technique, an innovation for post-harvest loss\nreduction in fisheries and aquaculture, presented at the 1st PHL Congress in Rome.\nRetrived at http://www.fao.org/food-loss-reduction/news/detail/en/c/359611/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Lamarca, NS. J. 2020. Fisheries Country Profile: Philippines. Retrieved at\nhttp://www.seafdec.org/fisheries-country-profile-philippines/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Manalili, N. M., Yaptenco, K. F. & Manilay, A. A. 2015. Rapid Appraisal of the Postharvest\nFacilities Projects in the Philippines. Retrieved at\nhttps://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps1531.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Romero, C.E. 2017. Philippine Fisheries Sector Initiatives on Postharvest Losses Reduction.\nRetrived at http://apec-flows.ntu.edu.tw/upload/edit/file/2%20SR_2017_C_S3-\n11_Philippine.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Tadifa, G. C., Banicod, R. J. S., Peralta, D. M., Ramos, C. A. M., & Montojo, U. M. (2022). A\nStudy on Postharvest Losses in Fisheries Owing to Changes in Market Supply and\nDemand in the Philippines. Philippine Journal of Fisheries, 29(2).\nhttps://doi.org/10.31398/tpjf/29.2.2020A0019",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_nutrition_claims",
+          "source_pages": [
+            3,
+            4
+          ],
+          "detail": "Nutrition and health claims and taxonomic spellings are retained from the source; instructor review is pending."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_1_lesson_2",
+      "module_id": "module_1",
+      "module_number": 1,
+      "module_title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+      "title": "STATUS OF PHILIPPINE FISHERY AND THE CURRENT TRENDS",
+      "summary": "The module describes Philippine fisheries geography, production, trade, and consumption using its cited historical statistics.",
+      "sections": [
+        {
+          "heading": "STATUS OF PHILIPPINE FISHERY AND THE CURRENT TRENDS",
+          "content": "The Philippines is an archipelago that consists of 7,641 islands with a total land area of 301,000 km2. The total area of marine waters including EEZ is 2,200,000 km2 and the total length of its coastlines is 36,289 km. The country’s shelf and coral reef areas cover 18.46 million ha and 2.7 million ha, respectively (Figure 1) (BFAR, 2011). Figure 1. Map of the Philippines (Source: FAOSTAT, 2018)",
+          "source_pages": [
+            4
+          ],
+          "image_ids": [
+            "module_1_philippines_map"
+          ]
+        },
+        {
+          "heading": "World Scenario",
+          "content": "World Scenario: The Philippines ranked 11th among the top fish producing countries in the world in 2022, with its total production of 4.11 million MT of fish, crustaceans, molluscs, and aquatic plants (including seaweeds). The production constituted 1.88% of the total world production of 218.36 million MT. In terms of aquaculture production of fish, crustaceans, molluscs, etc. (excluding aquatic plants), the Philippines also ranked 11th in the world, contributing 928,820.99 MT or\n\n1.02% of the total global aquaculture production of 90.86 million MT. The total value of the country’s aquaculture production, including fish, crustaceans, and molluscs was PhP 2.05 billion (FAO, 2022). Similarly, the Philippines ranked 4th in the world’s largest producer of aquatic plants (including seaweeds), with a total of 1.34 million MT or 3.82% of the total world production of 36.31 million MT (FAO, 2022)",
+          "source_pages": [
+            4,
+            5
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Contribution to National Economy, 2022",
+          "content": "Contribution to National Economy, 2022 In 2022, the Agriculture, Forestry, and Fishing (AFF) sector achieved a total Gross Value Added (GVA) of PhP 2.10 trillion. Among this, agricultural crops constituted 46.41% or almost half of the industry’s cumulative contribution to the agricultural sector. Livestock industry, on the other hand, posted the second highest contribution with 14.25%, while fishing and aquaculture contributed a 12.82% share, equating to a value of PhP 269.64 billion. Figure 2. Gross Value Added of Agriculture, Forestry, and Fishing (AFF) Sector at Current and at Constant 2018 Prices, 2022 (table); AFF Sectors Contribution to the Total GVA at Current Prices, 2022 (pie graph)",
+          "source_pages": [
+            5
+          ],
+          "image_ids": [
+            "module_1_aff_gross_value_added_2022"
+          ]
+        },
+        {
+          "heading": "Volume and Value of Capture Fisheries Production, 2013-2022",
+          "content": "Volume and Value of Capture Fisheries Production, 2013-2022 The capture fisheries experienced a downward trend in production volume during the first half of the ten-year period. Production then had a gradual increase in 2019 and 2020, which eventually declined towards 2021 and 2022, resulting in a reduction in production from 2.08 million MT in 2020 to 1.99 million MT in 2022. In spite of consecutive declines from 2021 to 2022, the sub- sector still managed to register a substantial value of PhP 202.56 billion in 2022. Furthermore, a general upward trajectory in production value was observed except in 2020 and 2016, where the sub-sector recorded the lowest value in the last ten years amounting to PhP 137.79 billion Figure 3. Volume and Value of Capture Fisheries Production, 2013-2022",
+          "source_pages": [
+            5,
+            6
+          ],
+          "image_ids": [
+            "module_1_capture_production_2013_2022"
+          ]
+        },
+        {
+          "heading": "Municipal Fisheries Production",
+          "content": "Municipal Fisheries Production For the last ten years, the volume of production shows a declining trend as it dropped from 1.26 million MT in 2013 to 1.11 million MT in 2018. A slight increase in the production was observed in 2019 as the volume posted 1.13 million MT indicating a similar production number as the year 2017. The sub-sector recorded its lowest production volume at 1.10 million MT in 2020, but recovered thereafter, to which production increased from 2021 to 2022. On the other hand, the value of production shows an inconsistent pattern as the value fluctuated from 2013 to 2020, but increased towards 2021 with its highest recorded value at PhP 127.63 billion in\n\n2022. Figure 4. Volume and Value of Municipal Fisheries Production, 2013-2022 The ten-year trend underscores the decline in the total production of the municipal sub-sector, as its total registered volume decreased by 0.50% from its previous year’s output. The said decline can be attributed to the collective decrease in production from ten regions, with Region VII recording the largest decline of 42.61%, equivalent to 32,867.51 MT decrement. BARMM still registered the largest contribution with 186,164.53 MT and exhibited a consistent positive growth rate in production. Likewise, NCR and Region XI experienced a significant increase in the volume of production, recording a 175.63% and 146.08% growth respectively. Table 1. Municipal Fisheries Production Volume by Region, 2013-2022 In the last two years, tuna remained to be the top produced commodity with 12.44% share to the sub-sector’s overall production or equivalent to a volume of 140,103.26 MT, amounting to a value of PhP 18.90 billion. Notably, the tuna production was 5.80% higher than its previous year’s registered volume of 132,423.08 MT. Majority of this production came from BARMM as it contributed 27,412.33 MT or 19.57% share to the sub-sector’s overall production of tuna. Next to tuna is the sardines commodities, which experienced a 15.11% decrease in the volume of production in 2022. According to the National Sardines Management Plan series of 2020, some of the identified issues contributing to the decline in production of sardines are the increasing juvenile catch, post-harvest losses during peak season, illegal fishing, among others. Aside from tuna and sardines, other commodities with significant contribution to the sub-sector’s aggregate volume of production were bigeyed scad (7.04%), tilapia (3.55%), and mackerel (5.34%) with a respective value of PhP 8.98 billion, PhP 4.52 billion and PhP 6.81 billion. Table 2. Top Ten Commodities in Municipal Fisheries in terms of Production Volume, 2022 The total volume of production of inland municipal fisheries experienced a decline in 2022, equivalent to 14.69%. Out of the 175,351.56 MT produced in inland municipal fisheries, 52,126.25 (29.73%) were tilapia, 21,643.26 (12.34%) were mudfish, and 21,321.13 (12.61%) were snail. In terms of value, tilapia was still the highest contributor, with a value amounting to PhP 4.53 billion or 30.32% of the total value of inland municipal fisheries commodities. This was followed by mudfish with PhP 2.88 billion, and catfish with PhP 1.26 billion. Table 3. Top Ten Commodities in Inland Municipal Fisheries in terms of Production Volume, 2022",
+          "source_pages": [
+            6,
+            7,
+            8
+          ],
+          "image_ids": [
+            "module_1_municipal_production_2013_2022",
+            "module_1_municipal_region_table_part_1",
+            "module_1_municipal_region_table_part_2",
+            "module_1_municipal_top_ten_2022",
+            "module_1_inland_municipal_top_ten_2022"
+          ]
+        },
+        {
+          "heading": "Commercial Fisheries Production",
+          "content": "Commercial Fisheries Production Commercial fisheries posted a total production of 862,686.35 MT in 2022, amounting to PhP 74.93 billion. Regions with the highest production volume of landings were Region XII (234,026.98 MT) and Region IX (225,113.96 MT) comprising 53.22% of the sub-sector production when combined. Other regions that comprised the total commercial fisheries production were BARMM (92,352.88 MT), Region VI (74,960.78 MT), and NCR (55,875.24 MT). The highest value of production was also registered in Region XII at PhP 23.01 billion, followed by Region IX (PhP 12.69 billion), Region VI (PhP 9.09 billion), NCR (PhP 5.21 billion), and BARMM (PhP 3.96 billion). Figure 5. Commercial Fisheries Production Volume and Value by Region, 2022 (table); Commercial Fisheries Volume of Production by Region, 2022 (bar graph) A ten-year picture of the regional production volume of the commercial fisheries shows that Region XII, Region IX, and BARMM consistently belonged to the top three regions with the highest volume of landings. This can be associated with the favorable locations of the regions which are conducive for commercial fishing. Region XII has been consistently a major contributor to overall production in the sub-sector, posting an average share of 26.29% to the annual commercial fisheries production. In addition, the said region also recorded the largest production volume among regions in 2022, equivalent to 234,026.98 MT. This was followed by Region IX with 225,113.96 MT and BARMM with 92,352.88 MT. Table 4. Commercial Fisheries Production Volume by Region, 2013-2022 The top three fish commodities captured in the country’s commercial waters in 2022 were tuna, sardines, and roundscad with production volumes at 335,210.21 MT, 231,937.45 MT, and 133,038.01 MT, respectively. Tuna, with the biggest share of 38.86% in terms of volume, is mainly caught from Region XII which houses General Santos City, the Tuna Capital of the Philippines. Most of the tuna species caught in the country is composed of bigeye tuna, eastern little tuna, frigate tuna, skipjack, and yellowfin tuna. In 2022, an incremental growth in tuna production volume was observed, posting a growth rate of 1.59%, sharing almost half, or 47.27% of the sub-sector’s value of production. Sardines, composed of bali sardinella (tamban), fimbriated sardines (tunsoy), and round herring (tulis), contributed the second largest share of\n\n26.89%. Sardines production mainly comes from Region IX where the country’s sardine capital, Zamboanga City, is located. In 2022, sardines production experienced a contraction leading to a\n\n6.86% decline in production volume. Despite the decrease, sardines production still managed to contribute 10.33% to the commercial sub-sector value of production. Roundscad, with a 15.42% share to the sub-sector production volume, also declined in 2022 posting a negative 3.44% growth rate. Although it ranked third among the top caught species, roundscad contributed the second-largest portion in terms of value, accounting for\n\n16.79% of the sub-sector’s total production value. Other top fish commodities in the commercial sub-sector were big-eyed scad, mackerel, anchovies, squid, slipmouth, caesio, and crevalle. Table 5. Top Ten Commodities in Commercial Fisheries in terms of Production Volume, 2022",
+          "source_pages": [
+            8,
+            9,
+            10
+          ],
+          "image_ids": [
+            "module_1_commercial_region_production_2022",
+            "module_1_commercial_region_table_part_1",
+            "module_1_commercial_region_table_part_2",
+            "module_1_commercial_top_ten_2022"
+          ]
+        },
+        {
+          "heading": "External Trade",
+          "content": "External Trade In 2022, the country’s volume of exported fish and fishery/aquatic products registered 282,674 MT and has a corresponding value of PhP 66.07 billion. The majority or 79.14% of the exported commodities were classified as fish, crustaceans, molluscs, and other prepared or preserved products. In totality, these commodities posted 223,703 MT of export volume with a value amounting to PhP 46.26 billion. Meanwhile, the remaining commodities were shells, miscellaneous fishery products and other derivatives. Table 6. Export of Fish and Fishery/Aquatic Products by Kind, 2022 By major countries of destination, exports of fish and fishery/ aquatic products to the USA constituted the highest share in the export value with 21.10%, which amounted to approximately PhP 13.94 billion. Other countries with significant share in the country’s total value of exports of fish and fishery/aquatic products during 2022 were Japan with PhP 8.07 billion (12.21%), China with PhP 6.61 billion (10.00%), Germany with PhP 4.81 billion (7.28%), and Netherlands with PhP 3.93 billion (5.95%). The 561,158 MT of imported fish and fishery/aquatic products, equated to a total value of PhP 50.14 billion. The highest share of these total fish imports consisted of fish, crustaceans, molluscs, and other processed or preserved forms, collectively recorded a 498,087 MT equivalent to PhP 43.79 billion, which is 87.32% of the total value. The remaining were miscellaneous fishery products, contributing a total import volume of 62,690 MT or PhP 6.31 billion, equivalent to about 12.59% of the overall value. Additionally, shell imports were recorded at 381 MT. Table 7. Top 20 Countries of Destination of Exported Fish and Fishery/Aquatic Products in terms of Value, 2022 Table 8. Import of Fish and Fishery/Aquatic Products by Kind, 2022 Of the total value amounting to PhP 50.14 billion for imported fish and fishery/aquatic products, a significant 37.35% share originated from China. Vietnam accounted for PhP 7.28 billion followed by Papua New Guinea with PhP 6.38 billion. While South Korea contributed PhP 1.67 billion and Taiwan with PhP 1.52 billion. The remaining portion comprised of imports from other countries with a value amounting of PhP 14.57 billion, equivalent to 29.05% of the total value of imported fish and fishery/aquatic products. Table 9. Top 20 Countries of Origin of Imported Fish and Fishery/Aquatic Products in terms of Value, 2022",
+          "source_pages": [
+            11,
+            12,
+            13
+          ],
+          "image_ids": [
+            "module_1_exports_by_kind_2022",
+            "module_1_export_destinations_2022",
+            "module_1_imports_by_kind_2022",
+            "module_1_import_origins_2022"
+          ]
+        },
+        {
+          "heading": "Other Fisheries Information",
+          "content": "Other Fisheries Information The Philippines ranked 11th among the countries in the world in terms of production of fish, crustaceans, molluscs, and aquatic plants (including seaweeds). Table 10. Production Volume of Fish, Crustaceans, Molluscs, and Aquatic Plants in Major Producing Countries by Sub-sector, 2021 The Philippines contributed 1.02% to the world’s total production in aquaculture, comprised of 928,821 MT production of fish, crustaceans, molluscs, among others. Table 11. Production Volume of Fish, Crustaceans, and Molluscs from Aquaculture in Major Producing Countries, 2021 The Philippines ranked 4th in terms of production of aquatic plants, contributing a 1.34 million MT, or 3.82% of the world’s total production of aquatic plants. Table 12. Production Volume of Aquatic Plants from Aquaculture in Major Producing Countries, 2021",
+          "source_pages": [
+            13,
+            14
+          ],
+          "image_ids": [
+            "module_1_world_production_by_subsector_2021",
+            "module_1_world_aquaculture_production_2021",
+            "module_1_world_aquatic_plants_2021"
+          ]
+        },
+        {
+          "heading": "Consumption of Fish and Fishery Products",
+          "content": "Consumption of Fish and Fishery Products Fish and fishery products are the second most consumed food items in the Philippines, following rice and rice products. They make up 11.70% of the daily intake of each Filipino, totalling to 93.90% grams per day. This is 63.00% higher than meat and meat products, and 206.00% higher than poultry. Table 13. Mean One-day Per Capita Food Consumption and Percent Share of Food to Total Intake, 2018-2019 According to 2018-2019 DOST-FNRI survey report, each Filipino consumes an average of 34.27 kg/year of fish and fishery products comprising of 23.36 kg of fresh fish, 2.85 kg of dried fish (as fresh fish), 4.97 kg of processed fish, and 3.10 kg of crustaceans and molluscs. Table 14. Mean One-day Per Capita Consumption of Fish and Fishery Products, 2018-2019",
+          "source_pages": [
+            15
+          ],
+          "image_ids": [
+            "module_1_food_consumption_2018_2019",
+            "module_1_fish_consumption_2018_2019"
+          ]
+        }
+      ],
+      "key_concepts": [],
+      "examples": [],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_1_philippines_map",
+          "path": "res://Assets/Codex/module_1/philippines_map.png",
+          "caption": "Figure 1. Map of the Philippines (Source: FAOSTAT, 2018)",
+          "source_pages": [
+            4
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_aff_gross_value_added_2022",
+          "path": "res://Assets/Codex/module_1/aff_gross_value_added_2022.png",
+          "caption": "Figure 2. Gross Value Added of Agriculture, Forestry, and Fishing (AFF) Sector at Current and at Constant 2018 Prices, 2022 (table); AFF Sectors Contribution to the Total GVA at Current Prices, 2022 (pie graph)",
+          "source_pages": [
+            5
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_capture_production_2013_2022",
+          "path": "res://Assets/Codex/module_1/capture_production_2013_2022.png",
+          "caption": "Figure 3. Volume and Value of Capture Fisheries Production, 2013-2022",
+          "source_pages": [
+            6
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_municipal_production_2013_2022",
+          "path": "res://Assets/Codex/module_1/municipal_production_2013_2022.png",
+          "caption": "Figure 4. Volume and Value of Municipal Fisheries Production, 2013-2022",
+          "source_pages": [
+            6
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_municipal_region_table_part_1",
+          "path": "res://Assets/Codex/module_1/municipal_region_table_part_1.png",
+          "caption": "Table 1. Municipal Fisheries Production Volume by Region, 2013-2022 (part 1)",
+          "source_pages": [
+            7
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_municipal_region_table_part_2",
+          "path": "res://Assets/Codex/module_1/municipal_region_table_part_2.png",
+          "caption": "Table 1. Municipal Fisheries Production Volume by Region, 2013-2022 (part 2)",
+          "source_pages": [
+            7
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_municipal_top_ten_2022",
+          "path": "res://Assets/Codex/module_1/municipal_top_ten_2022.png",
+          "caption": "Table 2. Top Ten Commodities in Municipal Fisheries in terms of Production Volume, 2022",
+          "source_pages": [
+            8
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_inland_municipal_top_ten_2022",
+          "path": "res://Assets/Codex/module_1/inland_municipal_top_ten_2022.png",
+          "caption": "Table 3. Top Ten Commodities in Inland Municipal Fisheries in terms of Production Volume, 2022",
+          "source_pages": [
+            8
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_commercial_region_production_2022",
+          "path": "res://Assets/Codex/module_1/commercial_region_production_2022.png",
+          "caption": "Figure 5. Commercial Fisheries Production Volume and Value by Region, 2022 (table); Commercial Fisheries Volume of Production by Region, 2022 (bar graph)",
+          "source_pages": [
+            9
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_commercial_region_table_part_1",
+          "path": "res://Assets/Codex/module_1/commercial_region_table_part_1.png",
+          "caption": "Table 4. Commercial Fisheries Production Volume by Region, 2013-2022 (part 1)",
+          "source_pages": [
+            9
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_commercial_region_table_part_2",
+          "path": "res://Assets/Codex/module_1/commercial_region_table_part_2.png",
+          "caption": "Table 4. Commercial Fisheries Production Volume by Region, 2013-2022 (part 2)",
+          "source_pages": [
+            10
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_commercial_top_ten_2022",
+          "path": "res://Assets/Codex/module_1/commercial_top_ten_2022.png",
+          "caption": "Table 5. Top Ten Commodities in Commercial Fisheries in terms of Production Volume, 2022",
+          "source_pages": [
+            11
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_exports_by_kind_2022",
+          "path": "res://Assets/Codex/module_1/exports_by_kind_2022.png",
+          "caption": "Table 6. Export of Fish and Fishery/Aquatic Products by Kind, 2022",
+          "source_pages": [
+            11
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_export_destinations_2022",
+          "path": "res://Assets/Codex/module_1/export_destinations_2022.png",
+          "caption": "Table 7. Top 20 Countries of Destination of Exported Fish and Fishery/Aquatic Products in terms of Value, 2022",
+          "source_pages": [
+            12
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_imports_by_kind_2022",
+          "path": "res://Assets/Codex/module_1/imports_by_kind_2022.png",
+          "caption": "Table 8. Import of Fish and Fishery/Aquatic Products by Kind, 2022",
+          "source_pages": [
+            13
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_import_origins_2022",
+          "path": "res://Assets/Codex/module_1/import_origins_2022.png",
+          "caption": "Table 9. Top 20 Countries of Origin of Imported Fish and Fishery/Aquatic Products in terms of Value, 2022",
+          "source_pages": [
+            13
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_world_production_by_subsector_2021",
+          "path": "res://Assets/Codex/module_1/world_production_by_subsector_2021.png",
+          "caption": "Table 10. Production Volume of Fish, Crustaceans, Molluscs, and Aquatic Plants in Major Producing Countries by Sub-sector, 2021",
+          "source_pages": [
+            14
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_world_aquaculture_production_2021",
+          "path": "res://Assets/Codex/module_1/world_aquaculture_production_2021.png",
+          "caption": "Table 11. Production Volume of Fish, Crustaceans, and Molluscs from Aquaculture in Major Producing Countries, 2021",
+          "source_pages": [
+            14
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_world_aquatic_plants_2021",
+          "path": "res://Assets/Codex/module_1/world_aquatic_plants_2021.png",
+          "caption": "Table 12. Production Volume of Aquatic Plants from Aquaculture in Major Producing Countries, 2021",
+          "source_pages": [
+            15
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_food_consumption_2018_2019",
+          "path": "res://Assets/Codex/module_1/food_consumption_2018_2019.png",
+          "caption": "Table 13. Mean One-day Per Capita Food Consumption and Percent Share of Food to Total Intake, 2018-2019",
+          "source_pages": [
+            15
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_fish_consumption_2018_2019",
+          "path": "res://Assets/Codex/module_1/fish_consumption_2018_2019.png",
+          "caption": "Table 14. Mean One-day Per Capita Consumption of Fish and Fishery Products, 2018-2019",
+          "source_pages": [
+            16
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "references": [
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Comprehensive Post-Harvest,\nMarketing and Ancillary Industries Plan 2018-2022. Retrieved at\nhttps://www.bfar.da.gov.ph/files/img/photos/CPHMAIP20182022.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Philippine Fisheries Profile of 2018.\nRetrieved at https://www.bfar.da.gov.ph/publication",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2021. Philippine Fisheries Profile 2021.\nRetrieved at https://www.bfar.da.gov.ph/wp-content/uploads/2022/11/2021-Fisheries-\nProfile-FINAL-FILE.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "DA-AFID. 2018. DA-BFAR holds fisheries production and post-harvest equipment showcase at\nWorld Trade Center. Retrieved at https://www.da.gov.ph/da-bfar-holds-fisheries-\nproduction-and-post-harvest-equipment-showcase-at-world-trade-center/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. New fish smoking ovens launched in Asia. Retrieved at\nhttp://www.fao.org/news/story/en/item/1068741/icode/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. The FTT-Thiaroye processing technique, an innovation for post-harvest loss\nreduction in fisheries and aquaculture, presented at the 1st PHL Congress in Rome.\nRetrived at http://www.fao.org/food-loss-reduction/news/detail/en/c/359611/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Lamarca, NS. J. 2020. Fisheries Country Profile: Philippines. Retrieved at\nhttp://www.seafdec.org/fisheries-country-profile-philippines/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Manalili, N. M., Yaptenco, K. F. & Manilay, A. A. 2015. Rapid Appraisal of the Postharvest\nFacilities Projects in the Philippines. Retrieved at\nhttps://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps1531.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Romero, C.E. 2017. Philippine Fisheries Sector Initiatives on Postharvest Losses Reduction.\nRetrived at http://apec-flows.ntu.edu.tw/upload/edit/file/2%20SR_2017_C_S3-\n11_Philippine.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Tadifa, G. C., Banicod, R. J. S., Peralta, D. M., Ramos, C. A. M., & Montojo, U. M. (2022). A\nStudy on Postharvest Losses in Fisheries Owing to Changes in Market Supply and\nDemand in the Philippines. Philippine Journal of Fisheries, 29(2).\nhttps://doi.org/10.31398/tpjf/29.2.2020A0019",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "historical_statistics",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "detail": "Statistics and program dates are historical source claims, not verified current data. The source mixes years in narrative and table captions; preserve the stated years."
+        },
+        {
+          "id": "source_consumption_unit",
+          "source_pages": [
+            15
+          ],
+          "detail": "The source says \"93.90% grams per day\". This unusual unit is retained verbatim; obtain instructor clarification."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_1_lesson_3",
+      "module_id": "module_1",
+      "module_number": 1,
+      "module_title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+      "title": "FISHERIES POST HARVEST LOSSES IN THE PHILIPPINES",
+      "summary": "The source describes physical, nutritional, and market-value losses along the supply chain and examples of handling problems and interventions.",
+      "sections": [
+        {
+          "heading": "FISHERIES POST HARVEST LOSSES IN THE PHILIPPINES",
+          "content": "Complete growth in agriculture is the aim of the Philippine government. However, such goal requires investment in infrastructure like transport and logistical systems that give production areas access to resources, markets and social services. At present, agricultural production and postharvest industry is divided and small-scale in nature with several producers, as well as many layers for marketing and distribution between growers and buyers. This results in inefficiencies in the supply chain which increases costs, causes losses both in terms of quantity and quality, and leads to higher prices of products. The large losses from farm to plate are attributed to poor handling, distribution, storage, and purchase/consumption behavior involving huge resources that could otherwise be spent on more productive activities go into producing and transporting goods that are wasted (CPHMAIP2018-2022). Post-harvest losses happen along the supply chain after a fishery resource is caught or harvested (Figure 5). The losses can either be physical or material (due to improper post- harvest handling practices in fish landing and trading facilities or those discarded in fishing vessels), nutritional (inappropriate processing and preservation practices can lead to decline in a fish’ nutritional value) or in terms of value (decrease in market value because of spoilage of wet fish, infestation of dried and smoked fish, weight loss and inferior finished product) (CPHMAIP2018-2022). In the study of Tadifa et al. (2022), postharvest losses in the fishing industry can be attributed to various market patterns and conditions, including instances of excess observed during peak fishing seasons. Additionally, specific phenomena that impact fishery output, as well as socioeconomic features and customer preferences, also play a role in contributing to these losses. It was found that there was an estimated loss of 3.98% in chosen landing sites and\n\n0.44% in evaluated wet markets. The cumulative financial loss experienced in both supply chains reached a total of PHP 480,160. The assessment of losses per commodity revealed that landed sardines saw the largest loss rate, amounting to 6.86%. In contrast, mixed species of small pelagics incurred a loss of roughly 2.86%. The substantial fall in prices can be ascribed to the surplus of fish capture that occurs towards the conclusion of the closure period. The aquaculture industry saw minimal losses of\n\n0.33% and 0.23% during the landing and trading phases, respectively. These losses resulted in a total monetary value of PHP 26,541(Tadifa, 2022). The first iteration of Comprehensive National Fisheries Industry Development Plan (CNFIDP) in 2006 estimated that 25-40% of the total fisheries production in the country is lost along the fish supply chain due to discards and improper post-harvest handling. The CNFIDP 2016-2020 estimated this figure to be down to 25% in 2015 and the same plan targets to bring it down further to 15% in 2020 (CPHMAIP2018-2022). For example, concerns on fish handling in local markets that can lead to losses include: misconception among local buyers that iced fish is no longer fresh such that some vendors will not use ice to keep the freshness of the fish; use of linoleum in fish display; lack or absence of crushed ice; use of old and worn-out styrofoam boxes in storing fish; and, even lack of awareness in proper fish handling by vendors (CPHMAIP2018-2022). To address the common use of concrete or wooden surface of market stalls and the presence of old and shabby stalls which can harbor microorganisms, insects and other pests that can contaminate the fish, the BFAR distributed a total of 3,372 units stainless steel fish stalls (cladding) nationwide. They also provided around 125 units of fish stalls with aquarium for live fish in Metro Manila. Designs of the said stalls can be further developed to make them more fit to the needs of the vendors (CPHMAIP2018-2022). The results of the BFAR-National Fisheries Research and Development Institute (NFRDI) current studies on post-harvest losses of key fishery commodities will be helpful in determining the specific levels of baseline losses, their specific causes and possible interventions per major fishery commodity. Replicating such studies to other commercially important species will be also necessary (CPHMAIP2018-2022). Source: Yap 2015 as cited in the CNFIDP 2016-2020",
+          "source_pages": [
+            16,
+            17
+          ],
+          "image_ids": [
+            "module_1_supply_chain_losses"
+          ]
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Post-harvest losses",
+          "definition": "Losses after a fishery resource is caught or harvested; the source distinguishes physical or material, nutritional, and value losses.",
+          "source_pages": [
+            16
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "title": "Handling in local markets",
+          "content": "Source examples include lack of crushed ice, old styrofoam boxes, use of linoleum for displays, and lack of awareness of proper fish handling.",
+          "source_pages": [
+            17
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_1_supply_chain_losses",
+          "path": "res://Assets/Codex/module_1/supply_chain_losses.png",
+          "caption": "Figure 5. Causes of Fisheries Post-Harvest Losses in the Supply Chain. Source: Yap 2015 as cited in the CNFIDP 2016-2020; caption on page 18.",
+          "source_pages": [
+            17
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        16,
+        17
+      ],
+      "references": [
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Comprehensive Post-Harvest,\nMarketing and Ancillary Industries Plan 2018-2022. Retrieved at\nhttps://www.bfar.da.gov.ph/files/img/photos/CPHMAIP20182022.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Philippine Fisheries Profile of 2018.\nRetrieved at https://www.bfar.da.gov.ph/publication",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2021. Philippine Fisheries Profile 2021.\nRetrieved at https://www.bfar.da.gov.ph/wp-content/uploads/2022/11/2021-Fisheries-\nProfile-FINAL-FILE.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "DA-AFID. 2018. DA-BFAR holds fisheries production and post-harvest equipment showcase at\nWorld Trade Center. Retrieved at https://www.da.gov.ph/da-bfar-holds-fisheries-\nproduction-and-post-harvest-equipment-showcase-at-world-trade-center/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. New fish smoking ovens launched in Asia. Retrieved at\nhttp://www.fao.org/news/story/en/item/1068741/icode/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. The FTT-Thiaroye processing technique, an innovation for post-harvest loss\nreduction in fisheries and aquaculture, presented at the 1st PHL Congress in Rome.\nRetrived at http://www.fao.org/food-loss-reduction/news/detail/en/c/359611/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Lamarca, NS. J. 2020. Fisheries Country Profile: Philippines. Retrieved at\nhttp://www.seafdec.org/fisheries-country-profile-philippines/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Manalili, N. M., Yaptenco, K. F. & Manilay, A. A. 2015. Rapid Appraisal of the Postharvest\nFacilities Projects in the Philippines. Retrieved at\nhttps://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps1531.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Romero, C.E. 2017. Philippine Fisheries Sector Initiatives on Postharvest Losses Reduction.\nRetrived at http://apec-flows.ntu.edu.tw/upload/edit/file/2%20SR_2017_C_S3-\n11_Philippine.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Tadifa, G. C., Banicod, R. J. S., Peralta, D. M., Ramos, C. A. M., & Montojo, U. M. (2022). A\nStudy on Postharvest Losses in Fisheries Owing to Changes in Market Supply and\nDemand in the Philippines. Philippine Journal of Fisheries, 29(2).\nhttps://doi.org/10.31398/tpjf/29.2.2020A0019",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "historical_statistics",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "detail": "Statistics and program dates are historical source claims, not verified current data. The source mixes years in narrative and table captions; preserve the stated years."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_1_lesson_4",
+      "module_id": "module_1",
+      "module_number": 1,
+      "module_title": "INTRODUCTION TO POST-HARVEST FISHERIES",
+      "title": "POST HARVEST MACHINERIES AND EQUIPMENT",
+      "summary": "The module describes equipment access, ice-making facilities, and the FTT-Thiaroye smoking and drying oven.",
+      "sections": [
+        {
+          "heading": "POST HARVEST MACHINERIES AND EQUIPMENT",
+          "content": "On the year 2018, almost 40 percent of the total fish production and income of Filipino fishermen go to waste due to unavailability or inaccessibility of post-harvest equipment for their fish catch. To address this, BFAR national director, Eduardo Gongona said that the DA through the BFAR is rolling out programs and policies that will not only prevent and eliminate illegal fishing in the country’s waters but also lessen post-harvest losses, which will eventually result in better income for fishermen. One of these programs is the establishment of ice-making facilities in 91 areas nationwide by the end of the Closed Fishing Season in March 2019. Fisherfolk asso ciations and cooperatives can avail of ice-making machines through the Agriculture and Fisheries Machinery and Equipment (AFME) Loaning Program of the ACPC. Photo from the Facebook post of former DA Sec. Manny Piñol",
+          "source_pages": [
+            18
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "FTT-Thiaroye",
+          "content": "Since 2008 FAO has worked on developing the FTT-Thiaroye, an improved fish smoking and drying oven technology. The FTT-Thiaroye is a technique drawn from the collaborative efforts between the FAO and the National Training Center for Fisheries and Aquaculture Technicians (CNFTPA) training institute in Senegal. The oven can be purpose built, or the smoke-capturing chimney, oil-catching trays and other elements can be added to an existing oven. It is designed to improve fuel-efficiency in fish-smoking by encapsulating heat and smoke. It also addresses health hazards suffered by small-scale fish dryers - the vast majority of whom are women. Photo from the Facebook post of former DA Sec. Manny Piñol This technology which has already been in use in many African countries since 2008 was presented during the ADMI 1st Congress on PHL Prevention held in Rome in October 2015. In other countries such as Ghana, Tanzania, Togo and Senegal, the Thiaroye system has similarly proven to be efficient in reducing post-harvest losses, increasing income of small-scale fish operators, and at the latest stage, improving livelihoods and food security of fishing communities.",
+          "source_pages": [
+            18,
+            19
+          ],
+          "image_ids": [
+            "module_1_postharvest_equipment_showcase",
+            "module_1_ice_making_facility",
+            "module_1_ftt_thiaroye_oven"
+          ]
+        }
+      ],
+      "key_concepts": [],
+      "examples": [
+        {
+          "title": "FTT-Thiaroye oven",
+          "content": "The source describes smoke-capturing chimneys and oil-catching trays that can be added to existing ovens.",
+          "source_pages": [
+            18
+          ]
+        }
+      ],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_1_postharvest_equipment_showcase",
+          "path": "res://Assets/Codex/module_1/postharvest_equipment_showcase.png",
+          "caption": "Photo from the Facebook post of former DA Sec. Manny Piñol",
+          "source_pages": [
+            18
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_ice_making_facility",
+          "path": "res://Assets/Codex/module_1/ice_making_facility.png",
+          "caption": "Photo from the Facebook post of former DA Sec. Manny Piñol",
+          "source_pages": [
+            18
+          ],
+          "status": "supplied"
+        },
+        {
+          "id": "module_1_ftt_thiaroye_oven",
+          "path": "res://Assets/Codex/module_1/ftt_thiaroye_oven.png",
+          "caption": "FTT-Thiaroye smoking and drying oven (uncaptioned illustration in the source)",
+          "source_pages": [
+            19
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        18,
+        19
+      ],
+      "references": [
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Comprehensive Post-Harvest,\nMarketing and Ancillary Industries Plan 2018-2022. Retrieved at\nhttps://www.bfar.da.gov.ph/files/img/photos/CPHMAIP20182022.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2018. Philippine Fisheries Profile of 2018.\nRetrieved at https://www.bfar.da.gov.ph/publication",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Bureau of Fisheries and Aquatic Resources (BFAR). 2021. Philippine Fisheries Profile 2021.\nRetrieved at https://www.bfar.da.gov.ph/wp-content/uploads/2022/11/2021-Fisheries-\nProfile-FINAL-FILE.pdf",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "DA-AFID. 2018. DA-BFAR holds fisheries production and post-harvest equipment showcase at\nWorld Trade Center. Retrieved at https://www.da.gov.ph/da-bfar-holds-fisheries-\nproduction-and-post-harvest-equipment-showcase-at-world-trade-center/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN\n971-91395-7-9",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. New fish smoking ovens launched in Asia. Retrieved at\nhttp://www.fao.org/news/story/en/item/1068741/icode/",
+          "source_pages": [
+            19
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "FAO. 2020. The FTT-Thiaroye processing technique, an innovation for post-harvest loss\nreduction in fisheries and aquaculture, presented at the 1st PHL Congress in Rome.\nRetrived at http://www.fao.org/food-loss-reduction/news/detail/en/c/359611/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Lamarca, NS. J. 2020. Fisheries Country Profile: Philippines. Retrieved at\nhttp://www.seafdec.org/fisheries-country-profile-philippines/",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Manalili, N. M., Yaptenco, K. F. & Manilay, A. A. 2015. Rapid Appraisal of the Postharvest\nFacilities Projects in the Philippines. Retrieved at\nhttps://pidswebs.pids.gov.ph/CDN/PUBLICATIONS/pidsdps1531.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Romero, C.E. 2017. Philippine Fisheries Sector Initiatives on Postharvest Losses Reduction.\nRetrived at http://apec-flows.ntu.edu.tw/upload/edit/file/2%20SR_2017_C_S3-\n11_Philippine.pdf",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Tadifa, G. C., Banicod, R. J. S., Peralta, D. M., Ramos, C. A. M., & Montojo, U. M. (2022). A\nStudy on Postharvest Losses in Fisheries Owing to Changes in Market Supply and\nDemand in the Philippines. Philippine Journal of Fisheries, 29(2).\nhttps://doi.org/10.31398/tpjf/29.2.2020A0019",
+          "source_pages": [
+            20
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "historical_statistics",
+          "source_pages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "detail": "Statistics and program dates are historical source claims, not verified current data. The source mixes years in narrative and table captions; preserve the stated years."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    }
+  ]
+}

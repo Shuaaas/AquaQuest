@@ -28,7 +28,12 @@ var _current_sort: String = "name"
 func _ready() -> void:
 	EventBus.inventory_changed.connect(_refresh)
 	_build_filter_buttons()
+	%CodexButton.pressed.connect(_on_codex_pressed)
 	_refresh()
+
+
+func _on_codex_pressed() -> void:
+	EventBus.codex_open_requested.emit()
 
 
 func _build_filter_buttons() -> void:

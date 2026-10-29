@@ -1,0 +1,1235 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "id": "module_1_philippines_map",
+      "path": "res://Assets/Codex/module_1/philippines_map.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        4
+      ],
+      "caption": "Figure 1. Map of the Philippines (Source: FAOSTAT, 2018)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        131.28,
+        514.44,
+        480.48,
+        766.44
+      ],
+      "pixel_size": [
+        1049,
+        757
+      ],
+      "embedded_pixel_size": [
+        582,
+        420
+      ],
+      "sha256": "fba66fa06e5a4a3577dfc6fa1c0af14605e2035d775f8fc70b44daf6d15e5b5d",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_aff_gross_value_added_2022",
+      "path": "res://Assets/Codex/module_1/aff_gross_value_added_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        5
+      ],
+      "caption": "Figure 2. Gross Value Added of Agriculture, Forestry, and Fishing (AFF) Sector at Current and at Constant 2018 Prices, 2022 (table); AFF Sectors Contribution to the Total GVA at Current Prices, 2022 (pie graph)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        309.12,
+        540.0,
+        539.16
+      ],
+      "pixel_size": [
+        1404,
+        691
+      ],
+      "embedded_pixel_size": [
+        1302,
+        640
+      ],
+      "sha256": "6577fbc4af3bbcd1e276a834a66020831a184674cd5576e537fd079a5094ce18",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_capture_production_2013_2022",
+      "path": "res://Assets/Codex/module_1/capture_production_2013_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        6
+      ],
+      "caption": "Figure 3. Volume and Value of Capture Fisheries Production, 2013-2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        76.68,
+        540.0,
+        246.6
+      ],
+      "pixel_size": [
+        1404,
+        510
+      ],
+      "embedded_pixel_size": [
+        1300,
+        472
+      ],
+      "sha256": "26f194ca754af90a899a34d79f4a8a87fe7e1a63b7600e25338d000a2876ef05",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_municipal_production_2013_2022",
+      "path": "res://Assets/Codex/module_1/municipal_production_2013_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        6
+      ],
+      "caption": "Figure 4. Volume and Value of Municipal Fisheries Production, 2013-2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        451.44,
+        540.0,
+        611.4
+      ],
+      "pixel_size": [
+        1404,
+        481
+      ],
+      "embedded_pixel_size": [
+        1287,
+        440
+      ],
+      "sha256": "e7e763101a0de79d59fc21866316864968cd1428a781b6496e0cb4cc4f795dda",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_municipal_region_table_part_1",
+      "path": "res://Assets/Codex/module_1/municipal_region_table_part_1.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        7
+      ],
+      "caption": "Table 1. Municipal Fisheries Production Volume by Region, 2013-2022 (part 1)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        99.6,
+        540.0,
+        332.04
+      ],
+      "pixel_size": [
+        1404,
+        699
+      ],
+      "embedded_pixel_size": [
+        1212,
+        602
+      ],
+      "sha256": "dfef02e5afc3c3044e03c3f580b6a1bd12b34ff36f86cff189d7b14667a0dfeb",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_municipal_region_table_part_2",
+      "path": "res://Assets/Codex/module_1/municipal_region_table_part_2.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        7
+      ],
+      "caption": "Table 1. Municipal Fisheries Production Volume by Region, 2013-2022 (part 2)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        341.16,
+        540.0,
+        609.48
+      ],
+      "pixel_size": [
+        1404,
+        806
+      ],
+      "embedded_pixel_size": [
+        1015,
+        582
+      ],
+      "sha256": "34e1ca57ef352c2133556dc27934f97440c1a40a6dfcae8f9e45dce5f4c06709",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_municipal_top_ten_2022",
+      "path": "res://Assets/Codex/module_1/municipal_top_ten_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        8
+      ],
+      "caption": "Table 2. Top Ten Commodities in Municipal Fisheries in terms of Production Volume, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        99.6,
+        540.0,
+        296.04
+      ],
+      "pixel_size": [
+        1404,
+        591
+      ],
+      "embedded_pixel_size": [
+        1253,
+        526
+      ],
+      "sha256": "cc7ad207a9d79dde31cf7e9b424f977e8a6ab9ba464a3703f33b5a3deefb54ac",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_inland_municipal_top_ten_2022",
+      "path": "res://Assets/Codex/module_1/inland_municipal_top_ten_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        8
+      ],
+      "caption": "Table 3. Top Ten Commodities in Inland Municipal Fisheries in terms of Production Volume, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        440.28,
+        540.0,
+        637.44
+      ],
+      "pixel_size": [
+        1404,
+        593
+      ],
+      "embedded_pixel_size": [
+        1251,
+        527
+      ],
+      "sha256": "8fe03115bc3ed5b4a84fbaf06e699681a9d28503840976afb050df27bd177402",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_commercial_region_production_2022",
+      "path": "res://Assets/Codex/module_1/commercial_region_production_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        9
+      ],
+      "caption": "Figure 5. Commercial Fisheries Production Volume and Value by Region, 2022 (table); Commercial Fisheries Volume of Production by Region, 2022 (bar graph)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        76.68,
+        540.0,
+        323.16
+      ],
+      "pixel_size": [
+        1404,
+        740
+      ],
+      "embedded_pixel_size": [
+        1234,
+        650
+      ],
+      "sha256": "2852a752a801f1e25d84fba5482bc19f4a338a6bdd14777328ce3ebe18cb48ab",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_commercial_region_table_part_1",
+      "path": "res://Assets/Codex/module_1/commercial_region_table_part_1.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        9
+      ],
+      "caption": "Table 4. Commercial Fisheries Production Volume by Region, 2013-2022 (part 1)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        520.08,
+        540.0,
+        762.0
+      ],
+      "pixel_size": [
+        1404,
+        726
+      ],
+      "embedded_pixel_size": [
+        1205,
+        623
+      ],
+      "sha256": "7712282fc0947f8f74a688ca2dd0b23fc36c8008e3cee580c500624a96a6567b",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_commercial_region_table_part_2",
+      "path": "res://Assets/Codex/module_1/commercial_region_table_part_2.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        10
+      ],
+      "caption": "Table 4. Commercial Fisheries Production Volume by Region, 2013-2022 (part 2)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        76.68,
+        540.0,
+        344.28
+      ],
+      "pixel_size": [
+        1404,
+        803
+      ],
+      "embedded_pixel_size": [
+        1023,
+        585
+      ],
+      "sha256": "96f70363d6aa79257223651f8fec22e91712178e3d5e0853b58a46910af5d22c",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_commercial_top_ten_2022",
+      "path": "res://Assets/Codex/module_1/commercial_top_ten_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        11
+      ],
+      "caption": "Table 5. Top Ten Commodities in Commercial Fisheries in terms of Production Volume, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        76.68,
+        540.0,
+        270.96
+      ],
+      "pixel_size": [
+        1404,
+        583
+      ],
+      "embedded_pixel_size": [
+        1221,
+        507
+      ],
+      "sha256": "5b64bd435fa42c134abc914b38d0fd34faed079bf9e8d79e9b0b47780294a5e9",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_exports_by_kind_2022",
+      "path": "res://Assets/Codex/module_1/exports_by_kind_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        11
+      ],
+      "caption": "Table 6. Export of Fish and Fishery/Aquatic Products by Kind, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        102.0,
+        423.96,
+        510.0,
+        818.16
+      ],
+      "pixel_size": [
+        1224,
+        1184
+      ],
+      "embedded_pixel_size": [
+        680,
+        657
+      ],
+      "sha256": "ef7b215a603a4bb392bd62761efce113e2370ac0dd2c4633466b98b0952daf82",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_export_destinations_2022",
+      "path": "res://Assets/Codex/module_1/export_destinations_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        12
+      ],
+      "caption": "Table 7. Top 20 Countries of Destination of Exported Fish and Fishery/Aquatic Products in terms of Value, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        164.16,
+        340.08,
+        483.96,
+        691.68
+      ],
+      "pixel_size": [
+        960,
+        1056
+      ],
+      "embedded_pixel_size": [
+        533,
+        586
+      ],
+      "sha256": "1804aab0ea0f2ba80cdfe004012a46787fb44726cf45acc9c3abc037c30d0cbe",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_imports_by_kind_2022",
+      "path": "res://Assets/Codex/module_1/imports_by_kind_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        13
+      ],
+      "caption": "Table 8. Import of Fish and Fishery/Aquatic Products by Kind, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        144.0,
+        76.68,
+        468.0,
+        388.68
+      ],
+      "pixel_size": [
+        972,
+        937
+      ],
+      "embedded_pixel_size": [
+        540,
+        520
+      ],
+      "sha256": "37409dd6eeb78cc2ee827b32c83278f91a1b96b9199b37589e49919e0f66536e",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_import_origins_2022",
+      "path": "res://Assets/Codex/module_1/import_origins_2022.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        13
+      ],
+      "caption": "Table 9. Top 20 Countries of Origin of Imported Fish and Fishery/Aquatic Products in terms of Value, 2022",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        186.48,
+        532.92,
+        425.52,
+        797.4
+      ],
+      "pixel_size": [
+        718,
+        795
+      ],
+      "embedded_pixel_size": [
+        536,
+        593
+      ],
+      "sha256": "60315c7bc18764531d2e6c26e612b8a4b42d68bace779a02995ece6f7f61bdd0",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_world_production_by_subsector_2021",
+      "path": "res://Assets/Codex/module_1/world_production_by_subsector_2021.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        14
+      ],
+      "caption": "Table 10. Production Volume of Fish, Crustaceans, Molluscs, and Aquatic Plants in Major Producing Countries by Sub-sector, 2021",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        114.48,
+        540.0,
+        311.16
+      ],
+      "pixel_size": [
+        1404,
+        591
+      ],
+      "embedded_pixel_size": [
+        971,
+        408
+      ],
+      "sha256": "a9b024c76a0d81abf76ff40a4deb954ebe20a9f682a7b80150e1a28cf4caeb86",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_world_aquaculture_production_2021",
+      "path": "res://Assets/Codex/module_1/world_aquaculture_production_2021.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        14
+      ],
+      "caption": "Table 11. Production Volume of Fish, Crustaceans, and Molluscs from Aquaculture in Major Producing Countries, 2021",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        201.0,
+        464.4,
+        411.0,
+        658.8
+      ],
+      "pixel_size": [
+        630,
+        584
+      ],
+      "embedded_pixel_size": [
+        433,
+        401
+      ],
+      "sha256": "0a90fbd2a0f3624cbbee61e4de19e968fd14a47e89715ccb663bd766639af0c0",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_world_aquatic_plants_2021",
+      "path": "res://Assets/Codex/module_1/world_aquatic_plants_2021.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        15
+      ],
+      "caption": "Table 12. Production Volume of Aquatic Plants from Aquaculture in Major Producing Countries, 2021",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        194.76,
+        76.68,
+        417.24,
+        280.68
+      ],
+      "pixel_size": [
+        668,
+        613
+      ],
+      "embedded_pixel_size": [
+        543,
+        498
+      ],
+      "sha256": "ca54a38fde19f7dc32ff4cf8cf773f50d6e0a79fed80ff62d09bb610fc9a53ca",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_food_consumption_2018_2019",
+      "path": "res://Assets/Codex/module_1/food_consumption_2018_2019.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        15
+      ],
+      "caption": "Table 13. Mean One-day Per Capita Food Consumption and Percent Share of Food to Total Intake, 2018-2019",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        348.0,
+        292.44,
+        544.2,
+        546.24
+      ],
+      "pixel_size": [
+        589,
+        762
+      ],
+      "embedded_pixel_size": [
+        541,
+        700
+      ],
+      "sha256": "d55388b6ef711a842d6fe4aee358e6d5e52955f868f0ff3537522d863f13be13",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_fish_consumption_2018_2019",
+      "path": "res://Assets/Codex/module_1/fish_consumption_2018_2019.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_2",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        16
+      ],
+      "caption": "Table 14. Mean One-day Per Capita Consumption of Fish and Fishery Products, 2018-2019",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        140.16,
+        76.68,
+        471.96,
+        380.76
+      ],
+      "pixel_size": [
+        996,
+        913
+      ],
+      "embedded_pixel_size": [
+        778,
+        713
+      ],
+      "sha256": "3176c17de49ef82aed7883828b82d4a9523cb1dc738da978aff354a6ad1a6b9f",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_supply_chain_losses",
+      "path": "res://Assets/Codex/module_1/supply_chain_losses.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_3",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        17
+      ],
+      "caption": "Figure 5. Causes of Fisheries Post-Harvest Losses in the Supply Chain. Source: Yap 2015 as cited in the CNFIDP 2016-2020; caption on page 18.",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        489.0,
+        567.36,
+        827.28
+      ],
+      "pixel_size": [
+        1487,
+        1015
+      ],
+      "embedded_pixel_size": [
+        659,
+        450
+      ],
+      "sha256": "7e8dc42ed42db1095ad4092558486d3f8311a0810fb91e2c35c09b0c233797e5",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_postharvest_equipment_showcase",
+      "path": "res://Assets/Codex/module_1/postharvest_equipment_showcase.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_4",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        18
+      ],
+      "caption": "Photo from the Facebook post of former DA Sec. Manny Piñol",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        270.72,
+        122.52,
+        541.44,
+        325.56
+      ],
+      "pixel_size": [
+        813,
+        610
+      ],
+      "embedded_pixel_size": [
+        960,
+        720
+      ],
+      "sha256": "616ac1b6b4c3c3ee8eff859bd52c96ab95cf3ab1194cc6011c114907f6c9d754",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_ice_making_facility",
+      "path": "res://Assets/Codex/module_1/ice_making_facility.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_4",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        18
+      ],
+      "caption": "Photo from the Facebook post of former DA Sec. Manny Piñol",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        134.16,
+        421.44,
+        477.96,
+        651.6
+      ],
+      "pixel_size": [
+        1032,
+        691
+      ],
+      "embedded_pixel_size": [
+        714,
+        478
+      ],
+      "sha256": "ab9fcf04ecd796bef23f731ce71b37bf351c5b306b3357d667faf69a62e2f10e",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_1_ftt_thiaroye_oven",
+      "path": "res://Assets/Codex/module_1/ftt_thiaroye_oven.png",
+      "module_id": "module_1",
+      "lesson_id": "module_1_lesson_4",
+      "source_pdf": "res://docs/modules/Module_1.pdf",
+      "source_pages": [
+        19
+      ],
+      "caption": "FTT-Thiaroye smoking and drying oven (uncaptioned illustration in the source)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        72.0,
+        76.68,
+        544.08,
+        321.48
+      ],
+      "pixel_size": [
+        1417,
+        735
+      ],
+      "embedded_pixel_size": [
+        1367,
+        709
+      ],
+      "sha256": "1c55aec7941a7b3686b0e1e51f1bd1f1350c40454a1875f9c906d8ec561210b0",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_2_fish_cross_section",
+      "path": "res://Assets/Codex/module_2/fish_cross_section.png",
+      "module_id": "module_2",
+      "lesson_id": "module_2_lesson_1",
+      "source_pdf": "res://docs/modules/Module_2.pdf",
+      "source_pages": [
+        3
+      ],
+      "caption": "Photo from Pinterest",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        195.0,
+        92.52,
+        453.0,
+        354.24
+      ],
+      "pixel_size": [
+        774,
+        786
+      ],
+      "embedded_pixel_size": [
+        344,
+        349
+      ],
+      "sha256": "0af225c134e3b595830793965315467317a6df76302bade9e81e5affb84b5dc5",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_3_bacteria_shapes",
+      "path": "res://Assets/Codex/module_3/bacteria_shapes.png",
+      "module_id": "module_3",
+      "lesson_id": "module_3_lesson_2",
+      "source_pdf": "res://docs/modules/Module_3.pdf",
+      "source_pages": [
+        2
+      ],
+      "caption": "Figure 1. Illustration of different types of bacteria. Photo from https://microbenotes.com/wp-content/uploads/2019/02/Classification-of-Bacteria-on-the-Basis-of-Shape.jpg",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        141.0,
+        434.64,
+        507.0,
+        626.76
+      ],
+      "pixel_size": [
+        1098,
+        578
+      ],
+      "embedded_pixel_size": [
+        800,
+        420
+      ],
+      "sha256": "28650131f915007346e5e6b053799a647d9eeefb6f96d19967f671f635166fbf",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_3_mold_infected_fish",
+      "path": "res://Assets/Codex/module_3/mold_infected_fish.png",
+      "module_id": "module_3",
+      "lesson_id": "module_3_lesson_3",
+      "source_pdf": "res://docs/modules/Module_3.pdf",
+      "source_pages": [
+        3
+      ],
+      "caption": "Figure 2. Photo of fish infected with molds. Picture retrieved from https://www.americanaquariumproducts.com/images/graphics/saprolegniafungus.jpg",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        208.56,
+        84.84,
+        421.56,
+        237.0
+      ],
+      "pixel_size": [
+        640,
+        457
+      ],
+      "embedded_pixel_size": [
+        504,
+        360
+      ],
+      "sha256": "8f4f3a0f094a8329114e073682a305580c09bcf432920f334bdc122e47de2af9",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_3_enzyme_action",
+      "path": "res://Assets/Codex/module_3/enzyme_action.png",
+      "module_id": "module_3",
+      "lesson_id": "module_3_lesson_5",
+      "source_pdf": "res://docs/modules/Module_3.pdf",
+      "source_pages": [
+        3
+      ],
+      "caption": "Figure 3. Illustration showing how enzymes works. Retrieved from https://www.thoughtco.com/thmb/_oENjxBhGzY2S8GkBs0fadjjMDA=/4500x3000/filters:fill(auto,1)/what-is-enzyme-structure-and-function-375555_v4-6f22f82931824e76b1c31401230deac8.png",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        187.56,
+        513.84,
+        459.84,
+        695.4
+      ],
+      "pixel_size": [
+        818,
+        546
+      ],
+      "embedded_pixel_size": [
+        2270,
+        1513
+      ],
+      "sha256": "4832477c8ae0e1194a63362811b2e3b2366390083e4a548689bc9587053b82cb",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_air_contact_drying",
+      "path": "res://Assets/Codex/module_4/air_contact_drying.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_3",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        6
+      ],
+      "caption": "Figure 1. Drying of fish using air or contact drying. Photo retrieved at https://upload.wikimedia.org/wikipedia",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        166.65,
+        54.0,
+        428.65,
+        210.99
+      ],
+      "pixel_size": [
+        787,
+        471
+      ],
+      "embedded_pixel_size": [
+        727,
+        436
+      ],
+      "sha256": "0736e91e3ddd50c77efa3930d50d5aad80d80be4f77ddfd5cd4406e38b2e7fb0",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_vacuum_drying",
+      "path": "res://Assets/Codex/module_4/vacuum_drying.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_3",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        6
+      ],
+      "caption": "Figure 2. Sample lay-out of vacuum drying process. Photo retrieved at https://images.slideplayer.com",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        171.82,
+        313.4,
+        423.44,
+        469.55
+      ],
+      "pixel_size": [
+        756,
+        469
+      ],
+      "embedded_pixel_size": [
+        889,
+        551
+      ],
+      "sha256": "8345b0307318a680bb56d1af711c74f63b065bdd300ed5274500a5e064d3e024",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_freeze_drying",
+      "path": "res://Assets/Codex/module_4/freeze_drying.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_3",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        6
+      ],
+      "caption": "Figure 3. Sample lay-out of freeze drying process. Photo retrieved at https://ars.els-cdn.com",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        163.18,
+        572.9,
+        432.11,
+        742.4
+      ],
+      "pixel_size": [
+        808,
+        510
+      ],
+      "embedded_pixel_size": [
+        522,
+        329
+      ],
+      "sha256": "a6cb9a41d7bce6100c06bdbd6ed32907637bbb83f660f86e619f0a69b5ee7148",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_hot_smoking",
+      "path": "res://Assets/Codex/module_4/hot_smoking.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        9
+      ],
+      "caption": "Figure 4. Hot Smoking. Photo retrieved at https://www.wealdsmokery.co.uk/",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        239.2,
+        252.45,
+        392.1,
+        480.57
+      ],
+      "pixel_size": [
+        460,
+        685
+      ],
+      "embedded_pixel_size": [
+        311,
+        464
+      ],
+      "sha256": "541bd77bb19e0d0591312c4fea887783ab580c85e64995986350549f83017197",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_cold_smoking",
+      "path": "res://Assets/Codex/module_4/cold_smoking.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        9
+      ],
+      "caption": "Figure 5. Cold Smoking. Photo retrieved at https://img.youtube.com/",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        181.25,
+        604.13,
+        414.05,
+        731.33
+      ],
+      "pixel_size": [
+        700,
+        382
+      ],
+      "embedded_pixel_size": [
+        480,
+        267
+      ],
+      "sha256": "1c62f443b6f28982da2b699e544e5807ee1b9abe6941a0cd7201111c818ce4dc",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_liquid_smoke",
+      "path": "res://Assets/Codex/module_4/liquid_smoke.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        10
+      ],
+      "caption": "Figure 6. Sample Liquid Smoke product. Photo retrieved at https://www.seriouseats.com/",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        204.85,
+        201.7,
+        390.44,
+        387.7
+      ],
+      "pixel_size": [
+        558,
+        559
+      ],
+      "embedded_pixel_size": [
+        457,
+        458
+      ],
+      "sha256": "26f1d280824da73b96210dd72e5617ffcea587d9b68bb90641badc93145fbedf",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_continuous_salting_drying_smoking",
+      "path": "res://Assets/Codex/module_4/continuous_salting_drying_smoking.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        10
+      ],
+      "caption": "Figure 7. Sample lay-out of Continuous Salting-Drying-Smoking Process. Retrieved at https://archimer.ifremer.fr/",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        92.15,
+        510.71,
+        539.15,
+        701.51
+      ],
+      "pixel_size": [
+        1342,
+        573
+      ],
+      "embedded_pixel_size": [
+        717,
+        319
+      ],
+      "sha256": "cd3476c158fb47f6676ff4cd2b92edc9a58f1ac6c296f08c7e7433b5eec3d154",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_mechanical_smokehouse",
+      "path": "res://Assets/Codex/module_4/mechanical_smokehouse.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        11
+      ],
+      "caption": "Fig. 21. Mechanical Smokehouse (Source: Trinidad, 1997)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        80.15,
+        497.12,
+        515.15,
+        758.12
+      ],
+      "pixel_size": [
+        1306,
+        784
+      ],
+      "embedded_pixel_size": [
+        348,
+        580
+      ],
+      "sha256": "3c55322dc7c81b6528defe74e5a0bbb90de32e472bdb54ea6e028b89153998b9",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_domestic_smokehouses",
+      "path": "res://Assets/Codex/module_4/domestic_smokehouses.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        12
+      ],
+      "caption": "Fig. 19. Smokehouses in the Philippines (Source: Espejo, 1980)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        85.682,
+        69.15,
+        312.482,
+        396.44
+      ],
+      "pixel_size": [
+        681,
+        983
+      ],
+      "embedded_pixel_size": [
+        413,
+        596
+      ],
+      "sha256": "eb2d7dab8a2a248bbdeeb293c49eb7e78484298a5bff3db041eca8cd0caaa501",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_modified_drum_smokehouses",
+      "path": "res://Assets/Codex/module_4/modified_drum_smokehouses.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_4",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        12
+      ],
+      "caption": "Fig. 20. Modified Drum Smokehouse (Source: Espejo-Hermes, 1996)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        314.97,
+        68.49,
+        527.62,
+        396.46
+      ],
+      "pixel_size": [
+        639,
+        985
+      ],
+      "embedded_pixel_size": [
+        369,
+        522
+      ],
+      "sha256": "027f3c23429e06bd610cd8a4e99a8857889d80cc8739397ae75a18ec8f9377e3",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_3_fresh_stale_fish_table",
+      "path": "res://Assets/Codex/module_3/fresh_stale_fish_table.png",
+      "module_id": "module_3",
+      "lesson_id": "module_3_lesson_7",
+      "source_pdf": "res://docs/modules/Module_3.pdf",
+      "source_pages": [
+        4
+      ],
+      "caption": "Table 1. Characteristics of Fresh and Stale Fish (Paler-Calmorin, 2006)",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        45,
+        415,
+        555,
+        648
+      ],
+      "pixel_size": [
+        1530,
+        699
+      ],
+      "embedded_pixel_size": null,
+      "sha256": "9ac30fe64db529c5d2fb0983b4ce7c9d673a0471d61d8063a3466dc2cf984085",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    },
+    {
+      "id": "module_4_source_moisture_formula",
+      "path": "res://Assets/Codex/module_4/source_moisture_formula.png",
+      "module_id": "module_4",
+      "lesson_id": "module_4_lesson_3",
+      "source_pdf": "res://docs/modules/Module_4.pdf",
+      "source_pages": [
+        4
+      ],
+      "caption": "Moisture formula and variable labels as printed in Module 4 page 4; instructor review required.",
+      "status": "supplied",
+      "extraction_method": "pdf_page_crop_216_dpi",
+      "bbox_points_top_left": [
+        50,
+        365,
+        545,
+        475
+      ],
+      "pixel_size": [
+        1485,
+        330
+      ],
+      "embedded_pixel_size": null,
+      "sha256": "7b40398351054335d733deb33fbc793e9116e7d031e85f2feb03470fdc30a8e8",
+      "limitations": "Rendering preserves the source; enlargement cannot restore detail absent from the embedded original."
+    }
+  ],
+  "missing_assets": [],
+  "excluded_visuals": [
+    {
+      "module_id": "module_1",
+      "source_pages": [
+        1
+      ],
+      "reason": "Decorative cover graphics or small bullet glyphs; no instructional illustration omitted here.",
+      "image_count": 8
+    },
+    {
+      "module_id": "module_1",
+      "source_pages": [
+        3
+      ],
+      "reason": "Decorative cover graphics or small bullet glyphs; no instructional illustration omitted here.",
+      "image_count": 3
+    },
+    {
+      "module_id": "module_2",
+      "source_pages": [
+        1
+      ],
+      "reason": "Decorative cover graphics or small bullet glyphs; no instructional illustration omitted here.",
+      "image_count": 8
+    },
+    {
+      "module_id": "module_3",
+      "source_pages": [
+        1
+      ],
+      "reason": "Decorative cover graphics or small bullet glyphs; no instructional illustration omitted here.",
+      "image_count": 8
+    },
+    {
+      "module_id": "module_5",
+      "source_pages": [
+        1
+      ],
+      "reason": "Decorative cover graphics or small bullet glyphs; no instructional illustration omitted here.",
+      "image_count": 1
+    }
+  ],
+  "notes": [
+    "Visuals are accurate crops of rendered PDF pages, not redrawn diagrams. Raster tables remain images; numerical cell data was not invented.",
+    "Source image credits are retained where supplied. No publication license or permission is inferred from source attribution."
+  ]
+}

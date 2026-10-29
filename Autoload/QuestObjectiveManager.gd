@@ -96,6 +96,11 @@ func turn_in_quest(quest_id: String) -> void:
 		QuestManager.start_quest(next_quest_id)
 
 
+## Read-only definition lookup for systems configuring quest-based requirements.
+func get_quest_definition(quest_id: String) -> Dictionary:
+	return _quest_definitions.get(quest_id, {}).duplicate(true)
+
+
 func _on_item_added(item_id: String, _amount: int) -> void:
 	_check_active_quests("catch_fish", {"fish_id": item_id})
 

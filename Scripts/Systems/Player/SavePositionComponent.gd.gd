@@ -31,6 +31,10 @@ func register_with_save_manager() -> void:
 	SaveManager.register_section("player", _get_data, _apply_data)
 
 
+func _exit_tree() -> void:
+	SaveManager.unregister_section("player", _get_data)
+
+
 func _get_data() -> Dictionary:
 	var data := {
 		"position_x": body.global_position.x if body else 0.0,

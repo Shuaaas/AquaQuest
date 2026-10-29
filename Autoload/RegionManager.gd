@@ -71,6 +71,8 @@ var pending_spawn_id: String = "default"
 
 
 func travel_to_region(region_id: String, spawn_id: String = "default") -> void:
+	if SaveManager.is_loading:
+		return
 	if not _region_definitions.has(region_id):
 		push_error("RegionManager: unknown region_id '%s'" % region_id)
 		return
@@ -100,6 +102,26 @@ func _get_save_data() -> Dictionary:
 	}
 
 
-func _apply_save_data(data: Dictionary) -> void:
-	current_region_id = data.get("current_region_id", "")
+func _apply_save_data(data: Dictionary) -> bool:
+	var saved_region_id: String = data.get("current_region_id", current_region_id)
+	if saved_region_id == "":
+		_unlocked_regions = data.get("unlocked_regions", {})
+		return true
+	var definition := get_region_definition(saved_region_id)
+	var scene_path: String = definition.get("scene_path", "")
+	if scene_path == "" or not ResourceLoader.exists(scene_path):
+		return false
+	if get_tree().get_first_node_in_group("region_container") == null:
+		return false
+
+	var previous_region_id := current_region_id
+	var previous_unlocks := _unlocked_regions
+	current_region_id = saved_region_id
 	_unlocked_regions = data.get("unlocked_regions", {})
+	# Loading restores progress; it must not count as visiting a new region
+	# or re-run quest objectives through travel_to_region().
+	if not await SceneLoader.restore_scene(scene_path):
+		current_region_id = previous_region_id
+		_unlocked_regions = previous_unlocks
+		return false
+	return true

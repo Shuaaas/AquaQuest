@@ -1,0 +1,620 @@
+{
+  "schema_version": 1,
+  "module_id": "module_3",
+  "module_number": 3,
+  "module_title": "FISH SPOILAGE",
+  "source": {
+    "path": "res://docs/modules/Module_3.pdf",
+    "page_count": 5,
+    "sha256": "fa4d44f61fab08d2e739356ed22962c4e0506b0843f61f2f48dcf91f9d1427e6",
+    "page_numbering": "one_based_pdf_page",
+    "author": "QUENNIE M. BILUGAN",
+    "institution": "Cavite State University Naic",
+    "credits_as_extracted": "MODULE 3\nPrepared by:\nQUENNIE M. BILUGAN\nFaculty, Fisheries and Aquatic Sciences Department\nCavite State University Naic\nEmail: quennie.bilugan@cvsu.edu.ph\nOBJECTIVES\nFISH SPOILAGE"
+  },
+  "objectives": {
+    "content": "After completing this chapter, the students must be able to:\n\n1. Understand how fish spoil and the factors affecting the rate of spoilage",
+    "source_pages": [
+      1
+    ]
+  },
+  "references": [
+    {
+      "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+      "source_pages": [
+        5
+      ],
+      "scope": "module_bibliography"
+    },
+    {
+      "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+      "source_pages": [
+        5
+      ],
+      "scope": "module_bibliography"
+    }
+  ],
+  "source_activities": [
+    {
+      "heading": "Quiz Assignment",
+      "content": "Quiz Assignment:\nAnswer the following questions.\nI. True or False. Write TRUE if the statement is correct and FALSE if the statement is wrong.\n___________1. The higher the temperature, the faster the rate of spoilage.\n___________2. Fatty fish spoil faster than lean fish.\n__________3. Large fish spoil slower than small fish.\n___________4. Warm-water fish spoil faster than cold-water fish.\n___________5. Flat fish spoil slower than round fish.\nII. Identification. Identify the terms being ask in each number.\n1. The main cause of spoilage of fresh fish through the help of enzymatic activity.\n2. One of the common bacteria that causes spoilage in chilled products.\n3. They produce gas that causes the fishery products to ferment.\n4. Bacterial spoilage happens after this stage in fish’s death.\n5. Remedy to slow down the rate of autolysis.\n6. These are substances that speeds up the digestion process.\n7. The change in fish that usually starts from tail to head making it stiff or firm.\n8. The fish will be discarded in this stage of spoilage because it is decaying or already decayed.\n9. This occurs due to the change in myoglobin in the fish’s body.\n10. It results to rancid flavor and odor as well as discoloration.",
+      "source_pages": [
+        5
+      ],
+      "origin": "existing_source_activity"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "module_3_lesson_1",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "Fish Spoilage",
+      "summary": "The module introduces temperature-dependent spoilage and compares the agents described by its two cited textbooks.",
+      "sections": [
+        {
+          "heading": "Fish Spoilage",
+          "content": "Lesson 3: Fish Spoilage Fresh fish spoilage is mainly bacterial in nature aided by enzymatic activity. Bacterial and enzymatic spoilage are largely temperature dependent; the higher the temperature the faster the rate of spoilage. The rate of spoilage varies from fish to fish and can be summarized as follows: fatty fish spoil faster than lean fish; small-sized fish spoil faster than large fish of the same species; cold-water fish spoil faster than warm-water fish; and round fish spoil faster that flat fish (Espejo-Hermes, 2004). The agents of spoilage are found everywhere, in the air, soil and water. All of them are microscopic and usually thrive on the surface of the fish and other fishery products. According to the book of Calmorin (2006), there are four agents of spoilage namely: bacteria, molds, yeast and enzymes. But in the book of Espejo-Hermes (2004) there are three: bacteria, enzymes and chemical spoilage. Let’s discuss all of them one by one.",
+          "source_pages": [
+            1
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        1
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_3_lesson_2",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "BACTERIA",
+      "summary": "The source describes bacterial spoilage, specific spoilage organisms, and bacterial categories based on temperature and oxygen conditions.",
+      "sections": [
+        {
+          "heading": "BACTERIA",
+          "content": "1. BACTERIA – According to Espejo-Hermes (2004) bacteria is a microscopic one-celled organisms which are found in the environment. The flesh of the fish is normally sterile (free from bacteria) when they are alive but large number of bacteria are normally present in the surface slime, on the gills, and in the guts. Bacteria secrets enzyme which breakdown complex substances in the flesh into simpler substances resulting to spoilage. The rate of microbial spoilage depends upon the number of types of microorganisms present on the fish and the temperature at which the fish is being kept. Bacteria present in freshwater fish are significantly different from the bacteria present in marine species. Mesophilic gram-positive bacteria such as Micrococcus, Bacillus, and Coryneforms are usually present in freshwater fishes while psychrotrophic gram- negative genera such as Pseudomonas, Alteromonas, Moraxella, Acinobacter, Flovobacterium, Cytophaga and Vibrio can be found in marine species. Not all the bacteria present in the fish are responsible for the spoilage of fish. In chilled fish, the most active specific spoilage organism (SSO) are gram-negative, psychrotophic rods such as Alteromonas putrefaciens and certain Pseudomonas, Vibrio and Aeromonas. Shewanella putrefaciens is a typical SSO for the aerobic chill spoilage of many fish from temperature water. Bacterial spoilage does not start until the passage of rigor mortis. Rigor mortis is the progressive stiffening of muscle shortly after death. Rigor usually starts from the tail toward the head until the whole body becomes hard and stiff (inflexible) (Espejo- Hermes, 2004). In the book of Paler-Calmorin (2006) bacteria was said to be the most difficult to destroy because they (a) are highly resistant to heat; (b) minute microorganisms and multiply rapidly; (c) grow best in protein foods; and (d) can live in any temperature (cold, hot and room). This book also categorized the bacteria base on its living environment.\n\na) Psychrophilic or cold loving bacteria – best grow in temperature of 0oC or lower.\n\nb) Thermophilic or heat loving bacteria – thrive in high temperature or 45 oC - 60 oC.\n\nc) Mesophilic bacteria – live in room temperature (neither hot or cold).\n\nd) Aerobic bacteria – best thrive in areas where oxygen is present.\n\ne) Anaerobic bacteria – can thrive in areas even without the presence of oxygen.\n\nf) Facultative bacteria – can survive with or without the presence of oxygen.\n\ng) Microaerophilic bacteria – can survive in minute amount of oxygen. Figure 1. Illustration of different types of bacteria. Photo from https://microbenotes.com/wp-content/uploads/2019/02/Classification-of- Bacteria-on-the-Basis-of-Shape.jpg",
+          "source_pages": [
+            1,
+            2
+          ],
+          "image_ids": [
+            "module_3_bacteria_shapes"
+          ]
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Bacteria",
+          "definition": "Microscopic one-celled organisms found in the environment.",
+          "source_pages": [
+            1
+          ]
+        },
+        {
+          "term": "Aerobic bacteria",
+          "definition": "Best thrive in areas where oxygen is present.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Anaerobic bacteria",
+          "definition": "Can thrive even without oxygen.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Facultative bacteria",
+          "definition": "Can survive with or without oxygen.",
+          "source_pages": [
+            2
+          ]
+        },
+        {
+          "term": "Microaerophilic bacteria",
+          "definition": "Can survive in minute amounts of oxygen.",
+          "source_pages": [
+            2
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_3_bacteria_shapes",
+          "path": "res://Assets/Codex/module_3/bacteria_shapes.png",
+          "caption": "Figure 1. Illustration of different types of bacteria. Photo from https://microbenotes.com/wp-content/uploads/2019/02/Classification-of-Bacteria-on-the-Basis-of-Shape.jpg",
+          "source_pages": [
+            2
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        1,
+        2
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_bacterial_claims",
+          "source_pages": [
+            2,
+            3,
+            4
+          ],
+          "detail": "Review the stated microbial growth/heat claims, spoilage-stage explanations, pH values and water test before assessment use. These are transcribed source statements, not independently verified findings."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_3_lesson_3",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "MOLDS",
+      "summary": "The source describes molds and their occurrence on smoked and dried fish.",
+      "sections": [
+        {
+          "heading": "MOLDS",
+          "content": "2. MOLDS – are cottony microorganisms that are commonly found on the surface of decaying food, especially in dark and damp places. They feed on starches and sugars and grow well in saprophytic acid foods. They are usually found on the surface of smoked and dried fish with varying colors such as orange, green, black, and others. These agents of spoilage are easy to destroy in boiling temperature (100oC) or even lower than boiling temperature (Paler-Calmorin, 2006). Figure 2. Photo of fish infected with molds. Picture retrieved from https://www.americanaquariumproducts.com/images/graphics/saprolegniafungus.jpg",
+          "source_pages": [
+            2,
+            3
+          ],
+          "image_ids": [
+            "module_3_mold_infected_fish"
+          ]
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Molds",
+          "definition": "Cottony microorganisms commonly found on the surface of decaying food, especially in dark and damp places.",
+          "source_pages": [
+            2
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_3_mold_infected_fish",
+          "path": "res://Assets/Codex/module_3/mold_infected_fish.png",
+          "caption": "Figure 2. Photo of fish infected with molds. Picture retrieved from https://www.americanaquariumproducts.com/images/graphics/saprolegniafungus.jpg",
+          "source_pages": [
+            3
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        2,
+        3
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_bacterial_claims",
+          "source_pages": [
+            2,
+            3,
+            4
+          ],
+          "detail": "Review the stated microbial growth/heat claims, spoilage-stage explanations, pH values and water test before assessment use. These are transcribed source statements, not independently verified findings."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_3_lesson_4",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "YEAST",
+      "summary": "The source describes yeast, fermentation, and its stated growth conditions.",
+      "sections": [
+        {
+          "heading": "YEAST",
+          "content": "3. YEAST – feed on sugars and are yellowish or whitish color on food surface. They form gas which causes the fishery products to ferment. They do not grow in acid foods. They are easily killed in boiling or simmering temperature (Paler-Calmorin, 2006).",
+          "source_pages": [
+            3
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Yeast",
+          "definition": "The source describes organisms that feed on sugars and form gas which causes fishery products to ferment.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        3
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_bacterial_claims",
+          "source_pages": [
+            2,
+            3,
+            4
+          ],
+          "detail": "Review the stated microbial growth/heat claims, spoilage-stage explanations, pH values and water test before assessment use. These are transcribed source statements, not independently verified findings."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_3_lesson_5",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "ENZYMES",
+      "summary": "The source describes enzymes, self-digestion after death, tissue changes, and methods described for controlling activity.",
+      "sections": [
+        {
+          "heading": "ENZYMES",
+          "content": "4. ENZYMES – are protein substances present in the muscle and in the gut of fish that initiate or speed up chemical reactions. At the death of the fish, the normal regulation system ceases to function and the supply of oxygen and energy production stops. Enzymes are also responsible in glycogen breakdown (glycolysis) and degradation of energy rich compounds begins. The self-breakdown or self-digestion (autolysis) results to the weakening, softening and discoloration of fish tissues. The rate of autolysis can be retarded by keeping at low temperature just above the freezing point. Enzymic activity can be stopped by heating and be controlled to a large degree by other methods (salting, drying, frying and marinating). Ungutted fish is vulnerable to tissue degradation and may rupture within a few hours of capture (Espejo-Hermes, 2004). According to Paler-Calmorin (2006), enzymes are useful to live fish for they help in the digestion and conversion of food into waste matter. But they are harmful when the fish die because they continue to digest the tissues which softens and disintegrates the fish. Figure 3. Illustration showing how enzymes works. Retrieved from https://www.thoughtco.com/thmb/_oENjxBhGzY2S8GkBs0fadjjMDA=/4500x3000/filters:fill(auto,1)/what-is-enzyme-structure-and- function-375555_v4-6f22f82931824e76b1c31401230deac8.png",
+          "source_pages": [
+            3
+          ],
+          "image_ids": [
+            "module_3_enzyme_action"
+          ]
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Enzymes",
+          "definition": "Protein substances present in the muscle and gut of fish that initiate or speed up chemical reactions.",
+          "source_pages": [
+            3
+          ]
+        },
+        {
+          "term": "Autolysis",
+          "definition": "Self-breakdown or self-digestion that results in weakening, softening and discoloration of fish tissues.",
+          "source_pages": [
+            3
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [
+        {
+          "id": "module_3_enzyme_action",
+          "path": "res://Assets/Codex/module_3/enzyme_action.png",
+          "caption": "Figure 3. Illustration showing how enzymes works. Retrieved from https://www.thoughtco.com/thmb/_oENjxBhGzY2S8GkBs0fadjjMDA=/4500x3000/filters:fill(auto,1)/what-is-enzyme-structure-and-function-375555_v4-6f22f82931824e76b1c31401230deac8.png",
+          "source_pages": [
+            3
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        3
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_3_lesson_6",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "CHEMICAL SPOILAGE",
+      "summary": "The source describes lipid hydrolysis, oxidation, rancidity, protein changes, and discoloration during storage.",
+      "sections": [
+        {
+          "heading": "CHEMICAL SPOILAGE",
+          "content": "5. CHEMICAL SPOILAGE – mainly occur during storage in ice or in frozen condition. Chemical changes or rancidity of lipids may involve lipid autolysis (enzymic hydrolysis with free fatty acids, and glycerol as main product) and auto-oxidation (the reaction of unsaturated lipid with oxygen). Auto oxidation is generally more common in aquatic products due to their higher degree of unsaturation than other foods. Oxidative rancidity in fish can result to rancid flavor and odor as well as discoloration. Other chemical spoilage also happens in fish such as denaturation of protein during frozen storage that results to toughness, dryness and fibrous texture of the meat. Darkening of red meat in fresh fish may occur due to change of myoglobin from bright red to red-brown in the cellular tissues (Espejo-Hermes, 2004).",
+          "source_pages": [
+            4
+          ],
+          "image_ids": []
+        }
+      ],
+      "key_concepts": [
+        {
+          "term": "Auto-oxidation",
+          "definition": "The reaction of unsaturated lipid with oxygen.",
+          "source_pages": [
+            4
+          ]
+        }
+      ],
+      "examples": [],
+      "tables": [],
+      "images": [],
+      "source_pages": [
+        4
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    },
+    {
+      "id": "module_3_lesson_7",
+      "module_id": "module_3",
+      "module_number": 3,
+      "module_title": "FISH SPOILAGE",
+      "title": "Changes of Fish after Death",
+      "summary": "The source describes four stages after death and compares the characteristics of fresh and stale fish in a table.",
+      "sections": [
+        {
+          "heading": "Changes of Fish after Death",
+          "content": "Changes of Fish after Death Paler-Calmorin (2006) discuss the different stages of spoilage that occur in fish after their death. These are: 1) change in color; 2) rigor mortis; 3) autolysis; and 4) putrefaction\n\n1) Change of color – the color of gills, skin and flesh starts to fade after death. Later, if no preservative action is applied to fish, the color becomes pale.\n\n2) Rigor mortis – this occurs a few hours after the death of the fish. Fish in this state are characterized by stiffness of the body due to the formation of lactic acid caused by bacteria.\n\n3) Autolysis – Self-digestion takes place in thein the muscle tissue of the fish by enzymes due to continuous digestion even in death. At this time the walls that hold the enzymes can no longer control the digestion, thus, softening of the tissue occurs. Bacteria also aid the enzymes in digestion where there is a change of flavor and odor of fish. The fish in the state of autolysis is stale.\n\n4) Putrefaction – In this state the fish are spoiled. Their muscle tissues decompose due to accumulation of bacteria or fungi in the fish’s tissues. Breakdown of protein occurs which result foul odor.",
+          "source_pages": [
+            4
+          ],
+          "image_ids": []
+        },
+        {
+          "heading": "Characteristics of Fresh and Stale Fish",
+          "content": "Table 1. Characteristics of Fresh and Stale Fish (Paler-Calmorin, 2006). The complete source rows are preserved in the tables field and the associated image.",
+          "source_pages": [
+            4
+          ],
+          "image_ids": [
+            "module_3_fresh_stale_fish_table"
+          ]
+        }
+      ],
+      "key_concepts": [],
+      "examples": [],
+      "tables": [
+        {
+          "id": "module_3_fresh_stale_table",
+          "title": "Characteristics of Fresh and Stale Fish (Paler-Calmorin, 2006)",
+          "columns": [
+            "Characteristic",
+            "Fresh fish",
+            "Stale fish"
+          ],
+          "source_pages": [
+            4
+          ],
+          "image_id": "module_3_fresh_stale_fish_table",
+          "rows": [
+            [
+              "Odor",
+              "Fishy",
+              "Foul or sour"
+            ],
+            [
+              "Gills",
+              "Bright red",
+              "Light pink"
+            ],
+            [
+              "Slime",
+              "Clear and few on the skin",
+              "Cloudy and plenty on the skin"
+            ],
+            [
+              "Eyes",
+              "Clear, transparent, bright and protruding",
+              "Cloudy and shrunken"
+            ],
+            [
+              "Flesh",
+              "Firm and elastic; finger marks do not remain",
+              "Soft and fingerprints remain"
+            ],
+            [
+              "Skin and color",
+              "Shiny and bright",
+              "Dull and pale"
+            ],
+            [
+              "Scales",
+              "Stick tightly to the skin",
+              "Loose and easily removed"
+            ],
+            [
+              "Vent",
+              "Pinkish and reddish",
+              "Brownish"
+            ],
+            [
+              "pH",
+              "6.0-7.0",
+              "Below 6.0"
+            ],
+            [
+              "Water test",
+              "Sink in a basin of freshwater",
+              "Float in a basin of freshwater"
+            ]
+          ],
+          "review_flag": "source_bacterial_claims"
+        }
+      ],
+      "images": [
+        {
+          "id": "module_3_fresh_stale_fish_table",
+          "path": "res://Assets/Codex/module_3/fresh_stale_fish_table.png",
+          "caption": "Table 1. Characteristics of Fresh and Stale Fish (Paler-Calmorin, 2006)",
+          "source_pages": [
+            4
+          ],
+          "status": "supplied"
+        }
+      ],
+      "source_pages": [
+        4
+      ],
+      "references": [
+        {
+          "text": "Espejo-Hermes, J. 2004. Fish Processing Technology in the Tropics. Tawid Publications. ISBN 971-91395-7-9",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        },
+        {
+          "text": "Paler-Calmorin, L. 2006. 2006. Post Harvest Fisheries. National Book Store. ISBN 971-08-6662-1",
+          "source_pages": [
+            5
+          ],
+          "scope": "module_bibliography"
+        }
+      ],
+      "content_status": "extracted_requires_instructor_review",
+      "review_flags": [
+        {
+          "id": "source_bacterial_claims",
+          "source_pages": [
+            2,
+            3,
+            4
+          ],
+          "detail": "Review the stated microbial growth/heat claims, spoilage-stage explanations, pH values and water test before assessment use. These are transcribed source statements, not independently verified findings."
+        }
+      ],
+      "unlock_requirement": {
+        "type": "quest",
+        "id": ""
+      }
+    }
+  ]
+}
