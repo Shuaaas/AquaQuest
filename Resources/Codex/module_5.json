@@ -224,8 +224,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_4"
       }
     },
     {
@@ -328,8 +328,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_4"
       }
     },
     {
@@ -448,8 +448,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_4"
       }
     },
     {
@@ -553,8 +553,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_4"
       }
     },
     {
@@ -690,8 +690,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_4"
       }
     }
   ]

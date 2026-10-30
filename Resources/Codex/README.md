@@ -34,7 +34,7 @@ All `source_pages` numbers are one-based PDF pages within that lesson's module, 
 
 ## Unlock configuration and review status
 
-Every lesson currently has `unlock_requirement: {"type": "quest", "id": ""}`. Empty IDs require an explicit mapping to existing quests. They must not be interpreted as automatically unlocked. The files deliberately contain no unlocked state. `CodexManager` owns the unlocked IDs and registers a separate `codex` section with SaveManager. All production mappings remain unconfigured at the user's request.
+Every lesson now has a region requirement, for example Module 2 uses `unlock_requirement: {"type": "region", "id": "region_1"}`. The approved mapping is **Region 1 → Module 2; Region 2 → Module 3; Region 3 → Module 4; Region 4 → Module 5; Region 5 → Module 1**. All lessons in the assigned module become reviewable when that defined region unlocks. Main unlocks Region 1 on startup. Regions 3–5 are mapped but their definitions are not yet present, so those modules remain locked. `CodexManager` saves unlocked lesson IDs in the existing `codex` save section and reconciles them with region progress after loading. No unlocked booleans are stored in the content JSON.
 
 Most lessons have `content_status: "extracted_requires_instructor_review"`. This records completed extraction without claiming educational fact checking or instructor approval. Module 5's temperature-control lesson is `partial_source_missing_supplement`; its additives lesson is `source_placeholder_only`. See the report before using this material for assessment.
 
@@ -50,6 +50,6 @@ Run the installed GUT suite using the GUT editor panel, or run the existing Godo
 --headless --path . -s addons/gut/gut_cmdln.gd -gexit
 ```
 
-The Codex tests check index/module agreement, unique lesson IDs, page bounds, unconfigured unlocks, image presence and decoding, section image references, and complete page accounting. Additional Python checks verified strict JSON, source/asset checksums, nested page ranges, and image ownership. These checks verify structure and extraction traceability, not scientific accuracy.
+The Codex tests check index/module agreement, unique lesson IDs, page bounds, approved region requirements, image presence and decoding, section image references, and complete page accounting. Additional Python checks verified strict JSON, source/asset checksums, nested page ranges, and image ownership. These checks verify structure and extraction traceability, not scientific accuracy.
 
 No export preset currently exists. When an Android/export workflow is approved later, ensure non-resource JSON files in `Resources/Codex/` are included in the export, and test image readability on a physical device. No export settings were changed here. Phase 2 tests cover runtime rendering, unlock persistence and phone-sized layouts; Android packaging and a physical-device playthrough remain untested. See `docs/CODEX_SYSTEM.md` for the separate existing region-scene startup issue.

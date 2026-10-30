@@ -88,8 +88,8 @@
       "content_status": "extracted_requires_instructor_review",
       "review_flags": [],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     },
     {
@@ -195,8 +195,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     },
     {
@@ -274,8 +274,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     },
     {
@@ -339,8 +339,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     },
     {
@@ -413,8 +413,8 @@
       "content_status": "extracted_requires_instructor_review",
       "review_flags": [],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     },
     {
@@ -468,8 +468,8 @@
       "content_status": "extracted_requires_instructor_review",
       "review_flags": [],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     },
     {
@@ -612,8 +612,8 @@
         }
       ],
       "unlock_requirement": {
-        "type": "quest",
-        "id": ""
+        "type": "region",
+        "id": "region_2"
       }
     }
   ]

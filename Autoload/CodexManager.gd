@@ -1,6 +1,6 @@
 extends Node
 ## Static lesson catalog and player unlock progress. Rendering belongs to CodexUI.
-## Empty/unknown quest requirements deliberately remain locked.
+## Quest and region requirements are data; unavailable conditions remain locked.
 
 const INDEX_PATH := "res://Resources/Codex/index.json"
 
@@ -8,6 +8,7 @@ var _modules: Dictionary = {}
 var _lessons: Dictionary = {}
 var _unlocked: Dictionary = {}
 var _quest_lessons: Dictionary = {}
+var _region_lessons: Dictionary = {}
 var _diagnostics: Array[String] = []
 
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 	load_catalog()
 	SaveManager.register_section("codex", _get_save_data, _apply_save_data, true)
 	EventBus.quest_completed.connect(_on_quest_completed)
+	EventBus.region_unlocked.connect(_on_region_unlocked)
 	EventBus.load_completed.connect(_on_load_completed)
 	EventBus.game_started.connect(_on_game_started)
 
@@ -23,6 +25,7 @@ func load_catalog(index_path: String = INDEX_PATH) -> bool:
 	_modules.clear()
 	_lessons.clear()
 	_quest_lessons.clear()
+	_region_lessons.clear()
 	_diagnostics.clear()
 	var index := _read_json(index_path)
 	if not index.get("modules") is Array:
@@ -38,6 +41,7 @@ func load_catalog(index_path: String = INDEX_PATH) -> bool:
 			_unlocked.erase(lesson_id)
 	_index_requirements()
 	_reconcile_completed_quests()
+	_reconcile_unlocked_regions()
 	return not _modules.is_empty()
 
 
@@ -177,7 +181,16 @@ func _index_requirements() -> void:
 	for lesson_id: String in _lessons:
 		var requirement: Dictionary = _lessons[lesson_id]["unlock_requirement"]
 		var quest_id: String = requirement["id"]
-		if requirement["type"] != "quest":
+		if requirement["type"] == "region":
+			if quest_id.is_empty():
+				unconfigured += 1
+				continue
+			if not _region_lessons.has(quest_id):
+				_region_lessons[quest_id] = []
+				if RegionManager.get_region_definition(quest_id).is_empty():
+					_problem("Region '%s' is not defined yet; its lessons remain locked" % quest_id)
+			_region_lessons[quest_id].append(lesson_id)
+		elif requirement["type"] != "quest":
 			_problem("%s uses unsupported unlock type '%s'" % [lesson_id, requirement["type"]])
 		elif quest_id.is_empty():
 			unconfigured += 1
@@ -188,7 +201,7 @@ func _index_requirements() -> void:
 				_quest_lessons[quest_id] = []
 			_quest_lessons[quest_id].append(lesson_id)
 	if unconfigured > 0:
-		_problem("%d lessons have no configured quest; no automatic unlocks" % unconfigured)
+		_problem("%d lessons have no configured requirement; no automatic unlocks" % unconfigured)
 
 
 func _problem(message: String) -> void:
@@ -227,6 +240,9 @@ func get_lock_message(lesson_id: String) -> String:
 	if not _lessons.has(lesson_id):
 		return "This lesson is unavailable."
 	var requirement: Dictionary = _lessons[lesson_id]["unlock_requirement"]
+	if requirement["type"] == "region" and not requirement["id"].is_empty():
+		var region_number: String = requirement["id"].trim_prefix("region_")
+		return "Locked: unlock Region %s to review this lesson." % region_number
 	if requirement["type"] != "quest" or requirement["id"].is_empty():
 		return "Locked: this lesson is not available for review yet."
 	var quest := QuestObjectiveManager.get_quest_definition(requirement["id"])
@@ -239,11 +255,30 @@ func _on_quest_completed(quest_id: String) -> void:
 	# Validate state as well as the signal: objectives_complete is not a turn-in.
 	if not QuestManager.is_quest_completed(quest_id):
 		return
-	for lesson_id: String in _quest_lessons.get(quest_id, []):
+	_unlock_lessons(_quest_lessons.get(quest_id, []))
+
+
+func _on_region_unlocked(region_id: String) -> void:
+	if RegionManager.get_region_definition(region_id).is_empty():
+		return
+	if RegionManager.is_region_unlocked(region_id):
+		_unlock_lessons(_region_lessons.get(region_id, []))
+
+
+func _unlock_lessons(lesson_ids: Array) -> void:
+	var changed := false
+	for lesson_id: String in lesson_ids:
 		if not _unlocked.has(lesson_id):
 			_unlocked[lesson_id] = true
 			EventBus.codex_lesson_unlocked.emit(lesson_id)
-			EventBus.codex_progress_changed.emit()
+			changed = true
+	if changed:
+		EventBus.codex_progress_changed.emit()
+
+
+func _reconcile_unlocked_regions() -> void:
+	for region_id: String in _region_lessons:
+		_on_region_unlocked(region_id)
 
 
 func _reconcile_completed_quests() -> void:
@@ -253,11 +288,13 @@ func _reconcile_completed_quests() -> void:
 
 func _on_load_completed(_slot: int) -> void:
 	_reconcile_completed_quests()
+	_reconcile_unlocked_regions()
 	EventBus.codex_progress_changed.emit()
 
 
 func _on_game_started() -> void:
 	_unlocked.clear()
+	_reconcile_unlocked_regions()
 	EventBus.codex_progress_changed.emit()
 
 

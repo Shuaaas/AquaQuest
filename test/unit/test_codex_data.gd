@@ -1,6 +1,10 @@
 extends GutTest
 
 const CODEX_PATH := "res://Resources/Codex/"
+const MODULE_REGIONS := {
+	"module_1": "region_5", "module_2": "region_1", "module_3": "region_2",
+	"module_4": "region_3", "module_5": "region_4",
+}
 
 
 func _read_json(path: String) -> Dictionary:
@@ -34,7 +38,7 @@ func test_index_matches_modules_and_unique_lesson_ids() -> void:
 			seen_ids[lesson_id] = true
 			assert_eq(lesson_id, entry["lessons"][lesson_index]["id"])
 			assert_eq(lesson["module_id"], entry["id"])
-			assert_eq(lesson["unlock_requirement"], {"type": "quest", "id": ""})
+			assert_eq(lesson["unlock_requirement"], {"type": "region", "id": MODULE_REGIONS[entry["id"]]})
 			assert_false(lesson.has("unlocked"), "Unlocks belong to progression state")
 			assert_false(lesson["sections"].is_empty())
 			for page_number in lesson["source_pages"]:

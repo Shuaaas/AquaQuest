@@ -85,6 +85,19 @@ func test_unlocked_text_definitions_images_and_references_are_rendered() -> void
 			assert_false(child.bbcode_enabled)
 
 
+func test_region_one_unlock_makes_module_two_readable_in_the_open_codex() -> void:
+	var previous_regions: Dictionary = RegionManager._unlocked_regions.duplicate()
+	RegionManager._unlocked_regions = {}
+	assert_true(ui.open_codex())
+	ui.show_module("module_2")
+	assert_true(_text().contains("Locked:"))
+	RegionManager.unlock_region("region_1")
+	var lesson := CodexManager.get_lesson("module_2_lesson_1")
+	assert_true(_text().contains(lesson["summary"]))
+	assert_false(_text().contains("Locked:"))
+	RegionManager._unlocked_regions = previous_regions
+
+
 func test_missing_image_keeps_text_and_shows_a_readable_placeholder() -> void:
 	CodexManager._apply_save_data({"unlocked_lesson_ids": ["module_1_lesson_1"]})
 	assert_true(ui.open_codex())
