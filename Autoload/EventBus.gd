@@ -65,6 +65,10 @@ signal codex_open_requested
 signal codex_lesson_unlocked(lesson_id: String)
 signal codex_progress_changed
 
+# --- World map / mini map ---
+signal world_map_open_requested
+signal map_data_changed
+
 # --- Exams / Questions (educational core loop) ---
 signal exam_started(exam_id: String)
 signal question_answered(question_id: String, was_correct: bool)

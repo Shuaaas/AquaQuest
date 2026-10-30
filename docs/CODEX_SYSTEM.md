@@ -64,7 +64,7 @@ This is an example of the shape inside the existing `sections` object, not a new
 
 `SaveManager.register_section()` now accepts optional fourth argument `apply_when_missing`, defaulting to `false`. Codex opts in with `true`. When an older save has no Codex section, its callback receives `{}` and clears the previous slot's unlocked IDs. Other sections retain their prior missing-section behavior. This prevents a player from carrying unlocks from a newer save into an older one. After a successful load, Codex reconciles configured lessons whose real quests are completed or whose defined regions are unlocked. This also grants Module 2 when loading an older save with Region 1 unlocked, without carrying unrelated unlocks between slots. Malformed Codex progress is reported and rejected, rather than silently granting access.
 
-The existing `game_started` event clears saved Codex progress and reapplies access from the region state currently supplied by RegionManager. There is no automatic save on closing the reader; it uses the game's existing save flow (the Main script's **N** save and **M** load shortcuts after the reader is closed). New-game clearing of other systems remains their existing responsibility.
+The existing `game_started` event clears saved Codex progress and reapplies access from the region state currently supplied by RegionManager. There is no automatic save on closing the reader; it uses the game's existing save flow (the Main script's **N** save and **Ctrl+M** load shortcuts after the reader is closed; **M** now opens the World Map). New-game clearing of other systems remains their existing responsibility.
 
 ## Created and changed files
 
@@ -97,11 +97,11 @@ Coverage includes all five JSON modules and 24 lessons; imported image resources
 
 Godot also rendered the isolated reader at **1100×720**, **390×844**, and **720×360** using a temporary process-only lesson unlock. Screenshots of locked/unlocked states, a diagram, and both phone orientations were visually inspected. This is automated engine rendering plus visual inspection, not a manual end-to-end game playthrough or a physical Android test. The temporary visual check did not write a save or change production content, and the project renderer setting was not changed.
 
-**Existing startup blocker:** launching Main with the installed Godot 4.5.1 executable reports `Scene/Regions/region_1.tscn:20 - Parse Error`. The scene is already `format=4` in Git HEAD, and it was not changed by this task. The installed engine does not successfully read this existing scene. Full in-world playthrough verification is therefore blocked even though the isolated Codex and regression tests pass. Investigate the scene's authoring engine version and safe compatibility options in a separate task; do not blindly resave or replace the region.
+**Startup verification correction (2026-10-30):** Region 1 loads in Godot 4.5.1 when background loading is allowed to finish. The earlier parse-error report came from shutting down an overly short test while loading was in flight; that evidence does not justify a scene-format conversion. The map phase verified the production scene without rewriting it. Region 1 still reports its existing missing `default` spawn-point warning. See `docs/MAP_SYSTEM.md` for current validation.
 
 **Remaining configuration/content:** the approved region mappings are configured, but Regions 3–5 still need real definitions before their modules can unlock; the missing Module 5 lecture attachments and instructor-review flags from Phase 1 remain unresolved. There is no export preset; a later Android/export task must include non-resource Codex JSON files and test packaged image/resource access. Existing PDF paths are source citations and need not be included for the reader to work.
 
-Recommended next task: resolve the existing Region 1 scene/engine compatibility issue, then manually test **I → Learning Codex → Close** in the restored world. Production access follows the approved region mapping above.
+Recommended next task: manually test **I → Learning Codex → Close** in the world; inspect the existing default-spawn warning if a specific starting position is required. Production access follows the approved region mapping above.
 
 ## Region mapping update (2026-10-30)
 

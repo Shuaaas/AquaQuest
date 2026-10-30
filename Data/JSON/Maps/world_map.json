@@ -1,0 +1,11 @@
+{
+  "regions": [
+    {"region_id": "region_1", "module_id": "module_2", "position": [0.16, 0.64], "theme": "village", "quest_ids": ["learn_post_harvest_basics"]},
+    {"region_id": "region_2", "module_id": "module_3", "position": [0.35, 0.30], "theme": "wetland", "quest_ids": ["visit_region2_mini"]},
+    {"region_id": "region_3", "module_id": "module_4", "position": [0.57, 0.62], "theme": "curing", "quest_ids": []},
+    {"region_id": "region_4", "module_id": "module_5", "position": [0.76, 0.25], "theme": "preservation", "quest_ids": []},
+    {"region_id": "region_5", "module_id": "module_1", "position": [0.88, 0.68], "theme": "archipelago", "quest_ids": []}
+  ],
+  "quest_givers": {"learn_post_harvest_basics": "teacher_ana"},
+  "exam_npcs": {"region1_exam": "examiner_santiago"}
+}

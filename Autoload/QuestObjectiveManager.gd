@@ -101,6 +101,23 @@ func get_quest_definition(quest_id: String) -> Dictionary:
 	return _quest_definitions.get(quest_id, {}).duplicate(true)
 
 
+func get_quest_definitions() -> Dictionary:
+	return _quest_definitions.duplicate(true)
+
+
+## Read-only navigation query; uses the SAME DDA-aware count as quest completion.
+func get_pending_objectives(quest_id: String) -> Array:
+	var result: Array = []
+	var progress := QuestManager.get_quest_progress(quest_id)
+	if progress.get("objectives_complete", false):
+		return result
+	var objectives: Array = _quest_definitions.get(quest_id, {}).get("objectives", [])
+	for index in range(objectives.size()):
+		if progress.get("obj_%d" % index, 0) < _resolve_required_count(objectives[index]):
+			result.append({"index": index, "objective": objectives[index].duplicate(true)})
+	return result
+
+
 func _on_item_added(item_id: String, _amount: int) -> void:
 	_check_active_quests("catch_fish", {"fish_id": item_id})
 

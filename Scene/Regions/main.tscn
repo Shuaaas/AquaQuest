@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjysd7qtg2685"]
+[gd_scene load_steps=12 format=3 uid="uid://cjysd7qtg2685"]
 
 [ext_resource type="Script" uid="uid://bn8sqpdqbba3m" path="res://Scripts/Managers/main.gd" id="1_hx6h6"]
 [ext_resource type="PackedScene" uid="uid://dh8vjuejffq06" path="res://Scene/UI/fishing_ui.tscn" id="1_n1d5u"]
@@ -9,32 +9,38 @@
 [ext_resource type="PackedScene" uid="uid://cgns8hoebjd4" path="res://Scene/UI/inventory_ui.tscn" id="7_vpkto"]
 [ext_resource type="PackedScene" uid="uid://cffcgxtrcr7hw" path="res://Scene/UI/performance_board.tscn" id="8_perfboard"]
 [ext_resource type="PackedScene" path="res://Scene/UI/CodexUI.tscn" id="9_codex"]
+[ext_resource type="PackedScene" path="res://Scene/UI/WorldMapUI.tscn" id="10_world_map"]
+[ext_resource type="PackedScene" path="res://Scene/UI/MiniMapUI.tscn" id="11_mini_map"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_hx6h6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="FishingUI" parent="CanvasLayer" instance=ExtResource("1_n1d5u")]
+[node name="FishingUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("1_n1d5u")]
 
-[node name="DialogueUi" parent="CanvasLayer" instance=ExtResource("3_hx6h6")]
+[node name="DialogueUi" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("3_hx6h6")]
 
 [node name="ToastUI" parent="CanvasLayer" instance=ExtResource("4_yg326")]
 
-[node name="ExamUI" parent="CanvasLayer" instance=ExtResource("5_74fnr")]
+[node name="ExamUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("5_74fnr")]
 
-[node name="ShopUI" parent="CanvasLayer" instance=ExtResource("6_cuued")]
+[node name="ShopUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("6_cuued")]
 
-[node name="PerformanceBoard" parent="CanvasLayer" instance=ExtResource("8_perfboard")]
+[node name="PerformanceBoard" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("8_perfboard")]
 visible = false
 
-[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("7_vpkto")]
+[node name="InventoryUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("7_vpkto")]
 visible = false
 offset_left = 1.0
 offset_top = 2.0
 offset_right = 1.0
 offset_bottom = 2.0
 
-[node name="CodexUI" parent="CanvasLayer" instance=ExtResource("9_codex")]
+[node name="CodexUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("9_codex")]
+
+[node name="MiniMapUI" parent="CanvasLayer" instance=ExtResource("11_mini_map")]
+
+[node name="WorldMapUI" parent="CanvasLayer" instance=ExtResource("10_world_map")]
 
 [node name="RegionContainer" type="Node2D" parent="." groups=["region_container"]]

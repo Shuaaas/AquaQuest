@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/MiniMapUI.gd" id="1_ui"]
+[ext_resource type="Script" path="res://Scripts/UI/MiniMapSurface.gd" id="2_surface"]
+
+[sub_resource type="StyleBoxFlat" id="Style_mini"]
+bg_color = Color(0.04, 0.1, 0.14, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.61, 0.64, 1)
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[node name="MiniMapUI" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 204.0
+grow_horizontal = 0
+script = ExtResource("1_ui")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_mini")
+
+[node name="Layout" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout"]
+layout_mode = 2
+
+[node name="RegionLabel" type="Label" parent="Panel/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mini map"
+
+[node name="MapButton" type="Button" parent="Panel/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+text = "Map"
+tooltip_text = "Open World Map (M)"
+
+[node name="SurfaceBox" type="Control" parent="Panel/Layout"]
+custom_minimum_size = Vector2(184, 124)
+layout_mode = 2
+size_flags_vertical = 3
+clip_contents = true
+
+[node name="Terrain" type="TextureRect" parent="Panel/Layout/SurfaceBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_filter = 1
+expand_mode = 1
+mouse_filter = 2
+
+[node name="MarkerSurface" type="Control" parent="Panel/Layout/SurfaceBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_surface")
+
+[node name="MapViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+size = Vector2i(184, 124)
+disable_3d = true
+render_target_update_mode = 0
+
+[node name="MapCamera" type="Camera2D" parent="MapViewport"]
+unique_name_in_owner = true

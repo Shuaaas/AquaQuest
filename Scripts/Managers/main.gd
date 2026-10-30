@@ -26,4 +26,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_P: performance_board.visible = not performance_board.visible
 			KEY_L: print("points: ", FishingManager.get_points(), " | earned: ", FishingManager.get_total_points_earned(), " | spent: ", FishingManager.get_total_points_spent(), " | performance: ", FishingManager.get_performance_points())
 			KEY_N: SaveManager.save_game(0)
-			KEY_M: SaveManager.load_game(0)
+			KEY_M:
+				if not event.echo:
+					if event.ctrl_pressed:
+						SaveManager.load_game(0)
+					else:
+						EventBus.world_map_open_requested.emit()

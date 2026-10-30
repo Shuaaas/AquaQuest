@@ -235,6 +235,11 @@ func _record_attempt(exam_id: String, score: float, passed: bool, correct_count:
 	})
 
 
+## Read-only regional metadata for atlas progress and objective navigation.
+func get_exam_definitions() -> Dictionary:
+	return _exam_definitions.duplicate(true)
+
+
 ## Public read for a future exam-history UI, or for max_attempts checks.
 func get_exam_history(exam_id: String) -> Array:
 	return _exam_history.get(exam_id, [])

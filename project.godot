@@ -38,6 +38,7 @@ ItemDatabase="*res://Autoload/ItemDatabase.gd"
 ShopManager="*res://Autoload/ShopManager.gd"
 PerformanceTracker="*res://Autoload/PerformanceTracker.gd"
 CodexManager="*res://Autoload/CodexManager.gd"
+MapManager="*res://Autoload/MapManager.gd"
 
 [dotnet]
 
