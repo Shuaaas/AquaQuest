@@ -13,6 +13,7 @@ extends Node
 
 # item_id -> int count
 var _items: Dictionary = {}
+var equipped_costume: String = ""
 
 
 func _ready() -> void:
@@ -20,26 +21,28 @@ func _ready() -> void:
 
 
 func add_item(item_id: String, amount: int = 1) -> void:
-	if amount <= 0:
+	if amount <= 0 or item_id.is_empty():
 		return
-	# Per-item stack limit via ItemDatabase (Phase 13) - any item_id with
-	# no JSON definition yet falls back to ItemDatabase's own default
-	# (999), so this is a no-op change in behavior for every item already
-	# in use elsewhere in the project until you actually author a
-	# definition for it.
-	var max_stack: int = ItemDatabase.get_max_stack(item_id)
-	_items[item_id] = min(_items.get(item_id, 0) + amount, max_stack)
-	EventBus.item_added.emit(item_id, amount)
+	var before := get_item_count(item_id)
+	var added := mini(amount, maxi(0, ItemDatabase.get_max_stack(item_id) - before))
+	if added == 0:
+		return
+	_items[item_id] = before + added
+	EventBus.item_added.emit(item_id, added)
 	EventBus.inventory_changed.emit()
 
 
 func remove_item(item_id: String, amount: int = 1) -> bool:
+	if amount <= 0:
+		return false
 	var current: int = _items.get(item_id, 0)
 	if current < amount:
 		return false
 	_items[item_id] = current - amount
 	if _items[item_id] <= 0:
 		_items.erase(item_id)
+	if item_id == equipped_costume and not has_item(item_id):
+		equipped_costume = ""
 	EventBus.item_removed.emit(item_id, amount)
 	EventBus.inventory_changed.emit()
 	return true
@@ -58,7 +61,7 @@ func get_all_items() -> Dictionary:
 
 
 func _get_save_data() -> Dictionary:
-	return {"items": _items}
+	return {"items": _items.duplicate(), "equipped_costume": equipped_costume}
 
 
 ## Item ids that no longer exist as real items. "coin" was a separate
@@ -72,11 +75,32 @@ const RETIRED_ITEM_IDS := ["coin"]
 
 
 func _apply_save_data(data: Dictionary) -> void:
-	_items = data.get("items", {})
-	for retired_id in RETIRED_ITEM_IDS:
-		if _items.has(retired_id):
-			push_warning("InventoryManager: dropped %d retired '%s' from a loaded save (no longer an item; not converted to points)" % [int(_items[retired_id]), retired_id])
-			_items.erase(retired_id)
-	# Refresh any inventory display after a load - previously only add/remove
-	# emitted this, so a UI built before the load kept showing stale counts.
+	_items = {}
+	var loaded = data.get("items", {})
+	if loaded is Dictionary:
+		for key in loaded:
+			if not key is String or key in RETIRED_ITEM_IDS:
+				continue
+			var value = loaded[key]
+			if not (value is int or value is float) or not is_finite(float(value)):
+				continue
+			# Repair the old store's undefined rod without changing points.
+			var item_id: String = "fishing_rod" if key == "basic rod" else key
+			var count := clampi(int(value), 0, ItemDatabase.get_max_stack(item_id))
+			if count > 0:
+				_items[item_id] = mini(
+					get_item_count(item_id) + count, ItemDatabase.get_max_stack(item_id)
+				)
+	equipped_costume = ""
+	var costume = data.get("equipped_costume", "")
+	if costume == "fisher_hat" and has_item(costume):
+		equipped_costume = costume
 	EventBus.inventory_changed.emit()
+
+
+func toggle_costume(item_id: String) -> bool:
+	if item_id != "fisher_hat" or not has_item(item_id):
+		return false
+	equipped_costume = "" if equipped_costume == item_id else item_id
+	EventBus.inventory_changed.emit()
+	return true

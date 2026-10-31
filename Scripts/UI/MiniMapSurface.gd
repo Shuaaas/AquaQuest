@@ -3,14 +3,14 @@ extends Control
 
 const NAVIGATION := preload("res://Scripts/Systems/Map/MapNavigation.gd")
 const COLORS := {
-	"npc": Color("71e1e3"),
-	"fishing": Color("65aff4"),
-	"shop": Color("e9a46f"),
-	"exam": Color("a7dc8a"),
-	"location": Color("d8dacb"),
-	"exit": Color("83cdb2"),
-	"main_quest": Color("ffdb70"),
-	"mini_quest": Color("d2a5ff"),
+	"npc": Color("8ac6e0"),
+	"fishing": Color("5c8ea5"),
+	"shop": Color("a06131"),
+	"exam": Color("cbe0e8"),
+	"location": Color("ddccb8"),
+	"exit": Color("ba9e6e"),
+	"main_quest": Color("ba9e6e"),
+	"mini_quest": Color("7a5388"),
 }
 
 var markers: Array = []
@@ -23,8 +23,8 @@ func _draw() -> void:
 		var point := NAVIGATION.project_position(marker["position"], player_position, size, radius)
 		var limit := Rect2(Vector2(9, 9), size - Vector2(18, 18))
 		var clamped := point.clamp(limit.position, limit.end)
-		var color: Color = COLORS.get(marker["kind"], Color.WHITE)
-		draw_rect(Rect2(clamped - Vector2(4, 4), Vector2(8, 8)), Color("10202c"))
+		var color: Color = COLORS.get(marker["kind"], Color("fffce6"))
+		draw_rect(Rect2(clamped - Vector2(4, 4), Vector2(8, 8)), Color("160f09"))
 		if not limit.has_point(point):
 			var direction := (point - size * 0.5).normalized()
 			var side := direction.orthogonal()
@@ -48,7 +48,7 @@ func _draw() -> void:
 		PackedVector2Array(
 			[center + Vector2(0, -6), center + Vector2(-5, 5), center + Vector2(5, 5)]
 		),
-		Color.WHITE
+		Color("fffce6")
 	)
 	draw_string(
 		get_theme_default_font(),
@@ -57,5 +57,5 @@ func _draw() -> void:
 		HORIZONTAL_ALIGNMENT_LEFT,
 		-1,
 		12,
-		Color.WHITE
+		Color("fffce6")
 	)

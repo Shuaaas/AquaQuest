@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://cw1t0pa1qttub"]
+[gd_scene load_steps=121 format=3 uid="uid://cw1t0pa1qttub"]
 
 [ext_resource type="Script" uid="uid://ddrwjsrmjliwd" path="res://Scripts/Systems/Player/Player.gd" id="1_ewflj"]
 [ext_resource type="Texture2D" uid="uid://dy0hmty7hroy8" path="res://Assets/Entities/MALE CHAR/idle.png" id="2_rkjca"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://b3krb05htwtje" path="res://Scripts/Systems/Player/SavePositionComponent.gd.gd" id="14_86p6v"]
 [ext_resource type="Script" uid="uid://b0mf3l04oo14b" path="res://Scripts/Systems/Fishing/FishingRodComponent.gd" id="15_ov7tm"]
 [ext_resource type="PackedScene" uid="uid://c8ul0mny7uvpw" path="res://Scene/Player/interaction_component.tscn" id="18_gfwal"]
+
+[ext_resource type="Script" path="res://Scripts/Systems/Inventory/CostumeAppearance.gd" id="99_costume"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ssv0"]
 radius = 8.0
@@ -889,3 +891,7 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, -10)
+
+[node name="CostumeAppearance" type="Node2D" parent="."]
+position = Vector2(0, -30)
+script = ExtResource("99_costume")

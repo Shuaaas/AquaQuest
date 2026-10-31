@@ -1,6 +1,14 @@
 {
   "shop_id": "general_store",
   "items_for_sale": [
-	{ "item_id": "basic rod", "price_override": 10, "stock": 1 },
+	{
+	  "item_id": "fishing_rod",
+	  "price_override": 10,
+	  "stock": 1
+	},
+	{
+	  "item_id": "fisher_hat",
+	  "stock": 1
+	}
   ]
 }

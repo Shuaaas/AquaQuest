@@ -1,0 +1,14 @@
+{
+  "ink": "#160f09",
+  "shadow": "#2f1c10",
+  "panel": "#341f12",
+  "wood": "#7d4c28",
+  "edge": "#5a361e",
+  "highlight": "#ba9e6e",
+  "text": "#ddccb8",
+  "bright": "#fffce6",
+  "focus": "#8ac6e0",
+  "selected": "#3b535e",
+  "moss": "#62791e",
+  "mini": "#7a5388"
+}

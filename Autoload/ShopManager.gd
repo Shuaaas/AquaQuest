@@ -66,6 +66,7 @@ var _remaining_stock: Dictionary = {}
 var _purchased_one_time: Dictionary = {}
 
 var _current_shop_id: String = ""
+var _buying := false
 
 
 func _ready() -> void:
@@ -139,13 +140,26 @@ func _build_catalog_view(shop_id: String) -> Array:
 		var stock: int = int(stock_map.get(item_id, -1)) if int(entry.get("stock", -1)) >= 0 else -1
 		var one_time := ItemDatabase.is_one_time_purchase(item_id)
 
-		catalog.append({
-			"item_id": item_id,
-			"display_name": ItemDatabase.get_display_name(item_id),
-			"price": price,
-			"stock": stock,  # -1 = unlimited
-			"already_purchased": one_time and (_purchased_one_time.has(item_id) or InventoryManager.has_item(item_id)),
-		})
+		(
+			catalog
+			. append(
+				{
+					"item_id": item_id,
+					"display_name": ItemDatabase.get_display_name(item_id),
+					"description": ItemDatabase.get_description(item_id),
+					"icon": ItemDatabase.get_icon_path(item_id),
+					"owned": InventoryManager.get_item_count(item_id),
+					"max_stack": ItemDatabase.get_max_stack(item_id),
+					"price": price,
+					"stock": stock,
+					"already_purchased":
+					(  # -1 = unlimited
+						one_time
+						and (_purchased_one_time.has(item_id) or InventoryManager.has_item(item_id))
+					),
+				}
+			)
+		)
 
 	return catalog
 
@@ -164,71 +178,65 @@ func close_shop() -> void:
 
 
 ## Called by ShopUI. Returns true only if the purchase fully completed.
-## Always buys exactly 1 unit per call. See the class doc for the full
-## validate-then-commit sequence and why rapid clicks are safe.
-func buy_item(item_id: String) -> bool:
-	if _current_shop_id == "":
-		push_warning("ShopManager: buy_item called with no shop open")
-		return false
-
-	var shop_def: Dictionary = _shop_definitions[_current_shop_id]
-	var entry := _find_catalog_entry(shop_def, item_id)
-	if entry.is_empty():
-		push_warning("ShopManager: '%s' is not sold in this shop" % item_id)
-		return false
-
-	var display_name := ItemDatabase.get_display_name(item_id)
-	var one_time := ItemDatabase.is_one_time_purchase(item_id)
-
-	# 1. One-time items: refuse if bought before OR currently owned.
-	if one_time and (_purchased_one_time.has(item_id) or InventoryManager.has_item(item_id)):
-		UIManager.show_notification("You already own %s." % display_name, 2.0)
-		return false
-
-	# 2. Limited stock.
-	var stock_map: Dictionary = _remaining_stock.get(_current_shop_id, {})
-	if stock_map.has(item_id) and int(stock_map[item_id]) <= 0:
-		UIManager.show_notification("%s is out of stock." % display_name, 2.0)
-		return false
-
-	# 3. Inventory capacity (per-item max_stack). Checked BEFORE charging so
-	# the player can never pay for an item that then fails to be added.
-	var owned_before := InventoryManager.get_item_count(item_id)
-	if owned_before >= ItemDatabase.get_max_stack(item_id):
-		UIManager.show_notification("You can't carry any more %s." % display_name, 2.0)
-		return false
-
-	# 4. Affordability - against the player's existing points balance.
+## Validates the entire requested quantity before any state changes.
+func purchase_error(item_id: String, quantity: int = 1) -> String:
+	if _current_shop_id == "" or _buying:
+		return "Shop unavailable."
+	if quantity < 1 or quantity > 999:
+		return "Choose a quantity from 1 to 999."
+	var entry := _find_catalog_entry(_shop_definitions[_current_shop_id], item_id)
+	if entry.is_empty() or not ItemDatabase.has_definition(item_id):
+		return "Item unavailable."
+	if ItemDatabase.is_one_time_purchase(item_id):
+		if quantity != 1:
+			return "One-time purchase: choose one."
+		if _purchased_one_time.has(item_id) or InventoryManager.has_item(item_id):
+			return "Already owned."
+	var stock: int = _remaining_stock.get(_current_shop_id, {}).get(item_id, -1)
+	if stock >= 0 and stock < quantity:
+		return "Sold out." if stock == 0 else "Not enough stock."
+	if InventoryManager.get_item_count(item_id) + quantity > ItemDatabase.get_max_stack(item_id):
+		return (
+			"Inventory stack full."
+			if InventoryManager.get_item_count(item_id) >= ItemDatabase.get_max_stack(item_id)
+			else "Not enough carrying space."
+		)
 	var price: int = int(entry.get("price_override", ItemDatabase.get_buy_price(item_id)))
-	if not FishingManager.can_afford(price):
-		UIManager.show_notification(
-			"Not enough points. %s costs %d, you have %d." % [display_name, price, FishingManager.get_points()], 2.5)
-		return false
+	if price < 0:
+		return "Invalid price."
+	if not FishingManager.can_afford(price * quantity):
+		return "Not enough points."
+	return ""
 
-	# 5. Commit: add the item and VERIFY it landed before any points move.
-	InventoryManager.add_item(item_id, 1)
-	if InventoryManager.get_item_count(item_id) <= owned_before:
-		UIManager.show_notification("Couldn't add %s to your inventory. You were not charged." % display_name, 2.5)
-		return false
 
-	# 6. Spend. Pre-validated above, so a failure here should be impossible -
-	# but if it ever happens, undo the grant rather than give the item free.
-	if not FishingManager.spend_points(price):
-		InventoryManager.remove_item(item_id, 1)
-		UIManager.show_notification("Purchase failed. You were not charged.", 2.5)
+func buy_item(item_id: String, quantity: int = 1) -> bool:
+	var reason := purchase_error(item_id, quantity)
+	if not reason.is_empty():
+		UIManager.show_notification(reason, 2.0)
 		return false
-
-	# 7. Bookkeeping + feedback.
+	var entry := _find_catalog_entry(_shop_definitions[_current_shop_id], item_id)
+	var total := int(entry.get("price_override", ItemDatabase.get_buy_price(item_id))) * quantity
+	# Commit bookkeeping before emitting inventory signals. Reentrant purchases
+	# from signal listeners cannot enter another transaction.
+	_buying = true
+	if not FishingManager.spend_points(total):
+		_buying = false
+		return false
+	var stock_map: Dictionary = _remaining_stock.get(_current_shop_id, {})
 	if stock_map.has(item_id):
-		stock_map[item_id] = int(stock_map[item_id]) - 1
-		_remaining_stock[_current_shop_id] = stock_map
-	if one_time:
+		stock_map[item_id] = int(stock_map[item_id]) - quantity
+	if ItemDatabase.is_one_time_purchase(item_id):
 		_purchased_one_time[item_id] = true
-
-	# item_purchased(item_id, price) - signature unchanged since the NPC
-	# System phase. "price" is the points paid for this 1-unit purchase.
-	EventBus.item_purchased.emit(item_id, price)
-	UIManager.show_notification("Purchased %s for %d points!" % [display_name, price], 2.0)
+	InventoryManager.add_item(item_id, quantity)
+	_buying = false
+	EventBus.item_purchased.emit(item_id, total)
+	UIManager.show_notification(
+		(
+			"Purchased %s x%d for %d points."
+			% [ItemDatabase.get_display_name(item_id), quantity, total]
+		),
+		2.0
+	)
 	return true
 
 
@@ -261,13 +269,31 @@ func _get_save_data() -> Dictionary:
 
 
 func _apply_save_data(data: Dictionary) -> void:
-	# Normalize stock back to ints - JSON round-trips whole numbers as floats.
-	var loaded_stock: Dictionary = data.get("remaining_stock", {})
 	_remaining_stock = {}
-	for shop_id in loaded_stock:
-		var stock_map: Dictionary = {}
-		for item_id in loaded_stock[shop_id]:
-			stock_map[item_id] = int(loaded_stock[shop_id][item_id])
-		_remaining_stock[shop_id] = stock_map
-	# Older saves have no "purchased_one_time" key - treated as empty.
-	_purchased_one_time = data.get("purchased_one_time", {})
+	for definition in _shop_definitions.values():
+		_init_stock_for_shop(definition)
+	var loaded = data.get("remaining_stock", {})
+	if loaded is Dictionary:
+		for shop_id in _remaining_stock:
+			var values = loaded.get(shop_id, {})
+			if not values is Dictionary:
+				continue
+			for item_id in _remaining_stock[shop_id]:
+				var value = values.get(
+					item_id,
+					(
+						values.get("basic rod", _remaining_stock[shop_id][item_id])
+						if item_id == "fishing_rod"
+						else _remaining_stock[shop_id][item_id]
+					)
+				)
+				if (value is int or value is float) and is_finite(float(value)):
+					_remaining_stock[shop_id][item_id] = clampi(
+						int(value), 0, _remaining_stock[shop_id][item_id]
+					)
+	_purchased_one_time = {}
+	var history = data.get("purchased_one_time", {})
+	if history is Dictionary:
+		for item_id in history:
+			if history[item_id] == true and ItemDatabase.is_one_time_purchase(item_id):
+				_purchased_one_time[item_id] = true

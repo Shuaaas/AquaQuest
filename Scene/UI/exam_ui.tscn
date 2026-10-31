@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://co838bskjyrmn"]
+[gd_scene load_steps=4 format=3 uid="uid://co838bskjyrmn"]
 
-[ext_resource type="Script" uid="uid://cqeyln305o2wo" path="res://Scripts/UI/ExamUI.gd" id="1_6uo23"]
+[ext_resource type="Script" path="res://Scripts/UI/ExamUI.gd" id="1_script"]
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
 
 [node name="ExamUI" type="Control"]
 layout_mode = 3
@@ -9,54 +11,85 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6uo23")
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
 
-[node name="ProgressLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 2.0
-offset_top = 35.0
-offset_right = 1154.0
-offset_bottom = 58.0
-
-[node name="QuestionLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = -2.0
-offset_top = 109.0
-offset_right = 1150.0
-offset_bottom = 203.0
-
-[node name="ChoicesContainer" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
+[node name="Shade" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = -66.0
-offset_right = 5.0
-offset_bottom = 68.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResultLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 510.0
-offset_right = 1152.0
-offset_bottom = 533.0
-
-[node name="CloseButton" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.96400005
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.672058
 grow_horizontal = 2
-grow_vertical = 0
-text = "CONTINUE"
-metadata/_edit_use_anchors_ = true
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.086, 0.059, 0.035, 0.84)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Panel/Layout/Header"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Regional Examination"
+autowrap_mode = 3
+
+[node name="ProgressLabel" type="Label" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestionLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResultLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="CloseButton" type="Button" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+text = "Continue"
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("3_style")

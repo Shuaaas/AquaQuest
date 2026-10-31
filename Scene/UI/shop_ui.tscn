@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://embcjtxw7jhj"]
+[gd_scene load_steps=4 format=3 uid="uid://embcjtxw7jhj"]
 
-[ext_resource type="Script" uid="uid://b2js834erhkw" path="res://Scripts/Systems/Inventory/ShopUI.gd" id="1_i8ip8"]
+[ext_resource type="Script" path="res://Scripts/Systems/Inventory/ShopUI.gd" id="1_script"]
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
 
 [node name="ShopUI" type="Control"]
 layout_mode = 3
@@ -9,38 +11,73 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i8ip8")
-metadata/_edit_use_anchors_ = true
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
 
-[node name="BuyListContainer" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 2.0
-offset_top = 67.0
-offset_right = 1150.0
-offset_bottom = 567.0
-
-[node name="CloseButton" type="Button" parent="."]
-unique_name_in_owner = true
+[node name="Shade" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -29.0
-offset_top = -31.0
-offset_right = 29.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "CLOSE"
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.086, 0.059, 0.035, 0.84)
 
-[node name="Label" type="Label" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.019000001
-offset_left = 1094.0
-offset_top = 11.0
-offset_right = 1116.112
-offset_bottom = 34.0
-text = "SHOP"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Panel/Layout/Header"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Shop"
+autowrap_mode = 3
+
+[node name="PointsLabel" type="Label" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BuyListContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+text = "Close"
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("3_style")

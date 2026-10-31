@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://det14ieymv7u6"]
+[gd_scene load_steps=4 format=3 uid="uid://det14ieymv7u6"]
 
-[ext_resource type="Script" uid="uid://b2rkmcv6353pq" path="res://Scripts/UI/dialogue_ui.gd" id="1_s28ws"]
+[ext_resource type="Script" path="res://Scripts/UI/dialogue_ui.gd" id="1_script"]
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
 
 [node name="DialogueUi" type="Control"]
 layout_mode = 3
@@ -9,51 +11,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s28ws")
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="DialoguePanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.83000004
+anchor_top = 0.45
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -101.84003
+offset_left = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="SpeakerLabel" type="Label" parent="Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 21.0
-offset_top = 27.0
-offset_right = 769.0
-offset_bottom = 50.0
+[node name="Layout" type="VBoxContainer" parent="DialoguePanel"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="DialogueTextLabel" type="Label" parent="Panel"]
+[node name="SpeakerLabel" type="Label" parent="DialoguePanel/Layout"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 0
-offset_left = 27.0
-offset_top = 66.0
-offset_right = 1124.0
-offset_bottom = 119.0
-autowrap_mode = 2
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = ""
+autowrap_mode = 3
 
-[node name="ChoicesContainer" type="VBoxContainer" parent="Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 124.0
-offset_right = 1152.0
-offset_bottom = 177.0
+[node name="ScrollContainer" type="ScrollContainer" parent="DialoguePanel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
 
-[node name="ContinueButton" type="Button" parent="Panel"]
+[node name="Content" type="VBoxContainer" parent="DialoguePanel/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueTextLabel" type="Label" parent="DialoguePanel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 3.0
-offset_top = 178.0
-offset_right = 1155.0
-offset_bottom = 209.0
-size_flags_vertical = 8
-text = "CONTINUE
-"
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="DialoguePanel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContinueButton" type="Button" parent="DialoguePanel/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+text = "Continue"
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("3_style")

@@ -1,18 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://byjs13jyh0678"]
+[gd_scene load_steps=4 format=3 uid="uid://byjs13jyh0678"]
 
 [ext_resource type="Script" uid="uid://mwypolcdjgih" path="res://Scripts/UI/CodexUI.gd" id="1_codex"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBox_paper"]
-bg_color = Color(0.06, 0.13, 0.18, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.22, 0.62, 0.66, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="90_skin"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="91_style"]
 
 [node name="CodexUI" type="Control"]
 layout_mode = 3
@@ -21,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("90_skin")
 script = ExtResource("1_codex")
 
 [node name="Dimmer" type="ColorRect" parent="."]
@@ -30,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.01, 0.03, 0.05, 0.92)
+color = Color(0.086, 0.059, 0.035, 0.92)
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -46,7 +39,6 @@ theme_override_constants/margin_bottom = 12
 
 [node name="Panel" type="PanelContainer" parent="Margin"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBox_paper")
 
 [node name="Padding" type="MarginContainer" parent="Margin/Panel"]
 layout_mode = 2
@@ -123,3 +115,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 14
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("91_style")

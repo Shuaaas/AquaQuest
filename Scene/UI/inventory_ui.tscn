@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgns8hoebjd4"]
+[gd_scene load_steps=4 format=3 uid="uid://cgns8hoebjd4"]
 
-[ext_resource type="Script" uid="uid://c2ns4hdoqkd3w" path="res://Scripts/Systems/Inventory/inventory_ui.gd" id="1_qgilg"]
+[ext_resource type="Script" path="res://Scripts/Systems/Inventory/inventory_ui.gd" id="1_script"]
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
@@ -9,43 +11,89 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qgilg")
-metadata/_edit_use_anchors_ = true
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Shade" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+mouse_filter = 2
+color = Color(0.086, 0.059, 0.035, 0.84)
 
-[node name="CodexButton" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 30)
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Layout" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Panel/Layout/Header"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Inventory"
+autowrap_mode = 3
+
+[node name="CodexButton" type="Button" parent="Margin/Panel/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
 text = "Codex"
 
-[node name="FilterContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="FilterScroll" type="ScrollContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 74)
+vertical_scroll_mode = 0
+follow_focus = true
+
+[node name="FilterContainer" type="HBoxContainer" parent="Margin/Panel/Layout/FilterScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="ItemListContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="SortList" type="OptionButton" parent="Margin/Panel/Layout"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 48)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.5
-offset_right = 45.5
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "INVENTORY"
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemListContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="Button" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close"
+custom_minimum_size = Vector2(0, 48)
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("3_style")

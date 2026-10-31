@@ -22,7 +22,7 @@ The atlas is one persistent UI instance in Main's CanvasLayer. It pauses gamepla
 | 4 | Module 5 — Methods of Fish Preservation | Cool-colored shore, storage buildings and pale storage crates | Planned region; no playable definition yet. |
 | 5 | Module 1 — Introduction to Post-Harvest Fisheries | Connected islands, market buildings and docks | Planned region; no playable definition yet. |
 
-These are decorative interpretations of the actual documented topics, not new educational claims or new playable environments. Module titles/content come from the existing Codex JSON. The overview is composed on a pixel grid and reuses the project's existing tree atlas. No image pack, plugin, AI image, or external dependency is required. The sea routes are an illustrated overview of the five-region plan, not a new travel mechanic or a claim that future exits already exist.
+These are decorative interpretations of the actual documented topics, not new educational claims or new playable environments. Module titles/content come from the existing Codex JSON. The overview is composed on a pixel grid and draws original geometric tree symbols in the shared UI palette. No image pack, plugin, AI image, or external dependency is required. The sea routes are an illustrated overview of the five-region plan, not a new travel mechanic or a claim that future exits already exist.
 
 Region names/descriptions come directly from RegionManager. Both existing regions currently share the name Coastal Village; the UI includes their region numbers to distinguish them. Regions 3–5 are visibly locked and not yet available. No fabricated region names, quests, exams, or completed counts are supplied for them.
 
@@ -95,7 +95,7 @@ New files:
 | `Data/JSON/Maps/world_map.json` | Five island positions, approved module mappings, quest ownership and real giver/examiner IDs. |
 | `Scripts/Systems/Map/MapNavigation.gd` | Stateless live-node discovery, objective resolution, priorities and coordinate projection. |
 | `Scripts/Systems/Map/MapLocation.gd` | Optional editor-placed location/objective marker data. |
-| `Scripts/UI/WorldMapCanvas.gd` | Interactive pixel-grid island illustration using existing tree artwork. |
+| `Scripts/UI/WorldMapCanvas.gd` | Interactive pixel-grid island illustration using original geometric symbols. |
 | `Scripts/UI/WorldMapUI.gd` | Atlas selection/details, open/close, responsive layout and pause ownership. |
 | `Scripts/UI/MiniMapUI.gd` | HUD visibility, small live-world viewport, player camera and marker refresh. |
 | `Scripts/UI/MiniMapSurface.gd` | Player/POI/quest icons and off-screen objective arrows. |

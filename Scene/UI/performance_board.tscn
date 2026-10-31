@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cffcgxtrcr7hw"]
+[gd_scene load_steps=4 format=3 uid="uid://cffcgxtrcr7hw"]
 
-[ext_resource type="Script" uid="uid://ba8unghvxnjij" path="res://Scripts/UI/PerformanceBoard.gd" id="1_pb"]
+[ext_resource type="Script" path="res://Scripts/UI/PerformanceBoard.gd" id="1_script"]
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
 
 [node name="PerformanceBoard" type="Control"]
 layout_mode = 3
@@ -9,147 +11,168 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pb")
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
-visible = false
+[node name="Shade" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.05, 0.07, 0.12, 0.95)
+mouse_filter = 2
+color = Color(0.086, 0.059, 0.035, 0.84)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
 
-[node name="VBoxMain" type="VBoxContainer" parent="ScrollContainer"]
+[node name="Panel" type="PanelContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Margin/Panel"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="ScrollContainer/VBoxMain"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "PERFORMANCE BOARD "
-
-[node name="SepA" type="HSeparator" parent="ScrollContainer/VBoxMain"]
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Layout"]
 layout_mode = 2
 
-[node name="SectionSummary" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="Title" type="Label" parent="Margin/Panel/Layout/Header"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "[ Summary ]"
+theme_type_variation = &"AquaHeading"
+text = "Performance Board"
+autowrap_mode = 3
 
-[node name="AccuracyLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SectionSummary" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Summary"
+autowrap_mode = 3
+
+[node name="AccuracyLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Accuracy: —"
+text = ""
+autowrap_mode = 3
 
-[node name="CorrectLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="CorrectLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Correct: —"
+text = ""
+autowrap_mode = 3
 
-[node name="IncorrectLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="IncorrectLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Incorrect: —"
+text = ""
+autowrap_mode = 3
 
-[node name="PointsLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="PointsLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Points: —"
+text = ""
+autowrap_mode = 3
 
-[node name="AQPILabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="AQPILabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "AQPI: —"
+text = ""
+autowrap_mode = 3
 
-[node name="TierLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="TierLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Difficulty: —"
+text = ""
+autowrap_mode = 3
 
-[node name="TimeLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="TimeLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Time: —"
+text = ""
+autowrap_mode = 3
 
-[node name="MiniLabel" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="MiniLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Mini Quests: —"
+text = ""
+autowrap_mode = 3
 
-[node name="SepB" type="HSeparator" parent="ScrollContainer/VBoxMain"]
+[node name="SectionRegionsRule" type="HSeparator" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 layout_mode = 2
 
-[node name="SectionRegions" type="Label" parent="ScrollContainer/VBoxMain"]
+[node name="SectionRegions" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "[ Regions ]"
+theme_type_variation = &"AquaHeading"
+text = "Regions"
+autowrap_mode = 3
 
-[node name="RegionContainer" type="VBoxContainer" parent="ScrollContainer/VBoxMain"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="SepC" type="HSeparator" parent="ScrollContainer/VBoxMain"]
-layout_mode = 2
-
-[node name="SectionExams" type="Label" parent="ScrollContainer/VBoxMain"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "[ Regional Exam History ]"
-
-[node name="ExamContainer" type="VBoxContainer" parent="ScrollContainer/VBoxMain"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="SepD" type="HSeparator" parent="ScrollContainer/VBoxMain"]
-layout_mode = 2
-
-[node name="SectionQuests" type="Label" parent="ScrollContainer/VBoxMain"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "[ Quest Log ]"
-
-[node name="QuestContainer" type="VBoxContainer" parent="ScrollContainer/VBoxMain"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="ButtonRow" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -50.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 10
-
-[node name="CloseButton" type="Button" parent="ButtonRow"]
+[node name="RegionContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "CLOSE"
 
-[node name="ExportButton" type="Button" parent="ButtonRow"]
+[node name="SectionExamsRule" type="HSeparator" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+
+[node name="SectionExams" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Regional Examination History"
+autowrap_mode = 3
+
+[node name="ExamContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SectionQuestsRule" type="HSeparator" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+
+[node name="SectionQuests" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Quest Journal"
+autowrap_mode = 3
+
+[node name="QuestContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonRow" type="HBoxContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Margin/Panel/Layout/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+text = "Close"
+
+[node name="ExportButton" type="Button" parent="Margin/Panel/Layout/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+text = "Export CSV"
 visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "EXPORT CSV"
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("3_style")

@@ -25,6 +25,15 @@ signal equipped_changed(is_equipped: bool)
 var _is_equipped: bool = false
 
 
+func _ready() -> void:
+	EventBus.item_removed.connect(_on_item_removed)
+
+
+func _on_item_removed(item_id: String, _amount: int) -> void:
+	if item_id == ROD_ITEM_ID and not InventoryManager.has_item(ROD_ITEM_ID):
+		_set_equipped(false)
+
+
 func is_equipped() -> bool:
 	return _is_equipped
 

@@ -1,63 +1,57 @@
-extends Control
 class_name ShopUI
-## ShopUI
-##
-## Displays a merchant's catalog and the player's current POINTS balance.
-## Prices are in points - the player's existing score from answering
-## questions - not a separate currency (Phase 13 fix).
-## Knows nothing about purchase RULES (ShopManager's job) or item DATA
-## (ItemDatabase's job) - it only reacts to EventBus signals and calls
-## ShopManager.buy_item()/close_shop().
-##
-## PAUSE-SAFE BY CONSTRUCTION, same reasoning as FishingUI/ExamUI: opening
-## a shop pauses gameplay (consistent with fishing/exam questions already
-## doing this), so this scene sets its own Process Mode to "Always" in
-## code rather than relying on a manual Inspector step.
-##
-## SETUP: attach to a Control root. Requires BuyListContainer and
-## SellListContainer (VBoxContainer each), both marked "Access as Unique
-## Name", plus a CloseButton (Button). A Label named "PointsLabel" (unique
-## name) is OPTIONAL - if you don't add one, this script creates its own at
-## the top of the panel, so the points display can't be forgotten.
-##
-## The Sell panel only shows a notice: selling is disabled (see
-## ShopManager.is_selling_enabled() for the reason).
+extends Control
+## Catalog presentation; all availability and purchase rules live in ShopManager.
+
+const CARD := preload("res://Scripts/Systems/Inventory/ItemCard.gd")
+var _points_label: Label
+var _owns_pause := false
+var _previous_focus: WeakRef
+var _quantities: Dictionary = {}
+var _controls: Dictionary = {}
 
 @onready var buy_list_container: VBoxContainer = %BuyListContainer
 @onready var close_button: Button = %CloseButton
 
-var _points_label: Label
-
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
-	visible = false
+	hide()
+	_points_label = %PointsLabel
 	close_button.pressed.connect(_on_close_pressed)
-
-	_points_label = get_node_or_null("%PointsLabel")
-	if _points_label == null:
-		_points_label = Label.new()
-		# CloseButton's parent is the panel's main VBoxContainer in the
-		# documented scene layout - put the balance at the very top of it.
-		var panel_root := close_button.get_parent()
-		panel_root.add_child(_points_label)
-		panel_root.move_child(_points_label, 0)
-
 	EventBus.shop_catalog_ready.connect(_on_catalog_ready)
 	EventBus.shop_closed.connect(_on_shop_closed)
 	EventBus.item_purchased.connect(_on_purchase)
-	# Any balance change (a purchase, or a quest/fishing award while the
-	# shop is open) refreshes the displayed points immediately.
 	EventBus.fishing_points_changed.connect(_on_points_changed)
+	EventBus.inventory_changed.connect(_update_availability)
+	EventBus.load_completed.connect(_on_loaded)
 
 
 func _on_catalog_ready(_shop_id: String, catalog: Array) -> void:
-	visible = true
-	GameManager.set_paused(true)
+	if (
+		SaveManager.is_loading
+		or SceneLoader.is_loading()
+		or DialogueManager.is_active
+		or FishingManager.is_fishing()
+	):
+		ShopManager.close_shop()
+		return
+	for overlay in get_tree().get_nodes_in_group("gameplay_overlay"):
+		if overlay != self and overlay is Control and overlay.is_visible_in_tree():
+			ShopManager.close_shop()
+			return
+	if get_tree().paused and not _owns_pause:
+		ShopManager.close_shop()
+		return
+	if not visible:
+		var focus := get_viewport().gui_get_focus_owner()
+		_previous_focus = weakref(focus) if focus != null else null
+		_owns_pause = true
+		GameManager.set_paused(true)
+		_quantities.clear()
+	show()
 	_refresh_points()
 	_render_buy_list(catalog)
-	#_render_sell_panel()
+	close_button.grab_focus()
 
 
 func _refresh_points() -> void:
@@ -65,45 +59,80 @@ func _refresh_points() -> void:
 
 
 func _render_buy_list(catalog: Array) -> void:
+	_controls.clear()
 	for child in buy_list_container.get_children():
+		buy_list_container.remove_child(child)
 		child.queue_free()
-
+	if catalog.is_empty():
+		CARD.add_text(buy_list_container, "No items available in this shop.")
 	for entry in catalog:
-		var item_id: String = entry.get("item_id", "")
-		var price: int = entry.get("price", 0)
+		var item_id: String = entry["item_id"]
+		var panel := PanelContainer.new()
+		panel.theme_type_variation = &"AquaInset"
+		var card := CARD.build(item_id, InventoryManager.get_item_count(item_id))
+		panel.add_child(card)
 		var stock: int = entry.get("stock", -1)
-		var already_purchased: bool = entry.get("already_purchased", false)
+		CARD.add_text(
+			card,
+			(
+				"Unit price: %d points | Stock: %s"
+				% [entry["price"], "Unlimited" if stock < 0 else str(stock)]
+			)
+		)
+		var quantity := SpinBox.new()
+		quantity.prefix = "Quantity: "
+		quantity.min_value = 1
+		quantity.max_value = (
+			1
+			if ItemDatabase.is_one_time_purchase(item_id)
+			else mini(999, ItemDatabase.get_max_stack(item_id))
+		)
+		quantity.step = 1
+		quantity.custom_minimum_size.y = 48
+		quantity.value = _quantities.get(item_id, 1)
+		var quantity_row := HBoxContainer.new()
+		card.add_child(quantity_row)
+		var less := Button.new()
+		less.text = "-"
+		less.custom_minimum_size = Vector2(48, 48)
+		less.pressed.connect(func(): quantity.value -= 1)
+		quantity_row.add_child(less)
+		quantity.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		quantity_row.add_child(quantity)
+		var more := Button.new()
+		more.text = "+"
+		more.custom_minimum_size = Vector2(48, 48)
+		more.pressed.connect(func(): quantity.value += 1)
+		quantity_row.add_child(more)
+		less.disabled = quantity.max_value == 1
+		more.disabled = quantity.max_value == 1
+		var status := CARD.add_text(card, "")
+		var buy := Button.new()
+		buy.pressed.connect(func(): ShopManager.buy_item(item_id, int(quantity.value)))
+		card.add_child(buy)
+		_controls[item_id] = {
+			"quantity": quantity, "status": status, "buy": buy, "price": entry["price"]
+		}
+		quantity.value_changed.connect(
+			func(value: float):
+				_quantities[item_id] = int(value)
+				_update_availability()
+		)
+		buy_list_container.add_child(panel)
+	CARD.add_text(buy_list_container, "Selling is not available.")
+	_update_availability()
 
-		var row := HBoxContainer.new()
 
-		var label := Label.new()
-		var status_text := ""
-		if already_purchased:
-			status_text = " (owned)"
-		elif stock == 0:
-			status_text = " (sold out)"
-		elif stock > 0:
-			status_text = " (%d left)" % stock
-		label.text = "%s - %d points%s" % [entry.get("display_name", item_id), price, status_text]
-		row.add_child(label)
-
-		var buy_button := Button.new()
-		buy_button.text = "Buy"
-		buy_button.disabled = already_purchased or stock == 0
-		buy_button.pressed.connect(func(): ShopManager.buy_item(item_id))
-		row.add_child(buy_button)
-
-		buy_list_container.add_child(row)
-
-#
-#func _render_sell_panel() -> void:
-	#for child in sell_list_container.get_children():
-		#child.queue_free()
-#
-	#if not ShopManager.is_selling_enabled():
-		#var notice := Label.new()
-		#notice.text = "Selling isn't available."
-		#sell_list_container.add_child(notice)
+func _update_availability() -> void:
+	if not visible:
+		return
+	for item_id in _controls:
+		var controls: Dictionary = _controls[item_id]
+		var quantity := int(controls.quantity.value)
+		var reason := ShopManager.purchase_error(item_id, quantity)
+		controls.status.text = reason if not reason.is_empty() else "Ready to buy."
+		controls.buy.disabled = not reason.is_empty()
+		controls.buy.text = "Buy x%d - %d points" % [quantity, int(controls.price) * quantity]
 
 
 func _on_purchase(_item_id: String, _price: int) -> void:
@@ -113,6 +142,12 @@ func _on_purchase(_item_id: String, _price: int) -> void:
 
 func _on_points_changed(_new_total: int, _delta: int) -> void:
 	_refresh_points()
+	_update_availability()
+
+
+func _on_loaded(_slot: int) -> void:
+	if visible:
+		_render_buy_list(ShopManager.get_current_catalog())
 
 
 func _on_close_pressed() -> void:
@@ -120,5 +155,31 @@ func _on_close_pressed() -> void:
 
 
 func _on_shop_closed() -> void:
-	visible = false
-	GameManager.set_paused(false)
+	hide()
+	_release_pause()
+	if _previous_focus != null:
+		var focus = _previous_focus.get_ref()
+		if is_instance_valid(focus) and focus.is_visible_in_tree():
+			focus.grab_focus()
+	_previous_focus = null
+
+
+func _release_pause() -> void:
+	if _owns_pause:
+		_owns_pause = false
+		GameManager.set_paused(false)
+
+
+func _exit_tree() -> void:
+	_release_pause()
+
+
+func _input(event: InputEvent) -> void:
+	if visible and event.is_action_pressed("ui_cancel"):
+		_on_close_pressed()
+		get_viewport().set_input_as_handled()
+
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if visible:
+		get_viewport().set_input_as_handled()

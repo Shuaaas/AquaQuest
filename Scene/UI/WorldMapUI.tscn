@@ -1,19 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c55w6ld002dui"]
+[gd_scene load_steps=5 format=3 uid="uid://c55w6ld002dui"]
 
 [ext_resource type="Script" uid="uid://dns654fmu1f4w" path="res://Scripts/UI/WorldMapUI.gd" id="1_ui"]
 [ext_resource type="Script" uid="uid://osoblb7stf0e" path="res://Scripts/UI/WorldMapCanvas.gd" id="2_canvas"]
-
-[sub_resource type="StyleBoxFlat" id="Style_map"]
-bg_color = Color(0.045, 0.1, 0.14, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25, 0.61, 0.64, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="90_skin"]
+[ext_resource type="Script" uid="uid://j7f6ufwkkqa6" path="res://Scripts/UI/PixelUIStyle.gd" id="91_style"]
 
 [node name="WorldMapUI" type="Control" groups=["gameplay_overlay"]]
 layout_mode = 3
@@ -22,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("90_skin")
 script = ExtResource("1_ui")
 
 [node name="Shade" type="ColorRect" parent="."]
@@ -31,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.01, 0.02, 0.04, 0.96)
+color = Color(0.086, 0.059, 0.035, 0.96)
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -47,7 +38,6 @@ theme_override_constants/margin_bottom = 12
 
 [node name="Panel" type="PanelContainer" parent="Margin"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("Style_map")
 
 [node name="Padding" type="MarginContainer" parent="Margin/Panel"]
 layout_mode = 2
@@ -67,7 +57,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
-text = "AquaQuest / World Map"
+text = "World Map"
 text_overrun_behavior = 3
 
 [node name="CloseButton" type="Button" parent="Margin/Panel/Padding/Book/Header"]
@@ -110,8 +100,12 @@ fit_content = true
 scroll_active = false
 
 [node name="Legend" type="Label" parent="Margin/Panel/Padding/Book"]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 13
-text = "Lock: locked  /  Cyan: current  /  Green: completed
-Mini map: white player, gold quest, violet mini quest, cyan NPC, blue fishing, orange shop, green exam"
+theme_override_font_sizes/font_size = 16
+text = "Lock: locked  /  Cyan: current  /  Olive: completed
+Mini map: white player, gold quest, violet mini quest, cyan NPC, blue fishing, orange shop, pale exam"
 autowrap_mode = 3
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("91_style")

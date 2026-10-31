@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh8vjuejffq06"]
+[gd_scene load_steps=4 format=3 uid="uid://dh8vjuejffq06"]
 
-[ext_resource type="Script" uid="uid://4puoyk38kmp" path="res://Scripts/Systems/Fishing/FishingUI.gd" id="1_cwdsr"]
-
-[sub_resource type="Theme" id="Theme_cwdsr"]
+[ext_resource type="Script" path="res://Scripts/Systems/Fishing/FishingUI.gd" id="1_script"]
+[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
 
 [node name="FishingUI" type="Control"]
 layout_mode = 3
@@ -11,95 +11,98 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_cwdsr")
-script = ExtResource("1_cwdsr")
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
 
-[node name="TierLabel" type="Label" parent="."]
-unique_name_in_owner = true
+[node name="Shade" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.5
-offset_right = 50.5
-offset_bottom = 23.0
-grow_horizontal = 2
-
-[node name="SpotLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 4.0
-offset_top = -1.0
-offset_right = 68.0
-offset_bottom = 22.0
-text = "FISHING"
-
-[node name="QuestionLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 52.0
-offset_right = 3.0
-offset_bottom = 114.0
-grow_horizontal = 2
-
-[node name="ChoicesContainer" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.21604939
-anchor_right = 1.0017362
-anchor_bottom = 0.7993827
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ResultLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -94.0
-offset_right = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="PointsLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.882
-anchor_right = 0.99000007
-anchor_bottom = 0.057000004
-offset_left = -0.06402588
-offset_top = 3.0
-offset_right = 0.51989746
-offset_bottom = 0.063999176
-
-[node name="HintLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -200.0
-offset_right = -2.0
-offset_bottom = -141.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+color = Color(0.086, 0.059, 0.035, 0.84)
 
-[node name="HintButton" type="Button" parent="."]
-unique_name_in_owner = true
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -29.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "HINT"
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Panel/Layout/Header"]
+layout_mode = 2
+theme_type_variation = &"AquaHeading"
+text = "Fishing"
+autowrap_mode = 3
+
+[node name="PointsLabel" type="Label" parent="Margin/Panel/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="TierLabel" type="Label" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestionLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HintLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="ResultLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+visible = false
+unique_name_in_owner = true
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="HintButton" type="Button" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+text = "Hint"
+
+[node name="PixelStyle" type="Node" parent="."]
+script = ExtResource("3_style")
