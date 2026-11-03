@@ -146,9 +146,11 @@ func test_inventory_filters_sorting_and_pause_safe_close() -> void:
 	assert_true(ui.open_inventory())
 	assert_true(get_tree().paused)
 	ui._on_filter_pressed("item")
-	assert_eq(ui.item_list_container.get_child_count(), 1)
+	assert_eq(ui._slot_buttons.size(), 1)
+	assert_eq(ui.item_list_container.get_child_count(), 12)
 	ui._on_filter_pressed("costume")
-	assert_eq(ui.item_list_container.get_child(0).text, "No items in this category.")
+	assert_eq(ui.get_node("%EmptyMessage").text, "No items in this category.")
+	assert_true(ui.get_node("%EmptyMessage").visible)
 	ui.set_sort_mode("quantity")
 	assert_eq(ui.get_node("%SortList").selected, 2)
 	ui.close_inventory()
@@ -227,3 +229,195 @@ func test_reentrant_purchase_cannot_charge_twice() -> void:
 	assert_eq(nested, [false])
 	assert_eq(FishingManager.get_points(), 90)
 	assert_eq(InventoryManager.get_item_count("fishing_rod"), 1)
+
+
+func test_inventory_selection_drives_existing_equip_and_hat_actions() -> void:
+	var region := PLAYER.instantiate()
+	add_child_autofree(region)
+	InventoryManager.add_item("fishing_rod")
+	InventoryManager.add_item("fisher_hat")
+	var ui := INVENTORY.instantiate()
+	add_child_autofree(ui)
+	assert_true(ui.open_inventory())
+	ui._select_item("fishing_rod")
+	assert_eq(ui.get_node("%ItemName").text, ItemDatabase.get_display_name("fishing_rod"))
+	assert_not_null(ui.get_node("%ItemPreview").texture)
+	ui.get_node("%ActionButton").pressed.emit()
+	assert_true(region.get_node("player").fishing_rod.is_equipped())
+	assert_eq(ui.get_node("%ActionButton").text, "Unequip")
+	ui._select_item("fisher_hat")
+	ui.get_node("%ActionButton").pressed.emit()
+	assert_eq(InventoryManager.equipped_costume, "fisher_hat")
+	assert_eq(ui.get_node("%ActionButton").text, "Remove Hat")
+	ui.close_inventory()
+	assert_false(get_tree().paused)
+
+
+func test_inventory_placeholder_slots_are_not_capacity_and_bait_stays_unusable() -> void:
+	InventoryManager.add_item("energy_bait", 3)
+	var ui := INVENTORY.instantiate()
+	add_child_autofree(ui)
+	ui._select_item("energy_bait")
+	assert_true(ui.get_node("%ActionButton").disabled)
+	assert_string_contains(ui.get_node("%ItemStatus").text, "No usable effect")
+	assert_eq(InventoryManager.get_item_count("energy_bait"), 3)
+	assert_eq(ui.get_node("%ItemCount").text, "Items: 1")
+	assert_eq(ui.item_list_container.get_child_count(), 12)
+	InventoryManager.remove_item("energy_bait", 3)
+	assert_eq(ui._selected_item, "")
+	assert_true(ui.get_node("%ActionButton").disabled)
+	assert_null(ui.get_node("%ItemPreview").texture)
+
+
+func test_inventory_responsive_grid_and_action_stay_reachable() -> void:
+	InventoryManager.add_item("fishing_rod")
+	var holder := Control.new()
+	add_child_autofree(holder)
+	var ui := INVENTORY.instantiate()
+	holder.add_child(ui)
+	assert_true(ui.open_inventory())
+	for resolution in [Vector2(390, 844), Vector2(600, 900), Vector2(856, 428), Vector2(1280, 720)]:
+		holder.size = resolution
+		for i in 8:
+			await get_tree().process_frame
+		ui._update_layout()
+		assert_true(
+			Rect2(Vector2.ZERO, resolution).encloses(ui.get_node("%CloseButton").get_global_rect()),
+			str(resolution)
+		)
+		assert_eq(ui.get_node("%Body").vertical, resolution.x < 700)
+		assert_gt(ui.get_node("%BodyScroll").size.y, 40.0)
+		assert_lte(
+			ui.get_node("%BodyScroll").get_h_scroll_bar().max_value,
+			ui.get_node("%BodyScroll").size.x + 1
+		)
+		assert_gte(ui.get_node("%ActionButton").size.y, 48.0)
+		if resolution.x >= 700:
+			assert_true(
+				Rect2(Vector2.ZERO, resolution).encloses(
+					ui.get_node("%ActionButton").get_global_rect()
+				),
+				"Action stays visible in landscape"
+			)
+		else:
+			ui.get_node("%BodyScroll").scroll_vertical = int(
+				ui.get_node("%BodyScroll").get_v_scroll_bar().max_value
+			)
+			for i in 3:
+				await get_tree().process_frame
+			assert_true(
+				Rect2(Vector2.ZERO, resolution).encloses(
+					ui.get_node("%ActionButton").get_global_rect()
+				),
+				"Action is reachable by scrolling in portrait"
+			)
+	ui.close_inventory()
+
+
+func test_inventory_selection_does_not_mutate_items_or_points_and_has_no_twelve_item_cap() -> void:
+	for i in 14:
+		InventoryManager.add_item("inventory_layout_fixture_%d" % i)
+	var before := InventoryManager.get_all_items()
+	var points := FishingManager.get_points()
+	var ui := INVENTORY.instantiate()
+	add_child_autofree(ui)
+	assert_eq(ui._slot_buttons.size(), 14)
+	assert_eq(ui.item_list_container.get_child_count(), 14)
+	ui._select_item("inventory_layout_fixture_4")
+	ui.set_sort_mode("quantity")
+	ui._on_filter_pressed("material")
+	ui._on_filter_pressed("all")
+	assert_eq(InventoryManager.get_all_items(), before)
+	assert_eq(FishingManager.get_points(), points)
+
+
+func test_inventory_keyboard_focus_survives_sorting_and_codex_handoff_releases_pause() -> void:
+	InventoryManager.add_item("fishing_rod")
+	InventoryManager.add_item("fish", 4)
+	var ui := INVENTORY.instantiate()
+	add_child_autofree(ui)
+	assert_true(ui.open_inventory())
+	ui._slot_buttons.fishing_rod.grab_focus()
+	ui.set_sort_mode("quantity")
+	assert_eq(get_viewport().gui_get_focus_owner(), ui._slot_buttons.fishing_rod)
+	watch_signals(EventBus)
+	ui.get_node("%CodexButton").pressed.emit()
+	assert_signal_emitted(EventBus, "codex_open_requested")
+	assert_false(ui.visible)
+	assert_false(get_tree().paused)
+
+
+func test_shop_selection_details_and_purchase_keep_existing_rules() -> void:
+	var ui := SHOP.instantiate()
+	add_child_autofree(ui)
+	ui._on_catalog_ready("general_store", ShopManager.get_current_catalog())
+	assert_eq(ui._item_buttons.size(), 2)
+	assert_eq(ui.get_node("%ItemName").text, "Fishing Rod")
+	assert_false(ui.get_node("%QuantityRow").visible)
+	assert_true(ui.get_node("%FixedQuantity").visible)
+	var points := FishingManager.get_points()
+	ui._select_item("fisher_hat")
+	assert_eq(FishingManager.get_points(), points)
+	assert_eq(ui.get_node("%ItemName").text, "Fisher's Hat")
+	assert_eq(ui.get_node("%Total").text, "Total: 50 points")
+	ui.get_node("%BuyButton").pressed.emit()
+	assert_eq(FishingManager.get_points(), points - 50)
+	assert_eq(InventoryManager.get_item_count("fisher_hat"), 1)
+	assert_true(ui.get_node("%BuyButton").disabled)
+	assert_eq(ui.get_node("%Status").text, "Already owned.")
+	assert_false(ShopManager.is_selling_enabled())
+	ui._on_close_pressed()
+	assert_false(get_tree().paused)
+
+
+func test_shop_phone_navigation_and_small_landscape_bounds() -> void:
+	var ui := SHOP.instantiate()
+	add_child_autofree(ui)
+	ui.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	ui.size = Vector2(390, 844)
+	ui._on_catalog_ready("general_store", ShopManager.get_current_catalog())
+	assert_true(ui.get_node("%Catalog").visible)
+	assert_false(ui.get_node("%Paper").visible)
+	ui._select_item("fishing_rod")
+	assert_true(ui.get_node("%Paper").visible)
+	assert_false(ui.get_node("%Catalog").visible)
+	ui.get_node("%BackButton").pressed.emit()
+	assert_true(ui.get_node("%Catalog").visible)
+	for dimensions in [Vector2(1200, 760), Vector2(720, 360), Vector2(390, 844)]:
+		ui.size = dimensions
+		ui._select_item("fishing_rod")
+		for frame in 12:
+			await get_tree().process_frame
+		assert_true(
+			Rect2(Vector2.ZERO, dimensions).encloses(ui.get_node("%Panel").get_rect()),
+			str(dimensions)
+		)
+		assert_true(
+			(
+				ui.get_node("%BuyButton").get_global_rect().end.y
+				<= ui.get_node("%Panel").get_global_rect().end.y
+			)
+		)
+	ui._on_close_pressed()
+
+
+func test_shop_bulk_quantity_and_empty_catalog_are_safe() -> void:
+	ShopManager._shop_definitions["general_store"].items_for_sale.append(
+		{"item_id": "fish", "stock": 10, "price_override": 2}
+	)
+	ShopManager._remaining_stock["general_store"]["fish"] = 10
+	var ui := SHOP.instantiate()
+	add_child_autofree(ui)
+	ui._on_catalog_ready("general_store", ShopManager.get_current_catalog())
+	ui._select_item("fish")
+	assert_true(ui.get_node("%QuantityRow").visible)
+	ui.get_node("%Quantity").value = 3
+	assert_eq(ui.get_node("%Total").text, "Total: 6 points")
+	ui.get_node("%BuyButton").pressed.emit()
+	assert_eq(InventoryManager.get_item_count("fish"), 3)
+	assert_eq(FishingManager.get_points(), 94)
+	assert_eq(ui.get_node("%Stock").text, "Stock: 7")
+	ui._render_buy_list([])
+	assert_true(ui._selected.is_empty())
+	assert_false(ui.get_node("%Purchase").visible)
+	ui._on_close_pressed()

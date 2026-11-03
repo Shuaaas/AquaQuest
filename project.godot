@@ -39,6 +39,7 @@ ShopManager="*res://Autoload/ShopManager.gd"
 PerformanceTracker="*res://Autoload/PerformanceTracker.gd"
 CodexManager="*res://Autoload/CodexManager.gd"
 MapManager="*res://Autoload/MapManager.gd"
+MCPGameBridge="res://addons/godot_mcp/game_bridge/mcp_game_bridge.gd"
 
 [dotnet]
 
@@ -46,7 +47,14 @@ project/assembly_name="AquaQuestt"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/godot_mcp/plugin.cfg")
+
+[godot_mcp]
+
+bind_mode=0
+custom_bind_ip=""
+port_override_enabled=false
+port_override=6550
 
 [input]
 

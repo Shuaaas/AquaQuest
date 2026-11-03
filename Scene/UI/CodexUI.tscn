@@ -1,19 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://byjs13jyh0678"]
+[gd_scene load_steps=11 format=3 uid="uid://byjs13jyh0678"]
+[ext_resource type="Script" path="res://Scripts/UI/CodexUI.gd" id="1_codex"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/wood.svg" id="2_wood"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/button.svg" id="3_button"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/parchment.svg" id="4_paper"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/performance-journal.svg" id="5_book"]
 
-[ext_resource type="Script" uid="uid://mwypolcdjgih" path="res://Scripts/UI/CodexUI.gd" id="1_codex"]
+[sub_resource type="StyleBoxTexture" id="wood"]
+texture = ExtResource("2_wood")
+texture_margin_left = 12.0
+content_margin_left = 12.0
+texture_margin_top = 12.0
+content_margin_top = 12.0
+texture_margin_right = 12.0
+content_margin_right = 12.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+texture = ExtResource("4_paper")
+texture_margin_left = 12.0
+content_margin_left = 12.0
+texture_margin_top = 12.0
+content_margin_top = 12.0
+texture_margin_right = 12.0
+content_margin_right = 12.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button"]
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+content_margin_left = 10.0
+texture_margin_top = 12.0
+content_margin_top = 10.0
+texture_margin_right = 12.0
+content_margin_right = 10.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 10.0
 
 
-[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="90_skin"]
-[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="91_style"]
+[sub_resource type="StyleBoxTexture" id="disabled_button"]
+texture = ExtResource("3_button")
+modulate_color = Color(0.7,0.7,0.7,1)
+texture_margin_left = 12.0
+content_margin_left = 10.0
+texture_margin_top = 12.0
+content_margin_top = 10.0
+texture_margin_right = 12.0
+content_margin_right = 10.0
+texture_margin_bottom = 12.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="selection"]
+bg_color = Color(0.19,0.29,0.32,1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55,0.66,0.68,1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0,0,0,0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.90,0.74,0.46,1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="study_card"]
+bg_color = Color(0.94,0.86,0.70,1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.68,0.52,0.32,1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_radius_bottom_right = 8
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 14.0
+content_margin_bottom = 14.0
+
+[sub_resource type="Theme" id="reader_theme"]
+default_font_size = 16
+Label/colors/font_color = Color(0.941,0.871,0.757,1)
+RichTextLabel/colors/default_color = Color(0.188,0.125,0.086,1)
+RichTextLabel/constants/line_separation = 6
+Button/colors/font_color = Color(0.941,0.871,0.757,1)
+Button/colors/font_hover_color = Color(1,0.94,0.82,1)
+Button/colors/font_focus_color = Color(1,0.94,0.82,1)
+Button/colors/font_disabled_color = Color(0.72,0.64,0.51,1)
+Button/styles/normal = SubResource("button")
+Button/styles/hover = SubResource("button")
+Button/styles/pressed = SubResource("selection")
+Button/styles/focus = SubResource("focus")
+Button/styles/disabled = SubResource("disabled_button")
+OptionButton/colors/font_color = Color(0.941,0.871,0.757,1)
+OptionButton/styles/normal = SubResource("button")
+OptionButton/styles/hover = SubResource("button")
+OptionButton/styles/pressed = SubResource("button")
+OptionButton/styles/focus = SubResource("focus")
+PopupMenu/styles/panel = SubResource("wood")
+PopupMenu/styles/hover = SubResource("selection")
+PopupMenu/colors/font_color = Color(0.941,0.871,0.757,1)
+StudyCard/styles/panel = SubResource("study_card")
+VBoxContainer/constants/separation = 8
+HBoxContainer/constants/separation = 8
 
 [node name="CodexUI" type="Control"]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("90_skin")
+texture_filter = 2
+theme = SubResource("reader_theme")
 script = ExtResource("1_codex")
 
 [node name="Dimmer" type="ColorRect" parent="."]
@@ -23,7 +139,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.086, 0.059, 0.035, 0.92)
+color = Color(0.08,0.05,0.03,0.92)
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -32,89 +148,187 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="Panel" type="PanelContainer" parent="Margin"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("wood")
 
-[node name="Padding" type="MarginContainer" parent="Margin/Panel"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="Book" type="VBoxContainer" parent="Margin/Panel/Padding"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Header" type="HBoxContainer" parent="Margin/Panel/Padding/Book"]
+[node name="Book" type="VBoxContainer" parent="Margin/Panel"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Margin/Panel/Padding/Book/Header"]
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Book"]
+layout_mode = 2
+
+[node name="BookIcon" type="TextureRect" parent="Margin/Panel/Book/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(32,32)
+texture = ExtResource("5_book")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Titles" type="VBoxContainer" parent="Margin/Panel/Book/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Margin/Panel/Book/Header/Titles"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
 theme_override_font_sizes/font_size = 22
 text = "Codex"
-text_overrun_behavior = 3
 
-[node name="CloseButton" type="Button" parent="Margin/Panel/Padding/Book/Header"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(72, 48)
+[node name="Subtitle" type="Label" parent="Margin/Panel/Book/Header/Titles"]
 layout_mode = 2
-text = "Close"
+size_flags_horizontal = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 13
+text = "Your learning companion"
 
-[node name="Columns" type="BoxContainer" parent="Margin/Panel/Padding/Book"]
+[node name="CloseButton" type="Button" parent="Margin/Panel/Book/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48,48)
+text = "×"
+tooltip_text = "Close Codex (Escape)"
+
+[node name="Columns" type="BoxContainer" parent="Margin/Panel/Book"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 18
+theme_override_constants/separation = 12
 
-[node name="Navigation" type="VBoxContainer" parent="Margin/Panel/Padding/Book/Columns"]
+[node name="NavigationPanel" type="PanelContainer" parent="Margin/Panel/Book/Columns"]
+layout_mode = 2
+unique_name_in_owner = true
+theme_override_styles/panel = SubResource("wood")
+
+[node name="Navigation" type="VBoxContainer" parent="Margin/Panel/Book/Columns/NavigationPanel"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 8
 
-[node name="ModuleLabel" type="Label" parent="Margin/Panel/Padding/Book/Columns/Navigation"]
-layout_mode = 2
-text = "Module"
-
-[node name="ModuleList" type="OptionButton" parent="Margin/Panel/Padding/Book/Columns/Navigation"]
+[node name="ModuleList" type="OptionButton" parent="Margin/Panel/Book/Columns/NavigationPanel/Navigation"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+custom_minimum_size = Vector2(0,48)
 clip_text = true
 fit_to_longest_item = false
 
-[node name="LessonScroll" type="ScrollContainer" parent="Margin/Panel/Padding/Book/Columns/Navigation"]
+[node name="ModuleTitle" type="Label" parent="Margin/Panel/Book/Columns/NavigationPanel/Navigation"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 16
+text = "Select a module"
+
+[node name="LessonsHeading" type="Label" parent="Margin/Panel/Book/Columns/NavigationPanel/Navigation"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
+text = "LESSONS"
+
+[node name="LessonScroll" type="ScrollContainer" parent="Margin/Panel/Book/Columns/NavigationPanel/Navigation"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 follow_focus = true
-horizontal_scroll_mode = 0
 
-[node name="LessonList" type="VBoxContainer" parent="Margin/Panel/Padding/Book/Columns/Navigation/LessonScroll"]
+[node name="LessonList" type="VBoxContainer" parent="Margin/Panel/Book/Columns/NavigationPanel/Navigation/LessonScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 6
 
-[node name="ContentScroll" type="ScrollContainer" parent="Margin/Panel/Padding/Book/Columns"]
+[node name="ReadingPanel" type="PanelContainer" parent="Margin/Panel/Book/Columns"]
+layout_mode = 2
+unique_name_in_owner = true
+theme_override_styles/panel = SubResource("paper")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Reader" type="VBoxContainer" parent="Margin/Panel/Book/Columns/ReadingPanel"]
+layout_mode = 2
+
+[node name="ReadingTools" type="HBoxContainer" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader"]
+layout_mode = 2
+
+[node name="Breadcrumb" type="Label" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ReadingTools"]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 13
+text = "Select a lesson"
+theme_override_colors/font_color = Color(0.29,0.20,0.14,1)
+
+[node name="SmallerText" type="Button" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ReadingTools"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48,48)
+text = "A−"
+tooltip_text = "Decrease reading text size"
+
+[node name="LargerText" type="Button" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ReadingTools"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(48,48)
+text = "A+"
+tooltip_text = "Increase reading text size"
+
+[node name="SidebarButton" type="Button" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ReadingTools"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(80,48)
+text = "Lessons"
+tooltip_text = "Hide or show lesson navigation"
+
+[node name="ContentScroll" type="ScrollContainer" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
+horizontal_scroll_mode = 3
+follow_focus = true
 
-[node name="Content" type="VBoxContainer" parent="Margin/Panel/Padding/Book/Columns/ContentScroll"]
-unique_name_in_owner = true
+[node name="ReadingWidth" type="HBoxContainer" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ContentScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 14
 
-[node name="PixelStyle" type="Node" parent="."]
-script = ExtResource("91_style")
+[node name="LeftSpace" type="Control" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ContentScroll/ReadingWidth"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ContentScroll/ReadingWidth"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1
+theme_override_constants/separation = 18
+
+[node name="RightSpace" type="Control" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/ContentScroll/ReadingWidth"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="LessonNavigation" type="HBoxContainer" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader"]
+layout_mode = 2
+
+[node name="PreviousLesson" type="Button" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/LessonNavigation"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(110,48)
+text = "Previous lesson"
+size_flags_horizontal = 3
+
+[node name="NextLesson" type="Button" parent="Margin/Panel/Book/Columns/ReadingPanel/Reader/LessonNavigation"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(110,48)
+text = "Next lesson"
+size_flags_horizontal = 3

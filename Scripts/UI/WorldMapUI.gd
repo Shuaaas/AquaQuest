@@ -1,6 +1,8 @@
 extends Control
 ## Persistent, read-only atlas. There is no fast-travel feature in this project.
 
+var _info_visible := true
+var _user_toggled_info := false
 var _selected_region: String = "region_1"
 var _owns_pause := false
 var _previous_focus: WeakRef
@@ -11,12 +13,26 @@ var _buttons: Dictionary = {}
 @onready var close_button: Button = %CloseButton
 @onready var columns: BoxContainer = %MapColumns
 @onready var info_scroll: ScrollContainer = %InfoScroll
-@onready var region_buttons: HBoxContainer = %RegionButtons
+@onready var region_buttons: Control = %RegionButtons
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide()
+	theme = theme.duplicate()
+	var bundled := ThemeDB.fallback_font as FontFile
+	if bundled != null:
+		# Copy source data only; duplicating a live font also copies its glyph cache.
+		var font := FontFile.new()
+		font.data = bundled.data
+		font.antialiasing = TextServer.FONT_ANTIALIASING_GRAY
+		font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
+		theme.default_font = font
+	%DetailsButton.pressed.connect(_toggle_details)
+	%RegionSelector.item_selected.connect(_on_region_selected)
+	canvas.resized.connect(_position_region_buttons)
+	%AtlasStage.resized.connect(_update_layout)
+	%RegionCard.minimum_size_changed.connect(_update_layout)
 	close_button.pressed.connect(close_map)
 	canvas.region_selected.connect(select_region)
 	EventBus.world_map_open_requested.connect(open_map)
@@ -25,14 +41,18 @@ func _ready() -> void:
 	for entry in MapManager.get_regions():
 		var button := Button.new()
 		var region_id: String = entry["region_id"]
-		button.text = "R" + region_id.trim_prefix("region_")
+		button.text = region_id.replace("_", " ").capitalize()
 		button.tooltip_text = region_id.replace("_", " ").capitalize()
 		button.custom_minimum_size = Vector2(48, 48)
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.add_theme_font_size_override("font_size", 13)
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.size_flags_horizontal = Control.SIZE_FILL
 		button.toggle_mode = true
 		button.pressed.connect(select_region.bind(region_id))
 		region_buttons.add_child(button)
 		_buttons[region_id] = button
+		%RegionSelector.add_item(region_id.replace("_", " ").capitalize())
+		%RegionSelector.set_item_metadata(%RegionSelector.item_count - 1, region_id)
 	_update_layout()
 
 
@@ -51,7 +71,7 @@ func open_map() -> bool:
 	show()
 	if RegionManager.current_region_id != "":
 		_selected_region = RegionManager.current_region_id
-	select_region(_selected_region)
+	select_region(_selected_region, false)
 	close_button.grab_focus()
 	return true
 
@@ -104,16 +124,30 @@ func _unhandled_input(_event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func select_region(region_id: String) -> void:
+func select_region(region_id: String, reveal_details: bool = true) -> void:
 	var info := MapManager.get_region_info(region_id)
 	if info.is_empty():
 		return
 	_selected_region = region_id
 	canvas.selected_region_id = region_id
-	canvas.queue_redraw()
+	canvas.refresh_state()
+	if reveal_details:
+		_info_visible = true
+		_user_toggled_info = true
 	for button_id: String in _buttons:
 		_buttons[button_id].set_pressed_no_signal(button_id == region_id)
-	var region_label := region_id.replace("_", " ").capitalize()
+	%RegionName.text = info["name"]
+	%RegionModule.text = (
+		"%s · %s"
+		% [
+			region_id.replace("_", " ").capitalize(),
+			info["module_id"].replace("_", " ").capitalize()
+		]
+	)
+	%RegionPreview.texture = canvas.get_region_texture(region_id)
+	for index in %RegionSelector.item_count:
+		if %RegionSelector.get_item_metadata(index) == region_id:
+			%RegionSelector.select(index)
 	var status := "Locked"
 	if info["unlocked"]:
 		status = "Unlocked"
@@ -123,17 +157,14 @@ func select_region(region_id: String) -> void:
 		status += " / Current region"
 	if not info["defined"]:
 		status += " / Not yet available"
-	var name_text: String = info["name"]
-	if name_text != region_label:
-		region_label += " - " + name_text
+	%RegionStatus.text = status
 	information.text = (
-		"%s\n\n%s\n\n%s: %s\n\nStatus: %s\n\n"
+		"%s: %s\n\n%s\n\nStatus: %s\n\n"
 		% [
-			region_label,
-			info["description"],
 			info["module_id"].replace("_", " ").capitalize(),
 			info["module_title"],
-			status,
+			info["description"],
+			status
 		]
 	)
 	information.text += (
@@ -150,21 +181,87 @@ func select_region(region_id: String) -> void:
 		)
 	information.text += "Use the region exits to travel. Selecting a region does not move your player."
 	info_scroll.scroll_vertical = 0
+	_update_layout()
 
 
 func _refresh() -> void:
 	if visible:
-		select_region(_selected_region)
+		select_region(_selected_region, false)
+
+
+func _on_region_selected(index: int) -> void:
+	select_region(str(%RegionSelector.get_item_metadata(index)))
+
+
+func _toggle_details() -> void:
+	_info_visible = not %RegionCard.visible
+	_user_toggled_info = true
+	_update_layout()
 
 
 func _update_layout() -> void:
 	if not is_node_ready():
 		return
 	var portrait := size.x < 840 and size.x < size.y * 1.25
+	var short_screen := size.y < 500
 	columns.vertical = portrait
-	info_scroll.custom_minimum_size = (
-		Vector2(0, 190) if portrait else Vector2(minf(300, size.x * 0.36), 0)
+	get_node("Margin/Panel/Book/Header/Titles/Subtitle").visible = not portrait
+	get_node("Margin/Panel/Book/Header/Titles/Title").add_theme_font_size_override(
+		"font_size", 18 if portrait else 22
 	)
-	info_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	canvas.size_flags_vertical = Control.SIZE_FILL if portrait else Control.SIZE_EXPAND_FILL
-	canvas.custom_minimum_size.y = 200 if portrait else 0
+	%RegionSelector.visible = portrait or short_screen
+	%RegionCard.visible = _info_visible and (not short_screen or _user_toggled_info)
+	%DetailsButton.tooltip_text = (
+		"Hide region details" if %RegionCard.visible else "Show region details"
+	)
+	var stage: Control = %AtlasStage
+	%RegionCard.position = Vector2(8, maxf(0, stage.size.y - (220 if portrait else 200) - 8))
+	%RegionCard.size = Vector2(
+		minf(440, maxf(0, stage.size.x - 16)), minf(220 if portrait else 200, stage.size.y)
+	)
+	canvas.bottom_inset = (220.0 if portrait else 100.0) if %RegionCard.visible else 0.0
+	canvas._layout_art()
+	_position_region_buttons()
+
+
+func _position_region_buttons() -> void:
+	if not is_node_ready():
+		return
+	var compact := size.x < 900 or size.y < 500
+	for entry in MapManager.get_regions():
+		var id: String = entry["region_id"]
+		var info := MapManager.get_region_info(id)
+		var button: Button = _buttons[id]
+		button.text = (
+			id.replace("_", " ").capitalize()
+			if compact
+			else (
+				"%s\n%s · %s"
+				% [
+					info["name"],
+					id.replace("_", " ").capitalize(),
+					entry["module_id"].replace("_", " ").capitalize()
+				]
+			)
+		)
+		button.tooltip_text = (
+			"%s · %s%s"
+			% [
+				info["name"],
+				entry["module_id"].replace("_", " ").capitalize(),
+				(
+					" · Not yet available"
+					if not info["defined"]
+					else (" · Locked" if not info["unlocked"] else "")
+				)
+			]
+		)
+		button.accessibility_name = button.tooltip_text
+		button.size = Vector2(80 if compact else 172, 48 if compact else 56)
+		var center: Vector2 = canvas.get_region_screen_position(id)
+		button.position = center + Vector2(-button.size.x / 2, 56 * canvas._scale_factor())
+		button.position.x = clampf(button.position.x, 0, maxf(0, canvas.size.x - button.size.x))
+		button.position.y = clampf(button.position.y, 0, maxf(0, canvas.size.y - button.size.y))
+
+		if %RegionCard.visible and %RegionCard.get_rect().intersects(button.get_rect()):
+			button.position.y = maxf(0, %RegionCard.position.y - button.size.y - 8)

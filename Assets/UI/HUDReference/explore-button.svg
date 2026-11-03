@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b4b32"/><stop offset="0.46" stop-color="#523824"/><stop offset="1" stop-color="#3d2b1e"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c6a66a"/><stop offset="0.48" stop-color="#987044"/><stop offset="1" stop-color="#76502f"/>
+    </linearGradient>
+    <radialGradient id="edge" cx="0.48" cy="0.28" r="0.8">
+      <stop offset="0.3" stop-color="#302016" stop-opacity="0"/><stop offset="1" stop-color="#21160f" stop-opacity="0.28"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="5" width="92" height="90" rx="24" fill="#21160f" fill-opacity="0.3"/>
+  <rect x="2" y="2" width="92" height="90" rx="24" fill="#4a3324" stroke="#302016" stroke-width="1.5"/>
+  <rect x="4" y="4" width="88" height="86" rx="22" fill="url(#rim)"/>
+  <rect x="6" y="6" width="84" height="82" rx="20" fill="url(#wood)" stroke="#987044" stroke-opacity="0.55"/>
+  <rect x="7" y="7" width="82" height="80" rx="19" fill="url(#edge)"/>
+  <path d="M26 7H70" stroke="#f0dec1" stroke-opacity="0.15" stroke-linecap="round"/>
+  <path d="M26 87H70" stroke="#21160f" stroke-opacity="0.2" stroke-linecap="round"/>
+</svg>

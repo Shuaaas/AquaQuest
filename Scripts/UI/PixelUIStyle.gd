@@ -10,8 +10,11 @@ static func shared_theme() -> Theme:
 	if _shared_theme == null:
 		_shared_theme = BASE_THEME.duplicate(true)
 		# Use Godot's bundled fallback font; no OS-specific font or download.
-		var font := ThemeDB.fallback_font.duplicate() as FontFile
-		if font != null:
+		var bundled := ThemeDB.fallback_font as FontFile
+		if bundled != null:
+			# Copy source data only; duplicating a live font also copies its glyph cache.
+			var font := FontFile.new()
+			font.data = bundled.data
 			font.antialiasing = TextServer.FONT_ANTIALIASING_NONE
 			font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
 			font.hinting = TextServer.HINTING_NORMAL

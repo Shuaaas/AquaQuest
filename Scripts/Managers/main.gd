@@ -25,7 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_I:
 				if not event.echo:
 					inventory_ui.open_inventory()
-			KEY_P: performance_board.visible = not performance_board.visible
+			#KEY_P:
+				#if not event.echo:
+					#$CanvasLayer/GameplayHUD.toggle_quests()
 			KEY_L: print("points: ", FishingManager.get_points(), " | earned: ", FishingManager.get_total_points_earned(), " | spent: ", FishingManager.get_total_points_spent(), " | performance: ", FishingManager.get_performance_points())
 			KEY_N: SaveManager.save_game(0)
 			KEY_M:

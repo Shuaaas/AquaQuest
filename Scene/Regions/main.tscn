@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjysd7qtg2685"]
+[gd_scene load_steps=16 format=3 uid="uid://cjysd7qtg2685"]
 
 [ext_resource type="Script" uid="uid://bn8sqpdqbba3m" path="res://Scripts/Managers/main.gd" id="1_hx6h6"]
 [ext_resource type="PackedScene" uid="uid://dh8vjuejffq06" path="res://Scene/UI/fishing_ui.tscn" id="1_n1d5u"]
@@ -11,9 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://byjs13jyh0678" path="res://Scene/UI/CodexUI.tscn" id="9_codex"]
 [ext_resource type="PackedScene" uid="uid://c55w6ld002dui" path="res://Scene/UI/WorldMapUI.tscn" id="10_world_map"]
 [ext_resource type="PackedScene" uid="uid://cylpcn5a76p5x" path="res://Scene/UI/MiniMapUI.tscn" id="11_mini_map"]
-[ext_resource type="Script" path="res://Scripts/Systems/Inventory/InventoryLauncher.gd" id="12_inventory_launcher"]
-[ext_resource type="Theme" uid="uid://e3khp6gsait" path="res://Resources/UI/AquaQuestTheme.tres" id="13_ui_theme"]
-[ext_resource type="Script" uid="uid://j7f6ufwkkqa6" path="res://Scripts/UI/PixelUIStyle.gd" id="14_ui_style"]
+[ext_resource type="PackedScene" uid="uid://ksyca2lkeib7" path="res://Scene/UI/GameplayHUD.tscn" id="13_f3enq"]
+[ext_resource type="PackedScene" path="res://Scene/UI/ItemRewardToast.tscn" id="15_item_reward"]
+[ext_resource type="PackedScene" uid="uid://dv2dw0qgyjn13" path="res://Scene/UI/QuestJournalUI.tscn" id="16_journal"]
+
+[ext_resource type="PackedScene" path="res://Scene/UI/RegionMapUI.tscn" id="17_region_map"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_hx6h6")
@@ -24,8 +26,6 @@ script = ExtResource("1_hx6h6")
 
 [node name="DialogueUi" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("3_hx6h6")]
 
-[node name="ToastUI" parent="CanvasLayer" instance=ExtResource("4_yg326")]
-
 [node name="ExamUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("5_74fnr")]
 
 [node name="ShopUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("6_cuued")]
@@ -34,29 +34,28 @@ script = ExtResource("1_hx6h6")
 visible = false
 
 [node name="InventoryUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("7_vpkto")]
-visible = false
+layout_mode = 3
 offset_left = 1.0
 offset_top = 2.0
 offset_right = 1.0
 offset_bottom = 2.0
 
 [node name="CodexUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("9_codex")]
+layout_mode = 3
 
 [node name="MiniMapUI" parent="CanvasLayer" instance=ExtResource("11_mini_map")]
 
 [node name="WorldMapUI" parent="CanvasLayer" instance=ExtResource("10_world_map")]
 
-[node name="InventoryButton" type="Button" parent="CanvasLayer"]
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 156.0
-offset_bottom = 60.0
-theme = ExtResource("13_ui_theme")
-text = "Inventory"
-script = ExtResource("12_inventory_launcher")
-inventory_path = NodePath("../InventoryUI")
+[node name="ItemRewardToast" parent="CanvasLayer" instance=ExtResource("15_item_reward")]
+generic_toast_path = NodePath("")
 
-[node name="PixelStyle" type="Node" parent="CanvasLayer/InventoryButton"]
-script = ExtResource("14_ui_style")
+[node name="QuestJournalUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("16_journal")]
+
+[node name="RegionMapUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("17_region_map")]
+
+[node name="GameplayHUD" parent="CanvasLayer" instance=ExtResource("13_f3enq")]
+
+[node name="ToastUI" parent="CanvasLayer" instance=ExtResource("4_yg326")]
 
 [node name="RegionContainer" type="Node2D" parent="." groups=["region_container"]]

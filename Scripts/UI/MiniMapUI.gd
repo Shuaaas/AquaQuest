@@ -17,6 +17,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	terrain.texture = map_viewport.get_texture()
 	map_button.pressed.connect(_open_map)
+	%OpenRegionMap.pressed.connect(_open_map)
 	EventBus.game_paused.connect(_on_paused)
 	EventBus.dialogue_started.connect(_on_activity_started)
 	EventBus.fishing_cast_started.connect(_on_activity_started)
@@ -24,7 +25,7 @@ func _ready() -> void:
 
 
 func _open_map() -> void:
-	EventBus.world_map_open_requested.emit()
+	EventBus.region_map_open_requested.emit()
 
 
 func _process(delta: float) -> void:
@@ -32,6 +33,10 @@ func _process(delta: float) -> void:
 		_hide_map()
 		_elapsed = 0.1
 		return
+	if visible:
+		var player := MapManager.get_local_player(MapManager.get_current_region_root())
+		if player != null:
+			_update_player_pose(player)
 	_elapsed += delta
 	if _elapsed >= 0.1:
 		_elapsed = 0
@@ -49,13 +54,19 @@ func refresh() -> void:
 	map_viewport.size = view_size
 	map_viewport.world_2d = player.get_world_2d()
 	map_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-	map_camera.position = player.global_position
 	map_camera.zoom = Vector2.ONE * float(view_size.x) / (world_radius * 2)
-	surface.player_position = player.global_position
+	_update_player_pose(player)
 	surface.radius = world_radius
 	surface.markers = MapManager.get_markers(region, player, world_radius)
 	surface.queue_redraw()
 	region_label.text = RegionManager.current_region_id.replace("_", " ").capitalize()
+
+
+func _update_player_pose(player: Player) -> void:
+	map_camera.position = player.global_position
+	surface.player_position = player.global_position
+	surface.player_facing = player.movement.facing
+	surface.queue_redraw()
 
 
 func _blocked() -> bool:

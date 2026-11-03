@@ -34,9 +34,8 @@ func after_each() -> void:
 
 func _text() -> String:
 	var parts := PackedStringArray()
-	for child in ui.content.get_children():
-		if child is RichTextLabel:
-			parts.append(child.text)
+	for child in ui.content.find_children("*", "RichTextLabel", true, false):
+		parts.append(child.text)
 	return "\n".join(parts)
 
 
@@ -166,3 +165,112 @@ func test_reader_adapts_to_portrait_and_landscape_without_hiding_close() -> void
 		assert_gte(ui.close_button.size.y, 48.0)
 		assert_lte(ui.close_button.get_global_rect().end.x, float(viewport_size.x))
 		assert_lte(ui.close_button.get_global_rect().end.y, float(viewport_size.y))
+
+
+func test_reading_size_controls_resize_nested_cards_without_altering_course_content() -> void:
+	CodexManager._apply_save_data({"unlocked_lesson_ids": ["module_3_lesson_5"]})
+	assert_true(ui.open_codex())
+	ui.show_module("module_3")
+	ui.show_lesson("module_3_lesson_5")
+	var text := _text()
+	var progress := CodexManager._get_save_data().duplicate(true)
+	ui.get_node("%LargerText").pressed.emit()
+	assert_eq(ui._body_font_size, 22)
+	assert_eq(_text(), text)
+	for label in ui.content.find_children("*", "RichTextLabel", true, false):
+		assert_eq(
+			label.get_theme_font_size("normal_font_size"),
+			maxi(16, int(label.get_meta("base_font_size")) + 2)
+		)
+	for i in 10:
+		ui.get_node("%LargerText").pressed.emit()
+	assert_eq(ui._body_font_size, 28)
+	assert_true(ui.get_node("%LargerText").disabled)
+	for i in 10:
+		ui.get_node("%SmallerText").pressed.emit()
+	assert_eq(ui._body_font_size, 16)
+	assert_true(ui.get_node("%SmallerText").disabled)
+	assert_eq(CodexManager._get_save_data(), progress)
+
+
+func test_sidebar_can_hide_and_reopen_without_losing_lesson_or_unlocking_content() -> void:
+	assert_true(ui.open_codex())
+	ui.show_module("module_3")
+	ui.show_lesson("module_3_lesson_2")
+	var text := _text()
+	ui.get_node("%SidebarButton").pressed.emit()
+	assert_false(ui.get_node("%NavigationPanel").visible)
+	assert_true(ui.get_node("%SidebarButton").is_visible_in_tree())
+	assert_eq(_text(), text)
+	ui.get_node("%SidebarButton").pressed.emit()
+	assert_true(ui.get_node("%NavigationPanel").visible)
+	assert_false(CodexManager.is_lesson_unlocked("module_3_lesson_2"))
+
+
+func test_previous_next_navigation_respects_module_bounds_and_lesson_locks() -> void:
+	assert_true(ui.open_codex())
+	ui.show_module("module_3")
+	ui.show_lesson("module_3_lesson_1")
+	assert_true(ui.get_node("%PreviousLesson").disabled)
+	ui.get_node("%NextLesson").pressed.emit()
+	assert_eq(ui._selected_lesson, "module_3_lesson_2")
+	assert_true(_text().contains("Locked:"))
+	assert_false(_text().contains(CodexManager.get_lesson(ui._selected_lesson)["summary"]))
+	ui.get_node("%PreviousLesson").pressed.emit()
+	assert_eq(ui._selected_lesson, "module_3_lesson_1")
+	ui.show_lesson("module_3_lesson_7")
+	assert_true(ui.get_node("%NextLesson").disabled)
+
+
+func test_large_to_small_resize_keeps_reading_controls_and_content_in_bounds() -> void:
+	CodexManager._apply_save_data({"unlocked_lesson_ids": ["module_3_lesson_5"]})
+	assert_true(ui.open_codex())
+	ui.show_module("module_3")
+	ui.show_lesson("module_3_lesson_5")
+	for viewport_size in [
+		Vector2i(1280, 800), Vector2i(390, 844), Vector2i(720, 360), Vector2i(856, 428)
+	]:
+		get_tree().root.size = viewport_size
+		for frame in 8:
+			await get_tree().process_frame
+		var bounds := Rect2(Vector2.ZERO, Vector2(viewport_size))
+		for name in [
+			"CloseButton",
+			"SidebarButton",
+			"SmallerText",
+			"LargerText",
+			"PreviousLesson",
+			"NextLesson"
+		]:
+			assert_true(
+				bounds.grow(1).encloses(ui.get_node("%" + name).get_global_rect()),
+				name + str(viewport_size)
+			)
+		assert_lte(ui.content_scroll.get_h_scroll_bar().max_value, ui.content_scroll.size.x + 1)
+		assert_gte(ui.content_scroll.size.y, 120.0)
+
+
+func test_all_unlocked_lesson_sections_definitions_and_sources_remain_in_reader() -> void:
+	var ids: Array[String] = []
+	for module in CodexManager.get_modules():
+		for lesson in CodexManager.get_lessons(module["module_id"]):
+			ids.append(lesson["id"])
+	CodexManager._apply_save_data({"unlocked_lesson_ids": ids})
+	assert_true(ui.open_codex())
+	for module in CodexManager.get_modules():
+		ui.show_module(module["module_id"])
+		for lesson in CodexManager.get_lessons(module["module_id"]):
+			ui.show_lesson(lesson["id"])
+			var text := _text()
+			assert_string_contains(text, lesson["summary"], lesson["id"])
+			for section in lesson["sections"]:
+				assert_string_contains(text, section["heading"])
+				assert_string_contains(text, section["content"])
+			for concept in lesson.get("key_concepts", []):
+				assert_string_contains(text, concept["term"])
+				assert_string_contains(text, concept["definition"])
+			for reference in lesson.get("references", []):
+				assert_string_contains(text, reference["text"])
+			for label in ui.content.find_children("*", "RichTextLabel", true, false):
+				assert_false(label.bbcode_enabled)
+			await get_tree().process_frame

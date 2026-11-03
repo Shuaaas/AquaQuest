@@ -1,47 +1,188 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjnbhko7tgtjr"]
+[gd_scene load_steps=13 format=3 uid="uid://bjnbhko7tgtjr"]
 
-[ext_resource type="Script" path="res://Scripts/UI/toast_ui.gd" id="1_script"]
-[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
-[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
+[ext_resource type="Script" uid="uid://x3l8vpqpucub" path="res://Scripts/UI/toast_ui.gd" id="1_codex"]
+[ext_resource type="Texture2D" uid="uid://dlcboukbt7sk3" path="res://Assets/UI/HUDReference/wood.svg" id="2_wood"]
+[ext_resource type="Texture2D" uid="uid://xeskbkb3wjca" path="res://Assets/UI/HUDReference/button.svg" id="3_button"]
+[ext_resource type="Texture2D" uid="uid://djvynlbc8n5ys" path="res://Assets/UI/HUDReference/parchment.svg" id="4_paper"]
+
+[sub_resource type="StyleBoxTexture" id="disabled_button"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.74, 0.46, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxTexture" id="button"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="selection"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.19, 0.29, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.66, 0.68, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxTexture" id="wood"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_wood")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="study_card"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
+bg_color = Color(0.94, 0.86, 0.7, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.68, 0.52, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="reader_theme"]
+default_font_size = 16
+Button/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+Button/colors/font_disabled_color = Color(0.72, 0.64, 0.51, 1)
+Button/colors/font_focus_color = Color(1, 0.94, 0.82, 1)
+Button/colors/font_hover_color = Color(1, 0.94, 0.82, 1)
+Button/styles/disabled = SubResource("disabled_button")
+Button/styles/focus = SubResource("focus")
+Button/styles/hover = SubResource("button")
+Button/styles/normal = SubResource("button")
+Button/styles/pressed = SubResource("selection")
+HBoxContainer/constants/separation = 8
+Label/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+OptionButton/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+OptionButton/styles/focus = SubResource("focus")
+OptionButton/styles/hover = SubResource("button")
+OptionButton/styles/normal = SubResource("button")
+OptionButton/styles/pressed = SubResource("button")
+PopupMenu/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+PopupMenu/styles/hover = SubResource("selection")
+PopupMenu/styles/panel = SubResource("wood")
+RichTextLabel/colors/default_color = Color(0.188, 0.125, 0.086, 1)
+RichTextLabel/constants/line_separation = 6
+StudyCard/styles/panel = SubResource("study_card")
+VBoxContainer/constants/separation = 8
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_paper")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 
 [node name="ToastUI" type="Control"]
+z_index = 60
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_theme")
-script = ExtResource("1_script")
+mouse_filter = 2
+theme = SubResource("reader_theme")
+script = ExtResource("1_codex")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 16.0
-offset_top = -60.0
-offset_right = -16.0
-offset_bottom = 100.0
+anchors_preset = -1
+anchor_left = 0.22200002
+anchor_top = 0.39800003
+anchor_right = 0.77800006
+anchor_bottom = 0.60200006
+offset_left = 0.25598145
+offset_top = 0.09597778
+offset_right = -0.25604248
+offset_bottom = -0.09603882
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("wood")
+metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="Margin"]
+[node name="Layout" type="VBoxContainer" parent="PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 8
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Margin/PanelContainer"]
+[node name="Heading" type="Label" parent="PanelContainer/Layout"]
+unique_name_in_owner = true
 layout_mode = 2
-horizontal_scroll_mode = 0
-mouse_filter = 1
+theme_override_font_sizes/font_size = 15
+text = "Notification"
 
-[node name="ToastLabel" type="Label" parent="Margin/PanelContainer/ScrollContainer"]
+[node name="Paper" type="PanelContainer" parent="PanelContainer/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("paper")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Layout/Paper"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 0
+
+[node name="ToastLabel" type="Label" parent="PanelContainer/Layout/Paper/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = ""
+theme_override_colors/font_color = Color(0.188, 0.125, 0.086, 1)
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 19
 autowrap_mode = 3
 
-[node name="PixelStyle" type="Node" parent="."]
-script = ExtResource("3_style")
+[node name="DisplayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

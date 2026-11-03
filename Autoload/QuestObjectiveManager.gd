@@ -227,3 +227,8 @@ func _resolve_required_count(objective: Dictionary) -> int:
 		return base_count
 	var multiplier: float = DDAController.get_required_fish_multiplier()
 	return max(1, int(round(base_count * multiplier)))
+
+
+## Read-only HUD/data query. Uses the same target as quest completion.
+func get_objective_target_count(objective: Dictionary) -> int:
+	return _resolve_required_count(objective)

@@ -61,3 +61,9 @@ func try_interact() -> void:
 		return
 	_closest.interact(get_owner())
 	interact_used.emit(_closest)
+
+
+## Share the same nearest enabled target with contextual UI and keyboard input.
+func get_focused_interactable() -> Interactable:
+	_update_closest()
+	return _closest

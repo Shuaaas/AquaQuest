@@ -1,0 +1,291 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/ItemRewardToast.gd" id="1_codex"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/wood.svg" id="2_wood"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/button.svg" id="3_button"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/parchment.svg" id="4_paper"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ItemRewardFrame.gd" id="frame_script"]
+
+[sub_resource type="StyleBoxTexture" id="disabled_button"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.74, 0.46, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxTexture" id="button"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="selection"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.19, 0.29, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.66, 0.68, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxTexture" id="wood"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_wood")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="study_card"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
+bg_color = Color(0.94, 0.86, 0.7, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.68, 0.52, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="reader_theme"]
+default_font_size = 16
+Button/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+Button/colors/font_disabled_color = Color(0.72, 0.64, 0.51, 1)
+Button/colors/font_focus_color = Color(1, 0.94, 0.82, 1)
+Button/colors/font_hover_color = Color(1, 0.94, 0.82, 1)
+Button/styles/disabled = SubResource("disabled_button")
+Button/styles/focus = SubResource("focus")
+Button/styles/hover = SubResource("button")
+Button/styles/normal = SubResource("button")
+Button/styles/pressed = SubResource("selection")
+HBoxContainer/constants/separation = 8
+Label/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+OptionButton/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+OptionButton/styles/focus = SubResource("focus")
+OptionButton/styles/hover = SubResource("button")
+OptionButton/styles/normal = SubResource("button")
+OptionButton/styles/pressed = SubResource("button")
+PopupMenu/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+PopupMenu/styles/hover = SubResource("selection")
+PopupMenu/styles/panel = SubResource("wood")
+RichTextLabel/colors/default_color = Color(0.188, 0.125, 0.086, 1)
+RichTextLabel/constants/line_separation = 6
+StudyCard/styles/panel = SubResource("study_card")
+VBoxContainer/constants/separation = 8
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_paper")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="badge_body"]
+texture = ExtResource("2_wood")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+
+[node name="ItemRewardToast" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+z_index = 50
+theme = SubResource("reader_theme")
+script = ExtResource("1_codex")
+
+[node name="RewardFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+layout_mode = 0
+offset_right = 440.0
+offset_bottom = 300.0
+script = ExtResource("frame_script")
+
+[node name="Body" type="PanelContainer" parent="RewardFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 44.0
+show_behind_parent = true
+theme_override_styles/panel = SubResource("badge_body")
+
+[node name="Layout" type="VBoxContainer" parent="RewardFrame/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="BadgeSpace" type="Control" parent="RewardFrame/Body/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+custom_minimum_size = Vector2(0,24)
+
+[node name="TextScroll" type="ScrollContainer" parent="RewardFrame/Body/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+mouse_filter = 1
+
+[node name="Text" type="VBoxContainer" parent="RewardFrame/Body/Layout/TextScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Heading" type="Label" parent="RewardFrame/Body/Layout/TextScroll/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+text = "ITEM RECEIVED"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="NameRow" type="HBoxContainer" parent="RewardFrame/Body/Layout/TextScroll/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="ItemName" type="Label" parent="RewardFrame/Body/Layout/TextScroll/Text/NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 0
+autowrap_mode = 3
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 26
+
+[node name="Quantity" type="Label" parent="RewardFrame/Body/Layout/TextScroll/Text/NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 26
+vertical_alignment = 1
+
+[node name="Rarity" type="Label" parent="RewardFrame/Body/Layout/TextScroll/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.776,0.651,0.416,1)
+theme_override_font_sizes/font_size = 17
+
+[node name="Paper" type="PanelContainer" parent="RewardFrame/Body/Layout/TextScroll/Text"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("paper")
+
+[node name="Description" type="Label" parent="RewardFrame/Body/Layout/TextScroll/Text/Paper"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+autowrap_mode = 3
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.188,0.125,0.086,1)
+theme_override_font_sizes/font_size = 18
+theme_override_constants/line_spacing = 4
+
+[node name="DismissButton" type="Button" parent="RewardFrame/Body/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(132,48)
+text = "Dismiss"
+mouse_filter = 0
+
+[node name="ItemIcon" type="TextureRect" parent="RewardFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 72.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MissingIcon" type="Label" parent="RewardFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_top = 12.0
+offset_right = 24.0
+offset_bottom = 64.0
+text = "?"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 36
+
+[node name="DisplayTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

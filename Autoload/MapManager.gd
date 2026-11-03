@@ -131,10 +131,14 @@ func get_local_player(region: Node) -> Node2D:
 	return null
 
 
-func get_markers(region: Node, player: Node2D, radius: float = 280.0) -> Array:
+func get_markers(
+	region: Node, player: Node2D, radius: float = 280.0, marker_limit: int = 12
+) -> Array:
 	if region == null or player == null or not region.is_ancestor_of(player):
 		return []
-	return _navigation.collect(region, player.global_position, radius, _data, _reinforcement_spot)
+	return _navigation.collect(
+		region, player.global_position, radius, _data, _reinforcement_spot, marker_limit
+	)
 
 
 func has_blocking_overlay(except: Control = null) -> bool:

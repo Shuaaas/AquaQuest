@@ -10,14 +10,14 @@ class_name PerformanceBoard
 ## LAYOUT (all nodes must be marked "Access as Unique Name" in the scene):
 ##   CloseButton       (Button)
 ##   ExportButton      (Button)
-##   AccuracyLabel     (Label)   - "XX% (C/T)"
-##   CorrectLabel      (Label)   - main correct / total
+##   AccuracyLabel     (Label)   - answer accuracy percentage
+##   CorrectLabel      (Label)   - total correct answers
 ##   IncorrectLabel    (Label)   - main incorrect
-##   PointsLabel       (Label)   - current net balance
-##   AQPILabel         (Label)   - AQPI 0-100
+##   PointsLabel       (Label)   - earned / deducted details
+##   AQPILabel         (Label)   - AQPI 0-100; PointsValue is the net balance
 ##   TierLabel         (Label)   - current tier name
 ##   TimeLabel         (Label)   - total time H:MM:SS
-##   MiniLabel         (Label)   - triggered / correct / wrong
+##   MiniLabel         (Label)   - mini quests triggered
 ##   RegionContainer   (VBoxContainer) - region rows added dynamically
 ##   ExamContainer     (VBoxContainer) - exam rows added dynamically
 ##   QuestContainer    (VBoxContainer) - quest rows added dynamically
@@ -39,13 +39,26 @@ class_name PerformanceBoard
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	# Match the newer UI font while retaining the board's local styles and layout.
+	theme = theme.duplicate()
+	var bundled := ThemeDB.fallback_font as FontFile
+	if bundled != null:
+		var font := FontFile.new()
+		font.data = bundled.data
+		font.antialiasing = TextServer.FONT_ANTIALIASING_GRAY
+		font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
+		theme.default_font = font
 	close_button.pressed.connect(_on_close)
 	export_button.pressed.connect(_on_export)
+	resized.connect(_update_layout)
+	_update_layout()
 	_populate()
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_VISIBILITY_CHANGED and visible:
+	# Visibility notifications can arrive before @onready references exist.
+	# _ready() performs the initial population once the child nodes are ready.
+	if what == NOTIFICATION_VISIBILITY_CHANGED and visible and is_node_ready():
 		_populate()
 
 
@@ -58,52 +71,93 @@ func _populate() -> void:
 
 # --- Summary card ---
 
+func _update_layout() -> void:
+	%Cards.columns = 1 if size.x < 440 else 2
+	get_node("Margin/Panel/Layout/Header/HeaderRow/RecordBadge").visible = size.x >= 440
+
+
 func _fill_summary() -> void:
 	var total: int = PerformanceTracker.total_questions_answered
 	var correct: int = PerformanceTracker.total_correct
-	var incorrect: int = PerformanceTracker.total_incorrect
 	var acc: float = PerformanceTracker.get_accuracy()
-
-	accuracy_label.text  = "%d%% (%d / %d)" % [int(acc * 100), correct, total]
-	correct_label.text   = "Main ✓ %d  Mini ✓ %d" % [
-		PerformanceTracker.total_main_correct,
-		PerformanceTracker.total_mini_correct,
-	]
-	incorrect_label.text = "Main ✗ %d  Mini ✗ %d" % [
-		PerformanceTracker.total_main_incorrect,
-		PerformanceTracker.total_mini_incorrect,
-	]
-	points_label.text    = "Net Points: %d  (Earned: %d  Deducted: %d)" % [
-		FishingManager.get_points(),
-		PerformanceTracker.total_points_earned,
-		PerformanceTracker.total_points_deducted,
-	]
-
-	var aqpi_raw: float = PerformanceTracker.compute_aqpi()
-	aqpi_label.text = "AQPI: %.1f / 100" % (aqpi_raw * 100.0)
-
-	var tier_names := ["Easy", "Medium", "Hard"]
-	var tier_idx: int = clamp(int(DDAController.get_current_tier()), 0, 2)
-	tier_label.text = "Current Difficulty: %s" % tier_names[tier_idx]
-
+	accuracy_label.text = "%d%%" % int(acc * 100)
+	%AccuracyProgress.value = acc * 100
+	%AccuracyDetail.text = "%d of %d answers correct" % [correct, total]
+	correct_label.text = str(correct)
+	%CorrectDetail.text = "Main: %d · Mini: %d" % [
+		PerformanceTracker.total_main_correct, PerformanceTracker.total_mini_correct]
+	incorrect_label.text = "Incorrect — Main: %d · Mini: %d" % [
+		PerformanceTracker.total_main_incorrect, PerformanceTracker.total_mini_incorrect]
+	%PointsValue.text = str(FishingManager.get_points())
+	points_label.text = "Earned: %d · Deducted: %d" % [
+		PerformanceTracker.total_points_earned, PerformanceTracker.total_points_deducted]
+	aqpi_label.text = "%.1f" % (PerformanceTracker.compute_aqpi() * 100.0)
+	var tier_names := ["EASY", "MEDIUM", "HARD"]
+	var tier_idx: int = clampi(int(DDAController.get_current_tier()), 0, 2)
+	tier_label.text = tier_names[tier_idx]
+	tier_label.add_theme_color_override("font_color", Color("8ed27b") if tier_idx == 0 else Color("e6bd75"))
 	var secs := int(PerformanceTracker.total_time_seconds)
-	time_label.text = "Total Question Time: %d:%02d:%02d" % [secs / 3600, (secs % 3600) / 60, secs % 60]
+	time_label.text = "%02d:%02d:%02d" % [secs / 3600, (secs % 3600) / 60, secs % 60]
+	mini_label.text = str(PerformanceTracker.total_mini_quests_triggered)
 
-	mini_label.text = "Mini Quests — Triggered: %d  Correct: %d  Wrong: %d" % [
-		PerformanceTracker.total_mini_quests_triggered,
-		PerformanceTracker.total_mini_correct,
-		PerformanceTracker.total_mini_incorrect,
-	]
+
+func _clear_rows(container: VBoxContainer) -> void:
+	for child in container.get_children():
+		container.remove_child(child)
+		child.queue_free()
+
+
+func _text(parent: Node, value: String, font_size: int = 16) -> Label:
+	var label := Label.new()
+	label.text = value
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.add_theme_font_size_override("font_size", font_size)
+	parent.add_child(label)
+	return label
+
+
+func _record_row(container: VBoxContainer, title: String, detail: String, status: String = "", positive: bool = false) -> void:
+	var row := HBoxContainer.new()
+	container.add_child(row)
+	var icon := TextureRect.new()
+	var icon_name := "region" if container == region_container else ("exam" if container == exam_container else "journal")
+	icon.texture = load("res://Assets/UI/HUDReference/performance-" + icon_name + ".svg")
+	icon.custom_minimum_size = Vector2(28, 28)
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(icon)
+	var text := VBoxContainer.new()
+	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	text.add_theme_constant_override("separation", 4)
+	row.add_child(text)
+	_text(text, title)
+	_text(text, detail, 13).add_theme_color_override("font_color", Color("e6bd75"))
+	if not status.is_empty():
+		var badge := PanelContainer.new()
+		badge.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var style := StyleBoxFlat.new()
+		style.bg_color = Color("253b24") if positive else Color("584536")
+		style.set_corner_radius_all(8)
+		style.content_margin_left = 8
+		style.content_margin_right = 8
+		style.content_margin_top = 3
+		style.content_margin_bottom = 3
+		badge.add_theme_stylebox_override("panel", style)
+		row.add_child(badge)
+		var label := _text(badge, status, 12)
+		label.autowrap_mode = TextServer.AUTOWRAP_OFF
+		label.add_theme_color_override("font_color", Color("8ed27b") if positive else Color("f0dec1"))
 
 
 # --- Region rows ---
 
 func _fill_regions() -> void:
-	for child in region_container.get_children():
-		child.queue_free()
+	_clear_rows(region_container)
 
 	# Collect all known region ids from RegionManager's definitions.
-	# RegionManager keeps _region_definitions private, so we ask for known
+	# RegionManager keeps _region_definitions private, so we ask for knowna
 	# ids by iterating the exam history and quest data instead, then fall
 	# back to the two we know exist from the JSON files.
 	var known_region_ids: Array = ["region_1", "region_2",
@@ -119,16 +173,16 @@ func _fill_regions() -> void:
 		var status: String   = "Unlocked" if unlocked else "Locked"
 		var current_marker   = " ← Current" if region_id == RegionManager.current_region_id else ""
 
-		var row := Label.new()
-		row.text = "%s — %s%s" % [name_str, status, current_marker]
-		region_container.add_child(row)
+		_record_row(region_container, name_str,
+			region_id.replace("_", " ").capitalize() + (" · Current region" if not current_marker.is_empty() else ""),
+			status.to_upper(), unlocked)
+
 
 
 # --- Exam rows ---
 
 func _fill_exams() -> void:
-	for child in exam_container.get_children():
-		child.queue_free()
+	_clear_rows(exam_container)
 
 	# Exam ids we know about; extend this list as more are added.
 	var known_exam_ids: Array = ["region1_exam", "region2_exam",
@@ -159,19 +213,17 @@ func _fill_exams() -> void:
 			row.text = "  Attempt %d: %s  %d%%  (%d/%d)  %s" % [
 				i + 1, result, score_pct, correct, total, dt
 			]
+			row.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			exam_container.add_child(row)
 
 	if not any_found:
-		var none_label := Label.new()
-		none_label.text = "(No exam attempts recorded yet)"
-		exam_container.add_child(none_label)
+		_record_row(exam_container, "Exam history", "Your completed regional examinations will appear here.")
 
 
 # --- Quest rows ---
 
 func _fill_quests() -> void:
-	for child in quest_container.get_children():
-		child.queue_free()
+	_clear_rows(quest_container)
 
 	# We enumerate all tracked quest ids from QuestManager's internal dict.
 	# QuestManager has no public "get all quest ids", so we access the
@@ -188,14 +240,10 @@ func _fill_quests() -> void:
 			continue  # not yet started - omit from board
 
 		var display: String = quest_id.replace("_", " ").capitalize()
-		var row := Label.new()
-		row.text = "%s — %s" % [display, state.capitalize()]
-		quest_container.add_child(row)
+		_record_row(quest_container, display, "Quest record", state.capitalize(), state == "completed")
 
 	if quest_container.get_child_count() == 0:
-		var none_label := Label.new()
-		none_label.text = "(No quests started yet)"
-		quest_container.add_child(none_label)
+		_record_row(quest_container, "No quests started yet", "Your quest records will appear here.")
 
 
 # --- Close ---

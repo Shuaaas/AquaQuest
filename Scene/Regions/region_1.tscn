@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://c4dw38llp74av"]
+[gd_scene load_steps=41 format=4 uid="uid://c4dw38llp74av"]
 
 [ext_resource type="Texture2D" uid="uid://cdpnjscetcl0n" path="res://Assets/Environment/Tilesets/Floors_Tiles.png" id="1_y60qp"]
 [ext_resource type="Texture2D" uid="uid://jc5akuaff6uc" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="2_vaj6m"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://y26fy1xsfbog" path="res://Scene/NPC/npc_examiner_santaigo.tscn" id="13_pjbp3"]
 [ext_resource type="PackedScene" uid="uid://bes50qefwfknh" path="res://Scene/Door/region_exit.tscn" id="14_j7klp"]
 [ext_resource type="PackedScene" uid="uid://b6myu8q4wv0dh" path="res://Scene/NPC/npc_merchant_lola.tscn" id="15_78okj"]
+[ext_resource type="PackedScene" path="res://Scene/House/house_1.tscn" id="17_ofy2l"]
+[ext_resource type="Script" uid="uid://c4g17v8q7r4du" path="res://Scripts/Systems/Player/PlayerSpawnPoint.gd" id="17_spawn"]
+[ext_resource type="PackedScene" path="res://Scene/House/house_2.tscn" id="18_eavtg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eavtg"]
 texture = ExtResource("1_y60qp")
@@ -4351,9 +4354,20 @@ position = Vector2(-458, 84)
 position = Vector2(-153, -44)
 
 [node name="npc_merchant_lola" parent="." instance=ExtResource("15_78okj")]
-position = Vector2(133, -38)
+position = Vector2(-295, -41)
+
+[node name="DefaultSpawn" type="Marker2D" parent="."]
+script = ExtResource("17_spawn")
 
 [node name="player" parent="." instance=ExtResource("12_e4far")]
+position = Vector2(-55, 31)
 
 [node name="RegionExit" parent="." instance=ExtResource("14_j7klp")]
 position = Vector2(-232, -98)
+
+[node name="House" parent="." instance=ExtResource("17_ofy2l")]
+position = Vector2(48, -124)
+script = null
+
+[node name="house2" parent="." instance=ExtResource("18_eavtg")]
+position = Vector2(-612, -83)

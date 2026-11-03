@@ -313,7 +313,7 @@ func test_mini_map_tracks_camera_and_hides_for_gameplay_overlays() -> void:
 	assert_true(mini.visible)
 	watch_signals(EventBus)
 	mini.map_button.pressed.emit()
-	assert_signal_emitted(EventBus, "world_map_open_requested")
+	assert_signal_emitted(EventBus, "region_map_open_requested")
 	overlay.free()
 	mini.free()
 
@@ -408,3 +408,114 @@ func test_map_cannot_interrupt_inventory_dialogue_fishing_or_foreign_pause() -> 
 	get_tree().paused = false
 	ui.free()
 	overlay.free()
+
+
+func test_atlas_artwork_states_follow_actual_unlocks_and_selection() -> void:
+	var ui := WORLD_SCENE.instantiate()
+	add_child(ui)
+	assert_true(ui.open_map())
+	assert_eq(ui.canvas._islands.size(), 5)
+	ui.select_region("region_3")
+	var third: ShaderMaterial = ui.canvas._islands.region_3.material
+	assert_true(third.get_shader_parameter("unavailable"))
+	assert_true(third.get_shader_parameter("locked"))
+	assert_true(third.get_shader_parameter("selected"))
+	RegionManager.unlock_region("region_2")
+	var second: ShaderMaterial = ui.canvas._islands.region_2.material
+	assert_false(second.get_shader_parameter("locked"))
+	assert_false(second.get_shader_parameter("unavailable"))
+	ui.select_region("region_2")
+	assert_true(second.get_shader_parameter("selected"))
+	assert_false(third.get_shader_parameter("selected"))
+	assert_eq(RegionManager.current_region_id, "region_1")
+	ui.close_map()
+	ui.free()
+
+
+func test_atlas_card_and_native_labels_stay_in_bounds_after_resizing() -> void:
+	var ui := WORLD_SCENE.instantiate()
+	add_child(ui)
+	assert_true(ui.open_map())
+	for viewport_size in [
+		Vector2i(1280, 800), Vector2i(1152, 648), Vector2i(720, 360), Vector2i(390, 844)
+	]:
+		get_tree().root.size = viewport_size
+		for i in 12:
+			await get_tree().process_frame
+		var bounds := Rect2(Vector2.ZERO, Vector2(viewport_size))
+		for name in ["CloseButton", "DetailsButton"]:
+			assert_true(bounds.grow(1).encloses(ui.get_node("%" + name).get_global_rect()), name)
+		if ui.get_node("%RegionCard").visible:
+			assert_true(
+				bounds.grow(1).encloses(ui.get_node("%RegionCard").get_global_rect()),
+				str(viewport_size)
+			)
+		for button in ui._buttons.values():
+			assert_gte(button.size.x, 48.0)
+			assert_gte(button.size.y, 48.0)
+			assert_true(bounds.grow(1).encloses(button.get_global_rect()))
+			if ui.get_node("%RegionCard").visible:
+				assert_false(
+					ui.get_node("%RegionCard").get_global_rect().intersects(
+						button.get_global_rect()
+					)
+				)
+	ui.close_map()
+	ui.free()
+
+
+func test_atlas_mouse_and_touch_targets_select_matching_regions_without_travel() -> void:
+	get_tree().root.size = Vector2i(1280, 800)
+	var ui := WORLD_SCENE.instantiate()
+	add_child(ui)
+	assert_true(ui.open_map())
+	for i in 8:
+		await get_tree().process_frame
+	var before := RegionManager._get_save_data().duplicate(true)
+	for id in ["region_1", "region_2", "region_3", "region_4", "region_5"]:
+		ui.canvas._gui_input(_atlas_touch(ui.canvas.get_region_screen_position(id)))
+		assert_eq(ui._selected_region, id)
+		var click := InputEventMouseButton.new()
+		click.button_index = MOUSE_BUTTON_LEFT
+		click.pressed = true
+		click.position = ui.canvas.get_region_screen_position(id)
+		ui.canvas._gui_input(click)
+		assert_eq(ui._selected_region, id)
+	assert_eq(RegionManager._get_save_data(), before)
+	ui.close_map()
+	ui.free()
+
+
+func _atlas_touch(position: Vector2) -> InputEventScreenTouch:
+	var event := InputEventScreenTouch.new()
+	event.position = position
+	event.pressed = true
+	return event
+
+
+func test_mobile_region_dropdown_and_details_card_do_not_change_progress() -> void:
+	get_tree().root.size = Vector2i(720, 360)
+	var ui := WORLD_SCENE.instantiate()
+	add_child(ui)
+	assert_true(ui.open_map())
+	for i in 10:
+		await get_tree().process_frame
+	assert_false(ui.get_node("%RegionCard").visible)
+	assert_true(ui.get_node("%RegionSelector").visible)
+	var before := RegionManager._get_save_data().duplicate(true)
+	ui.get_node("%RegionSelector").item_selected.emit(2)
+	for i in 10:
+		await get_tree().process_frame
+	assert_eq(ui._selected_region, "region_3")
+	assert_true(ui.get_node("%RegionCard").visible)
+	assert_string_contains(ui.information.text, "Not yet available")
+	assert_true(
+		Rect2(Vector2.ZERO, Vector2(720, 360)).grow(1).encloses(
+			ui.get_node("%RegionCard").get_global_rect()
+		)
+	)
+	ui.get_node("%DetailsButton").pressed.emit()
+	assert_false(ui.get_node("%RegionCard").visible)
+	assert_eq(RegionManager._get_save_data(), before)
+	ui.close_map()
+	ui.free()

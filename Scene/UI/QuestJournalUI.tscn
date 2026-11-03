@@ -1,0 +1,266 @@
+[gd_scene load_steps=13 format=3 uid="uid://dv2dw0qgyjn13"]
+
+[ext_resource type="Script" uid="uid://drdtcs8h2xyqq" path="res://Scripts/UI/QuestJournalUI.gd" id="1_codex"]
+[ext_resource type="Texture2D" uid="uid://dlcboukbt7sk3" path="res://Assets/UI/HUDReference/wood.svg" id="2_wood"]
+[ext_resource type="Texture2D" uid="uid://xeskbkb3wjca" path="res://Assets/UI/HUDReference/button.svg" id="3_button"]
+[ext_resource type="Texture2D" uid="uid://djvynlbc8n5ys" path="res://Assets/UI/HUDReference/parchment.svg" id="4_paper"]
+
+[sub_resource type="StyleBoxTexture" id="disabled_button"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+modulate_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.74, 0.46, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxTexture" id="button"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="selection"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.19, 0.29, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.66, 0.68, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxTexture" id="wood"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_wood")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="study_card"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
+bg_color = Color(0.94, 0.86, 0.7, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.68, 0.52, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="reader_theme"]
+default_font_size = 16
+Button/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+Button/colors/font_disabled_color = Color(0.72, 0.64, 0.51, 1)
+Button/colors/font_focus_color = Color(1, 0.94, 0.82, 1)
+Button/colors/font_hover_color = Color(1, 0.94, 0.82, 1)
+Button/styles/disabled = SubResource("disabled_button")
+Button/styles/focus = SubResource("focus")
+Button/styles/hover = SubResource("button")
+Button/styles/normal = SubResource("button")
+Button/styles/pressed = SubResource("selection")
+HBoxContainer/constants/separation = 8
+Label/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+OptionButton/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+OptionButton/styles/focus = SubResource("focus")
+OptionButton/styles/hover = SubResource("button")
+OptionButton/styles/normal = SubResource("button")
+OptionButton/styles/pressed = SubResource("button")
+PopupMenu/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+PopupMenu/styles/hover = SubResource("selection")
+PopupMenu/styles/panel = SubResource("wood")
+RichTextLabel/colors/default_color = Color(0.188, 0.125, 0.086, 1)
+RichTextLabel/constants/line_separation = 6
+StudyCard/styles/panel = SubResource("study_card")
+VBoxContainer/constants/separation = 8
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_paper")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[node name="QuestJournalUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("reader_theme")
+script = ExtResource("1_codex")
+
+[node name="Shade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.02, 0.72)
+
+[node name="Frame" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 1120.0
+offset_bottom = 700.0
+theme_override_styles/panel = SubResource("wood")
+
+[node name="Layout" type="VBoxContainer" parent="Frame"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Frame/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Heading" type="Label" parent="Frame/Layout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Quest Journal"
+
+[node name="CloseButton" type="Button" parent="Frame/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+text = "×"
+
+[node name="Tabs" type="HBoxContainer" parent="Frame/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ActiveTab" type="Button" parent="Frame/Layout/Tabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Active"
+
+[node name="CompletedTab" type="Button" parent="Frame/Layout/Tabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Completed"
+
+[node name="FailedTab" type="Button" parent="Frame/Layout/Tabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Failed"
+
+[node name="Columns" type="HBoxContainer" parent="Frame/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Navigation" type="VBoxContainer" parent="Frame/Layout/Columns"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+
+[node name="ListHint" type="Label" parent="Frame/Layout/Columns/Navigation"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "YOUR QUESTS"
+
+[node name="ListScroll" type="ScrollContainer" parent="Frame/Layout/Columns/Navigation"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="QuestList" type="VBoxContainer" parent="Frame/Layout/Columns/Navigation/ListScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Paper" type="PanelContainer" parent="Frame/Layout/Columns"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.7
+theme_override_styles/panel = SubResource("paper")
+
+[node name="Reading" type="VBoxContainer" parent="Frame/Layout/Columns/Paper"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="Frame/Layout/Columns/Paper/Reading"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "‹ Quest list"
+
+[node name="DetailScroll" type="ScrollContainer" parent="Frame/Layout/Columns/Paper/Reading"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Details" type="VBoxContainer" parent="Frame/Layout/Columns/Paper/Reading/DetailScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Footer" type="Label" parent="Frame/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Complete objectives in the world. Return to the quest giver when ready."
+autowrap_mode = 3

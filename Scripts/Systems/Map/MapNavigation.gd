@@ -10,7 +10,8 @@ func collect(
 	player_position: Vector2,
 	radius: float,
 	metadata: Dictionary,
-	reinforcement_spot: String = ""
+	reinforcement_spot: String = "",
+	marker_limit: int = MAX_MARKERS
 ) -> Array:
 	var nodes := region.find_children("*", "Node2D", true, false)
 	var candidates: Dictionary = {}
@@ -46,7 +47,7 @@ func collect(
 				return a["priority"] < b["priority"]
 			return a["distance"] < b["distance"]
 	)
-	return result.slice(0, MAX_MARKERS)
+	return result if marker_limit <= 0 else result.slice(0, marker_limit)
 
 
 func _add_base_marker(candidates: Dictionary, node: Node2D) -> void:

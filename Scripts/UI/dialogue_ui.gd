@@ -32,6 +32,7 @@ class_name DialogueUI
 @onready var portrait_rect: TextureRect = get_node_or_null("%PortraitRect")
 
 var _choices_pending: bool = false
+var _previous_focus: WeakRef
 
 
 func _ready() -> void:
@@ -45,6 +46,18 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	visible = false
+	theme = theme.duplicate()
+	var bundled := ThemeDB.fallback_font as FontFile
+	if bundled != null:
+		# Copy source data only; duplicating a live font also copies its glyph cache.
+		var font := FontFile.new()
+		font.data = bundled.data
+		font.antialiasing = TextServer.FONT_ANTIALIASING_GRAY
+		font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
+		theme.default_font = font
+	resized.connect(_layout)
+	%DialoguePanel.minimum_size_changed.connect(_layout.call_deferred)
+	_layout.call_deferred()
 	continue_button.pressed.connect(_on_continue_pressed)
 
 	EventBus.dialogue_line_shown.connect(_on_line_shown)
@@ -54,11 +67,17 @@ func _ready() -> void:
 
 
 func _on_line_shown(speaker: String, text: String) -> void:
+	if not visible:
+		var focus := get_viewport().gui_get_focus_owner()
+		_previous_focus = weakref(focus) if focus != null else null
 	visible = true
+	%ScrollContainer.scroll_vertical = 0
+	%Nameplate.visible = not speaker.is_empty()
 	speaker_label.text = speaker
 	dialogue_text_label.text = text
 
 	for child in choices_container.get_children():
+		choices_container.remove_child(child)
 		child.queue_free()
 	continue_button.visible = false
 	_choices_pending = false
@@ -69,8 +88,20 @@ func _on_line_shown(speaker: String, text: String) -> void:
 
 
 func _finalize_line_display() -> void:
+	if not visible:
+		return
+	_layout()
 	if not _choices_pending:
 		continue_button.visible = true
+		%Hint.text = "Take your time to read."
+		continue_button.grab_focus()
+	else:
+		%Hint.text = "Choose a response."
+		if choices_container.get_child_count() > 0:
+			choices_container.get_child(0).grab_focus()
+	# Initial focus must not skip a long lesson by scrolling directly to its choices.
+	%ScrollContainer.set_deferred("scroll_vertical", 0)
+	_layout.call_deferred()
 
 
 func _on_choices_presented(choices: Array) -> void:
@@ -80,6 +111,10 @@ func _on_choices_presented(choices: Array) -> void:
 	for i in range(choices.size()):
 		var choice: Dictionary = choices[i]
 		var choice_button := Button.new()
+		choice_button.custom_minimum_size.y = 48
+		choice_button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		choice_button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		choice_button.add_theme_font_size_override("font_size", 18)
 		choice_button.text = str(choice.get("text", ""))
 		choice_button.pressed.connect(_on_choice_pressed.bind(i))
 		choices_container.add_child(choice_button)
@@ -105,3 +140,37 @@ func _on_portrait_changed(portrait_path: String) -> void:
 
 func _on_dialogue_ended(_dialogue_id: String) -> void:
 	visible = false
+	if _previous_focus != null:
+		var focus = _previous_focus.get_ref()
+		if is_instance_valid(focus) and focus.is_visible_in_tree():
+			focus.grab_focus()
+	_previous_focus = null
+
+
+func _layout() -> void:
+	if not is_node_ready() or size.x <= 0 or size.y <= 0:
+		return
+	var bounds := Rect2(Vector2.ZERO, size)
+	if OS.has_feature("android") or OS.has_feature("ios"):
+		var safe := DisplayServer.get_display_safe_area()
+		var origin := Vector2(DisplayServer.window_get_position())
+		var transform := get_viewport().get_screen_transform().affine_inverse()
+		bounds = bounds.intersection(
+			Rect2(
+				transform * (Vector2(safe.position) - origin),
+				(
+					transform * (Vector2(safe.end) - origin)
+					- transform * (Vector2(safe.position) - origin)
+				)
+			)
+		)
+	var margin := 12.0 if bounds.size.y < 500 or bounds.size.x < 700 else 24.0
+	bounds = bounds.grow(-margin)
+	var width := minf(1080, bounds.size.x)
+	var height := minf(420, bounds.size.y * (0.86 if size.y < 500 else 0.52))
+	%DialoguePanel.size = Vector2(width, height)
+	%DialoguePanel.position = Vector2(
+		bounds.get_center().x - width / 2, bounds.end.y - %DialoguePanel.size.y
+	)
+	%Nameplate.custom_minimum_size.x = minf(220, width - 32)
+	%Footer.visible = continue_button.visible or size.y >= 450

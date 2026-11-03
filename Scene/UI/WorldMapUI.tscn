@@ -1,18 +1,158 @@
-[gd_scene load_steps=5 format=3 uid="uid://c55w6ld002dui"]
+[gd_scene load_steps=25 format=3 uid="uid://c55w6ld002dui"]
 
 [ext_resource type="Script" uid="uid://dns654fmu1f4w" path="res://Scripts/UI/WorldMapUI.gd" id="1_ui"]
 [ext_resource type="Script" uid="uid://osoblb7stf0e" path="res://Scripts/UI/WorldMapCanvas.gd" id="2_canvas"]
-[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="90_skin"]
-[ext_resource type="Script" uid="uid://j7f6ufwkkqa6" path="res://Scripts/UI/PixelUIStyle.gd" id="91_style"]
+[ext_resource type="Texture2D" uid="uid://dlcboukbt7sk3" path="res://Assets/UI/HUDReference/wood.svg" id="3_wood"]
+[ext_resource type="Texture2D" uid="uid://xeskbkb3wjca" path="res://Assets/UI/HUDReference/button.svg" id="4_button"]
+[ext_resource type="Texture2D" uid="uid://djvynlbc8n5ys" path="res://Assets/UI/HUDReference/parchment.svg" id="5_paper"]
+[ext_resource type="Texture2D" uid="uid://kvklrjkipx11" path="res://Assets/UI/WorldMap/coastal_islands.png" id="6_islands"]
+[ext_resource type="Shader" uid="uid://blvmq5l7yq85y" path="res://Assets/UI/WorldMap/island_state.gdshader" id="7_state"]
+
+[sub_resource type="StyleBoxFlat" id="selected"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.3, 0.2, 0.13, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.65, 0.42, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxTexture" id="button"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("4_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="wood"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_wood")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="Theme" id="theme"]
+default_font_size = 16
+Button/colors/font_color = Color(0.94, 0.87, 0.76, 1)
+Button/colors/font_focus_color = Color(1, 0.94, 0.82, 1)
+Button/styles/focus = SubResource("selected")
+Button/styles/hover = SubResource("button")
+Button/styles/normal = SubResource("button")
+Button/styles/pressed = SubResource("selected")
+HBoxContainer/constants/separation = 8
+Label/colors/font_color = Color(0.94, 0.87, 0.76, 1)
+OptionButton/colors/font_color = Color(0.94, 0.87, 0.76, 1)
+OptionButton/styles/hover = SubResource("button")
+OptionButton/styles/normal = SubResource("button")
+PopupMenu/colors/font_color = Color(0.94, 0.87, 0.76, 1)
+PopupMenu/styles/hover = SubResource("selected")
+PopupMenu/styles/panel = SubResource("wood")
+RichTextLabel/colors/default_color = Color(0.19, 0.13, 0.09, 1)
+RichTextLabel/constants/line_separation = 4
+VBoxContainer/constants/separation = 8
+
+[sub_resource type="Gradient" id="ocean_gradient"]
+colors = PackedColorArray(0.19, 0.35, 0.39, 1, 0.14, 0.27, 0.32, 1)
+
+[sub_resource type="GradientTexture2D" id="ocean"]
+gradient = SubResource("ocean_gradient")
+fill_to = Vector2(0.8, 1)
+
+[sub_resource type="ShaderMaterial" id="island_state_1"]
+shader = ExtResource("7_state")
+shader_parameter/locked = false
+shader_parameter/unavailable = false
+shader_parameter/selected = true
+shader_parameter/outline_color = Color(0.78, 0.65, 0.42, 1)
+
+[sub_resource type="AtlasTexture" id="island_tile_1"]
+atlas = ExtResource("6_islands")
+region = Rect2(0, 0, 512, 512)
+filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="island_state_2"]
+shader = ExtResource("7_state")
+shader_parameter/locked = true
+shader_parameter/unavailable = false
+shader_parameter/selected = false
+shader_parameter/outline_color = Color(0.78, 0.65, 0.42, 1)
+
+[sub_resource type="AtlasTexture" id="island_tile_2"]
+atlas = ExtResource("6_islands")
+region = Rect2(512, 0, 512, 512)
+filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="island_state_3"]
+shader = ExtResource("7_state")
+shader_parameter/locked = true
+shader_parameter/unavailable = true
+shader_parameter/selected = false
+shader_parameter/outline_color = Color(0.78, 0.65, 0.42, 1)
+
+[sub_resource type="AtlasTexture" id="island_tile_3"]
+atlas = ExtResource("6_islands")
+region = Rect2(1024, 0, 512, 512)
+filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="island_state_4"]
+shader = ExtResource("7_state")
+shader_parameter/locked = true
+shader_parameter/unavailable = true
+shader_parameter/selected = false
+shader_parameter/outline_color = Color(0.78, 0.65, 0.42, 1)
+
+[sub_resource type="AtlasTexture" id="island_tile_4"]
+atlas = ExtResource("6_islands")
+region = Rect2(0, 512, 512, 512)
+filter_clip = true
+
+[sub_resource type="ShaderMaterial" id="island_state_5"]
+shader = ExtResource("7_state")
+shader_parameter/locked = true
+shader_parameter/unavailable = true
+shader_parameter/selected = false
+shader_parameter/outline_color = Color(0.78, 0.65, 0.42, 1)
+
+[sub_resource type="AtlasTexture" id="island_tile_5"]
+atlas = ExtResource("6_islands")
+region = Rect2(512, 512, 512, 512)
+filter_clip = true
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("5_paper")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 
 [node name="WorldMapUI" type="Control" groups=["gameplay_overlay"]]
+texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("90_skin")
+theme = SubResource("theme")
 script = ExtResource("1_ui")
 
 [node name="Shade" type="ColorRect" parent="."]
@@ -22,7 +162,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.086, 0.059, 0.035, 0.96)
+color = Color(0.08, 0.05, 0.03, 0.96)
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -31,81 +171,267 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="Panel" type="PanelContainer" parent="Margin"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("wood")
 
-[node name="Padding" type="MarginContainer" parent="Margin/Panel"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="Book" type="VBoxContainer" parent="Margin/Panel/Padding"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="Header" type="HBoxContainer" parent="Margin/Panel/Padding/Book"]
+[node name="Book" type="VBoxContainer" parent="Margin/Panel"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Margin/Panel/Padding/Book/Header"]
+[node name="Header" type="HBoxContainer" parent="Margin/Panel/Book"]
+layout_mode = 2
+
+[node name="Titles" type="VBoxContainer" parent="Margin/Panel/Book/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Margin/Panel/Book/Header/Titles"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
 text = "World Map"
-text_overrun_behavior = 3
+autowrap_mode = 3
 
-[node name="CloseButton" type="Button" parent="Margin/Panel/Padding/Book/Header"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(72, 48)
+[node name="Subtitle" type="Label" parent="Margin/Panel/Book/Header/Titles"]
 layout_mode = 2
-text = "Close"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "AquaQuest coastal atlas"
+autowrap_mode = 3
 
-[node name="RegionButtons" type="HBoxContainer" parent="Margin/Panel/Padding/Book"]
+[node name="RegionSelector" type="OptionButton" parent="Margin/Panel/Book/Header"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
-theme_override_constants/separation = 6
+size_flags_vertical = 4
+clip_text = true
+fit_to_longest_item = false
 
-[node name="MapColumns" type="BoxContainer" parent="Margin/Panel/Padding/Book"]
+[node name="DetailsButton" type="Button" parent="Margin/Panel/Book/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Details"
+
+[node name="CloseButton" type="Button" parent="Margin/Panel/Book/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+text = "×"
+
+[node name="MapColumns" type="BoxContainer" parent="Margin/Panel/Book"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 14
 
-[node name="MapCanvas" type="Control" parent="Margin/Panel/Padding/Book/MapColumns"]
+[node name="AtlasStage" type="Control" parent="Margin/Panel/Book/MapColumns"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MapCanvas" type="Control" parent="Margin/Panel/Book/MapColumns/AtlasStage"]
 unique_name_in_owner = true
 clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_canvas")
 
-[node name="InfoScroll" type="ScrollContainer" parent="Margin/Panel/Padding/Book/MapColumns"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
+[node name="Ocean" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ocean")
+expand_mode = 1
 
-[node name="Information" type="RichTextLabel" parent="Margin/Panel/Padding/Book/MapColumns/InfoScroll"]
+[node name="Island1" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+show_behind_parent = true
+material = SubResource("island_state_1")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.64
+anchor_right = 0.16
+anchor_bottom = 0.64
+offset_left = -130.0
+offset_top = -130.0
+offset_right = 130.0
+offset_bottom = 130.0
+mouse_filter = 2
+texture = SubResource("island_tile_1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Island2" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+show_behind_parent = true
+material = SubResource("island_state_2")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.3
+anchor_right = 0.35
+anchor_bottom = 0.3
+offset_left = -130.0
+offset_top = -130.0
+offset_right = 130.0
+offset_bottom = 130.0
+mouse_filter = 2
+texture = SubResource("island_tile_2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Island3" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+show_behind_parent = true
+material = SubResource("island_state_3")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.57
+anchor_top = 0.62
+anchor_right = 0.57
+anchor_bottom = 0.62
+offset_left = -130.0
+offset_top = -130.0
+offset_right = 130.0
+offset_bottom = 130.0
+mouse_filter = 2
+texture = SubResource("island_tile_3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Island4" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+show_behind_parent = true
+material = SubResource("island_state_4")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.76
+anchor_top = 0.25
+anchor_right = 0.76
+anchor_bottom = 0.25
+offset_left = -130.0
+offset_top = -130.0
+offset_right = 130.0
+offset_bottom = 130.0
+mouse_filter = 2
+texture = SubResource("island_tile_4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Island5" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+show_behind_parent = true
+material = SubResource("island_state_5")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.88
+anchor_top = 0.68
+anchor_right = 0.88
+anchor_bottom = 0.68
+offset_left = -130.0
+offset_top = -130.0
+offset_right = 130.0
+offset_bottom = 130.0
+mouse_filter = 2
+texture = SubResource("island_tile_5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RegionButtons" type="Control" parent="Margin/Panel/Book/MapColumns/AtlasStage/MapCanvas"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RegionCard" type="PanelContainer" parent="Margin/Panel/Book/MapColumns/AtlasStage"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 300.0
+offset_right = 442.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("paper")
+
+[node name="CardLayout" type="VBoxContainer" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard"]
+layout_mode = 2
+
+[node name="CardHeader" type="HBoxContainer" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout"]
+layout_mode = 2
+
+[node name="RegionPreview" type="TextureRect" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout/CardHeader"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(86, 72)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardTitles" type="VBoxContainer" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout/CardHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="RegionName" type="Label" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout/CardHeader/CardTitles"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 17
+theme_override_colors/font_color = Color(0.19, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 20
+text = "Select a region"
+autowrap_mode = 3
+
+[node name="RegionModule" type="Label" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout/CardHeader/CardTitles"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.19, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+
+[node name="RegionStatus" type="Label" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout/CardHeader/CardTitles"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.19, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+
+[node name="InfoScroll" type="ScrollContainer" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Information" type="RichTextLabel" parent="Margin/Panel/Book/MapColumns/AtlasStage/RegionCard/CardLayout/InfoScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 15
 fit_content = true
 scroll_active = false
 
-[node name="Legend" type="Label" parent="Margin/Panel/Padding/Book"]
-visible = false
+[node name="Legend" type="Label" parent="Margin/Panel/Book"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Lock: locked  /  Cyan: current  /  Olive: completed
-Mini map: white player, gold quest, violet mini quest, cyan NPC, blue fishing, orange shop, pale exam"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "▲ You   ·   Gold: selected   ·   Lock: locked   ·   Region exits for travel"
 autowrap_mode = 3
-
-[node name="PixelStyle" type="Node" parent="."]
-script = ExtResource("91_style")

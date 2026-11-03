@@ -29,7 +29,7 @@ extends Node
 ##   INCORRECT answer:
 ##     -> points deducted, a reinforcement message shows immediately
 ##        (Phase 10 - surfaces the ORIGINAL question's explanation as
-##        encouragement, not punishment - see _show_concept_feedback())
+##        related review questions, without explanation notifications)
 ##     -> a Mini Quest REINFORCEMENT LOOP begins instead of ending the
 ##        attempt (gameplay STAYS paused through the whole loop - the
 ##        player is still "answering," just working through it)
@@ -288,7 +288,6 @@ func submit_answer(answer_index: int) -> void:
 	else:
 		_pending_penalty_to_refund = POINTS_PENALTY_ON_MISS
 		_award_points(-POINTS_PENALTY_ON_MISS)
-		_show_concept_feedback(question_id, "Not quite - let's review and try again!")
 		# A NEW reinforcement loop starts here - reset the seen-ids list so
 		# _start_mini_quest treats this as round 1 (fires mini_quest_triggered
 		# once, and won't accidentally think a question from some earlier,
@@ -299,34 +298,6 @@ func submit_answer(answer_index: int) -> void:
 		# own new loop, per the existing point-penalty rule applying every time.
 		_mini_quest_seen_ids = []
 		_start_mini_quest(spot_id)
-
-
-## Phase 10: the actual new piece this phase needed. Surfaces the ORIGINAL
-## question's explanation immediately, framed as encouragement rather than
-## punishment - "this reinforces learning instead of punishing mistakes"
-## per the brief. This is DISTINCT from the final result toast
-## (FishingUI._on_fishing_ended), which shows the MINI QUEST question's own
-## explanation once the whole attempt concludes - so a player who gets the
-## main question wrong sees two educational touchpoints: what they missed,
-## right away, and confirmation of the related concept once they've had a
-## chance to prove they understood it.
-## Phase 10: surfaces a question's explanation as encouragement, not
-## punishment - "this reinforces learning instead of punishing mistakes"
-## per the brief. Generalized (Mini Quest Reinforcement fix) to work for
-## ANY feedback moment (initial main-question failure, a wrong
-## reinforcement answer, or a passed reinforcement round) rather than
-## being hardcoded to only the first case.
-func _show_concept_feedback(question_id: String, lead_in: String) -> void:
-	var explanation: String = QuestionManager.get_question_by_id(question_id).get("explanation", "")
-	var message := lead_in
-	var duration := 2.0
-	if explanation != "":
-		message += " " + explanation
-		duration = 4.5
-	# Phase 11 (DDA Adaptation 5 - Educational Assistance): EASY tier gets
-	# more time to read/absorb the explanation, HARD gets less.
-	duration *= DDAController.get_explanation_duration_multiplier()
-	UIManager.show_notification(message, duration)
 
 
 ## Triggered by a wrong main answer, OR by a wrong reinforcement answer
@@ -415,7 +386,6 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 	if was_correct:
 		_award_points(POINTS_PER_MINI_CORRECT)
 		_pending_penalty_to_refund = 0
-		_show_concept_feedback(question_id, "Concept reinforced! Let's try that question again.")
 
 		# Resume the ORIGINAL main question - same stored Dictionary, not a
 		# fresh draw. FishingUI already knows how to render this via the
@@ -426,7 +396,6 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 		EventBus.fishing_question_ready.emit(spot_id, _current_question)
 	else:
 		_award_points(-POINTS_PENALTY_ON_MISS)
-		_show_concept_feedback(question_id, "Still not quite - let's try a related question.")
 		# Stay in the SAME loop - _mini_quest_seen_ids already has this
 		# question's id, so _start_mini_quest won't immediately repeat it,
 		# and won't re-fire mini_quest_triggered (the list isn't empty).

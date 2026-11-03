@@ -66,6 +66,7 @@ signal codex_lesson_unlocked(lesson_id: String)
 signal codex_progress_changed
 
 # --- World map / mini map ---
+signal region_map_open_requested
 signal world_map_open_requested
 signal map_data_changed
 

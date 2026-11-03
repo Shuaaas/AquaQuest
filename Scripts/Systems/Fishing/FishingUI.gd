@@ -15,11 +15,8 @@ class_name FishingUI
 ## deliberate: FishingManager's REELING state (the "dragging the rod"
 ## completion animation) is meant to be the visual payoff moment, and it
 ## should play with the question card already gone, not underneath it.
-## The result ("Caught it!"/"It got away.") is shown as a toast via
-## UIManager once fishing_ended actually fires, after the reel animation
-## has already played - and now (Phase 9) includes the question's
-## explanation text if the question had one, with a longer duration to
-## give the player time to actually read it.
+## Answer feedback is handled by the existing fishing/review flow, not ToastUI.
+## ToastUI is reserved here for fishing access notices (for example, no equipped rod).
 ##
 ## PAUSE-SAFE BY CONSTRUCTION (Phase 8): FishingManager now calls
 ## GameManager.set_paused(true) the moment a question appears, per your
@@ -46,15 +43,11 @@ class_name FishingUI
 ##                              is pressed
 ## A "ResultLabel" is no longer used at all (see CHANGE note below).
 ##
-## CHANGE FROM EARLIER VERSION: previously, a ResultLabel showed the
-## outcome text INSIDE the card for 1.2 seconds before hiding. That's been
-## replaced by hiding immediately on answer + a toast notification after
-## fishing_ended, per the sequencing note above. If you want the result
-## shown differently, _on_fishing_ended() below is the one place to change.
-##
 ## This scene should exist somewhere in your game's persistent UI layer
 ## (e.g. instanced as a child of your HUD/root UI scene) so it's always
 ## present to listen for EventBus signals, starting hidden.
+
+const PRESENTATION := preload("res://Scripts/UI/QuestionCardPresentation.gd")
 
 @onready var question_label: Label = %QuestionLabel
 @onready var choices_container: VBoxContainer = %ChoicesContainer
@@ -64,14 +57,8 @@ class_name FishingUI
 @onready var hint_button: Button = get_node_or_null("%HintButton")
 @onready var hint_label: Label = get_node_or_null("%HintLabel")
 
-
 var _answered: bool = false
 var _is_mini_quest: bool = false
-## Tracks whichever question was most recently shown (main OR mini quest -
-## whichever was answered LAST), so _on_fishing_ended can look up its
-## explanation after the card has already hidden and the question data
-## itself is no longer directly on hand.
-var _last_question_id: String = ""
 ## Kept only long enough to populate the hint text when the button is
 ## pressed - not used anywhere else.
 var _current_question_hint: String = ""
@@ -84,10 +71,11 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	visible = false
+	PRESENTATION.setup(self)
+	_on_points_changed(FishingManager.get_points(), 0)
 	EventBus.fishing_question_ready.connect(_on_question_ready)
 	EventBus.mini_quest_question_ready.connect(_on_mini_quest_ready)
 	EventBus.fishing_denied.connect(_on_fishing_denied)
-	EventBus.fishing_ended.connect(_on_fishing_ended)
 	EventBus.fishing_points_changed.connect(_on_points_changed)
 
 	if hint_button:
@@ -107,28 +95,19 @@ func _on_mini_quest_ready(_spot_id: String, question: Dictionary) -> void:
 func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 	_answered = false
 	_is_mini_quest = is_mini_quest
-	_last_question_id = question.get("id", "")
 	visible = true
 
-	# Cheap framing distinction without requiring a new UI node - prepend a
-	# tag so the player can tell this is the "second chance" question. A
-	# dedicated label/banner would look nicer; this is the zero-scene-change
-	# option so it works the moment this script is dropped in.
-	var prefix := "Mini Quest! " if is_mini_quest else ""
-	question_label.text = prefix + question.get("text", "")
-
+	%ReviewBanner.visible = is_mini_quest
+	%Title.text = "Review Question" if is_mini_quest else "Fishing Question"
+	question_label.text = question.get("text", "")
+	_on_points_changed(FishingManager.get_points(), 0)
+	_update_tier_label()
 	_update_question_image(question.get("image", ""))
 	_update_hint_availability(question.get("hint", ""))
-
-	for child in choices_container.get_children():
-		child.queue_free()
-
-	var choices: Array = question.get("choices", [])
-	for i in range(choices.size()):
-		var choice_button := Button.new()
-		choice_button.text = str(choices[i])
-		choice_button.pressed.connect(_on_choice_pressed.bind(i))
-		choices_container.add_child(choice_button)
+	%ScrollContainer.scroll_vertical = 0
+	PRESENTATION.add_choices(choices_container, question.get("choices", []), _on_choice_pressed)
+	PRESENTATION.focus_question.call_deferred(self)
+	PRESENTATION.layout.call_deferred(self)
 
 
 ## Phase 11 (DDA Adaptation 2 - Hint Frequency). The button only appears
@@ -137,6 +116,7 @@ func _display_question(question: Dictionary, is_mini_quest: bool) -> void:
 ## tier. A question with hint text but a HARD-tier player sees no button;
 ## a question with no hint text sees no button regardless of tier.
 func _update_hint_availability(hint_text: String) -> void:
+	%HintPanel.hide()
 	_current_question_hint = hint_text
 	if hint_label:
 		hint_label.visible = false
@@ -147,11 +127,13 @@ func _update_hint_availability(hint_text: String) -> void:
 
 
 func _on_hint_pressed() -> void:
+	%HintPanel.show()
 	if hint_label:
 		hint_label.text = _current_question_hint
 		hint_label.visible = true
 	if hint_button:
 		hint_button.visible = false
+	%ScrollContainer.ensure_control_visible.call_deferred(%HintPanel)
 
 
 func _update_tier_label() -> void:
@@ -159,7 +141,8 @@ func _update_tier_label() -> void:
 		return
 	var names := ["Easy", "Medium", "Hard"]
 	var tier: int = DDAController.get_current_tier()
-	tier_label.text = names[tier]
+	tier_label.text = "Difficulty: " + names[tier]
+
 
 func _on_difficulty_adjusted(_new_tier: int, _reason: String) -> void:
 	_update_tier_label()
@@ -171,14 +154,7 @@ func _on_difficulty_adjusted(_new_tier: int, _reason: String) -> void:
 ## other optional-art hook in this project (e.g. missing animations just
 ## warn, never crash).
 func _update_question_image(image_path: String) -> void:
-	if question_image == null:
-		return
-
-	if image_path != "" and ResourceLoader.exists(image_path):
-		question_image.texture = load(image_path)
-		question_image.visible = true
-	else:
-		question_image.visible = false
+	PRESENTATION.show_image(self, image_path)
 
 
 func _on_choice_pressed(choice_index: int) -> void:
@@ -196,30 +172,6 @@ func _on_choice_pressed(choice_index: int) -> void:
 		FishingManager.submit_mini_quest_answer(choice_index)
 	else:
 		FishingManager.submit_answer(choice_index)
-
-
-func _on_fishing_ended(_spot_id: String, success: bool) -> void:
-	# By the time this fires, the REELING animation has already finished
-	# playing (FishingManager awaits the reel duration before emitting
-	# this) and the card has been hidden since the moment the player
-	# answered. This is purely a result toast, not a card state change.
-	var message := "Caught it!" if success else "It got away."
-
-	# Phase 9: surface the explanation of whichever question was actually
-	# answered last (main, or the mini quest if one occurred - either way
-	# _last_question_id points at the right one). Give a noticeably longer
-	# toast duration when there's real educational text to read, since 1.5
-	# seconds is nowhere near enough time to read a sentence.
-	var explanation: String = QuestionManager.get_question_by_id(_last_question_id).get("explanation", "")
-	var duration := 1.5
-	if explanation != "":
-		message += " " + explanation
-		duration = 4.5
-
-	# Phase 11 (DDA Adaptation 5 - Educational Assistance)
-	duration *= DDAController.get_explanation_duration_multiplier()
-
-	UIManager.show_notification(message, duration)
 
 
 func _on_fishing_denied(_spot_id: String, reason: String) -> void:
@@ -241,4 +193,3 @@ func _on_fishing_denied(_spot_id: String, reason: String) -> void:
 func _on_points_changed(new_total: int, _delta: int) -> void:
 	if points_label:
 		points_label.text = "Points: %d" % new_total
-		

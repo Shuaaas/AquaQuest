@@ -2,22 +2,29 @@ class_name InventoryUI
 extends Control
 ## Presentation and input only; managers own item/equipment state.
 
-const CARD := preload("res://Scripts/Systems/Inventory/ItemCard.gd")
 const CATEGORIES := ["all", "item", "quest_item", "consumable", "costume", "material"]
 const SORT_MODES := ["name", "category", "quantity"]
 
+var _selected_item := ""
+var _slot_buttons: Dictionary = {}
 var _current_filter := "all"
 var _current_sort := "name"
 var _owns_pause := false
 var _previous_focus: WeakRef
 
-@onready var item_list_container: VBoxContainer = %ItemListContainer
+@onready var item_list_container: GridContainer = %ItemListContainer
 @onready var filter_container: HBoxContainer = %FilterContainer
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide()
+	theme = theme.duplicate()
+	theme.default_font = preload("res://Scripts/UI/PixelUIStyle.gd").shared_theme().default_font
+	resized.connect(_update_layout)
+	%BodyScroll.resized.connect(_update_layout)
+	%GridScroll.resized.connect(_size_slots)
+	%ActionButton.pressed.connect(_on_action_pressed)
 	EventBus.inventory_changed.connect(_refresh)
 	EventBus.equipment_changed.connect(_on_equipment_changed)
 	EventBus.load_completed.connect(_on_loaded)
@@ -108,11 +115,15 @@ func _build_filter_buttons() -> void:
 		button.text = {"all": "All", "item": "Equipment", "quest_item": "Quest Items"}.get(
 			category, category.capitalize()
 		)
+		button.add_theme_stylebox_override(
+			"pressed", get_theme_stylebox("pressed", "InventorySelected")
+		)
 		button.toggle_mode = true
 		button.button_group = group
 		button.button_pressed = category == _current_filter
 		button.pressed.connect(_on_filter_pressed.bind(category))
 		filter_container.add_child(button)
+		button.custom_minimum_size.y = 48
 		button.autowrap_mode = TextServer.AUTOWRAP_OFF
 		button.custom_minimum_size.x = (
 			(
@@ -153,6 +164,10 @@ func _on_loaded(_slot: int) -> void:
 func _refresh() -> void:
 	if item_list_container == null:
 		return
+	var focus := get_viewport().gui_get_focus_owner()
+	var restore_item_focus := focus != null and item_list_container.is_ancestor_of(focus)
+	var focused_item: String = str(focus.get_meta("item_id", "")) if restore_item_focus else ""
+	_slot_buttons.clear()
 	for child in item_list_container.get_children():
 		item_list_container.remove_child(child)
 		child.queue_free()
@@ -163,13 +178,168 @@ func _refresh() -> void:
 			func(id: String) -> bool: return ItemDatabase.get_category(id) == _current_filter
 		)
 	ids = _sort_ids(ids, owned)
-	if ids.is_empty():
-		CARD.add_text(
-			item_list_container,
-			"Your inventory is empty." if owned.is_empty() else "No items in this category."
-		)
+	if _selected_item not in ids:
+		_selected_item = str(ids[0]) if not ids.is_empty() else ""
+	%ItemCount.text = "Items: %d" % owned.size()
+	%EmptyMessage.visible = ids.is_empty()
+	%EmptyMessage.text = (
+		"Your inventory is empty." if owned.is_empty() else "No items in this category."
+	)
 	for item_id in ids:
-		item_list_container.add_child(_build_row(item_id, owned[item_id]))
+		var button := _build_slot(item_id, int(owned[item_id]))
+		_slot_buttons[item_id] = button
+		item_list_container.add_child(button)
+	# Twelve visible placeholders describe the grid, not an inventory capacity.
+	for i in maxi(0, 12 - ids.size()):
+		var slot := Button.new()
+		slot.disabled = true
+		slot.custom_minimum_size = Vector2(72, 72)
+		slot.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		slot.tooltip_text = "Empty slot"
+		item_list_container.add_child(slot)
+	_show_selection()
+	_update_layout()
+	if restore_item_focus and is_visible_in_tree() and _slot_buttons.has(_selected_item):
+		(
+			_slot_buttons[focused_item if _slot_buttons.has(focused_item) else _selected_item]
+			. grab_focus()
+		)
+
+
+func _build_slot(item_id: String, count: int) -> Button:
+	var button := Button.new()
+	button.set_meta("item_id", item_id)
+	button.add_theme_stylebox_override(
+		"pressed", get_theme_stylebox("pressed", "InventorySelected")
+	)
+	button.toggle_mode = true
+	button.button_pressed = item_id == _selected_item
+	button.custom_minimum_size = Vector2(72, 72)
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	button.expand_icon = true
+	button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	button.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	button.icon = _item_icon(item_id)
+	button.tooltip_text = "%s ×%d" % [ItemDatabase.get_display_name(item_id), count]
+	button.accessibility_name = button.tooltip_text
+	button.pressed.connect(_select_item.bind(item_id))
+	if button.icon == null:
+		button.text = ItemDatabase.get_display_name(item_id)
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	if count > 1:
+		var quantity := Label.new()
+		quantity.text = "×%d" % count
+		quantity.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		quantity.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		quantity.offset_right = -10
+		quantity.offset_bottom = -8
+		quantity.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		quantity.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+		quantity.add_theme_color_override("font_shadow_color", Color("21160f"))
+		quantity.add_theme_constant_override("shadow_offset_x", 1)
+		quantity.add_theme_constant_override("shadow_offset_y", 1)
+		button.add_child(quantity)
+	return button
+
+
+func _item_icon(item_id: String) -> Texture2D:
+	var path := ItemDatabase.get_icon_path(item_id)
+	return load(path) as Texture2D if not path.is_empty() and ResourceLoader.exists(path) else null
+
+
+func _select_item(item_id: String) -> void:
+	if not InventoryManager.has_item(item_id):
+		_refresh()
+		return
+	_selected_item = item_id
+	for id in _slot_buttons:
+		_slot_buttons[id].set_pressed_no_signal(id == item_id)
+	_show_selection()
+
+
+func _show_selection() -> void:
+	var item_id := _selected_item
+	%ItemPreview.texture = _item_icon(item_id) if not item_id.is_empty() else null
+	%ItemName.text = (
+		ItemDatabase.get_display_name(item_id) if not item_id.is_empty() else "Select an item"
+	)
+	%CompactItemName.text = %ItemName.text
+	%ItemCategory.text = "Choose an item to see its details."
+	%ItemRarity.text = ""
+	%ItemDescription.text = ""
+	%ItemQuantity.text = ""
+	%ItemStatus.text = ""
+	%ActionButton.text = "Select an item"
+	%ActionButton.disabled = true
+	if item_id.is_empty():
+		return
+	var category := ItemDatabase.get_category(item_id)
+	%ItemCategory.text = (
+		"%s · %s"
+		% [
+			{"item": "Equipment", "quest_item": "Quest item"}.get(category, category.capitalize()),
+			ItemDatabase.get_rarity_name(item_id)
+		]
+	)
+	%ItemRarity.text = "★".repeat(ItemDatabase.get_rarity_stars(item_id))
+	%ItemRarity.add_theme_color_override("font_color", Color("c6a66a"))
+	%ItemDescription.text = ItemDatabase.get_description(item_id)
+	%ItemQuantity.text = (
+		"Quantity: %d · Stack limit: %d"
+		% [InventoryManager.get_item_count(item_id), ItemDatabase.get_max_stack(item_id)]
+	)
+	%ActionButton.text = "No action available"
+	if item_id == "fishing_rod":
+		var rod := _rod()
+		%ActionButton.text = "Unequip" if rod != null and rod.is_equipped() else "Equip"
+		%ActionButton.disabled = rod == null
+		%ItemStatus.text = "Equipped" if rod != null and rod.is_equipped() else "Not equipped"
+		if rod == null:
+			%ItemStatus.text = "Equipment is available while playing in a region."
+	elif item_id == "fisher_hat":
+		%ActionButton.text = (
+			"Remove Hat" if InventoryManager.equipped_costume == item_id else "Wear Hat"
+		)
+		%ActionButton.disabled = false
+		%ItemStatus.text = "Cosmetic only. No gameplay bonus."
+	elif category == "consumable":
+		%ItemStatus.text = "No usable effect configured. This item is not consumed."
+
+
+func _on_action_pressed() -> void:
+	if not InventoryManager.has_item(_selected_item):
+		_refresh()
+		return
+	if _selected_item == "fishing_rod":
+		var rod := _rod()
+		if rod != null:
+			rod.toggle()
+	elif _selected_item == "fisher_hat":
+		InventoryManager.toggle_costume(_selected_item)
+	_show_selection()
+
+
+func _update_layout() -> void:
+	if not is_node_ready() or size.x <= 0:
+		return
+	var stacked := size.x < 700
+	%Body.vertical = stacked
+	var short_landscape := not stacked and size.y < 500
+	%CompactItemName.visible = short_landscape
+	%ItemName.visible = not short_landscape
+	%ItemPreview.custom_minimum_size.y = 48 if short_landscape else 112
+	var height := 300.0 if stacked else maxf(120.0, %BodyScroll.size.y)
+	%GridPanel.custom_minimum_size.y = height
+	%DetailsPanel.custom_minimum_size.y = maxf(340.0, height) if stacked else height
+	_size_slots()
+
+
+func _size_slots() -> void:
+	if not is_node_ready():
+		return
+	var cell := maxf(72.0, floorf((%GridScroll.size.x - 24.0) / 3.0))
+	for child in item_list_container.get_children():
+		child.custom_minimum_size = Vector2(72, cell)
 
 
 func _sort_ids(ids: Array, owned: Dictionary) -> Array:
@@ -192,32 +362,3 @@ func _rod() -> FishingRodComponent:
 		if player is Player and player.is_multiplayer_authority():
 			return player.fishing_rod
 	return null
-
-
-func _build_row(item_id: String, count: int) -> Control:
-	var panel := PanelContainer.new()
-	panel.theme_type_variation = &"AquaInset"
-	var card := CARD.build(item_id, count)
-	panel.add_child(card)
-	if item_id == "fishing_rod":
-		var rod := _rod()
-		CARD.add_text(card, "Equipped" if rod != null and rod.is_equipped() else "Not equipped")
-		var button := Button.new()
-		button.text = "Unequip" if rod != null and rod.is_equipped() else "Equip"
-		button.disabled = rod == null
-		button.pressed.connect(
-			func():
-				var current := _rod()
-				if current != null:
-					current.toggle()
-		)
-		card.add_child(button)
-	elif item_id == "fisher_hat":
-		var button := Button.new()
-		button.text = "Remove Hat" if InventoryManager.equipped_costume == item_id else "Wear Hat"
-		button.pressed.connect(func(): InventoryManager.toggle_costume(item_id))
-		card.add_child(button)
-		CARD.add_text(card, "Cosmetic only. No gameplay bonus.")
-	elif ItemDatabase.get_category(item_id) == "consumable":
-		CARD.add_text(card, "No usable effect configured. This item is not consumed.")
-	return panel

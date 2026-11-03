@@ -1,8 +1,126 @@
-[gd_scene load_steps=4 format=3 uid="uid://cffcgxtrcr7hw"]
+[gd_scene load_steps=17 format=3 uid="uid://cffcgxtrcr7hw"]
 
-[ext_resource type="Script" path="res://Scripts/UI/PerformanceBoard.gd" id="1_script"]
-[ext_resource type="Theme" path="res://Resources/UI/AquaQuestTheme.tres" id="2_theme"]
-[ext_resource type="Script" path="res://Scripts/UI/PixelUIStyle.gd" id="3_style"]
+[ext_resource type="Script" uid="uid://ba8unghvxnjij" path="res://Scripts/UI/PerformanceBoard.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/wood.svg" id="2_frame"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/button.svg" id="3_button"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/button.svg" id="4_hover"]
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/button.svg" id="5_pressed"]
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.74, 0.46, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxTexture" id="hover_frame"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("4_hover")
+modulate_color = Color(1.08, 1.08, 1.08, 1)
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button_frame"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("3_button")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="pressed_button_frame"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("5_pressed")
+modulate_color = Color(0.85, 0.85, 0.85, 1)
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="Theme" id="theme"]
+default_font_size = 16
+Button/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+Button/colors/font_focus_color = Color(1, 0.93, 0.8, 1)
+Button/styles/focus = SubResource("focus")
+Button/styles/hover = SubResource("hover_frame")
+Button/styles/normal = SubResource("button_frame")
+Button/styles/pressed = SubResource("pressed_button_frame")
+GridContainer/constants/h_separation = 10
+GridContainer/constants/v_separation = 10
+HBoxContainer/constants/separation = 10
+Label/colors/font_color = Color(0.941, 0.871, 0.757, 1)
+VBoxContainer/constants/separation = 8
+
+[sub_resource type="StyleBoxTexture" id="outer_frame"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("2_frame")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="dark"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.188, 0.125, 0.086, 1)
+
+[sub_resource type="StyleBoxFlat" id="body"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.294, 0.2, 0.141, 1)
+
+[sub_resource type="StyleBoxFlat" id="card"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.219, 0.145, 0.098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.49, 0.31, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="track"]
+bg_color = Color(0.43, 0.32, 0.23, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="fill"]
+bg_color = Color(0.9, 0.74, 0.46, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="PerformanceBoard" type="Control"]
 layout_mode = 3
@@ -11,7 +129,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_theme")
+theme = SubResource("theme")
 script = ExtResource("1_script")
 
 [node name="Shade" type="ColorRect" parent="."]
@@ -22,7 +140,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.086, 0.059, 0.035, 0.84)
+color = Color(0.08, 0.05, 0.03, 0.85)
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -32,147 +150,377 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_right = 12
 theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="Panel" type="PanelContainer" parent="Margin"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("outer_frame")
 
 [node name="Layout" type="VBoxContainer" parent="Margin/Panel"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("dark")
+
+[node name="HeaderRow" type="HBoxContainer" parent="Margin/Panel/Layout/Header"]
+layout_mode = 2
+
+[node name="Titles" type="VBoxContainer" parent="Margin/Panel/Layout/Header/HeaderRow"]
+layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 4
 
-[node name="Header" type="HBoxContainer" parent="Margin/Panel/Layout"]
+[node name="Title" type="Label" parent="Margin/Panel/Layout/Header/HeaderRow/Titles"]
 layout_mode = 2
-
-[node name="Title" type="Label" parent="Margin/Panel/Layout/Header"]
-layout_mode = 2
-theme_type_variation = &"AquaHeading"
-text = "Performance Board"
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 22
+text = "PERFORMANCE BOARD"
 autowrap_mode = 3
 
+[node name="Subtitle" type="Label" parent="Margin/Panel/Layout/Header/HeaderRow/Titles"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 14
+text = "Your learning journey and achievements"
+autowrap_mode = 3
+
+[node name="RecordBadge" type="Label" parent="Margin/Panel/Layout/Header/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.55, 0.82, 0.44, 1)
+theme_override_font_sizes/font_size = 12
+text = "PLAYER RECORD"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panel/Layout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
 follow_focus = true
+horizontal_scroll_mode = 0
 
 [node name="Content" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="SectionSummary" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+[node name="Summary" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
 layout_mode = 2
-theme_type_variation = &"AquaHeading"
-text = "Summary"
+theme_override_styles/panel = SubResource("body")
+
+[node name="Details" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SectionSummary" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+text = "OVERALL PERFORMANCE"
 autowrap_mode = 3
 
-[node name="AccuracyLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+[node name="Cards" type="GridContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details"]
 unique_name_in_owner = true
 layout_mode = 2
-text = ""
+columns = 2
+
+[node name="Accuracy" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("card")
+
+[node name="Stack" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Accuracy"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Accuracy/Stack"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 14
+text = "Answer accuracy"
 autowrap_mode = 3
 
-[node name="CorrectLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="IncorrectLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="PointsLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="AQPILabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="TierLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="TimeLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="MiniLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-unique_name_in_owner = true
-layout_mode = 2
-text = ""
-autowrap_mode = 3
-
-[node name="SectionRegionsRule" type="HSeparator" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-layout_mode = 2
-
-[node name="SectionRegions" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-layout_mode = 2
-theme_type_variation = &"AquaHeading"
-text = "Regions"
-autowrap_mode = 3
-
-[node name="RegionContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+[node name="AccuracyLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Accuracy/Stack"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="SectionExamsRule" type="HSeparator" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-layout_mode = 2
-
-[node name="SectionExams" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-layout_mode = 2
-theme_type_variation = &"AquaHeading"
-text = "Regional Examination History"
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 28
+text = "0"
 autowrap_mode = 3
 
-[node name="ExamContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+[node name="AccuracyProgress" type="ProgressBar" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Accuracy/Stack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+theme_override_styles/background = SubResource("track")
+theme_override_styles/fill = SubResource("fill")
+show_percentage = false
+
+[node name="AccuracyDetail" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Accuracy/Stack"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="SectionQuestsRule" type="HSeparator" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-layout_mode = 2
-
-[node name="SectionQuests" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content"]
-layout_mode = 2
-theme_type_variation = &"AquaHeading"
-text = "Quest Journal"
+theme_override_font_sizes/font_size = 13
+text = "0 of 0 answers correct"
 autowrap_mode = 3
 
-[node name="QuestContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+[node name="Points" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("card")
+
+[node name="Stack" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Points"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Points/Stack"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 14
+text = "Net points"
+autowrap_mode = 3
+
+[node name="PointsValue" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Points/Stack"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 28
+text = "0"
+autowrap_mode = 3
 
-[node name="ButtonRow" type="HBoxContainer" parent="Margin/Panel/Layout"]
+[node name="PointsLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Points/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Earned: 0 · Deducted: 0"
+autowrap_mode = 3
+
+[node name="Correct" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("card")
+
+[node name="Stack" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Correct"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Correct/Stack"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 14
+text = "Correct answers"
+autowrap_mode = 3
+
+[node name="CorrectLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Correct/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 28
+text = "0"
+autowrap_mode = 3
+
+[node name="CorrectDetail" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Correct/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Main: 0 · Mini: 0"
+autowrap_mode = 3
+
+[node name="IncorrectLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/Correct/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Incorrect — Main: 0 · Mini: 0"
+autowrap_mode = 3
+
+[node name="AQPI" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("card")
+
+[node name="Stack" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/AQPI"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/AQPI/Stack"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 14
+text = "AQPI score"
+autowrap_mode = 3
+
+[node name="AQPILabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/AQPI/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.74, 0.46, 1)
+theme_override_font_sizes/font_size = 28
+text = "0"
+autowrap_mode = 3
+
+[node name="OutOf100" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Cards/AQPI/Stack"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "Out of 100"
+autowrap_mode = 3
+
+[node name="Difficulty" type="HBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details"]
 layout_mode = 2
 
-[node name="CloseButton" type="Button" parent="Margin/Panel/Layout/ButtonRow"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(72, 48)
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Difficulty"]
 layout_mode = 2
-text = "Close"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Current difficulty"
+autowrap_mode = 3
 
-[node name="ExportButton" type="Button" parent="Margin/Panel/Layout/ButtonRow"]
+[node name="TierLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Difficulty"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(72, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Time" type="HBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details"]
+layout_mode = 2
+
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Question time"
+autowrap_mode = 3
+
+[node name="TimeLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Time"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Mini" type="HBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details"]
+layout_mode = 2
+
+[node name="Caption" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Mini"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Mini quests triggered"
+autowrap_mode = 3
+
+[node name="MiniLabel" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Summary/Details/Mini"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Regions" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("dark")
+
+[node name="Details" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Regions"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Regions/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+text = "REGION PROGRESS"
+autowrap_mode = 3
+
+[node name="RegionContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Regions/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Exams" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("body")
+
+[node name="Details" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Exams"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Exams/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+text = "REGIONAL EXAMINATIONS"
+autowrap_mode = 3
+
+[node name="ExamContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Exams/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Quests" type="PanelContainer" parent="Margin/Panel/Layout/ScrollContainer/Content"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("body")
+
+[node name="Details" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Quests"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Margin/Panel/Layout/ScrollContainer/Content/Quests/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+text = "QUEST JOURNAL"
+autowrap_mode = 3
+
+[node name="QuestContainer" type="VBoxContainer" parent="Margin/Panel/Layout/ScrollContainer/Content/Quests/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Footer" type="PanelContainer" parent="Margin/Panel/Layout"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("dark")
+
+[node name="ButtonRow" type="HBoxContainer" parent="Margin/Panel/Layout/Footer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ExportButton" type="Button" parent="Margin/Panel/Layout/Footer/ButtonRow"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(96, 48)
 layout_mode = 2
 text = "Export CSV"
-visible = false
 
-[node name="PixelStyle" type="Node" parent="."]
-script = ExtResource("3_style")
+[node name="CloseButton" type="Button" parent="Margin/Panel/Layout/Footer/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+text = "x"

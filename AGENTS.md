@@ -46,3 +46,33 @@ Do not assume planned features are already implemented or working.
 5. Review the diff and run appropriate checks.
 6. Report changed files, test results, and remaining issues.
 7. Distinguish automated checks from manual Godot testing.
+## Development toolkit
+- Reuse existing managers, components, signals, and resources; avoid duplicate systems.
+- Use Godot 4.5 and GDScript, native Control nodes, modular scenes, reusable components,
+  and signals between independent systems. Maintain mobile-friendly layouts.
+- Use UI/UX Pro Max as a design reference, translating guidance into native Godot UI.
+  Do not generate React, HTML, Tailwind, or web interfaces for the actual game.
+- Preserve the existing pixel-art RPG appearance and palette; prioritize readability
+  and usability over generic design recommendations.
+- Apply Ponytail's minimal implementation principles without removing necessary
+  validation, accessibility, or tests. Avoid unnecessary dependencies and abstractions.
+- Preserve fishing, quests, dialogue, DDA, inventory, shops, and progression.
+- Godot MCP requires the AquaQuest editor open with the addon enabled. Confirm the
+  connected project path before calling tools. Do not use tools to bypass task scope
+  or approval requirements. Do not trust lifecycle hooks automatically.
+- Godot executable: `D:/Download/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64/Godot_v4.5.1-stable_mono_win64.exe`.
+
+
+## Skill Activation Rules
+
+- Use Ponytail principles for coding, debugging,
+  and refactoring tasks.
+- Use UI/UX Pro Max for HUD, inventory, menus,
+  maps, dialogue, and other interface designs.
+- Use Godot MCP when inspecting or interacting
+  with actual Godot scenes and the editor.
+- Use i-have-adhd when explicitly requested or
+  when concise, step-by-step guidance is useful.
+- Do not force unrelated skills into a task.
+- Never sacrifice existing AquaQuest architecture
+  or gameplay functionality to follow a generic skill.

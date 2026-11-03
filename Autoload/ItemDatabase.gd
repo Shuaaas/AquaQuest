@@ -68,6 +68,7 @@ extends Node
 
 const ITEMS_JSON_DIR := "res://Data/JSON/Item/"
 const DEFAULT_MAX_STACK := 999
+const RARITY_IDS := ["common", "advanced", "rare", "epic"]
 
 # item_id -> item definition Dictionary
 var _item_definitions: Dictionary = {}
@@ -175,3 +176,19 @@ func get_item_ids_by_category(category: String) -> Array:
 
 func get_all_item_ids() -> Array:
 	return _item_definitions.keys()
+
+
+## Display metadata only. Rarity does not alter item effects, prices or DDA.
+func get_rarity(item_id: String) -> String:
+	var value = get_item_definition(item_id).get("rarity", "common")
+	if value is String and value.to_lower() in RARITY_IDS:
+		return value.to_lower()
+	return "common"
+
+
+func get_rarity_stars(item_id: String) -> int:
+	return RARITY_IDS.find(get_rarity(item_id)) + 1
+
+
+func get_rarity_name(item_id: String) -> String:
+	return get_rarity(item_id).capitalize()
