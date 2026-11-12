@@ -48,7 +48,6 @@ layout_mode = 3
 [node name="WorldMapUI" parent="CanvasLayer" instance=ExtResource("10_world_map")]
 
 [node name="ItemRewardToast" parent="CanvasLayer" instance=ExtResource("15_item_reward")]
-generic_toast_path = NodePath("")
 
 [node name="QuestJournalUI" parent="CanvasLayer" groups=["gameplay_overlay"] instance=ExtResource("16_journal")]
 

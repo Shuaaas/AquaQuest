@@ -46,8 +46,7 @@ extends Node
 ## PRICES ARE POINTS (Phase 13 fix): buy_price is the number of the player's
 ## existing POINTS (the same balance FishingManager already tracks for
 ## correct/incorrect answers) an item costs. There is no separate currency.
-## sell_price is retained in the schema but currently unused - see
-## ShopManager.SELLING_ENABLED for why selling is switched off.
+## ShopManager uses sell_price when the item is eligible for sale.
 ##
 ## ONE-TIME PURCHASES: an item can be bought at most once ever if
 ## "one_time_purchase": true. Costumes default to one-time even when the

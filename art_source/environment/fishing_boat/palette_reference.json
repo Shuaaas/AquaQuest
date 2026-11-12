@@ -1,0 +1,75 @@
+{
+  "sources": [
+    "Assets/Environment/Structures/Buildings/Props.png",
+    "Assets/Environment/Props/Static/Furniture.png",
+    "Assets/Environment/Structures/Buildings/Floors.png",
+    "Assets/Environment/Tilesets/Water_tiles.png",
+    "Assets/Entities/MALE CHAR/idle.png"
+  ],
+  "palette": {
+    "ink": {
+      "hex": "#160f09",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "shadow": {
+      "hex": "#2f1c10",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "panel": {
+      "hex": "#341f12",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "wood": {
+      "hex": "#7d4c28",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "edge": {
+      "hex": "#5a361e",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "highlight": {
+      "hex": "#ba9e6e",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "text": {
+      "hex": "#ddccb8",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "bright": {
+      "hex": "#fffce6",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "focus": {
+      "hex": "#8ac6e0",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "selected": {
+      "hex": "#3b535e",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "moss": {
+      "hex": "#62791e",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "mini": {
+      "hex": "#7a5388",
+      "source": "Resources/UI/ui_palette.json"
+    },
+    "plank_light": {
+      "hex": "#a96c3f",
+      "source": "Assets/Environment/Structures/Buildings/Props.png"
+    },
+    "plank_warm": {
+      "hex": "#a06131",
+      "source": "Assets/Environment/Props/Static/Furniture.png"
+    }
+  },
+  "analysis": {
+    "outline": "One-pixel dark brown contour; #160f09 exists in Furniture.png and the formal UI palette. No external cast shadows.",
+    "shading": "Flat material ramps; wood uses #341f12/#5a361e/#7d4c28/#a96c3f, rope uses UI highlight/text. No random texture noise.",
+    "lighting": "Upper/left-facing edges highlighted; lower/right hull faces shadowed. Inferred visually from wooden doors, barrels, planks and furniture.",
+    "pixel_density": "1px features at native scale; environment TileSet uses default 16px cells. Boat hull about 5-6 tiles long, with fixed 128x128 transparent cells to accommodate outriggers and all views.",
+    "characters": "idle.png is 832x256 with small visible characters in padded cells; player.tscn declares 128x128 atlas regions. Those existing assets/settings are not modified.",
+    "design": "Small open wooden Filipino bangka with identical hull/outrigger geometry within each view across basic/equipped/upgraded levels. No mast, sail, canopy, combat equipment, or baked water."
+  }
+}

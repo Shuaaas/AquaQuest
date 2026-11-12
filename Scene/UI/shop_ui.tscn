@@ -197,6 +197,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.85
 
+[node name="TradeTabs" type="HBoxContainer" parent="Panel/Layout/Columns/Catalog"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BuyTab" type="Button" parent="Panel/Layout/Columns/Catalog/TradeTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+text = "Buy"
+
+[node name="SellTab" type="Button" parent="Panel/Layout/Columns/Catalog/TradeTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Sell"
+
 [node name="CatalogScroll" type="ScrollContainer" parent="Panel/Layout/Columns/Catalog"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -209,13 +230,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
-
-[node name="SellingNotice" type="Label" parent="Panel/Layout/Columns/Catalog"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Selling is not available."
-autowrap_mode = 3
 
 [node name="Paper" type="PanelContainer" parent="Panel/Layout/Columns"]
 unique_name_in_owner = true

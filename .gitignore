@@ -16,3 +16,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# MagicPixel local credentials and sync state
+.magicpixel/
+
+# Reinstallable upstream pixel-art tool checkout (see CLAUDE_PXL_SETUP.md)
+/tools/claude-pxl/

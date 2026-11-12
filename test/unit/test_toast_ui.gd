@@ -30,6 +30,8 @@ func test_existing_signal_keeps_message_and_short_notices_pass_input_through() -
 	UIManager.show_notification("Equip your fishing rod first.", 0.4)
 	await settle()
 	assert_eq(ui.toast_label.text, "Equip your fishing rod first.")
+	assert_eq(ui.get_node("%CategoryLabel").text, "EQUIPMENT NOTICE")
+	assert_eq(ui.get_node("%PanelContainer").size, Vector2(520, 68))
 	assert_true(ui.visible)
 	assert_eq(ui.mouse_filter, Control.MOUSE_FILTER_IGNORE)
 	assert_eq(ui.get_node("%ScrollContainer").mouse_filter, Control.MOUSE_FILTER_IGNORE)
@@ -46,6 +48,7 @@ func test_replacement_survives_previous_timer_and_uses_new_duration() -> void:
 	await get_tree().create_timer(0.08).timeout
 	assert_true(ui.visible)
 	assert_eq(ui.toast_label.text, "New message")
+	assert_eq(ui.get_node("%CategoryLabel").text, "NOTICE")
 	await get_tree().create_timer(0.2).timeout
 	assert_false(ui.visible)
 
@@ -68,7 +71,7 @@ func test_long_messages_scroll_and_remain_bounded_at_supported_sizes() -> void:
 		assert_true(Rect2(Vector2.ZERO, dimensions).encloses(panel.get_rect()), str(dimensions))
 		assert_lt(panel.size.y, dimensions.y * 0.55)
 		assert_almost_eq(panel.get_rect().get_center().x, dimensions.x / 2, 1.0)
-		assert_almost_eq(panel.position.y, 12.0, 1.0)
+		assert_between(panel.position.y, 16.0, 20.0)
 		var scroll: ScrollContainer = ui.get_node("%ScrollContainer")
 		assert_eq(scroll.mouse_filter, Control.MOUSE_FILTER_PASS)
 		scroll.scroll_vertical = 200
@@ -101,3 +104,20 @@ func test_new_notice_moves_above_later_overlay_controls_without_stealing_focus()
 	ui._on_notification_requested("Notification in front of the overlay", 1)
 	assert_eq(ui.get_index(), host.get_child_count() - 1)
 	assert_eq(get_viewport().gui_get_focus_owner(), overlay)
+
+
+func test_mouse_and_touch_dismiss_explanation_but_leave_ordinary_notice_open() -> void:
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	var touch := InputEventScreenTouch.new()
+	touch.pressed = true
+	for event in [click, touch]:
+		EventBus.ui_explanation_requested.emit("Why ice slows spoilage.", 5.0)
+		assert_true(ui.get_node("%DismissButton").visible)
+		ui._input(event)
+		assert_false(ui.visible)
+		UIManager.show_notification("Ordinary notice", 5.0)
+		assert_false(ui.get_node("%DismissButton").visible)
+		ui._input(event)
+		assert_true(ui.visible)

@@ -29,7 +29,7 @@ extends Node
 ##   INCORRECT answer:
 ##     -> points deducted, a reinforcement message shows immediately
 ##        (Phase 10 - surfaces the ORIGINAL question's explanation as
-##        related review questions, without explanation notifications)
+##        an explanation toast alongside related review questions)
 ##     -> a Mini Quest REINFORCEMENT LOOP begins instead of ending the
 ##        attempt (gameplay STAYS paused through the whole loop - the
 ##        player is still "answering," just working through it)
@@ -127,6 +127,7 @@ var _points: int = 0
 ## performance figure (earned - penalties) is get_performance_points().
 var _total_points_earned: int = 0
 var _total_points_spent: int = 0
+var _total_sale_proceeds: int = 0
 
 
 func _ready() -> void:
@@ -156,14 +157,14 @@ func get_total_points_spent() -> int:
 	return _total_points_spent
 
 
-## Net gameplay score (earned minus penalties), UNAFFECTED by shop
-## spending. This is the figure to use for any progression-eligibility or
+## Net gameplay score (earned minus penalties), excluding shop transactions.
+## This is the figure to use for any progression-eligibility or
 ## Performance Board logic, so spending points can never lower it.
 ## Nothing in the project reads points for progression today (verified by
 ## code search - Exam/Region/Quest/NPC managers do not), so this is
 ## provided for that future use rather than wired into anything yet.
 func get_performance_points() -> int:
-	return _points + _total_points_spent
+	return _points + _total_points_spent - _total_sale_proceeds
 
 
 func can_afford(amount: int) -> bool:
@@ -172,7 +173,7 @@ func can_afford(amount: int) -> bool:
 
 ## The ONLY way points leave the balance for a purchase. Returns false and
 ## changes nothing if the balance is insufficient. Emits
-## fishing_points_changed with a NEGATIVE delta - DDAController only counts
+## fishing_points_changed with a NEGATIVE delta - PerformanceTracker only counts
 ## positive deltas toward the AQPI P term ("Earned Points"), so spending
 ## can never inflate or deflate that metric.
 func spend_points(amount: int) -> bool:
@@ -186,11 +187,21 @@ func spend_points(amount: int) -> bool:
 	return true
 
 
+func credit_shop_sale(amount: int) -> void:
+	if amount <= 0:
+		return
+	_points += amount
+	_total_sale_proceeds += amount
+	# Refresh balance labels without recording a gameplay award.
+	EventBus.fishing_points_changed.emit(_points, 0)
+
+
 func _get_points_save_data() -> Dictionary:
 	return {
 		"points": _points,
 		"total_earned": _total_points_earned,
 		"total_spent": _total_points_spent,
+		"total_sale_proceeds": _total_sale_proceeds,
 	}
 
 
@@ -199,6 +210,7 @@ func _apply_points_save_data(data: Dictionary) -> void:
 	_points = int(data.get("points", 0))
 	_total_points_earned = int(data.get("total_earned", 0))
 	_total_points_spent = int(data.get("total_spent", 0))
+	_total_sale_proceeds = int(data.get("total_sale_proceeds", 0))
 	# delta 0 on purpose: refreshes any PointsLabel without registering as
 	# an "earned" award in DDAController (it ignores deltas <= 0).
 	EventBus.fishing_points_changed.emit(_points, 0)
@@ -277,26 +289,30 @@ func submit_answer(answer_index: int) -> void:
 
 	var question_id: String = _current_question.get("id", "")
 	var was_correct := QuestionManager.evaluate_answer(question_id, answer_index)
+	# Record this answer's scoring inputs before DDA can close its window.
+	if was_correct:
+		_award_points(POINTS_PER_CATCH)
+	else:
+		_pending_penalty_to_refund = POINTS_PENALTY_ON_MISS
+		_award_points(-POINTS_PENALTY_ON_MISS)
+		EventBus.mini_quest_triggered.emit(_current_spot_id)
 	EventBus.question_answered.emit(question_id, was_correct)
 
 	var spot_id := _current_spot_id
 
 	if was_correct:
-		_award_points(POINTS_PER_CATCH)
 		_award_catch(spot_id)
 		await _finish_attempt(spot_id, true)
 	else:
-		_pending_penalty_to_refund = POINTS_PENALTY_ON_MISS
-		_award_points(-POINTS_PENALTY_ON_MISS)
 		# A NEW reinforcement loop starts here - reset the seen-ids list so
-		# _start_mini_quest treats this as round 1 (fires mini_quest_triggered
-		# once, and won't accidentally think a question from some earlier,
-		# already-finished loop is "already seen"). Note this also covers the
+		# _start_mini_quest treats this as round 1 instead of excluding questions
+		# from an already-finished loop. Note this also covers the
 		# case where _current_question is a RESUMED main question that was
 		# failed again after an earlier successful reinforcement round - each
 		# fresh failure of the main question, resumed or original, starts its
 		# own new loop, per the existing point-penalty rule applying every time.
 		_mini_quest_seen_ids = []
+		_show_explanation(_current_question)
 		_start_mini_quest(spot_id)
 
 
@@ -320,10 +336,7 @@ func _start_mini_quest(spot_id: String) -> void:
 	var concept_id: String = failed_question.get("concept_id", "")
 	var preferred_tier: int = failed_question.get("tier", DDAController.get_current_tier())
 
-	# Fires exactly once per loop - see EventBus.mini_quest_triggered's own
-	# doc comment for why this must be separate from mini_quest_question_ready.
-	if _mini_quest_seen_ids.is_empty():
-		EventBus.mini_quest_triggered.emit(spot_id)
+	# submit_answer records the loop trigger before broadcasting the failed answer.
 
 	# BUGFIX: _mini_quest_seen_ids alone isn't enough to exclude - it starts
 	# EMPTY on round 1, which meant the original main question's own id was
@@ -379,12 +392,13 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 
 	var question_id: String = _current_mini_question.get("id", "")
 	var was_correct := QuestionManager.evaluate_answer(question_id, answer_index)
+	_award_points(POINTS_PER_MINI_CORRECT if was_correct else -POINTS_PENALTY_ON_MISS)
 	EventBus.question_answered.emit(question_id, was_correct)
+	_show_explanation(_current_mini_question)
 
 	var spot_id := _current_spot_id
 
 	if was_correct:
-		_award_points(POINTS_PER_MINI_CORRECT)
 		_pending_penalty_to_refund = 0
 
 		# Resume the ORIGINAL main question - same stored Dictionary, not a
@@ -395,10 +409,9 @@ func submit_mini_quest_answer(answer_index: int) -> void:
 		_state = FlowState.AWAITING_MAIN_ANSWER
 		EventBus.fishing_question_ready.emit(spot_id, _current_question)
 	else:
-		_award_points(-POINTS_PENALTY_ON_MISS)
 		# Stay in the SAME loop - _mini_quest_seen_ids already has this
 		# question's id, so _start_mini_quest won't immediately repeat it,
-		# and won't re-fire mini_quest_triggered (the list isn't empty).
+		# without recording another mini_quest_triggered event.
 		_start_mini_quest(spot_id)
 
 
@@ -414,8 +427,17 @@ func _finish_attempt(spot_id: String, success: bool) -> void:
 
 	await get_tree().create_timer(REEL_DURATION_SECONDS).timeout
 
+	if success:
+		_show_explanation(_current_question)
 	EventBus.fishing_ended.emit(spot_id, success)
 	_reset_to_idle()
+
+
+func _show_explanation(question: Dictionary) -> void:
+	var explanation: String = question.get("explanation", "").strip_edges()
+	if not explanation.is_empty():
+		var duration := 4.5 * DDAController.get_explanation_duration_multiplier()
+		EventBus.ui_explanation_requested.emit(explanation, duration)
 
 
 func _award_points(delta: int) -> void:

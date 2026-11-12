@@ -1,126 +1,35 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjnbhko7tgtjr"]
+[gd_scene load_steps=5 format=3 uid="uid://bjnbhko7tgtjr"]
 
 [ext_resource type="Script" uid="uid://x3l8vpqpucub" path="res://Scripts/UI/toast_ui.gd" id="1_codex"]
-[ext_resource type="Texture2D" uid="uid://dlcboukbt7sk3" path="res://Assets/UI/HUDReference/wood.svg" id="2_wood"]
-[ext_resource type="Texture2D" uid="uid://xeskbkb3wjca" path="res://Assets/UI/HUDReference/button.svg" id="3_button"]
-[ext_resource type="Texture2D" uid="uid://djvynlbc8n5ys" path="res://Assets/UI/HUDReference/parchment.svg" id="4_paper"]
 
-[sub_resource type="StyleBoxTexture" id="disabled_button"]
-content_margin_left = 10.0
+[ext_resource type="Texture2D" path="res://Assets/UI/HUDReference/toast_badge.svg" id="2_badge"]
+
+[sub_resource type="StyleBoxFlat" id="wood"]
+content_margin_left = 14.0
 content_margin_top = 10.0
-content_margin_right = 10.0
+content_margin_right = 14.0
 content_margin_bottom = 10.0
-texture = ExtResource("3_button")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
-modulate_color = Color(0.7, 0.7, 0.7, 1)
-
-[sub_resource type="StyleBoxFlat" id="focus"]
-bg_color = Color(0, 0, 0, 0)
+bg_color = Color(0.188235, 0.12549, 0.086275, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.9, 0.74, 0.46, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+border_color = Color(0.647059, 0.545098, 0.380392, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+corner_detail = 4
+shadow_color = Color(0.145098, 0.094118, 0.058824, 0.7)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxTexture" id="button"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = ExtResource("3_button")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxFlat" id="selection"]
-content_margin_left = 12.0
-content_margin_top = 10.0
-content_margin_right = 12.0
-content_margin_bottom = 10.0
-bg_color = Color(0.19, 0.29, 0.32, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.55, 0.66, 0.68, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxTexture" id="wood"]
-content_margin_left = 12.0
-content_margin_top = 12.0
-content_margin_right = 12.0
-content_margin_bottom = 12.0
-texture = ExtResource("2_wood")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
-
-[sub_resource type="StyleBoxFlat" id="study_card"]
-content_margin_left = 16.0
-content_margin_top = 14.0
-content_margin_right = 16.0
-content_margin_bottom = 14.0
-bg_color = Color(0.94, 0.86, 0.7, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.68, 0.52, 0.32, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="Theme" id="reader_theme"]
-default_font_size = 16
-Button/colors/font_color = Color(0.941, 0.871, 0.757, 1)
-Button/colors/font_disabled_color = Color(0.72, 0.64, 0.51, 1)
-Button/colors/font_focus_color = Color(1, 0.94, 0.82, 1)
-Button/colors/font_hover_color = Color(1, 0.94, 0.82, 1)
-Button/styles/disabled = SubResource("disabled_button")
-Button/styles/focus = SubResource("focus")
-Button/styles/hover = SubResource("button")
-Button/styles/normal = SubResource("button")
-Button/styles/pressed = SubResource("selection")
-HBoxContainer/constants/separation = 8
-Label/colors/font_color = Color(0.941, 0.871, 0.757, 1)
-OptionButton/colors/font_color = Color(0.941, 0.871, 0.757, 1)
-OptionButton/styles/focus = SubResource("focus")
-OptionButton/styles/hover = SubResource("button")
-OptionButton/styles/normal = SubResource("button")
-OptionButton/styles/pressed = SubResource("button")
-PopupMenu/colors/font_color = Color(0.941, 0.871, 0.757, 1)
-PopupMenu/styles/hover = SubResource("selection")
-PopupMenu/styles/panel = SubResource("wood")
-RichTextLabel/colors/default_color = Color(0.188, 0.125, 0.086, 1)
-RichTextLabel/constants/line_separation = 6
-StudyCard/styles/panel = SubResource("study_card")
-VBoxContainer/constants/separation = 8
-
-[sub_resource type="StyleBoxTexture" id="paper"]
-content_margin_left = 12.0
-content_margin_top = 12.0
-content_margin_right = 12.0
-content_margin_bottom = 12.0
-texture = ExtResource("4_paper")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
+[sub_resource type="Theme" id="toast_theme"]
+default_font_size = 17
+Label/colors/font_color = Color(0.913725, 0.870588, 0.788235, 1)
 
 [node name="ToastUI" type="Control"]
+visible = false
 z_index = 60
 layout_mode = 3
 anchors_preset = 15
@@ -129,60 +38,91 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = SubResource("reader_theme")
+theme = SubResource("toast_theme")
 script = ExtResource("1_codex")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 0
+offset_left = 316.0
+offset_top = 20.0
+offset_right = 836.0
+offset_bottom = 88.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("wood")
+
+[node name="Layout" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Content" type="HBoxContainer" parent="PanelContainer/Layout"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Badge" type="TextureRect" parent="PanelContainer/Layout/Content"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_badge")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NotificationIcon" type="Label" parent="PanelContainer/Layout/Content/Badge"]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.22200002
-anchor_top = 0.39800003
-anchor_right = 0.77800006
-anchor_bottom = 0.60200006
-offset_left = 0.25598145
-offset_top = 0.09597778
-offset_right = -0.25604248
-offset_bottom = -0.09603882
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("wood")
-metadata/_edit_use_anchors_ = true
+theme_override_font_sizes/font_size = 22
+text = "i"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Layout" type="VBoxContainer" parent="PanelContainer"]
+[node name="TextContainer" type="VBoxContainer" parent="PanelContainer/Layout/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 3
+
+[node name="CategoryLabel" type="Label" parent="PanelContainer/Layout/Content/TextContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 8
+theme_override_colors/font_color = Color(0.796078, 0.733333, 0.647059, 1)
+theme_override_font_sizes/font_size = 13
+text = "NOTICE"
+text_overrun_behavior = 3
 
-[node name="Heading" type="Label" parent="PanelContainer/Layout"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "Notification"
-
-[node name="Paper" type="PanelContainer" parent="PanelContainer/Layout"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("paper")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Layout/Paper"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/Layout/Content/TextContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 horizontal_scroll_mode = 0
 
-[node name="ToastLabel" type="Label" parent="PanelContainer/Layout/Paper/ScrollContainer"]
+[node name="ToastLabel" type="Label" parent="PanelContainer/Layout/Content/TextContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.188, 0.125, 0.086, 1)
-theme_override_constants/line_spacing = 5
-theme_override_font_sizes/font_size = 19
+mouse_filter = 2
+theme_override_constants/line_spacing = 3
 autowrap_mode = 3
 
-[node name="DisplayTimer" type="Timer" parent="."]
+[node name="DismissButton" type="Button" parent="PanelContainer/Layout"]
 unique_name_in_owner = true
-one_shot = true
+visible = false
+custom_minimum_size = Vector2(64, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 13
+text = "Dismiss"
+flat = true

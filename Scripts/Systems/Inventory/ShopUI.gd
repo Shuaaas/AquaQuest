@@ -10,6 +10,7 @@ var _controls: Dictionary = {}
 var _catalog: Array = []
 var _selected := ""
 var _reading := false
+var _selling := false
 var _item_buttons: Dictionary = {}
 
 @onready var buy_list_container: VBoxContainer = %BuyListContainer
@@ -28,7 +29,9 @@ func _ready() -> void:
 		font.antialiasing = TextServer.FONT_ANTIALIASING_GRAY
 		font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
 		theme.default_font = font
-	%BuyButton.pressed.connect(_buy_selected)
+	%BuyButton.pressed.connect(_trade_selected)
+	%BuyTab.pressed.connect(_set_selling.bind(false))
+	%SellTab.pressed.connect(_set_selling.bind(true))
 	%Less.pressed.connect(func(): %Quantity.value -= 1)
 	%More.pressed.connect(func(): %Quantity.value += 1)
 	%Quantity.value_changed.connect(_on_quantity_changed)
@@ -40,7 +43,8 @@ func _ready() -> void:
 	close_button.pressed.connect(_on_close_pressed)
 	EventBus.shop_catalog_ready.connect(_on_catalog_ready)
 	EventBus.shop_closed.connect(_on_shop_closed)
-	EventBus.item_purchased.connect(_on_purchase)
+	EventBus.item_purchased.connect(_on_trade)
+	EventBus.item_sold.connect(_on_trade)
 	EventBus.fishing_points_changed.connect(_on_points_changed)
 	EventBus.inventory_changed.connect(_update_availability)
 	EventBus.load_completed.connect(_on_loaded)
@@ -70,9 +74,11 @@ func _on_catalog_ready(_shop_id: String, catalog: Array) -> void:
 		_quantities.clear()
 		_selected = ""
 		_reading = false
+		_selling = false
+		_update_tabs()
 	show()
 	_refresh_points()
-	_render_buy_list(catalog)
+	_render_list(ShopManager.get_sell_catalog() if _selling else catalog)
 	close_button.grab_focus()
 
 
@@ -80,7 +86,26 @@ func _refresh_points() -> void:
 	_points_label.text = "Points: %d" % FishingManager.get_points()
 
 
-func _render_buy_list(catalog: Array) -> void:
+func _set_selling(selling: bool) -> void:
+	if _selling != selling:
+		_selling = selling
+		_selected = ""
+		_reading = false
+		_quantities.clear()
+		_refresh_catalog()
+	_update_tabs()
+
+
+func _update_tabs() -> void:
+	%BuyTab.set_pressed_no_signal(not _selling)
+	%SellTab.set_pressed_no_signal(_selling)
+
+
+func _refresh_catalog() -> void:
+	_render_list(ShopManager.get_sell_catalog() if _selling else ShopManager.get_current_catalog())
+
+
+func _render_list(catalog: Array) -> void:
 	_catalog = catalog.duplicate(true)
 	_item_buttons.clear()
 	for child in buy_list_container.get_children():
@@ -92,10 +117,8 @@ func _render_buy_list(catalog: Array) -> void:
 	for entry in catalog:
 		var item_id: String = entry["item_id"]
 		var button := Button.new()
-		button.text = (
-			"%s\n%d points · Stock: %s"
-			% [entry.display_name, entry.price, _stock_text(entry.stock)]
-		)
+		var availability := "Owned: %d" % int(entry.owned) if _selling else "Stock: " + _stock_text(int(entry.stock))
+		button.text = "%s\n%d points · %s" % [entry.display_name, entry.price, availability]
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.custom_minimum_size.y = 88
@@ -109,7 +132,7 @@ func _render_buy_list(catalog: Array) -> void:
 		_item_buttons[item_id] = button
 	if catalog.is_empty():
 		var label := Label.new()
-		label.text = "No items available in this shop."
+		label.text = "You have no items to sell." if _selling else "No items available in this shop."
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		buy_list_container.add_child(label)
 	_show_selected()
@@ -158,12 +181,16 @@ func _show_selected() -> void:
 	%Description.text = entry.description
 	%ItemIcon.texture = _icon(_selected)
 	%UnitPrice.text = "Unit price: %d points" % int(entry.price)
-	%Stock.text = "Stock: " + _stock_text(int(entry.stock))
+	%Stock.visible = not _selling
+	if not _selling:
+		%Stock.text = "Stock: " + _stock_text(int(entry.stock))
 	var limit := (
 		1
 		if ItemDatabase.is_one_time_purchase(_selected)
 		else mini(999, ItemDatabase.get_max_stack(_selected))
 	)
+	if _selling:
+		limit = mini(999, int(entry.owned))
 	%Quantity.set_value_no_signal(1)
 	%Quantity.max_value = limit
 	%Quantity.set_value_no_signal(clampi(int(_quantities.get(_selected, 1)), 1, limit))
@@ -188,20 +215,25 @@ func _update_availability() -> void:
 		return
 	var controls: Dictionary = _controls[_selected]
 	var quantity := int(controls.quantity.value)
-	var reason := ShopManager.purchase_error(_selected, quantity)
-	controls.status.text = reason if not reason.is_empty() else "Ready to buy."
+	var reason := ShopManager.sale_error(_selected, quantity) if _selling else ShopManager.purchase_error(_selected, quantity)
+	controls.status.text = reason if not reason.is_empty() else ("Ready to sell." if _selling else "Ready to buy.")
 	controls.buy.disabled = not reason.is_empty()
 	var total := int(controls.price) * quantity
-	controls.buy.text = "Buy ×%d · %d points" % [quantity, total]
+	controls.buy.text = "%s ×%d · %d points" % ["Sell" if _selling else "Buy", quantity, total]
 	%Total.text = "Total: %d points" % total
 	%Owned.text = "Owned: %d" % InventoryManager.get_item_count(_selected)
 	%Less.disabled = quantity <= 1
 	%More.disabled = quantity >= %Quantity.max_value
 
 
-func _buy_selected() -> void:
-	if not _selected.is_empty():
-		ShopManager.buy_item(_selected, int(%Quantity.value))
+func _trade_selected() -> void:
+	if _selected.is_empty():
+		return
+	var quantity := int(%Quantity.value)
+	if _selling:
+		ShopManager.sell_item(_selected, quantity)
+	else:
+		ShopManager.buy_item(_selected, quantity)
 
 
 func _back_to_list() -> void:
@@ -227,9 +259,14 @@ func _layout() -> void:
 	%IconFrame.custom_minimum_size = Vector2.ONE * (64 if size.y < 450 else 80)
 
 
-func _on_purchase(_item_id: String, _price: int) -> void:
+func _on_trade(_item_id: String, _price: int) -> void:
 	if visible:
-		_render_buy_list(ShopManager.get_current_catalog())
+		var sold_last := _selling and not InventoryManager.has_item(_selected)
+		if sold_last:
+			_reading = false
+		_refresh_catalog()
+		if sold_last:
+			%SellTab.grab_focus()
 
 
 func _on_points_changed(_new_total: int, _delta: int) -> void:
@@ -239,7 +276,7 @@ func _on_points_changed(_new_total: int, _delta: int) -> void:
 
 func _on_loaded(_slot: int) -> void:
 	if visible:
-		_render_buy_list(ShopManager.get_current_catalog())
+		_refresh_catalog()
 
 
 func _on_close_pressed() -> void:

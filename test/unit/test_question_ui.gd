@@ -62,6 +62,63 @@ func question() -> Dictionary:
 	return QuestionManager.get_question_by_id("r1_001").duplicate(true)
 
 
+func test_quest_aqpi_uses_all_16_answers_and_survives_reload() -> void:
+	var quest_id := "learn_post_harvest_basics"
+	QuestManager._apply_save_data({})
+	PerformanceTracker._apply_save_data({})
+	DDAController._apply_save_data({"current_tier": DDAController.DifficultyTier.EASY})
+	QuestManager.start_quest(quest_id)
+	for i in range(16):
+		EventBus.fishing_question_ready.emit("test", question())
+		if i < 15:
+			EventBus.fishing_points_changed.emit((i + 1) * 10, 10)
+		else:
+			EventBus.mini_quest_triggered.emit("test")
+		EventBus.question_answered.emit("r1_001", i < 15)
+		if i == 4:
+			assert_eq(DDAController.current_tier, DDAController.DifficultyTier.MEDIUM)
+			assert_engine_error("5-answer streak promoted tier EASY -> MEDIUM")
+		if i == 9:
+			assert_eq(DDAController.current_tier, DDAController.DifficultyTier.HARD)
+			assert_engine_error("5-answer streak promoted tier MEDIUM -> HARD")
+		assert_eq(PerformanceTracker.get_latest_quest_aqpi(), -1.0)
+	PerformanceTracker.total_time_seconds = 360.0
+	var saved := PerformanceTracker._get_save_data()
+	PerformanceTracker._apply_save_data(saved)
+	QuestManager.complete_quest(quest_id)
+	# 15/16 accuracy, 10/20 time points, 15/16 independence, full points.
+	assert_almost_eq(PerformanceTracker.get_latest_quest_aqpi(), 0.8625, 0.0001)
+	assert_almost_eq(DDAController.last_aqpi_score, 0.8625, 0.0001)
+
+
+func test_quest_aqpi_time_credit_boundaries() -> void:
+	for sample in [[120.0, 1.0], [150.0, 0.9875], [600.0, 0.8], [650.0, 0.8]]:
+		var quest_id := "learn_post_harvest_basics"
+		QuestManager._apply_save_data({})
+		PerformanceTracker._apply_save_data({})
+		QuestManager.start_quest(quest_id)
+		EventBus.fishing_question_ready.emit("test", question())
+		EventBus.fishing_points_changed.emit(100, 100)
+		EventBus.question_answered.emit("r1_001", true)
+		PerformanceTracker.total_time_seconds = sample[0]
+		QuestManager.complete_quest(quest_id)
+		assert_almost_eq(PerformanceTracker.get_latest_quest_aqpi(), sample[1], 0.0001)
+
+
+func test_exam_starts_fresh_aqpi_timer_and_counts_as_main() -> void:
+	PerformanceTracker._question_shown_at_msec = -600000
+	PerformanceTracker._last_was_mini = true
+	var before_time := PerformanceTracker.total_time_seconds
+	var before_main := PerformanceTracker.total_main_correct
+	var before_mini := PerformanceTracker.total_mini_correct
+	start_exam()
+	assert_gte(PerformanceTracker._question_shown_at_msec, 0)
+	ExamManager.submit_exam_answer(int(question().correct_index))
+	assert_lt(PerformanceTracker.total_time_seconds - before_time, 1.0)
+	assert_eq(PerformanceTracker.total_main_correct, before_main + 1)
+	assert_eq(PerformanceTracker.total_mini_correct, before_mini)
+
+
 func test_fishing_points_hint_and_optional_image_presentation() -> void:
 	var data := question()
 	fishing._display_question(data, false)
@@ -123,10 +180,16 @@ func test_wrong_fishing_answer_reviews_then_resumes_original_question() -> void:
 	assert_eq(fishing.question_label.text, data.text)
 	assert_true(get_tree().paused)
 	assert_signal_not_emitted(EventBus, "ui_notification_requested")
+	assert_signal_emit_count(EventBus, "ui_explanation_requested", 2)
 
 
 func test_correct_fishing_answer_hides_before_reeling_and_prevents_double_submit() -> void:
 	watch_signals(EventBus)
+	var toast := preload("res://Scene/UI/toast_ui.tscn").instantiate()
+	toast.name = "ToastUI"
+	host.add_child(toast)
+	var reward := preload("res://Scene/UI/ItemRewardToast.tscn").instantiate()
+	host.add_child(reward)
 	var data := question()
 	FishingManager._current_question = data
 	FishingManager._current_spot_id = "gut_question_ui"
@@ -138,6 +201,8 @@ func test_correct_fishing_answer_hides_before_reeling_and_prevents_double_submit
 	EventBus.fishing_reel_started.connect(on_reel)
 	fishing._on_choice_pressed(int(data.correct_index))
 	assert_true(observed.hidden)
+	assert_false(toast.visible)
+	assert_false(reward.frame.visible)
 	assert_eq(FishingManager._state, FishingManager.FlowState.REELING)
 	var balance := FishingManager.get_points()
 	fishing._on_choice_pressed(int(data.correct_index))
@@ -145,6 +210,14 @@ func test_correct_fishing_answer_hides_before_reeling_and_prevents_double_submit
 	await get_tree().create_timer(FishingManager.REEL_DURATION_SECONDS + 0.1).timeout
 	assert_eq(FishingManager._state, FishingManager.FlowState.IDLE)
 	EventBus.fishing_reel_started.disconnect(on_reel)
+	assert_true(toast.visible)
+	assert_eq(toast.toast_label.text, data.explanation)
+	assert_false(reward.frame.visible)
+	assert_eq(reward._pending.size(), 1)
+	toast.get_node("%DismissButton").pressed.emit()
+	reward._pump()
+	assert_false(toast.visible)
+	assert_true(reward.frame.visible)
 	assert_signal_not_emitted(EventBus, "ui_notification_requested")
 
 

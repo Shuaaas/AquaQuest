@@ -6,24 +6,14 @@ extends Node
 ## it is a pure read-only observer that accumulates counters and writes
 ## them to SaveManager under the "performance" section.
 ##
-## DATA COLLECTED:
-##   - Lifetime question totals (correct, incorrect, by type: main / mini)
-##   - Per-session time: start timestamp recorded on first question shown
-##   - Mini-quest trigger count (reuses the mini_quest_triggered signal -
-##     same source DDAController uses for its M term, ensuring consistency)
-##   - Points earned / deducted (mirrors DDAController's interpretation:
-##     positive deltas = earned, negative = penalty - never counts shop
-##     spending as earned, matching DDAController._on_points_changed)
-##   - Difficulty tier at the time each question was answered
-##
-## SESSION vs. LIFETIME: all counters here are LIFETIME (persist across
-## save/load). A "session" is implicitly whatever happened since the last
-## load, but the Performance Board computes live AQPI from the same
-## lifetime totals DDAController uses (its window resets, but the Board
-## shows the full career picture). Both are exposed.
-##
-## SAVE SECTION: "performance" - registered with SaveManager, same pattern
-## as every other manager.
+## Lifetime stats are saved separately from each quest's AQPI.
+
+const FULL_TIME_CREDIT_SECONDS := 120.0
+const ZERO_TIME_CREDIT_SECONDS := 600.0
+
+var _quest_baselines: Dictionary = {}
+var quest_aqpi_scores: Dictionary = {}
+var latest_scored_quest_id: String = ""
 
 var _session_start_msec: int = 0
 var _session_started: bool = false
@@ -61,13 +51,22 @@ var _question_shown_at_msec: int = 0
 func _ready() -> void:
 	EventBus.fishing_question_ready.connect(_on_main_question_shown)
 	EventBus.mini_quest_question_ready.connect(_on_mini_question_shown)
+	EventBus.exam_question_ready.connect(_on_exam_question_shown)
 	EventBus.question_answered.connect(_on_question_answered)
 	EventBus.mini_quest_triggered.connect(_on_mini_quest_triggered)
 	EventBus.fishing_points_changed.connect(_on_points_changed)
-	SaveManager.register_section("performance", _get_save_data, _apply_save_data)
+	EventBus.quest_started.connect(_on_quest_started)
+	EventBus.quest_completed.connect(_on_quest_completed)
+	EventBus.quest_failed.connect(_on_quest_failed)
+	SaveManager.register_section("performance", _get_save_data, _apply_save_data, true)
 
 
 func _on_main_question_shown(_spot_id: String, _question: Dictionary) -> void:
+	_last_was_mini = false
+	_record_question_start()
+
+
+func _on_exam_question_shown(_exam_id: String, _number: int, _total: int, _question: Dictionary) -> void:
 	_last_was_mini = false
 	_record_question_start()
 
@@ -127,23 +126,54 @@ func get_accuracy() -> float:
 	return float(total_correct) / float(total_questions_answered)
 
 
-## AQPI using the thesis formula over lifetime totals.
-## A = correct / total
-## T = 1 - (time_used / 600)
-## M = 1 - (mini_quests_triggered / total_questions)
-## P = earned_points / max_possible_points
-## Returns a value in [0.0, 1.0].
-func compute_aqpi() -> float:
-	var a := clampf(get_accuracy(), 0.0, 1.0)
-	var t := clampf(1.0 - (total_time_seconds / DDAController.MAX_TIME_SECONDS), 0.0, 1.0)
-	var m := 1.0
-	if total_questions_answered > 0:
-		m = clampf(1.0 - (float(total_mini_quests_triggered) / float(total_questions_answered)), 0.0, 1.0)
-	var p := clampf(
-		float(total_points_earned) / maxf(float(DDAController.max_possible_points), 1.0),
+func _quest_totals() -> Dictionary:
+	return {
+		"answers": total_questions_answered,
+		"correct": total_correct,
+		"seconds": total_time_seconds,
+		"mini": total_mini_quests_triggered,
+		"points": total_points_earned,
+	}
+
+
+func _on_quest_started(quest_id: String) -> void:
+	var definition := QuestObjectiveManager.get_quest_definition(quest_id)
+	for objective in definition.get("objectives", []):
+		if objective.get("type") in ["catch_fish", "answer_questions", "pass_exam"]:
+			_quest_baselines[quest_id] = _quest_totals()
+			return
+
+
+func _on_quest_completed(quest_id: String) -> void:
+	if not _quest_baselines.has(quest_id):
+		return
+	var baseline: Dictionary = _quest_baselines[quest_id]
+	_quest_baselines.erase(quest_id)
+	var answers := total_questions_answered - int(baseline.answers)
+	if answers <= 0:
+		return
+
+	var accuracy := clampf(float(total_correct - int(baseline.correct)) / answers, 0.0, 1.0)
+	var seconds := total_time_seconds - float(baseline.seconds)
+	var time_efficiency := clampf(
+		(ZERO_TIME_CREDIT_SECONDS - seconds) / (ZERO_TIME_CREDIT_SECONDS - FULL_TIME_CREDIT_SECONDS),
 		0.0, 1.0
 	)
-	return (0.40 * a) + (0.20 * t) + (0.20 * m) + (0.20 * p)
+	var independence := clampf(1.0 - float(total_mini_quests_triggered - int(baseline.mini)) / answers, 0.0, 1.0)
+	var earned := total_points_earned - int(baseline.points)
+	var points := clampf(earned / maxf(DDAController.max_possible_points, 1.0), 0.0, 1.0)
+	var score := 0.40 * accuracy + 0.20 * time_efficiency + 0.20 * independence + 0.20 * points
+	quest_aqpi_scores[quest_id] = score
+	latest_scored_quest_id = quest_id
+	EventBus.quest_aqpi_calculated.emit(quest_id, score)
+
+
+func _on_quest_failed(quest_id: String) -> void:
+	_quest_baselines.erase(quest_id)
+
+
+func get_latest_quest_aqpi() -> float:
+	return float(quest_aqpi_scores.get(latest_scored_quest_id, -1.0))
 
 
 func get_session_time_seconds() -> float:
@@ -168,6 +198,9 @@ func _get_save_data() -> Dictionary:
 		"total_points_deducted": total_points_deducted,
 		"total_time_seconds": total_time_seconds,
 		"questions_by_tier": questions_by_tier,
+		"quest_baselines": _quest_baselines.duplicate(true),
+		"quest_aqpi_scores": quest_aqpi_scores.duplicate(),
+		"latest_scored_quest_id": latest_scored_quest_id,
 	}
 
 
@@ -188,3 +221,10 @@ func _apply_save_data(data: Dictionary) -> void:
 	questions_by_tier = { 0: 0, 1: 0, 2: 0 }
 	for k in raw_tiers:
 		questions_by_tier[int(k)] = int(raw_tiers[k])
+	_quest_baselines = data.get("quest_baselines", {}).duplicate(true)
+	quest_aqpi_scores = data.get("quest_aqpi_scores", {}).duplicate()
+	latest_scored_quest_id = data.get("latest_scored_quest_id", "")
+	# Older saves have lifetime totals but no record of when an active quest began.
+	for quest_id in QuestObjectiveManager.get_quest_definitions():
+		if QuestManager.get_quest_state(quest_id) == "active" and not _quest_baselines.has(quest_id):
+			_on_quest_started(quest_id)

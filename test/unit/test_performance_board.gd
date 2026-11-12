@@ -3,6 +3,20 @@ extends GutTest
 const BOARD := preload("res://Scene/UI/performance_board.tscn")
 
 
+func test_aqpi_stays_empty_until_a_quest_has_a_score() -> void:
+	var saved := PerformanceTracker._get_save_data().duplicate(true)
+	PerformanceTracker._apply_save_data({"total_questions_answered": 16})
+	var board := BOARD.instantiate()
+	add_child_autofree(board)
+	assert_eq(board.aqpi_label.text, "—")
+	board.hide()
+	PerformanceTracker.quest_aqpi_scores["test_quest"] = 0.875
+	PerformanceTracker.latest_scored_quest_id = "test_quest"
+	board.show()
+	assert_eq(board.aqpi_label.text, "87.5")
+	PerformanceTracker._apply_save_data(saved)
+
+
 func test_board_can_start_visible_without_accessing_unready_labels() -> void:
 	var board := BOARD.instantiate()
 	assert_true(board.visible)

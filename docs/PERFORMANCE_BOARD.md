@@ -9,11 +9,12 @@ No shared theme or other interface was changed.
 
 The reference says Completion, but the existing value measures answer accuracy.
 The card therefore says Answer accuracy. Its progress bar represents correct answers
-out of answered questions, not world/quest completion. Net points, earned/deducted
-points, main/mini correct and incorrect counts, AQPI, difficulty, time and triggered
-mini quests retain their original data sources and formulas. Nothing awards points,
-changes DDA or advances progression. AQPI remains the existing score, including its
-existing initial value; this task does not change its interpretation.
+out of answered questions. The other performance totals are lifetime stats.
+Latest quest AQPI shows “—” until a quest with recorded answers is turned in.
+The score uses answers recorded while the quest was active. Up to 2 minutes of
+answering earns the full 20 time points, which then decrease by 2.5 per minute
+until reaching zero at 10 minutes. DDA uses the finished quest's score to select
+a tier. Five correct answers in a row can still raise the tier during play.
 
 Actual region names/unlock states come from RegionManager. Future undefined regions
 are omitted. Existing known quest/exam ID lists remain unchanged, so this redesign

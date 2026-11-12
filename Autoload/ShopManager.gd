@@ -4,15 +4,14 @@ extends Node
 ## Single responsibility: run shop purchases and track per-shop stock and
 ## one-time-purchase history. Consumes the shop hooks that have existed on
 ## EventBus since the NPC System phase: shop_opened, shop_closed,
-## item_purchased (item_sold is no longer emitted - see SELLING below).
+## item_purchased and item_sold.
 ##
 ## CURRENCY = THE PLAYER'S EXISTING POINTS (Phase 13 fix). This script used
 ## to charge a separate "coin" item. That was wrong: your thesis defines a
 ## Reward System where players spend the points they EARN through correct
 ## answers. Points now come from FishingManager, which has always owned
 ## the balance (_points) - this script never keeps its own copy and never
-## writes the balance directly. It only calls FishingManager.can_afford()
-## and FishingManager.spend_points(), the single entry point for spending.
+## writes the balance directly. FishingManager handles spending and sale credits.
 ##
 ## HOW A MERCHANT OPENS A SHOP: unchanged. NPCManager's "open_shop" action
 ## emits EventBus.shop_opened(merchant_node); this script reads
@@ -31,13 +30,7 @@ extends Node
 ## cannot double-charge or double-grant, because each click re-runs the
 ## full validation against the already-updated state.
 ##
-## SELLING IS DISABLED (a decision for you to approve - see
-## is_selling_enabled()). Selling used to pay coins. Paying POINTS for
-## selling would let a player raise their balance without answering any
-## question, and DDAController counts every positive points change as
-## "Earned Points" (the AQPI P term), so sale proceeds would silently
-## distort your difficulty-adjustment inputs. Your thesis does not define
-## selling, so it is switched off rather than guessed at.
+## Selling exchanges owned items for spendable points without awarding performance points.
 ##
 ## DATA LOCATION: Data/JSON/Shops/*.json
 ## EXPECTED JSON SHAPE:
@@ -66,7 +59,7 @@ var _remaining_stock: Dictionary = {}
 var _purchased_one_time: Dictionary = {}
 
 var _current_shop_id: String = ""
-var _buying := false
+var _transacting := false
 
 
 func _ready() -> void:
@@ -180,7 +173,7 @@ func close_shop() -> void:
 ## Called by ShopUI. Returns true only if the purchase fully completed.
 ## Validates the entire requested quantity before any state changes.
 func purchase_error(item_id: String, quantity: int = 1) -> String:
-	if _current_shop_id == "" or _buying:
+	if _current_shop_id == "" or _transacting:
 		return "Shop unavailable."
 	if quantity < 1 or quantity > 999:
 		return "Choose a quantity from 1 to 999."
@@ -218,9 +211,9 @@ func buy_item(item_id: String, quantity: int = 1) -> bool:
 	var total := int(entry.get("price_override", ItemDatabase.get_buy_price(item_id))) * quantity
 	# Commit bookkeeping before emitting inventory signals. Reentrant purchases
 	# from signal listeners cannot enter another transaction.
-	_buying = true
+	_transacting = true
 	if not FishingManager.spend_points(total):
-		_buying = false
+		_transacting = false
 		return false
 	var stock_map: Dictionary = _remaining_stock.get(_current_shop_id, {})
 	if stock_map.has(item_id):
@@ -228,7 +221,7 @@ func buy_item(item_id: String, quantity: int = 1) -> bool:
 	if ItemDatabase.is_one_time_purchase(item_id):
 		_purchased_one_time[item_id] = true
 	InventoryManager.add_item(item_id, quantity)
-	_buying = false
+	_transacting = false
 	EventBus.item_purchased.emit(item_id, total)
 	UIManager.show_notification(
 		(
@@ -240,18 +233,58 @@ func buy_item(item_id: String, quantity: int = 1) -> bool:
 	return true
 
 
-## Selling is switched off - see the class doc for why. To turn it on you
-## would need to decide how sale proceeds are credited WITHOUT being
-## counted as "Earned Points" by DDAController (it counts every positive
-## fishing_points_changed delta), which means a deliberate change on the
-## DDA side. That is your call, not something to guess at here.
 func is_selling_enabled() -> bool:
-	return false
+	return _shop_definitions.has(_current_shop_id)
 
 
-func sell_item(_item_id: String) -> bool:
-	UIManager.show_notification("Selling isn't available.", 2.0)
-	return false
+func get_sell_catalog() -> Array:
+	var catalog: Array = []
+	for item_id in InventoryManager.get_all_items():
+		if not sale_error(item_id).is_empty():
+			continue
+		catalog.append({
+			"item_id": item_id,
+			"display_name": ItemDatabase.get_display_name(item_id),
+			"description": ItemDatabase.get_description(item_id),
+			"price": ItemDatabase.get_sell_price(item_id),
+			"owned": InventoryManager.get_item_count(item_id),
+		})
+	return catalog
+
+
+func sale_error(item_id: String, quantity: int = 1) -> String:
+	if not is_selling_enabled() or _transacting:
+		return "Shop unavailable."
+	if quantity < 1 or quantity > 999:
+		return "Choose a quantity from 1 to 999."
+	if (not ItemDatabase.is_sellable(item_id)
+		or ItemDatabase.is_one_time_purchase(item_id)
+		or ItemDatabase.get_sell_price(item_id) <= 0):
+		return "This item can't be sold."
+	if not InventoryManager.has_item(item_id, quantity):
+		return "Not enough items owned."
+	return ""
+
+
+func sell_item(item_id: String, quantity: int = 1) -> bool:
+	var reason := sale_error(item_id, quantity)
+	if not reason.is_empty():
+		UIManager.show_notification(reason, 2.0)
+		return false
+	var proceeds := ItemDatabase.get_sell_price(item_id) * quantity
+	_transacting = true
+	var removed := InventoryManager.remove_item(item_id, quantity)
+	if removed:
+		FishingManager.credit_shop_sale(proceeds)
+	_transacting = false
+	if not removed:
+		return false
+	EventBus.item_sold.emit(item_id, proceeds)
+	UIManager.show_notification(
+		"Sold %s x%d for %d points." % [ItemDatabase.get_display_name(item_id), quantity, proceeds],
+		2.0
+	)
+	return true
 
 
 func _find_catalog_entry(shop_def: Dictionary, item_id: String) -> Dictionary:

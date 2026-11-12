@@ -91,7 +91,8 @@ func _fill_summary() -> void:
 	%PointsValue.text = str(FishingManager.get_points())
 	points_label.text = "Earned: %d · Deducted: %d" % [
 		PerformanceTracker.total_points_earned, PerformanceTracker.total_points_deducted]
-	aqpi_label.text = "%.1f" % (PerformanceTracker.compute_aqpi() * 100.0)
+	var quest_aqpi := PerformanceTracker.get_latest_quest_aqpi()
+	aqpi_label.text = "—" if quest_aqpi < 0.0 else "%.1f" % (quest_aqpi * 100.0)
 	var tier_names := ["EASY", "MEDIUM", "HARD"]
 	var tier_idx: int = clampi(int(DDAController.get_current_tier()), 0, 2)
 	tier_label.text = tier_names[tier_idx]
@@ -264,7 +265,7 @@ func _on_export() -> void:
 	var total: int  = PerformanceTracker.total_questions_answered
 	var correct: int = PerformanceTracker.total_correct
 	var acc_pct: float = PerformanceTracker.get_accuracy() * 100.0
-	var aqpi_score: float = PerformanceTracker.compute_aqpi() * 100.0
+	var quest_aqpi := PerformanceTracker.get_latest_quest_aqpi()
 	var secs: int = int(PerformanceTracker.total_time_seconds)
 
 	lines.append("summary,total_questions,%d" % total)
@@ -280,7 +281,9 @@ func _on_export() -> void:
 	lines.append("summary,points_earned,%d" % PerformanceTracker.total_points_earned)
 	lines.append("summary,points_deducted,%d" % PerformanceTracker.total_points_deducted)
 	lines.append("summary,net_points,%d" % FishingManager.get_points())
-	lines.append("summary,aqpi_score,%.2f" % aqpi_score)
+	if quest_aqpi >= 0.0:
+		lines.append("summary,aqpi_quest_id,%s" % PerformanceTracker.latest_scored_quest_id)
+		lines.append("summary,aqpi_score,%.2f" % (quest_aqpi * 100.0))
 	lines.append("summary,difficulty_tier,%d" % DDAController.get_current_tier())
 
 	# Tier breakdown

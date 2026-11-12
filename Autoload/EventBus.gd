@@ -34,6 +34,7 @@ signal load_completed(slot: int)
 signal quest_started(quest_id: String)
 signal quest_updated(quest_id: String, progress: Dictionary)
 signal quest_completed(quest_id: String)
+signal quest_aqpi_calculated(quest_id: String, score: float)
 signal quest_failed(quest_id: String)
 ## Fired when every objective on an active quest is satisfied, BEFORE the
 ## quest is actually completed/turned in - the player still needs to
@@ -110,6 +111,7 @@ signal stop_music_requested(fade_time: float)
 signal ui_screen_pushed(screen_id: String)
 signal ui_screen_popped(screen_id: String)
 signal ui_notification_requested(message: String, duration: float)
+signal ui_explanation_requested(message: String, duration: float)
 
 # --- Player: spawn / position (added for Player System) ---
 signal player_spawned(spawn_id: String)

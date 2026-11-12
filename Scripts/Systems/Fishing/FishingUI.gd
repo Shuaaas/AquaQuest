@@ -15,8 +15,7 @@ class_name FishingUI
 ## deliberate: FishingManager's REELING state (the "dragging the rod"
 ## completion animation) is meant to be the visual payoff moment, and it
 ## should play with the question card already gone, not underneath it.
-## Answer feedback is handled by the existing fishing/review flow, not ToastUI.
-## ToastUI is reserved here for fishing access notices (for example, no equipped rod).
+## ToastUI displays explanations separately from the question card.
 ##
 ## PAUSE-SAFE BY CONSTRUCTION (Phase 8): FishingManager now calls
 ## GameManager.set_paused(true) the moment a question appears, per your

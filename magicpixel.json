@@ -1,0 +1,7 @@
+{
+  "outDir": "Assets/UI/Items/MagicPixelTest",
+  "include": ["aquaquest-test/**"],
+  "connect": ["Assets/UI/Items/MagicPixelTest/**"],
+  "syncOnly": ["Assets/UI/Items/MagicPixelTest"],
+  "emitIndex": false
+}

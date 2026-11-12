@@ -10,7 +10,7 @@ Panel/Layout contains Title, StatusRow, Paper, and Footer. Paper/ScrollContainer
 
 Points initialize from FishingManager when the card opens. Difficulty remains the current DDA tier. The separate Review Question banner identifies mini quests without changing question text. HintPanel shows only the authored hint after the existing DDA-controlled Hint button is pressed. Hint availability is still evaluated once per displayed question, preserving the Medium-tier frequency counter. No new hints or educational content were authored.
 
-Answering hides the card before calling the existing main/mini submission method. Wrong answers can immediately display a related review question; correct mini answers restore the original question. Correct main answers preserve the reeling animation. Answer-result and explanation toasts are disabled for both main and review questions; access notices such as needing to equip a rod still use ToastUI. No extra fishing result modal was added.
+Answering hides the card before calling the existing main/mini submission method. Wrong answers can immediately display a related review question; correct mini answers restore the original question. Correct main answers preserve the reeling animation. ToastUI shows the authored explanation after a main or review answer. For a successful catch it appears after reeling, and the item notification waits until the explanation closes. Dismiss, a click or tap anywhere, or the reading timeout closes the explanation.
 
 QuestionImage now exists for the image field already supported by FishingUI. Missing or non-texture resources leave the slot hidden. The existing `r1_001` question references missing `res://Assets/Sprites/Questions/iced_fish.png`; no replacement image was invented.
 
